@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <Group
+      location = "container:"
+      name = "TermExtraction">
+      <FileRef
+         location = "group:filterForSorting.pl">
+      </FileRef>
+      <FileRef
+         location = "group:conflateTargets.pl">
+      </FileRef>
+      <FileRef
+         location = "group:calculateAmbiguities.pl">
+      </FileRef>
+      <FileRef
+         location = "group:occurrenceCounter.pl">
+      </FileRef>
+      <FileRef
+         location = "group:JSONtoXLS.pl">
+      </FileRef>
+      <FileRef
+         location = "group:Terminology/Extractor.py">
+      </FileRef>
+      <FileRef
+         location = "group:Terminology/Service.py">
+      </FileRef>
+      <FileRef
+         location = "group:Terminology/__init__.py">
+      </FileRef>
+      <FileRef
+         location = "group:Terminology/config.py">
+      </FileRef>
+      <FileRef
+         location = "group:runTerminologyService.py">
+      </FileRef>
+      <FileRef
+         location = "group:ImportNGramsToDatabase.py">
+      </FileRef>
+   </Group>
+   <FileRef
+      location = "container:moses_dispatcher.pl">
+   </FileRef>
+   <FileRef
+      location = "container:moses_dispatcher_new.pl">
+   </FileRef>
+   <FileRef
+      location = "container:moses_dispatcher_new2001.pl">
+   </FileRef>
+   <FileRef
+      location = "container:moses_dispatcher_vpn.pl">
+   </FileRef>
+   <FileRef
+      location = "container:moses_server.ventzi.pl">
+   </FileRef>
+   <FileRef
+      location = "group:segmentation_server.pl">
+   </FileRef>
+   <FileRef
+      location = "container:mt_info_server.pl">
+   </FileRef>
+   <FileRef
+      location = "group:serverSetup.ini">
+   </FileRef>
+   <FileRef
+      location = "group:serverSetup.debug.ini">
+   </FileRef>
+   <FileRef
+      location = "group:serverSetup.gloss">
+   </FileRef>
+   <FileRef
+      location = "container:multiParser.pl">
+   </FileRef>
+   <FileRef
+      location = "container:reorder_jpn.pl">
+   </FileRef>
+   <FileRef
+      location = "group:reorder_deu.pl">
+   </FileRef>
+   <FileRef
+      location = "group:calculateTMStatistics.pl">
+   </FileRef>
+   <FileRef
+      location = "container:tokenise.pl">
+   </FileRef>
+   <FileRef
+      location = "container:detokenise.pl">
+   </FileRef>
+   <FileRef
+      location = "container:train.pl">
+   </FileRef>
+   <FileRef
+      location = "container:word_segmenter.pl">
+   </FileRef>
+   <FileRef
+      location = "container:checkMemoryUsage.sh">
+   </FileRef>
+   <FileRef
+      location = "container:checkServerMemory.sh">
+   </FileRef>
+   <FileRef
+      location = "group:checkServerDiskSpace.sh">
+   </FileRef>
+   <FileRef
+      location = "container:countMosesWords.pl">
+   </FileRef>
+   <FileRef
+      location = "group:train-recaser.perl">
+   </FileRef>
+   <FileRef
+      location = "group:extractNGrams.pl">
+   </FileRef>
+   <FileRef
+      location = "group:ExtractGlossary.pl">
+   </FileRef>
+   <FileRef
+      location = "group:evaluateBySegment.pl">
+   </FileRef>
+   <FileRef
+      location = "group:analyseScores.pl">
+   </FileRef>
+   <FileRef
+      location = "group:updateTMs.pl">
+   </FileRef>
+   <FileRef
+      location = "group:extractPassoloData.pl">
+   </FileRef>
+   <FileRef
+      location = "group:generateCorpora.pl">
+   </FileRef>
+   <FileRef
+      location = "container:generateTMX.pl">
+   </FileRef>
+   <FileRef
+      location = "group:MTRelayService.pl">
+   </FileRef>
+   <FileRef
+      location = "group:findEngineDeployment.pl">
+   </FileRef>
+   <FileRef
+      location = "group:deployMTEngines.pl">
+   </FileRef>
+   <FileRef
+      location = "group:deleteOldMTEngines.pl">
+   </FileRef>
+   <FileRef
+      location = "group:archiveNohupFiles.pl">
+   </FileRef>
+</Workspace>
