@@ -4,10 +4,15 @@
 # Created by Ventsislav Zhechev on 18 Dec 2012
 #
 # Version history
+# v0.5.1	Last modified on 17 Mar 2014 by Ventsislav Zhechev
+# Added an accounting of the number of deployed instances to allow shutting down operation as soon as a full deployment is found.
+# Rearranged the deployment details output order.
+#
 # v0.5		Last modified on 14 Mar 2014 by Ventsislav Zhechev
 # Modified to only store progressively better deployments (i.e. leaving less and less memory unused).
 # Execution is stopped after a maximum of 500 maximal deployments are found.
 # Updated the statistics output after execution.
+# Significantly optimised the engine placement algorithm by cutting off bad branches early.
 #
 # v0.4.1	Last modified on 10 Mar 2014 by Ventsislav Zhechev
 # Updated the usage string.
@@ -72,8 +77,11 @@ my $XXENEngine = "fy14_XX-EN_a";
 }
 
 my $totalServerMemory;
-my @serverList = map {$totalServerMemory += $servers{$_}; $_} sort {($servers{$a} <=> $servers{$b})*$serverOrder || $a cmp $b} keys %servers;
-my @engineList = sort {($engines{$b} <=> $engines{$a}) || $a cmp $b} keys %engines;
+#Sort the servers based on user preference and calculate the total server memory
+my @serverList = grep {$totalServerMemory += $servers{$_}} sort {($servers{$a} <=> $servers{$b})*$serverOrder || $a cmp $b} keys %servers;
+my $totalInstances;
+#This engine order is necessary to help optimise the deployment process
+my @engineList = grep {$totalInstances += $engines{$_}->[1]} sort {($engines{$a}->[0] <=> $engines{$b}->[0]) || $a cmp $b} keys %engines;
 
 my $maxMemoryRequirement = $engines{$engineList[0]}->[0];
 map {$maxMemoryRequirement = $_->[0] if $_->[0] > $maxMemoryRequirement} values %engines;
@@ -93,14 +101,12 @@ my $totalDeployments = 0;
 
 &deployServer();
 
-@deployments = sort {$a->{remainingServerMemory} <=> $b->{remainingServerMemory}} @deployments;
-
 my $remainingServerMemory = $totalServerMemory;
 print encode "utf-8", "Total deployment attempts: $deployments\n";
 print encode "utf-8", "Distinct deployments found: $totalDeployments\n";
 print encode "utf-8", "Distinct deployments stored: ".scalar(@deployments)."\n";
 print encode "utf-8", "Distinct maximal deployments: $leastMemoryDeployments\n";
-foreach my $deployment (@deployments) {
+foreach my $deployment (sort {$a->{remainingServerMemory} <=> $b->{remainingServerMemory}} @deployments) {
 	if ($deployment->{remainingServerMemory} > $remainingServerMemory) {
 		last;
 	} else {
@@ -115,18 +121,18 @@ foreach my $deployment (@deployments) {
 			}
 		}
 	}
-	&printDeployment();
+	print encode "utf-8", "Total unused  memory: $deployment{remainingServerMemory}\n";
 	print encode "utf-8", "Deployed instances per engine:\n";
 	foreach my $engine (sort {$a cmp $b} @engineList) {
 		print encode "utf-8", "$engine: ".(defined $deployedEngines{$engine} ? $deployedEngines{$engine} : 0)."\n";
 		$testEngines{$engine}->[1] -= defined $deployedEngines{$engine} ? $deployedEngines{$engine} : 0;
 	}
-	print encode "utf-8", "Total unused  memory: $deployment{remainingServerMemory}\n";
 	print encode "utf-8", "Undeployed instances:\n";
 	foreach my $engine (@engineList) {
 		next unless $testEngines{$engine}->[1];
 		print encode "utf-8", "$engine: $testEngines{$engine}->[1]\n";
 	}
+	&printDeployment();
 	%deployedEngines = ();
 	%testEngines = %{dclone \%engines};
 	%testServers = %{dclone \%servers};
@@ -134,67 +140,86 @@ foreach my $deployment (@deployments) {
 
 
 sub deployServer {
+	#Try to deploy engines on a server
 	my $server = shift @serverList;
 
+	#Fill the server with engines
 	&addEngine($server, $testServers{$server});
 	
+	my $isFullDeployment = 0;
+	#Consider in order all best engine distributions for the server
 	foreach my $deployment (@{$deployedEngineIDs{$server}}) {
+		#Setup the environment to indicate that we are investigating a particular deployment
 		foreach my $engine (@$deployment) {
 			$deployment{$server}->{$engine} = 1;
 			$testServers{$server} -= $testEngines{$engine}->[0];
 			--$testEngines{$engine}->[1];
+			--$totalInstances;
 		}
+		$deployment{remainingServerMemory} += $testServers{$server};
 		
+		#Check if there are servers left
 		if (@serverList) {
-			&deployServer();
+			#Continue deployment on the next server if it could produce a better result
+			&deployServer() unless $deployment{remainingServerMemory} > $leastMemoryRemaining;
 		} else {
-			my $remainingServerMemory;
-			foreach my $server (keys %testServers) {
-				foreach my $engine (@engineList) {
-					$remainingServerMemory += $engines{$engine}->[0] if $deployment{$server}->{$engine};
-				}
-			}
-			$deployment{remainingServerMemory} = $totalServerMemory - $remainingServerMemory;
+			#We've handled all servers. Now we need to check if the resulting deployment needs to be stored
 			if ($deployment{remainingServerMemory} < $leastMemoryRemaining) {
 				$leastMemoryRemaining = $deployment{remainingServerMemory};
 				$leastMemoryDeployments = 1;
 				push @deployments, dclone \%deployment;
+				$isFullDeployment = !$totalInstances;
 			} elsif ($deployment{remainingServerMemory} == $leastMemoryRemaining) {
 				++$leastMemoryDeployments;
 				push @deployments, dclone \%deployment;
+				print STDERR "$leastMemoryDeployments deployments with ${leastMemoryRemaining}MB remaining.\n" if $leastMemoryDeployments > 10;
 			}
 			++$totalDeployments;
 		}
 		
+		#Backtrack
+		$deployment{remainingServerMemory} -= $testServers{$server};
 		foreach my $engine (@$deployment) {
 			$deployment{$server}->{$engine} = 0;
 			$testServers{$server} += $testEngines{$engine}->[0];
 			++$testEngines{$engine}->[1];
+			++$totalInstances;
 		}
 		
-		last if $leastMemoryDeployments >= 500;
+		#Put an upper limit on the number of best deployments
+		last if $leastMemoryDeployments >= 1000 || $isFullDeployment;
 	}
 	
+	#Backtrack
 	unshift @serverList, $server;
 }
 
 sub addEngine {
+	#Progress dots
 	++$deployments;
 	print STDERR "[$deployments]" unless $deployments % 500000;
 	print STDERR "." unless $deployments % 10000;
+	
 	my $server = shift;
 	my $leastUnusedMemory = shift;
 	my $lastEngineID = shift;
 	$lastEngineID = -1 unless defined $lastEngineID;
 	my $availableMemory = $testServers{$server};
 
+	#Go through the available engines
 	foreach my $engineID (($lastEngineID+1)..$#engineList) {
 		my $engine = $engineList[$engineID];
-		next unless $testEngines{$engine}->[1] && $testEngines{$engine}->[0] <= $availableMemory;
+		#Engines are sorted by increasing memory, so no further engine could fit and we can cut the branch
+		last if $testEngines{$engine}->[0] > $testServers{$server};
+		next unless $testEngines{$engine}->[1];
 		
+		#Indicate that we are using the engine for deployment
 		$deployment{$server}->{$engine} = 1;
 		$testServers{$server} -= $testEngines{$engine}->[0];
 		--$testEngines{$engine}->[1];
+		--$totalInstances;
+		
+		#Store the current deployment if necessary
 		if ($testServers{$server} < $leastUnusedMemory) {
 			$leastUnusedMemory = $testServers{$server};
 			$deployedEngineIDs{$server} = [[(grep {$deployment{$server}->{$_}} @engineList)]];
@@ -202,11 +227,14 @@ sub addEngine {
 			push @{$deployedEngineIDs{$server}}, [(grep {$deployment{$server}->{$_}} @engineList)];
 		}
 		
-		$leastUnusedMemory = &addEngine($server, $leastUnusedMemory, $engineID);
+		#Try to add another engine—check if there are other engines and if any could fit in the remaining space
+		$leastUnusedMemory = &addEngine($server, $leastUnusedMemory, $engineID) if $engineID < $#engineList && $totalInstances && $testServers{$server} >= $testEngines{$engineList[$engineID + 1]}->[0];
 		
+		#Backtrack
 		$deployment{$server}->{$engine} = 0;
 		$testServers{$server} += $testEngines{$engine}->[0];
 		++$testEngines{$engine}->[1];
+		++$totalInstances;
 	}
 	
 	return $leastUnusedMemory;
@@ -216,13 +244,11 @@ sub isCompleteDeployment {
 	my $undeployedMemory;
 	my $minMemoryRequirement = $maxMemoryRequirement;
 	my $undeployedEngines;
-	foreach (@engineList) {
-		unless ($deployedEngines{$_}) {
-			my $engineMemory = $testEngines{$_}->[0];
-			++$undeployedEngines;
-			$undeployedMemory += $engineMemory;
-			$minMemoryRequirement = $engineMemory if $engineMemory < $minMemoryRequirement;
-		}
+	foreach (grep {!$deployedEngines{$_}} @engineList) {
+		my $engineMemory = $testEngines{$_}->[0];
+		++$undeployedEngines;
+		$undeployedMemory += $engineMemory;
+		$minMemoryRequirement = $engineMemory if $engineMemory < $minMemoryRequirement;
 	}
 	return ($undeployedEngines || 0, $undeployedMemory || 0, $minMemoryRequirement);
 }
