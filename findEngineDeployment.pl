@@ -102,6 +102,7 @@ my @deployments;
 my $leastMemoryRemaining = $totalServerMemory;
 my $leastMemoryDeployments = 0;
 my $totalDeployments = 0;
+my $isFullDeployment = 0;
 
 &deployServer();
 
@@ -131,7 +132,7 @@ foreach my $deployment (sort {$a->{remainingServerMemory} <=> $b->{remainingServ
 		print encode "utf-8", "$engine: ".(defined $deployedEngines{$engine} ? $deployedEngines{$engine} : 0)."\n";
 		$testEngines{$engine}->[1] -= defined $deployedEngines{$engine} ? $deployedEngines{$engine} : 0;
 	}
-	print encode "utf-8", "Undeployed instances:\n" if @engineList ~~ sub { $testEngines{$_[0]}->[1] };
+	print encode "utf-8", "Undeployed instances:\n" unless @engineList ~~ sub { !$testEngines{$_[0]}->[1] };
 	foreach my $engine (grep {$testEngines{$_}->[1]} @engineList) {
 		print encode "utf-8", "$engine: $testEngines{$engine}->[1]\n";
 	}
@@ -149,7 +150,6 @@ sub deployServer {
 	#Fill the server with engines
 	&addEngine($server, $testServers{$server});
 	
-	my $isFullDeployment = 0;
 	#Consider in order all best engine distributions for the server
 	foreach my $deployment (@{$deployedEngineIDs{$server}}) {
 		#As we haven’t stored the actual deployment lattice, we have to make sure we don’t produce illegal deployments
@@ -174,7 +174,7 @@ sub deployServer {
 				$leastMemoryDeployments = 1;
 				push @deployments, dclone \%deployment;
 				$isFullDeployment = $totalInstances == 0;
-				print STDERR "Upgrading to ${leastMemoryRemaining}MB remaining and $totalInstances instances left to deploy.\n";
+				print STDERR "Upgrading to ${leastMemoryRemaining}MB remaining and $totalInstances instance".($totalInstances == 1 ? "" : "s")." left to deploy.\n";
 			} elsif ($deployment{remainingServerMemory} == $leastMemoryRemaining) {
 				++$leastMemoryDeployments;
 				push @deployments, dclone \%deployment;
