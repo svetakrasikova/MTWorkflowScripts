@@ -174,10 +174,11 @@ sub deployServer {
 				$leastMemoryDeployments = 1;
 				push @deployments, dclone \%deployment;
 				$isFullDeployment = $totalInstances == 0;
+				print STDERR "Upgrading to ${leastMemoryRemaining}MB remaining and $totalInstances instances left to deploy.\n";
 			} elsif ($deployment{remainingServerMemory} == $leastMemoryRemaining) {
 				++$leastMemoryDeployments;
 				push @deployments, dclone \%deployment;
-				print STDERR "$leastMemoryDeployments deployments with ${leastMemoryRemaining}MB remaining and $totalInstances instances left to deploy.\n" if $leastMemoryDeployments > 10;
+				print STDERR "$leastMemoryDeployments deployments with ${leastMemoryRemaining}MB remaining and $totalInstances instances left to deploy.\n" if $leastMemoryDeployments > 400;
 			}
 			++$totalDeployments;
 		}
@@ -192,6 +193,7 @@ sub deployServer {
 		}
 		
 		#Put an upper limit on the number of best deployments
+		#Stop processing after finding a full deployment
 		last if $leastMemoryDeployments >= 500 || $isFullDeployment;
 	}
 	
