@@ -4,6 +4,9 @@
 # Created by Ventsislav Zhechev on 18 Dec 2012
 #
 # Version history
+# v0.5.2	Last modified on 19 Mar 2014 by Ventsislav Zhechev
+# Updated the status output.
+#
 # v0.5.1	Last modified on 17 Mar 2014 by Ventsislav Zhechev
 # Added an accounting of the number of deployed instances to allow shutting down operation as soon as a full deployment is found.
 # Rearranged the deployment details output order.
@@ -172,7 +175,7 @@ sub deployServer {
 			} elsif ($deployment{remainingServerMemory} == $leastMemoryRemaining) {
 				++$leastMemoryDeployments;
 				push @deployments, dclone \%deployment;
-				print STDERR "$leastMemoryDeployments deployments with ${leastMemoryRemaining}MB remaining.\n" if $leastMemoryDeployments > 10;
+				print STDERR "$leastMemoryDeployments deployments with ${leastMemoryRemaining}MB remaining and $totalInstances instances left to deploy.\n" if $leastMemoryDeployments > 10;
 			}
 			++$totalDeployments;
 		}
@@ -187,7 +190,7 @@ sub deployServer {
 		}
 		
 		#Put an upper limit on the number of best deployments
-		last if $leastMemoryDeployments >= 1000 || $isFullDeployment;
+		last if $leastMemoryDeployments >= 500 || $isFullDeployment;
 	}
 	
 	#Backtrack

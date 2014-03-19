@@ -14,7 +14,7 @@ fy15_EN-KO_b	 2382 8
 fy15_EN-NL_c	 378 1
 fy15_EN-NO_c	 334 1
 fy15_EN-PL_c	 1678 8
-fy15_EN-PT_BR_c	 1254 14
+fy15_EN-PT_BR_c	 1254 12
 fy15_EN-RU_c	 2125 8
 fy15_EN-SV_c	 347 1
 fy15_EN-VI_b	 182 1
