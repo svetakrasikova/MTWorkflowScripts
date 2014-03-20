@@ -1,28 +1,40 @@
 #!/bin/bash
 
-ssh -n mtprd01         "hostname; free -tm"
-ssh -n mtprd02         "hostname; free -tm"
-ssh -n mtprd03         "hostname; free -tm"
-ssh -n mtprd04         "hostname; free -tm"
-ssh -n mtprd05         "hostname; free -tm"
-ssh -n mtprd06         "hostname; free -tm"
-ssh -n mtprd07         "hostname; free -tm"
-ssh -n mtprd08         "hostname; free -tm"
-ssh -n mtprd09         "hostname; free -tm"
-ssh -n mtprd10         "hostname; free -tm"
-ssh -n mtprd11         "hostname; free -tm"
-ssh -n mtprd12         "hostname; free -tm"
-ssh -n ussclpdapcmsl01 "hostname; free -tm"
-ssh -n ussclpdapcmsl02 "hostname; free -tm"
-ssh -n ussclpdapcmsl03 "hostname; free -tm"
-ssh -n ussclpdapcmsl04 "hostname; free -tm"
-ssh -n ussclpdapcmsl05 "hostname; free -tm"
-ssh -n ussclpdapcmsl06 "hostname; free -tm"
-ssh -n ussclpdapcmsl07 "hostname; free -tm"
-ssh -n ussclpdapcmsl08 "hostname; free -tm"
-ssh -n ussclpdapcmsl09 "hostname; free -tm"
-ssh -n ussclpdapcmsl10 "hostname; free -tm"
-ssh -n ussclpdapcmsl11 "hostname; free -tm"
-ssh -n ussclpdapcmsl12 "hostname; free -tm"
-ssh -n neucmslinux		 "hostname; free -tm"
-ssh -n ussclsdcmslnx01 "hostname; free -tm"
+ssh -n cmsuser@mtprd01         "hostname; free -tm" 2>/dev/null
+ssh -n cmsuser@mtprd02         "hostname; free -tm" 2>/dev/null
+ssh -n cmsuser@mtprd03         "hostname; free -tm" 2>/dev/null
+ssh -n cmsuser@mtprd04         "hostname; free -tm" 2>/dev/null
+ssh -n cmsuser@mtprd05         "hostname; free -tm" 2>/dev/null
+ssh -n cmsuser@mtprd06         "hostname; free -tm" 2>/dev/null
+ssh -n cmsuser@mtprd07         "hostname; free -tm" 2>/dev/null
+ssh -n cmsuser@mtprd08         "hostname; free -tm" 2>/dev/null
+ssh -n cmsuser@mtprd09         "hostname; free -tm" 2>/dev/null
+ssh -n cmsuser@mtprd10         "hostname; free -tm" 2>/dev/null
+ssh -n cmsuser@mtprd11         "hostname; free -tm" 2>/dev/null
+ssh -n cmsuser@mtprd12         "hostname; free -tm" 2>/dev/null
+ssh -n cmsuser@ussclpdapcmsl01 "hostname; free -tm" 2>/dev/null
+ssh -n cmsuser@ussclpdapcmsl02 "hostname; free -tm" 2>/dev/null
+ssh -n cmsuser@ussclpdapcmsl03 "hostname; free -tm" 2>/dev/null
+ssh -n cmsuser@ussclpdapcmsl04 "hostname; free -tm" 2>/dev/null
+ssh -n cmsuser@ussclpdapcmsl05 "hostname; free -tm" 2>/dev/null
+ssh -n cmsuser@ussclpdapcmsl06 "hostname; free -tm" 2>/dev/null
+ssh -n cmsuser@ussclpdapcmsl07 "hostname; free -tm" 2>/dev/null
+ssh -n cmsuser@ussclpdapcmsl08 "hostname; free -tm" 2>/dev/null
+ssh -n cmsuser@ussclpdapcmsl09 "hostname; free -tm" 2>/dev/null
+ssh -n cmsuser@ussclpdapcmsl10 "hostname; free -tm" 2>/dev/null
+ssh -n cmsuser@ussclpdapcmsl11 "hostname; free -tm" 2>/dev/null
+ssh -n cmsuser@ussclpdapcmsl12 "hostname; free -tm" 2>/dev/null
+ssh -n cmsuser@ussclpdmtlnx001 "hostname; free -tm" 2>/dev/null
+ssh -n cmsuser@ussclpdmtlnx002 "hostname; free -tm" 2>/dev/null
+ssh -n cmsuser@ussclpdmtlnx003 "hostname; free -tm" 2>/dev/null
+ssh -n cmsuser@ussclpdmtlnx004 "hostname; free -tm" 2>/dev/null
+ssh -n cmsuser@ussclpdmtlnx005 "hostname; free -tm" 2>/dev/null
+ssh -n cmsuser@ussclpdmtlnx006 "hostname; free -tm" 2>/dev/null
+ssh -n cmsuser@ussclpdmtlnx007 "hostname; free -tm" 2>/dev/null
+ssh -n cmsuser@ussclpdmtlnx008 "hostname; free -tm" 2>/dev/null
+ssh -n cmsuser@ussclpdmtlnx009 "hostname; free -tm" 2>/dev/null
+ssh -n cmsuser@ussclpdmtlnx010 "hostname; free -tm" 2>/dev/null
+ssh -n cmsuser@ussclpdmtlnx011 "hostname; free -tm" 2>/dev/null
+ssh -n cmsuser@ussclpdmtlnx012 "hostname; free -tm" 2>/dev/null
+ssh -n cmsuser@neucmslinux		 "hostname; free -tm" 2>/dev/null
+ssh -n cmsuser@ussclsdcmslnx01 "hostname; free -tm" 2>/dev/null

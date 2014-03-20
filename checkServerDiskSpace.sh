@@ -1,28 +1,40 @@
 #!/bin/bash
 
-ssh -n mtprd01         'hostname; df -m |grep cms'
-ssh -n mtprd02         'hostname; df -m |grep cms'
-ssh -n mtprd03         'hostname; df -m |grep cms'
-ssh -n mtprd04         'hostname; df -m |grep cms'
-ssh -n mtprd05         'hostname; df -m |grep cms'
-ssh -n mtprd06         'hostname; df -m |grep cms'
-ssh -n mtprd07         'hostname; df -m |grep cms'
-ssh -n mtprd08         'hostname; df -m |grep cms'
-ssh -n mtprd09         'hostname; df -m |grep cms'
-ssh -n mtprd10         'hostname; df -m |grep cms'
-ssh -n mtprd11         'hostname; df -m |grep cms'
-ssh -n mtprd12         'hostname; df -m |grep cms'
-ssh -n ussclpdapcmsl01 'hostname; df -m |grep cms'
-ssh -n ussclpdapcmsl02 'hostname; df -m |grep cms'
-ssh -n ussclpdapcmsl03 'hostname; df -m |grep cms'
-ssh -n ussclpdapcmsl04 'hostname; df -m |grep cms'
-ssh -n ussclpdapcmsl05 'hostname; df -m |grep cms'
-ssh -n ussclpdapcmsl06 'hostname; df -m |grep cms'
-ssh -n ussclpdapcmsl07 'hostname; df -m |grep cms'
-ssh -n ussclpdapcmsl08 'hostname; df -m |grep cms'
-ssh -n ussclpdapcmsl09 'hostname; df -m |grep cms'
-ssh -n ussclpdapcmsl10 'hostname; df -m |grep cms'
-ssh -n ussclpdapcmsl11 'hostname; df -m |grep cms'
-ssh -n ussclpdapcmsl12 'hostname; df -m |grep cms'
-ssh -n neucmslinux		 'hostname; df -m |grep cms'
-ssh -n ussclsdcmslnx01 'hostname; df -m |grep cms'
+ssh -n cmsuser@mtprd01         'hostname; df -m |grep cms' 2>/dev/null
+ssh -n cmsuser@mtprd02         'hostname; df -m |grep cms' 2>/dev/null
+ssh -n cmsuser@mtprd03         'hostname; df -m |grep cms' 2>/dev/null
+ssh -n cmsuser@mtprd04         'hostname; df -m |grep cms' 2>/dev/null
+ssh -n cmsuser@mtprd05         'hostname; df -m |grep cms' 2>/dev/null
+ssh -n cmsuser@mtprd06         'hostname; df -m |grep cms' 2>/dev/null
+ssh -n cmsuser@mtprd07         'hostname; df -m |grep cms' 2>/dev/null
+ssh -n cmsuser@mtprd08         'hostname; df -m |grep cms' 2>/dev/null
+ssh -n cmsuser@mtprd09         'hostname; df -m |grep cms' 2>/dev/null
+ssh -n cmsuser@mtprd10         'hostname; df -m |grep cms' 2>/dev/null
+ssh -n cmsuser@mtprd11         'hostname; df -m |grep cms' 2>/dev/null
+ssh -n cmsuser@mtprd12         'hostname; df -m |grep cms' 2>/dev/null
+ssh -n cmsuser@ussclpdapcmsl01 'hostname; df -m |grep cms' 2>/dev/null
+ssh -n cmsuser@ussclpdapcmsl02 'hostname; df -m |grep cms' 2>/dev/null
+ssh -n cmsuser@ussclpdapcmsl03 'hostname; df -m |grep cms' 2>/dev/null
+ssh -n cmsuser@ussclpdapcmsl04 'hostname; df -m |grep cms' 2>/dev/null
+ssh -n cmsuser@ussclpdapcmsl05 'hostname; df -m |grep cms' 2>/dev/null
+ssh -n cmsuser@ussclpdapcmsl06 'hostname; df -m |grep cms' 2>/dev/null
+ssh -n cmsuser@ussclpdapcmsl07 'hostname; df -m |grep cms' 2>/dev/null
+ssh -n cmsuser@ussclpdapcmsl08 'hostname; df -m |grep cms' 2>/dev/null
+ssh -n cmsuser@ussclpdapcmsl09 'hostname; df -m |grep cms' 2>/dev/null
+ssh -n cmsuser@ussclpdapcmsl10 'hostname; df -m |grep cms' 2>/dev/null
+ssh -n cmsuser@ussclpdapcmsl11 'hostname; df -m |grep cms' 2>/dev/null
+ssh -n cmsuser@ussclpdapcmsl12 'hostname; df -m |grep cms' 2>/dev/null
+ssh -n cmsuser@ussclpdmtlnx001 'hostname; df -m |grep var' 2>/dev/null
+ssh -n cmsuser@ussclpdmtlnx002 'hostname; df -m |grep var' 2>/dev/null
+ssh -n cmsuser@ussclpdmtlnx003 'hostname; df -m |grep var' 2>/dev/null
+ssh -n cmsuser@ussclpdmtlnx004 'hostname; df -m |grep var' 2>/dev/null
+ssh -n cmsuser@ussclpdmtlnx005 'hostname; df -m |grep var' 2>/dev/null
+ssh -n cmsuser@ussclpdmtlnx006 'hostname; df -m |grep var' 2>/dev/null
+ssh -n cmsuser@ussclpdmtlnx007 'hostname; df -m |grep var' 2>/dev/null
+ssh -n cmsuser@ussclpdmtlnx008 'hostname; df -m |grep var' 2>/dev/null
+ssh -n cmsuser@ussclpdmtlnx009 'hostname; df -m |grep var' 2>/dev/null
+ssh -n cmsuser@ussclpdmtlnx010 'hostname; df -m |grep var' 2>/dev/null
+ssh -n cmsuser@ussclpdmtlnx011 'hostname; df -m |grep var' 2>/dev/null
+ssh -n cmsuser@ussclpdmtlnx012 'hostname; df -m |grep var' 2>/dev/null
+ssh -n cmsuser@neucmslinux		 'hostname; df -m |grep cms' 2>/dev/null
+ssh -n cmsuser@ussclsdcmslnx01 'hostname; df -m |grep var' 2>/dev/null
