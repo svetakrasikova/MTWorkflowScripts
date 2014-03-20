@@ -5,6 +5,9 @@
       location = "container:"
       name = "TermExtraction">
       <FileRef
+         location = "group:Terminology/TerminologyDatabaseStaging.txt">
+      </FileRef>
+      <FileRef
          location = "group:filterForSorting.pl">
       </FileRef>
       <FileRef
@@ -38,6 +41,9 @@
          location = "group:ImportNGramsToDatabase.py">
       </FileRef>
    </Group>
+   <FileRef
+      location = "group:SQL/Data Extraction for MT.txt">
+   </FileRef>
    <FileRef
       location = "container:moses_dispatcher.pl">
    </FileRef>

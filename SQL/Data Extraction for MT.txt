@@ -1,0 +1,375 @@
+DECLARE
+	TargetLanguage varchar2(10);
+
+	CURSOR TMc IS
+SELECT DISTINCT
+	('ZTM'||cast(tmlanguages.TMDATABASEID as varchar2(10))||'_TRANSLATIONS') as TMName,
+	(cast(tmlanguages.LANGUAGEPAIRID as varchar2(15))) as TMLang,
+	tmdatabases.NAME as TMDetails
+FROM
+	TMDATABASES
+	INNER JOIN
+	(TMLANGUAGES
+		INNER JOIN
+		LANGUAGES srclang
+		ON
+		srclang.LANGUAGEID = tmlanguages.SRCLANGID
+		INNER JOIN
+		LANGUAGES trglang
+		ON
+		trglang.LANGUAGEID = tmlanguages.TGTLANGID)
+	ON
+	tmdatabases.TMDATABASEID = tmlanguages.TMDATABASEID
+WHERE
+	srclang.PRIMARYLANGCODE = 'en'
+	AND
+	(TargetLanguage != 'TM_ARA_ALL' OR (trglang.PRIMARYLANGCODE = 'ar'
+))--		AND tmdatabases.TMDATABASEID NOT IN (……)))  --exclusions for ARA
+	AND
+	(TargetLanguage != 'TM_CSY_ALL' OR (trglang.PRIMARYLANGCODE = 'cs'
+		AND tmdatabases.TMDATABASEID NOT IN (5305, 8826, 10058)))  --exclusions for CSY
+	AND
+	(TargetLanguage != 'TM_DNK_ALL' OR (trglang.PRIMARYLANGCODE = 'da'
+		AND tmdatabases.TMDATABASEID NOT IN (5305)))  --exclusions for DNK
+	AND
+	(TargetLanguage != 'TM_DEU_ALL' OR (trglang.PRIMARYLANGCODE = 'de'
+		AND tmdatabases.TMDATABASEID NOT IN (5305, 9323, 8268, 9227, 8298, 8169, 10059)))  --exclusions for DEU
+	AND
+	(TargetLanguage != 'TM_ELL_ALL' OR (trglang.PRIMARYLANGCODE = 'el'
+))--		AND tmdatabases.TMDATABASEID NOT IN (……)))  --exclusions for ELL
+	AND
+	(TargetLanguage != 'TM_ENA_ALL' OR (trglang.PRIMARYLANGCODE = 'en' AND trglang.SUBLANGCODE = 'AU'
+))--		AND tmdatabases.TMDATABASEID NOT IN (……)))  --exclusions for ENA
+	AND
+	(TargetLanguage != 'TM_ENG_ALL' OR (trglang.PRIMARYLANGCODE = 'en' AND trglang.SUBLANGCODE = 'GB'
+		AND tmdatabases.TMDATABASEID NOT IN (9417)))  --exclusions for ENG
+	AND
+	(TargetLanguage != 'TM_LAS_ALL' OR (trglang.PRIMARYLANGCODE = 'es' AND trglang.SUBLANGCODE = 'MX'
+))--		AND tmdatabases.TMDATABASEID NOT IN (……)))  --exclusions for LAS
+	AND
+	(TargetLanguage != 'TM_ESP_ALL' OR (trglang.PRIMARYLANGCODE = 'es' AND trglang.SUBLANGCODE IS NULL
+		AND tmdatabases.TMDATABASEID NOT IN (5305, 8269, 9229, 9308, 7326, 10060)))  --exclusions for ESP
+	AND
+	(TargetLanguage != 'TM_FIN_ALL' OR (trglang.PRIMARYLANGCODE = 'fi'
+		AND tmdatabases.TMDATABASEID NOT IN (5305)))  --exclusions for FIN
+	AND
+	(TargetLanguage != 'TM_FRB_ALL' OR (trglang.PRIMARYLANGCODE = 'fr' AND trglang.SUBLANGCODE = 'BE'
+))--		AND tmdatabases.TMDATABASEID NOT IN (……)))  --exclusions for FRB
+	AND
+	(TargetLanguage != 'TM_FRC_ALL' OR (trglang.PRIMARYLANGCODE = 'fr' AND trglang.SUBLANGCODE = 'CA'
+))--		AND tmdatabases.TMDATABASEID NOT IN (……)))  --exclusions for FRC
+	AND
+	(TargetLanguage != 'TM_FRA_ALL' OR (trglang.PRIMARYLANGCODE = 'fr' AND trglang.SUBLANGCODE IS NULL
+		AND tmdatabases.TMDATABASEID NOT IN (5305, 8515, 1, 7836, 8266, 6873, 9228, 9307, 6761, 10041)))  --exclusions for FRA
+	AND
+	(TargetLanguage != 'TM_HEB_ALL' OR (trglang.PRIMARYLANGCODE = 'he'
+))--		AND tmdatabases.TMDATABASEID NOT IN (5305)))  --exclusions for HEB
+	AND
+	(TargetLanguage != 'TM_HUN_ALL' OR (trglang.PRIMARYLANGCODE = 'hu'
+		AND tmdatabases.TMDATABASEID NOT IN (5305)))  --exclusions for HUN
+	AND
+	(TargetLanguage != 'TM_IND_ALL' OR (trglang.PRIMARYLANGCODE = 'id'
+))--		AND tmdatabases.TMDATABASEID NOT IN (……)))  --exclusions for IND
+	AND
+	(TargetLanguage != 'TM_ITA_ALL' OR (trglang.PRIMARYLANGCODE = 'it'
+		AND tmdatabases.TMDATABASEID NOT IN (5305, 8267, 10044)))  --exclusions for ITA
+	AND
+	(TargetLanguage != 'TM_JPN_ALL' OR (trglang.PRIMARYLANGCODE = 'ja'
+		AND tmdatabases.TMDATABASEID NOT IN (5305, 7836, 8570, 9168, 9097, 9103, 8169, 7065, 10045)))  --exclusions for JPN
+	AND
+	(TargetLanguage != 'TM_KOR_ALL' OR (trglang.PRIMARYLANGCODE = 'ko'
+		AND tmdatabases.TMDATABASEID NOT IN (5305, 9215, 9324, 10061)))  --exclusions for KOR
+	AND
+	(TargetLanguage != 'TM_NLD_ALL' OR (trglang.PRIMARYLANGCODE = 'nl'
+		AND tmdatabases.TMDATABASEID NOT IN (5305)))  --exclusions for NLD
+	AND
+	(TargetLanguage != 'TM_NOR_ALL' OR (trglang.PRIMARYLANGCODE = 'nb'
+		AND tmdatabases.TMDATABASEID NOT IN (5305)))  --exclusions for NOR
+	AND
+	(TargetLanguage != 'TM_PLK_ALL' OR (trglang.PRIMARYLANGCODE = 'pl'
+		AND tmdatabases.TMDATABASEID NOT IN (5305, 10047)))  --exclusions for PLK
+	AND
+	(TargetLanguage != 'TM_PTB_ALL' OR (trglang.PRIMARYLANGCODE = 'pt' AND trglang.SUBLANGCODE = 'BR'
+		AND tmdatabases.TMDATABASEID NOT IN (5305, 10046)))  --exclusions for PTB
+	AND
+	(TargetLanguage != 'TM_PTG_ALL' OR (trglang.PRIMARYLANGCODE = 'pt' AND trglang.SUBLANGCODE = 'PT'
+		AND tmdatabases.TMDATABASEID NOT IN (9216, 9325)))  --exclusions for PTG
+	AND
+	(TargetLanguage != 'TM_ROM_ALL' OR (trglang.PRIMARYLANGCODE = 'ro'
+))--		AND tmdatabases.TMDATABASEID NOT IN (……)))  --exclusions for ROM
+	AND
+	(TargetLanguage != 'TM_RUS_ALL' OR (trglang.PRIMARYLANGCODE = 'ru'
+		AND tmdatabases.TMDATABASEID NOT IN (5305, 8265, 10062)))  --exclusions for RUS
+	AND
+	(TargetLanguage != 'TM_SLK_ALL' OR (trglang.PRIMARYLANGCODE = 'sk'
+))--		AND tmdatabases.TMDATABASEID NOT IN (……)))  --exclusions for SLK
+	AND
+	(TargetLanguage != 'TM_SWE_ALL' OR (trglang.PRIMARYLANGCODE = 'sv'
+		AND tmdatabases.TMDATABASEID NOT IN (5305)))  --exclusions for SWE
+	AND
+	(TargetLanguage != 'TM_THA_ALL' OR (trglang.PRIMARYLANGCODE = 'th'
+))--		AND tmdatabases.TMDATABASEID NOT IN (……)))  --exclusions for THA
+	AND
+	(TargetLanguage != 'TM_TUR_ALL' OR (trglang.PRIMARYLANGCODE = 'tr'
+))--		AND tmdatabases.TMDATABASEID NOT IN (……)))  --exclusions for TUR
+	AND
+	(TargetLanguage != 'TM_VIT_ALL' OR (trglang.PRIMARYLANGCODE = 'vi'
+))--		AND tmdatabases.TMDATABASEID NOT IN (……)))  --exclusions for VIT
+	AND
+	(TargetLanguage != 'TM_CHS_ALL' OR (trglang.PRIMARYLANGCODE = 'zh' AND trglang.SUBLANGCODE = 'CN'
+		AND tmdatabases.TMDATABASEID NOT IN (5305, 9212, 9306, 9785, 10063)))  --exclusions for CHS
+	AND
+	(TargetLanguage != 'TM_CHT_ALL' OR (trglang.PRIMARYLANGCODE = 'zh' AND trglang.SUBLANGCODE = 'TW'
+		AND tmdatabases.TMDATABASEID NOT IN (5305, 8662, 9226, 10064)))  --exclusions for CHT
+	AND (
+	NOT regexp_like(tmdatabases.NAME, '^ ?_') AND
+	NOT regexp_like(tmdatabases.NAME, 'tmp', 'i') AND
+	NOT regexp_like(tmdatabases.NAME, 'test', 'i') AND
+	(NOT regexp_like(tmdatabases.DESCRIPTION, 'dummy', 'i') AND
+	NOT regexp_like(tmdatabases.DESCRIPTION, 'not use', 'i') OR
+	tmdatabases.DESCRIPTION IS null)
+	)
+ORDER BY
+	TMName ASC;
+
+	TMTableName varchar2(25);
+	TMLangPair varchar2(15);
+	TMProdDetails varchar2(765);
+	sqlstatement varchar2(700);
+
+	TargetLangs DBMS_UTILITY.UNCL_ARRAY;
+	cnt binary_integer;
+	LangString CONSTANT varchar(362) := 'TM_ARA_ALL,TM_CSY_ALL,TM_DNK_ALL,TM_DEU_ALL,TM_ELL_ALL,TM_ENA_ALL,TM_ENG_ALL,TM_LAS_ALL,TM_ESP_ALL,TM_FIN_ALL,TM_FRB_ALL,TM_FRC_ALL,TM_FRA_ALL,TM_HEB_ALL,TM_HUN_ALL,TM_IND_ALL,TM_ITA_ALL,TM_JPN_ALL,TM_KOR_ALL,TM_NOR_ALL,TM_NLD_ALL,TM_PLK_ALL,TM_PTB_ALL,TM_PTG_ALL,TM_ROM_ALL,TM_RUS_ALL,TM_SLK_ALL,TM_SWE_ALL,TM_THA_ALL,TM_TUR_ALL,TM_VIT_ALL,TM_CHS_ALL,TM_CHT_ALL';
+--	LangString CONSTANT varchar(10) := 'TM_HEB_ALL';
+
+BEGIN
+	DBMS_UTILITY.COMMA_TO_TABLE(LangString, cnt, TargetLangs);
+
+	FOR i IN 1..cnt
+	LOOP
+	TargetLanguage := TargetLangs(i);
+
+--	sqlstatement := 'DROP TABLE '||TargetLanguage;
+--	EXECUTE IMMEDIATE sqlstatement;
+
+	sqlstatement := '
+	CREATE TABLE '||TargetLanguage||' (
+		SOURCE VARCHAR2(4000),
+		TARGET VARCHAR2(4000),
+		TMNAME VARCHAR2(765)
+	)
+	';
+	EXECUTE IMMEDIATE sqlstatement;
+		
+	OPEN TMc;
+	LOOP
+		FETCH TMc INTO TMTableName, TMLangPair, TMProdDetails;
+		EXIT WHEN TMc%NOTFOUND;
+		sqlstatement :=
+'		INSERT INTO '||TargetLanguage||' (SOURCE, TARGET, TMNAME) '||
+'		SELECT SOURCEVC, TARGETVC, '''||TMProdDetails||''' '||
+'		FROM '||TMTableName||' WHERE LANGUAGEPAIRID = '||TMLangPair;
+		EXECUTE IMMEDIATE sqlstatement;
+	END LOOP;
+	CLOSE TMc;
+	
+	END LOOP;
+END;
+
+
+select * from TM_HEB_ALL
+select * from ZTM8860_TRANSLATIONS;
+select count(*) from ZTM9177_TRANSLATIONS
+
+
+DECLARE
+	TargetLangs DBMS_UTILITY.UNCL_ARRAY;
+	cnt binary_integer;
+	LangString CONSTANT varchar(362) := 'TM_ARA_ALL,TM_CSY_ALL,TM_DNK_ALL,TM_DEU_ALL,TM_ELL_ALL,TM_ENA_ALL,TM_ENG_ALL,TM_LAS_ALL,TM_ESP_ALL,TM_FIN_ALL,TM_FRB_ALL,TM_FRC_ALL,TM_FRA_ALL,TM_HEB_ALL,TM_HUN_ALL,TM_IND_ALL,TM_ITA_ALL,TM_JPN_ALL,TM_KOR_ALL,TM_NOR_ALL,TM_NLD_ALL,TM_PLK_ALL,TM_PTB_ALL,TM_PTG_ALL,TM_ROM_ALL,TM_RUS_ALL,TM_SLK_ALL,TM_SWE_ALL,TM_THA_ALL,TM_TUR_ALL,TM_VIT_ALL,TM_CHS_ALL,TM_CHT_ALL';
+	sqlstatement varchar2(700);
+
+BEGIN
+	DBMS_UTILITY.COMMA_TO_TABLE(LangString, cnt, TargetLangs);
+
+	FOR i IN 1..cnt
+	LOOP
+		sqlstatement := 'DROP TABLE '||TargetLangs(i)||' PURGE';
+		EXECUTE IMMEDIATE sqlstatement;
+	END LOOP;
+
+END;
+
+
+SELECT DISTINCT
+	('ZTM'||cast(tmlanguages.TMDATABASEID as varchar2(10))||'_TRANSLATIONS') as TMName,
+	(cast(tmlanguages.LANGUAGEPAIRID as varchar2(15))) as TMLang,
+	srclang.PRIMARYLANGCODE as srcPrim, srclang.SUBLANGCODE as srcSec,
+	trglang.PRIMARYLANGCODE as trgPrim, trglang.SUBLANGCODE as trgSec,
+	tmdatabases.NAME as TMDetails, tmdatabases.DESCRIPTION as description
+FROM
+	TMDATABASES
+	INNER JOIN
+	(TMLANGUAGES
+		INNER JOIN
+		LANGUAGES srclang
+		ON
+		srclang.LANGUAGEID = tmlanguages.SRCLANGID
+		INNER JOIN
+		LANGUAGES trglang
+		ON
+		trglang.LANGUAGEID = tmlanguages.TGTLANGID)
+	ON
+	tmdatabases.TMDATABASEID = tmlanguages.TMDATABASEID
+WHERE
+	srclang.PRIMARYLANGCODE = 'en'
+	AND
+	trglang.PRIMARYLANGCODE != 'en'
+	AND
+--	(trglang.PRIMARYLANGCODE = 'en' AND trglang.SUBLANGCODE = 'GB'
+--	(trglang.PRIMARYLANGCODE = 'ro'
+--)--		AND tmdatabases.TMDATABASEID NOT IN (1, 3188, 5354, 6572, 7035))  --exclusions for ENG
+	--AND 
+	(
+	NOT regexp_like(tmdatabases.NAME, '^ ?_') AND
+	NOT regexp_like(tmdatabases.NAME, 'tmp', 'i') AND
+	NOT regexp_like(tmdatabases.NAME, 'test', 'i') AND
+	(NOT regexp_like(tmdatabases.DESCRIPTION, 'dummy', 'i') AND
+	NOT regexp_like(tmdatabases.DESCRIPTION, 'not use', 'i') OR
+	tmdatabases.DESCRIPTION IS null)
+	)
+ORDER BY
+	trgPrim ASC, trgSec ASC,
+	TMDetails ASC;
+
+select * from ZTM8544_TRANSLATIONS
+where sourcevc like '%Depending on the%'
+order by sourcevc
+
+
+select ap.name, ap.projectid, at.taskid, at.taskNumInProject, at.targetasset, 
+ats.stepname
+from activetasksteps ats, activetasks at, activeprojects 
+ap
+where ats.Stepname = 'Automatic Error' and at.taskid = ats.taskid
+and 
+at.projectid = ap.projectid
+and ats.state =2
+and at.completiondate is 
+null
+order by ap.projectid
+
+select count(source) from (
+/* select segments.sourcesegment as source, history.translation as target, segments.posttranslationtarget as edit, (segments.product||'__'||segments.release||'__'||segments.component) as product, segments.sourcewordcount, segments.translationtype, segments.tmscore, segments.reviewstatus, (cast(segments.projectid as nvarchar2(5))||'.'||cast(segments.taskid as nvarchar2(8))||'.'||segments.sequenceid) as id, segments.placeholders from
+cus_seg_en_fr segments
+inner join
+	cus_seghist_en_fr history
+	on
+	segments.segmentuid = history.segmentuid
+where history.reviewstatus = 7
+union */
+select segments.sourcesegment as source, segments.pretranslationtarget as target, segments.posttranslationtarget as edit, (segments.product||'__'||segments.release||'__'||segments.component) as product, segments.sourcewordcount, segments.translationtype, segments.tmscore, segments.reviewstatus, (cast(segments.projectid as nvarchar2(5))||'.'||cast(segments.taskid as nvarchar2(8))||'.'||segments.sequenceid) as id, segments.placeholders from
+cus_seg_en_fr segments
+where segments.reviewstatus = 7)
+order by 9 asc
+
+select count(segmentuid) from cus_seg_en_fr
+
+
+{translate => 4, targetLanguage => de}
+Help the user!
+Help the poor user!
+Help the unlucky user!
+Help the unlucky user!unluckбедным
+
+{translate => 2, targetLanguage => de, getScore => 1}
+Helping the user join the active group.
+Check this box to prevent the user from closing the active window before dying it blue.
+{translate => 2, targetLanguage => de, product => PRDSTR, getScore => 1}
+Helping the user join the active group.
+Check this box to prevent the user from closing the active window before dying it blue.
+
+
+DROP TABLE GlossExportTemp;
+
+DECLARE
+	CURSOR TDc IS
+(SELECT DISTINCT
+	('ZTD'||cast(tddatabases.TDDATABASEID as varchar2(10))||'_TERMS') as TDName,
+	tddatabases.NAME as TDDetails
+FROM
+	aisproperties, tddatabases
+WHERE
+	aispropertykeyid=6 and path like '/Trisoft/%' and aisproperties.VALUE = tddatabases.TDDATABASEID)
+UNION
+(SELECT DISTINCT
+	('ZTD'||cast(tdgrouptddatabases.TDDATABASEID as varchar2(10))||'_TERMS') as TDName,
+	tddatabases.NAME as TDDetails
+FROM
+	aisproperties, tddatabases, tdgrouptddatabases
+WHERE
+	aispropertykeyid=6 and path like '/Trisoft/%' and aisproperties.VALUE = tdgrouptddatabases.TDGROUPID and tddatabases.TDDATABASEID = tdgrouptddatabases.TDDATABASEID)
+ORDER BY
+	TDName ASC;
+
+	TDTableName varchar2(25);
+	TDProdDetails varchar2(765);
+	sqlstatement varchar2(700);
+
+BEGIN
+
+	sqlstatement := '
+	CREATE TABLE GlossExportTemp (
+		ENTRYID VARCHAR2(15),
+		LANGUAGE VARCHAR2(50),
+		TDNAME VARCHAR2(765),
+		TERM VARCHAR2(4000)
+	)
+	';
+	EXECUTE IMMEDIATE sqlstatement;
+
+	OPEN TDc;
+	
+	LOOP
+		FETCH TDc INTO TDTableName, TDProdDetails;
+		EXIT WHEN TDc%NOTFOUND;
+		sqlstatement :=
+'		INSERT INTO GlossExportTemp (ENTRYID, LANGUAGE, TDNAME, TERM) '||
+'		SELECT TDENTRYID, LANGUAGES.NAME, '''||TDProdDetails||''', TERMVC'||
+'		FROM '||TDTableName||', LANGUAGES'||
+'		WHERE LANGUAGES.LANGUAGEID = '||TDTableName||'.LANGUAGEID'||
+'		ORDER BY TDENTRYID ASC'
+		;
+		EXECUTE IMMEDIATE sqlstatement;
+	END LOOP;
+	CLOSE TDc;
+END;
+
+select tdentryid, primarylangcode, termvc
+from
+	ZTD1465_TERMS, LANGUAGES 
+where languages.LANGUAGEID = ZTD1465_TERMS.LANGUAGEID
+order by
+	tdentryid asc
+
+select * from glossexporttemp
+where term like '%AIM%'
+order by tdname asc, entryid asc, language asc, term asc
+
+select unique tddatabaseid from aisproperties, TDGROUPtdDATABASES where aispropertykeyid=6 and path like '/Trisoft/%' and VALUE = tdgrouptddatabases.TDGROUPID
+union
+select unique tddatabaseid from aisproperties, tddatabases where aispropertykeyid=6 and path like '/Trisoft/%' and VALUE = tddatabases.TDdatabaseID
+
+
+select url_source_id as id, url_source as source, url_target as target, url_target_lang as language
+from url_view_localization_details
+where URL_SOURCE_LANG like 'ENU'
+order by id asc, language asc
+
+select * from url_view_localization_details ld where ld.url_loc_status_id=303 and url_loc_active=1 and ld.url_target_active=1
+
+select url_source_id as id, url_source as source, url_target as target, url_target_lang as language
+from url_view_localization_details
+where URL_SOURCE_LANG like 'ENU' and url_loc_status_id=303 and url_loc_active=1 and url_target_active=1
+order by id asc, language asc
+
+
