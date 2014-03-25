@@ -155,4 +155,7 @@
    <FileRef
       location = "group:archiveNohupFiles.pl">
    </FileRef>
+   <FileRef
+      location = "group:SMT training commands and auxiliaries.txt">
+   </FileRef>
 </Workspace>
