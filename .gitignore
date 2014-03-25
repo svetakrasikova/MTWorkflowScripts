@@ -1,0 +1,15 @@
+.DS_Store
+
+*.py[cod]
+
+Oracle/
+giza-pp*
+fast_mt_*
+gtm-*
+ibleu-*
+zeromq-*
+
+URL/
+
+temp/
+*old*
