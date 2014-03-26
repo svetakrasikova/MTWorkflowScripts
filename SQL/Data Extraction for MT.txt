@@ -223,8 +223,8 @@ FROM
 WHERE
 	srclang.PRIMARYLANGCODE = 'en'
 	AND
-	trglang.PRIMARYLANGCODE != 'en'
-	AND
+--	trglang.PRIMARYLANGCODE != 'en'
+--	AND
 --	(trglang.PRIMARYLANGCODE = 'en' AND trglang.SUBLANGCODE = 'GB'
 --	(trglang.PRIMARYLANGCODE = 'ro'
 --)--		AND tmdatabases.TMDATABASEID NOT IN (1, 3188, 5354, 6572, 7035))  --exclusions for ENG

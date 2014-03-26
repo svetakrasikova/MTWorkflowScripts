@@ -857,6 +857,8 @@ sub start {
 	
 	#Temporary measure to handle EN to PT-PT translation using PT-BR engines.
 	$engine =~ s/PT_PT/PT_BR/;
+	#Temporary measure until the EN–EN_GB engine is deployed with a proper name.
+	$engine =~ s/EN_GB/EN_UK/;
 	
 	my $startedServers = [];
 	foreach my $server (@{$data->{server}}) {
