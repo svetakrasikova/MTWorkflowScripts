@@ -1,6 +1,7 @@
 .DS_Store
 
 *.py[cod]
+deployment.*
 
 Oracle/
 giza-pp*
@@ -13,3 +14,4 @@ temp/
 *old*
 
 Terminology/
+solr/
