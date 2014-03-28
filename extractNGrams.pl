@@ -22,7 +22,7 @@ use Thread::Queue;
 use Encode qw/encode decode/;
 use IO::Compress::Bzip2 qw/$Bzip2Error/;
 use IO::Uncompress::Bunzip2 qw/$Bunzip2Error/;
-use List::Util qw/shuffle/;
+use List::Util qw/shuffle min/;
 
 
 $| = 1;
@@ -65,9 +65,9 @@ my $extract = sub {
 			foreach my $line (@segments) {
 				my @line = split / /, &tokenise($tokeniserData, decode "utf-8", $line);
 				if (@line <= $maxNGram) {
-					++$ngrams{"@line"};
+					++$ngrams{"@line"} if @line >= $maxNGram - 2;
 				} else {
-					for (my $i = 0; $i < @line - $maxNGram; ++$i) {
+					for (my $i = 0; $i < @line - $maxNGram; $i += $maxNGram - min(2, $#line - $maxNGram - $i)) {
 						++$ngrams{"@line[$i..($i+$maxNGram)]"};
 					}
 				}
