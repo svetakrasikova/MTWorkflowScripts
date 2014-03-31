@@ -4,6 +4,9 @@
 # Created on 15 May 2012 by Ventsislav Zhechev
 #
 # ChangeLog
+# v2.0.1	Last modified by Ventsislav Zhechev on 31 Mar 2014
+# Streamlined the ngram extraction to reduce unnecessary output.
+#
 # v2.0		Last modified by Ventsislav Zhechev on 26 Mar 2014
 # Updated to process a list of sources in parallel.
 # Updated to skip ngrams containing punctuation tokens.
@@ -55,6 +58,9 @@ my $extract = sub {
 			last;
 		}
 		
+		my $out = new IO::Compress::Bzip2 "$outputFolder/ngrams.$language.bz2"
+		or die encode "utf-8", "Could not write output file $outputFolder/ngrams.$language.bz2: $Bzip2Error\n";
+		
 		my $in = new IO::Uncompress::Bunzip2 "$inputFolder/$language/corpus.en.bz2"
 		or die encode "utf-8", "Could not read input file $inputFolder/$language/corpus.en.bz2: $Bunzip2Error\n";
 		
@@ -62,13 +68,18 @@ my $extract = sub {
 		while (<$in>) {
 			my ($line, undef) = split /◊/;
 			my @segments = split / ?[\&\?\!\,\"\:\;\(\)\{\}\[\]\\\/\%\#\$\*\+\|] ?/, $line;
+#			next if $line =~ /[\&\?\!\,\"\:\;\(\)\{\}\[\]\\\/\%\#\$\*\+\|]/;
 			foreach my $line (@segments) {
 				my @line = split / /, &tokenise($tokeniserData, decode "utf-8", $line);
 				if (@line <= $maxNGram) {
-					++$ngrams{"@line"} if @line >= $maxNGram - 2;
+					if (@line >= $maxNGram - 2) {
+						++$ngrams{"@line"};
+						print $out encode "utf-8", " @line " unless $ngrams{"@line"} > 1;
+					}
 				} else {
 					for (my $i = 0; $i < @line - $maxNGram; $i += $maxNGram - min(2, $#line - $maxNGram - $i)) {
 						++$ngrams{"@line[$i..($i+$maxNGram)]"};
+						print $out encode "utf-8", " @line[$i..($i+$maxNGram)] " unless $ngrams{"@line[$i..($i+$maxNGram)]"} > 1;
 					}
 				}
 			}
@@ -77,12 +88,8 @@ my $extract = sub {
 		close $in;
 		
 		
-		my $out = new IO::Compress::Bzip2 "$outputFolder/ngrams.$language.bz2"
-		or die encode "utf-8", "Could not write output file $outputFolder/ngrams.$language.bz2: $Bzip2Error\n";
-		
-		print $out encode("utf-8", " $_ ") foreach keys %ngrams;
+#		print $out encode("utf-8", " $_ ") foreach keys %ngrams;
 		print $out "\n";
-		
 		close $out;
 		
 		print STDERR "Generated ".scalar(keys%ngrams)." $maxNGram-grams for language $language.\n"
