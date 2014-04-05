@@ -4,6 +4,9 @@
 # Created on 10 Jan 2013 by Ventsislav Zhechev
 #
 # ChangeLog
+# v0.2.2	Modified on 05 Apr 2014 by Ventsislav Zhechev
+# Updated the %newProductMap.
+#
 # v0.2.1	Modified on 14 Feb 2014 by Ventsislav Zhechev
 # Now we stop processing if we don’t find a TM in the %newProductMap.
 # Updated the %newProductMap.
@@ -391,7 +394,7 @@ my %preFlightMap = (
   "buzzsaw_ita" => "buzzsaw_doc",
   "buzzsaw_jpn" => "buzzsaw_doc",
   "buzzsaw_kor" => "buzzsaw_doc",
-  "CFDSimulation_JPN" => "CFDSimulation_doc",
+	"CFDSimulation_JPN" => "CFDSimulation_doc",
   "Civil_dev-guide_JPN" => "Civil_main_doc",
   "Civil_main_CHS" => "Civil_main_doc",
   "Civil_main_CHT" => "Civil_main_doc",
@@ -837,6 +840,7 @@ my %preFlightMap = (
   "Sketchbook_deu" => "Sketchbook_doc",
   "Sketchbook_esp" => "Sketchbook_doc",
   "Sketchbook_fra" => "Sketchbook_doc",
+	"Sketchbook_hin" => "Sketchbook_doc",
   "Sketchbook_ind" => "Sketchbook_doc",
   "Sketchbook_ita" => "Sketchbook_doc",
   "Sketchbook_jpn" => "Sketchbook_doc",
@@ -975,6 +979,14 @@ my %newProductMap = (
   "ACA_main_plk" => "ACA_doc",
   "ACA_main_rus" => "ACA_doc",
   "acad_main_fra_MAC" => "acad_doc",
+	"Advance_Steel_Advance_Concreate_csy" => "Advance_Steel_Advance_Concreate_doc",
+	"Advance_Steel_Advance_Concreate_deu" => "Advance_Steel_Advance_Concreate_doc",
+	"Advance_Steel_Advance_Concreate_esp" => "Advance_Steel_Advance_Concreate_doc",
+	"Advance_Steel_Advance_Concreate_fra" => "Advance_Steel_Advance_Concreate_doc",
+	"Advance_Steel_Advance_Concreate_ita" => "Advance_Steel_Advance_Concreate_doc",
+	"Advance_Steel_Advance_Concreate_plk" => "Advance_Steel_Advance_Concreate_doc",
+	"Advance_Steel_Advance_Concreate_ptb" => "Advance_Steel_Advance_Concreate_doc",
+	"Advance_Steel_Advance_Concreate_rus" => "Advance_Steel_Advance_Concreate_doc",
   "AKN" => "AKN_doc",
   "Algor_main_CHS" => "Algor_main_doc",
   "Alias_chs" => "Alias_doc",
@@ -1030,6 +1042,8 @@ my %newProductMap = (
   "AutoCADCivil3D_jpn" => "AutoCADCivil3D_doc",
   "AutoCADCivil3D_kor" => "AutoCADCivil3D_doc",
   "AutoCADCivil3D_plk" => "AutoCADCivil3D_doc",
+	"AutodeskCivil3D-Alpha_ptb" => "AutoCADCivil3D_doc",
+	"AutoCADCivil3D_ptb" => "AutoCADCivil3D_doc",
   "AutoCADCivil3D_rus" => "AutoCADCivil3D_doc",
   "AutoCADCivil3D_uk" => "AutoCADCivil3D_doc",
   "AutoCADElectrical_chs" => "AutoCADElectrical_doc",
@@ -1078,7 +1092,10 @@ my %newProductMap = (
   "AutoCADRasterDesign_ita" => "AutoCADRasterDesign_doc",
   "AutoCADRasterDesign_jpn" => "AutoCADRasterDesign_doc",
 	"raster_esp_legacy" => "raster_doc",
+	"AutoCADStructuralDetailing_deu" => "AutoCADStructuralDetailing_doc",
+	"AutoCADStructuralDetailing_esp" => "AutoCADStructuralDetailing_doc",
   "AutoCADStructuralDetailing_fra" => "AutoCADStructuralDetailing_doc",
+	"AutoCADStructuralDetailing_ita" => "AutoCADStructuralDetailing_doc",
   "AutoCADStructuralDetailing_plk" => "AutoCADStructuralDetailing_doc",
   "AutoCADStructuralDetailing_rus" => "AutoCADStructuralDetailing_doc",
   "Autodesk_Simulation_chs" => "Autodesk_Simulation_doc",
@@ -1128,6 +1145,7 @@ my %newProductMap = (
   "Buzzsaw_jpn" => "buzzsaw_doc",
   "Buzzsaw_kor" => "buzzsaw_doc",
   "CFDSimulation_CHS" => "CFDSimulation_doc",
+	"CFDSimulation_CHT" => "CFDSimulation_doc",
   "CFDSimulation_DEU" => "CFDSimulation_doc",
   "CFDSimulation_FRA" => "CFDSimulation_doc",
   "CFDSimulation_ITA" => "CFDSimulation_doc",
@@ -1449,6 +1467,7 @@ my %newProductMap = (
   "Sketchbook_dut" => "Sketchbook_doc",
   "Sketchbook_esp" => "Sketchbook_doc",
   "Sketchbook_fra" => "Sketchbook_doc",
+	"Sketchbook_hin" => "Sketchbook_doc",
   "Sketchbook_hun" => "Sketchbook_doc",
   "Sketchbook_ind" => "Sketchbook_doc",
   "Sketchbook_ita" => "Sketchbook_doc",

@@ -4,6 +4,9 @@
 # Created on 14 Jan 2013 by Ventsislav Zhechev
 #
 # ChangeLog
+# v0.2.6	Modified on 05 Apr 2014 by Ventsislav Zhechev
+# Updated the list of product mappings.
+#
 # v0.2.5	Modified on 03 Jan 2014 by Ventsislav Zhechev
 # Updated the list of product mappings.
 #
@@ -44,6 +47,7 @@ use threads;
 use Thread::Queue;
 
 use Encode qw/encode decode/;
+use List::Util qw/shuffle/;
 
 use IO::Uncompress::Bunzip2 qw/$Bunzip2Error/;
 use IO::Compress::Bzip2 qw/$Bzip2Error/;
@@ -57,75 +61,80 @@ my %languages = (
 #	"ARA"=>"ar",
 #	"CSY"=>"cs",
 #	"DNK"=>"da",
-#	"DEU"=>"de",
+	"DEU"=>"de",
 #	"ELL"=>"el",
 #	"ENA"=>"en_au",
 #	"ENG"=>"en_uk",
-#	"ESP"=>"es",
+	"ESP"=>"es",
 #	"LAS"=>"es_mx",
 #	"FIN"=>"fi",
 #	"FRB"=>"fr_be",
 #	"FRC"=>"fr_ca",
 	"FRA"=>"fr",
-#	"HUN"=>"hu",
+#	"HEB"=>"he",
+#	"HIN"=>"hi",
+	"HUN"=>"hu",
 #	"IND"=>"in",
-#	"ITA"=>"it",
-#	"JPN"=>"jp",
-#	"KOR"=>"ko",
+	"ITA"=>"it",
+	"JPN"=>"jp",
+	"KOR"=>"ko",
 #	"NLD"=>"nl",
 #	"NOR"=>"no",
-#	"PLK"=>"pl",
-#	"PTB"=>"pt_br",
+	"PLK"=>"pl",
+	"PTB"=>"pt_br",
 #	"PTG"=>"pt_pt",
 #	"ROM"=>"ro",
-#	"RUS"=>"ru",
+	"RUS"=>"ru",
 #	"SLK"=>"sk",
 #	"SWE"=>"sv",
 #	"THA"=>"th",
 #	"TUR"=>"tr",
 #	"VIT"=>"vi",
-#	"CHS"=>"zh_hans",
-#	"CHT"=>"zh_hant",
+	"CHS"=>"zh_hans",
+	"CHT"=>"zh_hant",
 );
 
 my %dataSets = (
-	"ARA"=>"tempTMs/TM_ARA_ALL.bz2",
-	"CSY"=>"tempTMs/TM_CSY_ALL.bz2::passoloTemp/csy.all.bz2::Graitec/EN-CS.Graitec.AC.bz2::Graitec/EN-CS.Graitec.AS.bz2",
+	"ARA"=>"tempTMs/TM_ARA_ALL.bz2::sw_corpus/corpus.sw.ara.bz2",
+	"CSY"=>"tempTMs/TM_CSY_ALL.bz2::sw_corpus/corpus.sw.csy.bz2",
 	"DNK"=>"tempTMs/TM_DNK_ALL.bz2",
-	"DEU"=>"tempTMs/TM_DEU_ALL.bz2::passoloTemp/deu.all.bz2::Graitec/EN-DE.Graitec.AC.bz2::Graitec/EN-DE.Graitec.AS.bz2",
-	"ELL"=>"tempTMs/TM_ELL_ALL.bz2",
+	"DEU"=>"tempTMs/TM_DEU_ALL.bz2::sw_corpus/corpus.sw.deu.bz2",
+	"ELL"=>"tempTMs/TM_ELL_ALL.bz2::sw_corpus/corpus.sw.ell.bz2",
 	"ENA"=>"tempTMs/TM_ENA_ALL.bz2",
-	"ENG"=>"tempTMs/TM_ENG_ALL.bz2::passoloTemp/eng.all.bz2::Graitec/EN-EN_UK.Graitec.AC.bz2::Graitec/EN-EN_UK.Graitec.AS.bz2",
-	"ESP"=>"tempTMs/TM_ESP_ALL.bz2::passoloTemp/esp.all.bz2",
+	"ENG"=>"tempTMs/TM_ENG_ALL.bz2::sw_corpus/corpus.sw.eng.bz2",
+	"ESP"=>"tempTMs/TM_ESP_ALL.bz2::sw_corpus/corpus.sw.esp.bz2",
 	"LAS"=>"tempTMs/TM_LAS_ALL.bz2",
-	"FIN"=>"tempTMs/TM_FIN_ALL.bz2",
+	"FIN"=>"tempTMs/TM_FIN_ALL.bz2::sw_corpus/corpus.sw.fin.bz2",
 	"FRB"=>"tempTMs/TM_FRB_ALL.bz2",
 	"FRC"=>"tempTMs/TM_FRC_ALL.bz2",
-	"FRA"=>"tempTMs/TM_FRA_ALL.bz2::passoloTemp/fra.all.bz2::Graitec/EN-FR.Graitec.AC.bz2::Graitec/EN-FR.Graitec.AS.bz2",
-	"HUN"=>"tempTMs/TM_HUN_ALL.bz2::passoloTemp/hun.all.bz2",
+	"FRA"=>"tempTMs/TM_FRA_ALL.bz2::sw_corpus/corpus.sw.fra.bz2",
+	"HEB"=>"tempTMs/TM_HEB_ALL.bz2",
+	"HIN"=>"tempTMs/TM_HIN_ALL.bz2",
+	"HUN"=>"tempTMs/TM_HUN_ALL.bz2::sw_corpus/corpus.sw.hun.bz2",
 	"IND"=>"tempTMs/TM_IND_ALL.bz2",
-	"ITA"=>"tempTMs/TM_ITA_ALL.bz2::passoloTemp/ita.all.bz2::Graitec/EN-IT.Graitec.AS.bz2",
-	"JPN"=>"tempTMs/TM_JPN_ALL.bz2::passoloTemp/jpn.all.bz2",
-	"KOR"=>"tempTMs/TM_KOR_ALL.bz2::passoloTemp/kor.all.bz2",
-	"NLD"=>"tempTMs/TM_NLD_ALL.bz2",
+	"ITA"=>"tempTMs/TM_ITA_ALL.bz2::sw_corpus/corpus.sw.ita.bz2",
+	"JPN"=>"tempTMs/TM_JPN_ALL.bz2::sw_corpus/corpus.sw.jpn.bz2",
+	"KOR"=>"tempTMs/TM_KOR_ALL.bz2::sw_corpus/corpus.sw.kor.bz2",
+	"NLD"=>"tempTMs/TM_NLD_ALL.bz2::sw_corpus/corpus.sw.nld.bz2",
 	"NOR"=>"tempTMs/TM_NOR_ALL.bz2",
-	"PLK"=>"tempTMs/TM_PLK_ALL.bz2::passoloTemp/plk.all.bz2::Graitec/EN-PL.Graitec.AC.bz2::Graitec/EN-PL.Graitec.AS.bz2",
-	"PTB"=>"tempTMs/TM_PTB_ALL.bz2::passoloTemp/ptb.all.bz2",
-	"PTG"=>"tempTMs/TM_PTG_ALL.bz2::passoloTemp/ptg.all.bz2",
-	"ROM"=>"tempTMs/TM_ROM_ALL.bz2::Graitec/EN-RO.Graitec.AC.bz2::Graitec/EN-RO.Graitec.AS.bz2",
-	"RUS"=>"tempTMs/TM_RUS_ALL.bz2::passoloTemp/rus.all.bz2::Graitec/EN-RU.Graitec.AS.bz2",
+	"PLK"=>"tempTMs/TM_PLK_ALL.bz2::sw_corpus/corpus.sw.plk.bz2",
+	"PTB"=>"tempTMs/TM_PTB_ALL.bz2::sw_corpus/corpus.sw.ptb.bz2",
+	"PTG"=>"tempTMs/TM_PTG_ALL.bz2::sw_corpus/corpus.sw.ptg.bz2",
+	"ROM"=>"tempTMs/TM_ROM_ALL.bz2::sw_corpus/corpus.sw.rom.bz2",
+	"RUS"=>"tempTMs/TM_RUS_ALL.bz2::sw_corpus/corpus.sw.rus.bz2",
 	"SLK"=>"tempTMs/TM_SLK_ALL.bz2",
 	"SWE"=>"tempTMs/TM_SWE_ALL.bz2",
 	"THA"=>"tempTMs/TM_THA_ALL.bz2",
 	"TUR"=>"tempTMs/TM_TUR_ALL.bz2",
 	"VIT"=>"tempTMs/TM_VIT_ALL.bz2",
-	"CHS"=>"tempTMs/TM_CHS_ALL.bz2::passoloTemp/chs.all.bz2",
-	"CHT"=>"tempTMs/TM_CHT_ALL.bz2::passoloTemp/cht.all.bz2",
+	"CHS"=>"tempTMs/TM_CHS_ALL.bz2::sw_corpus/corpus.sw.chs.bz2",
+	"CHT"=>"tempTMs/TM_CHT_ALL.bz2::sw_corpus/corpus.sw.cht.bz2",
 );
 
 
 
 my %products = (
+	"CFG360" => "CFG360",
   "123D_main_doc" => "123D",
   "123D"=>"123D",
   "3dsMax_doc" => "3DSMAX",
@@ -136,6 +145,7 @@ my %products = (
   "ACDSYS_doc" => "ACDSYS",
   "ACE_doc" => "ACE",
   "ACAD_E"=>"ACE",
+	"ACAD_E_MOB"=>"ACE",
   "ACM_doc" => "ACM",
   "AMECH_PP"=>"ACM",
   "ADS_doc" => "ADS",
@@ -258,11 +268,15 @@ my %products = (
   "RVT"=>"REVIT",
   "RobotStructuralAnalysis_doc" => "RSA",
   "RSA_doc" => "RSA",
+	"RSAPRO" => "RSA",
+	"RSAPRO360" => "RSA",
   "SCL_doc" => "SCL",
   "Shared_doc" => "PTFM",
   "Showcase_doc" => "SHOWCASE",
   "Simulation360_doc" => "ALGSIM",
+	"SIM360" => "ALGSIM",
   "SimulationJobManager_doc" => "ALGSIM",
+	"SIM360_JM" => "ALGSIM",
   "Sketchbook_doc" => "ALSK",
   "SketchbookDesigner_doc" => "ALSK",
   "SketchBookPro_doc" => "ALSK",
@@ -282,16 +296,19 @@ my %products = (
   "ADR"=>"ADR",
   "WAM_doc" => "WAM",
   "wiki_doc" => "WIKI",
-	"ADSK360"=>"ADSK360",
-	"AIRMAX"=>"AIRMAX",
-	"APPSTORE"=>"APPSTORE",
-	"CERCIP"=>"CERCIP",
-	"MARQUEEAPPS"=>"MARQUEE",
-	"TORCH"=>"TORCH",
-	"PNID"=>"PLNT3D",
-	"SmartAlign_doc"=>"SMAL",
-	"ADSTPR"=>"GRAITEC",
-	"ADSTCP"=>"GRAITEC",
+	"ADSK360" => "ADSK360",
+	"AIRMAX" => "AIRMAX",
+	"APPSTORE" => "APPSTORE",
+	"CERCIP" => "CERCIP",
+	"MARQUEEAPPS" => "MARQUEE",
+	"TORCH" => "TORCH",
+	"PNID" => "PLNT3D",
+	"SmartAlign_doc" => "SMAL",
+	"Advance_Steel_Advance_Concreate_doc" => "GRAITEC",
+	"ADSTPR" => "GRAITEC",
+	"ADSTCP" => "GRAITEC",
+	"MYADSK" => "MYADSK",
+	"M360" => "M360",
 );
 
 
@@ -370,9 +387,7 @@ my $englishThread = threads->create(sub {
 	print encode "utf-8", "Output $enuSegments EN-US segments for language model building.\n";
 });
 
-foreach my $language (sort {$languages{$a} cmp $languages{$b}} keys %languages) {
-	$languageQueue->enqueue($language);
-}
+$languageQueue->enqueue($_) foreach shuffle keys %languages;
 
 #print encode "utf-8", "∞∞∞ Tell processing threads to finish\n";
 $languageQueue->enqueue(0) foreach 1..$threads;
