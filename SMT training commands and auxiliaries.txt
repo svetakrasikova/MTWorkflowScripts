@@ -291,7 +291,7 @@ echo -n "zh_hant soft: "; cat passolo/MT_LPU_export/cht/* |/usr/bin/perl -ne 'ch
 
 ##Training
 #EN-CS
-/OptiBay/ADSK_Software/train.pl -corpus=/Volumes/LaCie_Work/Autodesk/fy15_training/corpora/CSY/corpus -source=en -target=cs -lm_path=lm -moses_path=/Users/ventzi/courses/EuroMatrixPlus/software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -log_dir=LOG -build_lm=/sw/bin/srilm/macosx -build_recaser=./recaser -device=disk1 -fiscal_year=fy15 >CSY.log 2>&1 &
+/OptiBay/ADSK_Software/train.pl -corpus=/Volumes/LaCie_Work/Autodesk/fy15_training/corpora/CSY/corpus -source=en -target=cs -lm_path=lm -moses_path=/Users/ventzi/courses/EuroMatrixPlus/software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -log_dir=LOG -build_lm=/sw/bin/srilm/macosx -build_recaser=./recaser -device=disk1 -fiscal_year=fy15 >CSY.d.log 2>&1 &
 
 #EN-DA
 /OptiBay/ADSK_Software/train.pl -corpus=/Volumes/LaCie_Work/Autodesk/fy15_training/corpora/DNK/corpus -source=en -target=da -lm_path=lm -moses_path=/Users/ventzi/courses/EuroMatrixPlus/software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -log_dir=LOG -build_lm=/sw/bin/srilm/macosx -build_recaser=./recaser -device=disk1 -fiscal_year=fy15 >DNK.log 2>&1 &

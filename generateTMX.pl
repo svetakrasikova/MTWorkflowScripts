@@ -4,7 +4,10 @@
 # ©2011–2014 Autodesk Development Sàrl
 #
 # Change log
-# v2.0.1	Last modified by Ventsislav Zhechev on 26 Feb 2014
+# v2.1.1	Last modified by Ventsislav Zhechev on 06 Apr 2014
+# Added AR to the language list.
+#
+# v2.1		Last modified by Ventsislav Zhechev on 26 Feb 2014
 # Now we no longer use CDATA to protect the segments from messing up the XML. Instead, we use HTML::Escape to manually escape any problematic characters.
 #
 # v2			Last modified by Ventsislav Zhechev on 18 Feb 2014
@@ -44,6 +47,7 @@ unless defined $corpusPath && defined $outputPath;
 $threads ||= 8;
 
 my @languages = (
+{ short => "AR", long => "ARA", corpus => "ar" },
 { short => "CS", long => "CSY", corpus => "cs" },
 { short => "DA", long => "DNK", corpus => "da" },
 { short => "DE", long => "DEU", corpus => "de" },
