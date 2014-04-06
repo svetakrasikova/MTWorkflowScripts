@@ -6,6 +6,7 @@
 # Change log
 # v2.1.1	Last modified by Ventsislav Zhechev on 06 Apr 2014
 # Added AR to the language list.
+# Fixed a bug where ES-MX was processed twice.
 #
 # v2.1		Last modified by Ventsislav Zhechev on 26 Feb 2014
 # Now we no longer use CDATA to protect the segments from messing up the XML. Instead, we use HTML::Escape to manually escape any problematic characters.
@@ -59,7 +60,6 @@ my @languages = (
 { short => "IT", long => "ITA", corpus => "it" },
 { short => "JA", long => "JPN", corpus => "jp" },
 { short => "KO", long => "KOR", corpus => "ko" },
-{ short => "ES-MX", long => "LAS", corpus => "es_mx" },
 { short => "NL", long => "NLD", corpus => "nl" },
 { short => "NO", long => "NOR", corpus => "no" },
 { short => "PL", long => "PLK", corpus => "pl" },
