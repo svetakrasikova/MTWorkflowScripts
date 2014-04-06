@@ -4,7 +4,7 @@
 # Created on 14 Jan 2013 by Ventsislav Zhechev
 #
 # ChangeLog
-# v0.2.6	Modified on 05 Apr 2014 by Ventsislav Zhechev
+# v0.2.6	Modified on 06 Apr 2014 by Ventsislav Zhechev
 # Updated the list of product mappings.
 #
 # v0.2.5	Modified on 03 Jan 2014 by Ventsislav Zhechev
@@ -58,38 +58,38 @@ $threads ||= 1;
 $| = 1;
 
 my %languages = (
-#	"ARA"=>"ar",
-#	"CSY"=>"cs",
-#	"DNK"=>"da",
+	"ARA"=>"ar",
+	"CSY"=>"cs",
+	"DNK"=>"da",
 	"DEU"=>"de",
-#	"ELL"=>"el",
-#	"ENA"=>"en_au",
-#	"ENG"=>"en_uk",
+	"ELL"=>"el",
+	"ENA"=>"en_au",
+	"ENG"=>"en_uk",
 	"ESP"=>"es",
-#	"LAS"=>"es_mx",
-#	"FIN"=>"fi",
-#	"FRB"=>"fr_be",
-#	"FRC"=>"fr_ca",
+	"LAS"=>"es_mx",
+	"FIN"=>"fi",
+	"FRB"=>"fr_be",
+	"FRC"=>"fr_ca",
 	"FRA"=>"fr",
-#	"HEB"=>"he",
-#	"HIN"=>"hi",
+	"HEB"=>"he",
+	"HIN"=>"hi",
 	"HUN"=>"hu",
-#	"IND"=>"in",
+	"IND"=>"in",
 	"ITA"=>"it",
 	"JPN"=>"jp",
 	"KOR"=>"ko",
-#	"NLD"=>"nl",
-#	"NOR"=>"no",
+	"NLD"=>"nl",
+	"NOR"=>"no",
 	"PLK"=>"pl",
 	"PTB"=>"pt_br",
-#	"PTG"=>"pt_pt",
-#	"ROM"=>"ro",
+	"PTG"=>"pt_pt",
+	"ROM"=>"ro",
 	"RUS"=>"ru",
-#	"SLK"=>"sk",
-#	"SWE"=>"sv",
-#	"THA"=>"th",
-#	"TUR"=>"tr",
-#	"VIT"=>"vi",
+	"SLK"=>"sk",
+	"SWE"=>"sv",
+	"THA"=>"th",
+	"TUR"=>"tr",
+	"VIT"=>"vi",
 	"CHS"=>"zh_hans",
 	"CHT"=>"zh_hant",
 );
@@ -177,6 +177,7 @@ my %products = (
   "AutoCADRasterDesign_doc" => "ARDES",
   "ARDES"=>"ARDES",
   "AutoCADStructuralDetailing_doc" => "ASD",
+	"STRDET" => "ASD",
   "Autodesk_Simulation_doc" => "MF",
   "Backburner_doc" => "BACKBURN",
   "BDS_Suite_doc" => "BDS",
