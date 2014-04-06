@@ -6,6 +6,7 @@
 # ChangeLog
 # v0.2.6	Modified on 06 Apr 2014 by Ventsislav Zhechev
 # Updated the list of product mappings.
+# Optimised the processing of ENU segments by submitting them in batches of 500 for printing.
 #
 # v0.2.5	Modified on 03 Jan 2014 by Ventsislav Zhechev
 # Updated the list of product mappings.
@@ -320,6 +321,9 @@ my $enuSegments :shared = 0;
 my $languageQueue = new Thread::Queue;
 my $englishQueue = new Thread::Queue;
 
+my @englishSegments;
+my $maxENSegments = 500;
+
 my $processLanguage = sub {
 	#	print encode "utf-8", "∞∞∞ Enter thread ".threads->tid()."\n";
 	for (;;) {
@@ -360,8 +364,13 @@ my $processLanguage = sub {
 				$product = "N/A" if $product =~ m"^◊÷";
 				print $sourceOutput encode "utf-8", "$source◊$product\n";
 				print $targetOutput encode "utf-8", "$target◊$product\n";
-				sleep 1 while $englishQueue->pending() > 1500000;
-				$englishQueue->enqueue(encode "utf-8", "$source◊$product\n");
+#				sleep 1 while $englishQueue->pending() > 1500000;
+#				$englishQueue->enqueue(encode "utf-8", "$source◊$product\n");
+				if (@englishSegments >= $maxENSegments) {
+					$englishQueue->enqueue(\@englishSegments);
+					@englishSegments = ();
+				}
+				push @englishSegments, encode "utf-8", "$source◊$product\n";
 			}
 			
 			close $input;
@@ -372,17 +381,23 @@ my $processLanguage = sub {
 		close $targetOutput;
 		print encode "utf-8", "\tProcessed $segments segments for language $language.\n";
 	}
+	if (@englishSegments) {
+		$englishQueue->enqueue(\@englishSegments);
+		@englishSegments = ();
+	}
 	#	print encode "utf-8", "∞∞∞ Exit thread ".threads->tid()."\n";
 };
+
 
 my @threads = map {threads->create($processLanguage)} 1..$threads;
 my $englishThread = threads->create(sub {
 	my $enuOutput = new IO::Compress::Bzip2 "corpora/ENU/corpus.en.bz2" or die encode "utf-8", "Cannot write corpus file “corpora/ENU/corpus.en.bz2”: $Bzip2Error\n";
+	local $" = "";
 	for(;;) {
-		my $segment = $englishQueue->dequeue();
-		last if $segment eq "";
-		++$enuSegments;
-		print $enuOutput $segment
+		my $segments = $englishQueue->dequeue();
+		last unless defined $segments;
+		$enuSegments += @$segments;
+		print $enuOutput "@$segments";
 	}
 	close $enuOutput;
 	print encode "utf-8", "Output $enuSegments EN-US segments for language model building.\n";
@@ -391,11 +406,11 @@ my $englishThread = threads->create(sub {
 $languageQueue->enqueue($_) foreach shuffle keys %languages;
 
 #print encode "utf-8", "∞∞∞ Tell processing threads to finish\n";
-$languageQueue->enqueue(0) foreach 1..$threads;
+$languageQueue->enqueue(undef) foreach 1..$threads;
 #print encode "utf-8", "∞∞∞ Wait for processing threads to finish\n";
 $_->join() foreach @threads;
 #print encode "utf-8", "∞∞∞ Tell English thread to finish\n";
-$englishQueue->enqueue("");
+$englishQueue->enqueue(undef);
 #print encode "utf-8", "∞∞∞ Wait for English thread to finish\n";
 $englishThread->join();
 
