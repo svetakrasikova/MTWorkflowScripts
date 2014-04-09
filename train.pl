@@ -8,6 +8,9 @@
 # Last modified by Ventsislav Zhechev
 #
 # ChangeLog
+# v3.6.4		Modified by Ventsislav Zhechev on 09 Apr 2014
+# Ensured EN_GB is processed properly. (We no longer use EN_UK as a language code.)
+#
 # v3.6.3		Modified by Ventsislav Zhechev on 08 Jan 2014
 # Fixed the product name processing to allow the proper pre-processing of source-language data.
 #
@@ -462,7 +465,7 @@ if ((!$sub_pid || !$sub_fork) && (defined $build_lm && (defined $force || !(-e "
 		mkdir($lm_path)
 		or die "Could not create LM path: $lm_path\n";
 	}
-	system(($build_lm ne "1" ? "$build_lm/" : "")."ngram-count -order 5 -unk -interpolate -".($target eq "en_uk" || $target eq ".." ? "wb" : "kn")."discount -memuse -text $corpusDir/corpus.tok.$target.bz2 -lm $lm_path/lm5bin -write-binary-lm") == 0
+	system(($build_lm ne "1" ? "$build_lm/" : "")."ngram-count -order 5 -unk -interpolate -".($target eq "en_gb" || $target eq ".." ? "wb" : "kn")."discount -memuse -text $corpusDir/corpus.tok.$target.bz2 -lm $lm_path/lm5bin -write-binary-lm") == 0
 	or die "Target language model training failed with exit code ".($? >> 8).": $!\n";
 	my $end = new Benchmark;
 	print LOG "Building target language model completed in ", timestr(timediff($end, $start), 'all'), "\n";
@@ -503,7 +506,7 @@ waitpid($pid, 0) if $forked && $pid;
 if ($source ne "xx" && $target eq "en") {
 	print LOG "Copying recaser setup files from XX-EN folder…\n";
 	mkdir "recaser";
-	system "cp -p $build_recaser/moses.* recaser/." == 0
+	system("cp -p $build_recaser/moses.* recaser/.") == 0
 	or warn "Could not copy recaser setup files!\n";
 }
 
