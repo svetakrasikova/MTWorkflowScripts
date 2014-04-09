@@ -299,8 +299,8 @@ echo -n "zh_hant soft: "; cat passolo/MT_LPU_export/cht/* |/usr/bin/perl -ne 'ch
 #EN-DE
 /OptiBay/ADSK_Software/train.pl -corpus=/Volumes/LaCie_Work/Autodesk/fy15_training/corpora/DEU/corpus -source=en -target=de -lm_path=lm -moses_path=/Users/ventzi/courses/EuroMatrixPlus/software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -log_dir=LOG -build_lm=/sw/bin/srilm/macosx -build_recaser=./recaser -device=disk1 -fiscal_year=fy15 >DEU.d.log 2>&1 &
 
-#EN-EN_UK
-/OptiBay/ADSK_Software/train.pl -corpus=/Volumes/LaCie_Work/Autodesk/fy15_training/corpora/ENG/corpus -source=en -target=en_uk -lm_path=lm -moses_path=/Users/ventzi/courses/EuroMatrixPlus/software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -log_dir=LOG -build_lm=/sw/bin/srilm/macosx -build_recaser=./recaser -device=disk1 -fiscal_year=fy15 >ENG.d.log 2>&1 &
+#EN-EN_GB
+/OptiBay/ADSK_Software/train.pl -corpus=/Volumes/LaCie_Work/Autodesk/fy15_training/corpora/ENG/corpus -source=en -target=en_gb -lm_path=lm -moses_path=/Users/ventzi/courses/EuroMatrixPlus/software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -log_dir=LOG -build_lm=/sw/bin/srilm/macosx -build_recaser=./recaser -device=disk1 -fiscal_year=fy15 >ENG.d.log 2>&1 &
 
 #EN-ES
 /OptiBay/ADSK_Software/train.pl -corpus=/Volumes/LaCie_Work/Autodesk/fy15_training/corpora/ESP/corpus -source=en -target=es -lm_path=lm -moses_path=/Users/ventzi/courses/EuroMatrixPlus/software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -log_dir=LOG -build_lm=/sw/bin/srilm/macosx -build_recaser=./recaser -device=disk1 -fiscal_year=fy15 >ESP.d.log 2>&1 &
@@ -362,43 +362,43 @@ echo -n "zh_hant soft: "; cat passolo/MT_LPU_export/cht/* |/usr/bin/perl -ne 'ch
 
 
 #CS-EN
-/OptiBay/ADSK_Software/train.pl -corpus=/Volumes/LaCie_Work/Autodesk/fy15_training/corpora/CSY/corpus -source=cs -target=en -lm_path=../fy14_XX-EN_a/lm -moses_path=/Users/ventzi/courses/EuroMatrixPlus/software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -log_dir=LOG -build_lm=/sw/bin/srilm/macosx -build_recaser=../fy14_XX-EN_a/recaser -device=disk1 -fiscal_year=fy15 -archive=### >toCSY.log 2>&1 &
+/OptiBay/ADSK_Software/train.pl -corpus=/Volumes/LaCie_Work/Autodesk/fy15_training/corpora/CSY/corpus -source=cs -target=en -lm_path=../fy15_XX-EN_b/lm -moses_path=/Users/ventzi/courses/EuroMatrixPlus/software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -log_dir=LOG -build_lm=/sw/bin/srilm/macosx -build_recaser=../fy15_XX-EN_b/recaser -device=disk1 -fiscal_year=fy15 -archive=### >toCSY.d.log 2>&1 &
 
 #DE-EN
-/OptiBay/ADSK_Software/train.pl -corpus=/Volumes/LaCie_Work/Autodesk/fy15_training/corpora/DEU/corpus -source=de -target=en -lm_path=../fy14_XX-EN_a/lm -moses_path=/Users/ventzi/courses/EuroMatrixPlus/software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -log_dir=LOG -build_lm=/sw/bin/srilm/macosx -build_recaser=../fy14_XX-EN_a/recaser -device=disk1 -fiscal_year=fy15 -archive=### >toDEU.log 2>&1 &
+/OptiBay/ADSK_Software/train.pl -corpus=/Volumes/LaCie_Work/Autodesk/fy15_training/corpora/DEU/corpus -source=de -target=en -lm_path=../fy15_XX-EN_b/lm -moses_path=/Users/ventzi/courses/EuroMatrixPlus/software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -log_dir=LOG -build_lm=/sw/bin/srilm/macosx -build_recaser=../fy15_XX-EN_b/recaser -device=disk1 -fiscal_year=fy15 -archive=### >toDEU.d.log 2>&1 &
 
 #ES-EN
-/OptiBay/ADSK_Software/train.pl -corpus=/Volumes/LaCie_Work/Autodesk/fy15_training/corpora/ESP/corpus -source=es -target=en -lm_path=../fy14_XX-EN_a/lm -moses_path=/Users/ventzi/courses/EuroMatrixPlus/software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -log_dir=LOG -build_lm=/sw/bin/srilm/macosx -build_recaser=../fy14_XX-EN_a/recaser -device=disk1 -fiscal_year=fy15 -archive=### >toESP.log 2>&1 &
+/OptiBay/ADSK_Software/train.pl -corpus=/Volumes/LaCie_Work/Autodesk/fy15_training/corpora/ESP/corpus -source=es -target=en -lm_path=../fy15_XX-EN_b/lm -moses_path=/Users/ventzi/courses/EuroMatrixPlus/software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -log_dir=LOG -build_lm=/sw/bin/srilm/macosx -build_recaser=../fy15_XX-EN_b/recaser -device=disk1 -fiscal_year=fy15 -archive=### >toESP.d.log 2>&1 &
 
 #FR-EN
-/OptiBay/ADSK_Software/train.pl -corpus=/Volumes/LaCie_Work/Autodesk/fy15_training/corpora/FRA/corpus -source=FR -target=en -lm_path=../fy14_XX-EN_a/lm -moses_path=/Users/ventzi/courses/EuroMatrixPlus/software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -log_dir=LOG -build_lm=/sw/bin/srilm/macosx -build_recaser=../fy14_XX-EN_a/recaser -device=disk1 -fiscal_year=fy15 -archive=### >toFRA.log 2>&1 &
+/OptiBay/ADSK_Software/train.pl -corpus=/Volumes/LaCie_Work/Autodesk/fy15_training/corpora/FRA/corpus -source=FR -target=en -lm_path=../fy15_XX-EN_b/lm -moses_path=/Users/ventzi/courses/EuroMatrixPlus/software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -log_dir=LOG -build_lm=/sw/bin/srilm/macosx -build_recaser=../fy15_XX-EN_b/recaser -device=disk1 -fiscal_year=fy15 -archive=### >toFRA.log 2>&1 &
 
 #HU-EN
-/OptiBay/ADSK_Software/train.pl -corpus=/Volumes/LaCie_Work/Autodesk/fy15_training/corpora/HUN/corpus -source=hu -target=en -lm_path=../fy14_XX-EN_a/lm -moses_path=/Users/ventzi/courses/EuroMatrixPlus/software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -log_dir=LOG -build_lm=/sw/bin/srilm/macosx -build_recaser=../fy14_XX-EN_a/recaser -device=disk1 -fiscal_year=fy15 -archive=### >toHUN.log 2>&1 &
+/OptiBay/ADSK_Software/train.pl -corpus=/Volumes/LaCie_Work/Autodesk/fy15_training/corpora/HUN/corpus -source=hu -target=en -lm_path=../fy15_XX-EN_b/lm -moses_path=/Users/ventzi/courses/EuroMatrixPlus/software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -log_dir=LOG -build_lm=/sw/bin/srilm/macosx -build_recaser=../fy15_XX-EN_b/recaser -device=disk1 -fiscal_year=fy15 -archive=### >toHUN.log 2>&1 &
 
 #IT-EN
-/OptiBay/ADSK_Software/train.pl -corpus=/Volumes/LaCie_Work/Autodesk/fy15_training/corpora/ITA/corpus -source=it -target=en -lm_path=../fy14_XX-EN_a/lm -moses_path=/Users/ventzi/courses/EuroMatrixPlus/software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -log_dir=LOG -build_lm=/sw/bin/srilm/macosx -build_recaser=../fy14_XX-EN_a/recaser -device=disk1 -fiscal_year=fy15 -archive=### >toITA.log 2>&1 &
+/OptiBay/ADSK_Software/train.pl -corpus=/Volumes/LaCie_Work/Autodesk/fy15_training/corpora/ITA/corpus -source=it -target=en -lm_path=../fy15_XX-EN_b/lm -moses_path=/Users/ventzi/courses/EuroMatrixPlus/software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -log_dir=LOG -build_lm=/sw/bin/srilm/macosx -build_recaser=../fy15_XX-EN_b/recaser -device=disk1 -fiscal_year=fy15 -archive=### >toITA.log 2>&1 &
 
 #JP-EN
-/OptiBay/ADSK_Software/train.pl -corpus=/Volumes/LaCie_Work/Autodesk/fy15_training/corpora/JPN/corpus -source=jp -target=en -lm_path=../fy14_XX-EN_a/lm -moses_path=/Users/ventzi/courses/EuroMatrixPlus/software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -log_dir=LOG -build_lm=/sw/bin/srilm/macosx -build_recaser=../fy14_XX-EN_a/recaser -device=disk1 -fiscal_year=fy15 -seg_model="/Users/ventzi/Desktop/Autodesk/segmentation/kytea-models/jp-0.3.0-utf8-1.mod" -archive=### >toJPN.log 2>&1 &
+/OptiBay/ADSK_Software/train.pl -corpus=/Volumes/LaCie_Work/Autodesk/fy15_training/corpora/JPN/corpus -source=jp -target=en -lm_path=../fy15_XX-EN_b/lm -moses_path=/Users/ventzi/courses/EuroMatrixPlus/software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -log_dir=LOG -build_lm=/sw/bin/srilm/macosx -build_recaser=../fy15_XX-EN_b/recaser -device=disk1 -fiscal_year=fy15 -seg_model="/Users/ventzi/Desktop/Autodesk/segmentation/kytea-models/jp-0.3.0-utf8-1.mod" -archive=### >toJPN.log 2>&1 &
 
 #KO-EN
-/OptiBay/ADSK_Software/train.pl -corpus=/Volumes/LaCie_Work/Autodesk/fy15_training/corpora/KOR/corpus -source=ko -target=en -lm_path=../fy14_XX-EN_a/lm -moses_path=/Users/ventzi/courses/EuroMatrixPlus/software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -log_dir=LOG -build_lm=/sw/bin/srilm/macosx -build_recaser=../fy14_XX-EN_a/recaser -device=disk1 -fiscal_year=fy15 -archive=### >toKOR.log 2>&1 &
+/OptiBay/ADSK_Software/train.pl -corpus=/Volumes/LaCie_Work/Autodesk/fy15_training/corpora/KOR/corpus -source=ko -target=en -lm_path=../fy15_XX-EN_b/lm -moses_path=/Users/ventzi/courses/EuroMatrixPlus/software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -log_dir=LOG -build_lm=/sw/bin/srilm/macosx -build_recaser=../fy15_XX-EN_b/recaser -device=disk1 -fiscal_year=fy15 -archive=### >toKOR.log 2>&1 &
 
 #PL-EN
-/OptiBay/ADSK_Software/train.pl -corpus=/Volumes/LaCie_Work/Autodesk/fy15_training/corpora/PLK/corpus -source=pl -target=en -lm_path=../fy14_XX-EN_a/lm -moses_path=/Users/ventzi/courses/EuroMatrixPlus/software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -log_dir=LOG -build_lm=/sw/bin/srilm/macosx -build_recaser=../fy14_XX-EN_a/recaser -device=disk1 -fiscal_year=fy15 -archive=### >toPLK.log 2>&1 &
+/OptiBay/ADSK_Software/train.pl -corpus=/Volumes/LaCie_Work/Autodesk/fy15_training/corpora/PLK/corpus -source=pl -target=en -lm_path=../fy15_XX-EN_b/lm -moses_path=/Users/ventzi/courses/EuroMatrixPlus/software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -log_dir=LOG -build_lm=/sw/bin/srilm/macosx -build_recaser=../fy15_XX-EN_b/recaser -device=disk1 -fiscal_year=fy15 -archive=### >toPLK.log 2>&1 &
 
 #PT_BR-EN
-/OptiBay/ADSK_Software/train.pl -corpus=/Volumes/LaCie_Work/Autodesk/fy15_training/corpora/PTB/corpus -source=pt_br -target=en -lm_path=../fy14_XX-EN_a/lm -moses_path=/Users/ventzi/courses/EuroMatrixPlus/software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -log_dir=LOG -build_lm=/sw/bin/srilm/macosx -build_recaser=../fy14_XX-EN_a/recaser -device=disk1 -fiscal_year=fy15 -archive=### >toPTB.log 2>&1 &
+/OptiBay/ADSK_Software/train.pl -corpus=/Volumes/LaCie_Work/Autodesk/fy15_training/corpora/PTB/corpus -source=pt_br -target=en -lm_path=../fy15_XX-EN_b/lm -moses_path=/Users/ventzi/courses/EuroMatrixPlus/software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -log_dir=LOG -build_lm=/sw/bin/srilm/macosx -build_recaser=../fy15_XX-EN_b/recaser -device=disk1 -fiscal_year=fy15 -archive=### >toPTB.log 2>&1 &
 
 #RU-EN
-/OptiBay/ADSK_Software/train.pl -corpus=/Volumes/LaCie_Work/Autodesk/fy15_training/corpora/RUS/corpus -source=ru -target=en -lm_path=../fy14_XX-EN_a/lm -moses_path=/Users/ventzi/courses/EuroMatrixPlus/software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -log_dir=LOG -build_lm=/sw/bin/srilm/macosx -build_recaser=../fy14_XX-EN_a/recaser -device=disk1 -fiscal_year=fy15 -archive=### >toRUS.log 2>&1 &
+/OptiBay/ADSK_Software/train.pl -corpus=/Volumes/LaCie_Work/Autodesk/fy15_training/corpora/RUS/corpus -source=ru -target=en -lm_path=../fy15_XX-EN_b/lm -moses_path=/Users/ventzi/courses/EuroMatrixPlus/software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -log_dir=LOG -build_lm=/sw/bin/srilm/macosx -build_recaser=../fy15_XX-EN_b/recaser -device=disk1 -fiscal_year=fy15 -archive=### >toRUS.log 2>&1 &
 
 #ZH_HANS-EN
-/OptiBay/ADSK_Software/train.pl -corpus=/Volumes/LaCie_Work/Autodesk/fy15_training/corpora/CHS/corpus -source=zh_hans -target=en -lm_path=../fy14_XX-EN_a/lm -moses_path=/Users/ventzi/courses/EuroMatrixPlus/software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -log_dir=LOG -build_lm=/sw/bin/srilm/macosx -build_recaser=../fy14_XX-EN_a/recaser -device=disk1 -fiscal_year=fy15 -seg_model="/Users/ventzi/Desktop/Autodesk/segmentation/kytea-models/lcmc-0.3.0-1.mod" -archive=### >toCHS.log 2>&1 &
+/OptiBay/ADSK_Software/train.pl -corpus=/Volumes/LaCie_Work/Autodesk/fy15_training/corpora/CHS/corpus -source=zh_hans -target=en -lm_path=../fy15_XX-EN_b/lm -moses_path=/Users/ventzi/courses/EuroMatrixPlus/software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -log_dir=LOG -build_lm=/sw/bin/srilm/macosx -build_recaser=../fy15_XX-EN_b/recaser -device=disk1 -fiscal_year=fy15 -seg_model="/Users/ventzi/Desktop/Autodesk/segmentation/kytea-models/lcmc-0.3.0-1.mod" -archive=### >toCHS.log 2>&1 &
 
 #ZH_HANT-EN
-/OptiBay/ADSK_Software/train.pl -corpus=/Volumes/LaCie_Work/Autodesk/fy15_training/corpora/CHT/corpus -source=zh_hant -target=en -lm_path=../fy14_XX-EN_a/lm -moses_path=/Users/ventzi/courses/EuroMatrixPlus/software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -log_dir=LOG -build_lm=/sw/bin/srilm/macosx -build_recaser=../fy14_XX-EN_a/recaser -device=disk1 -fiscal_year=fy15 -seg_model="/Users/ventzi/Desktop/Autodesk/segmentation/kytea-models/lcmc-0.3.0-1.mod" -archive=### >toCHT.log 2>&1 &
+/OptiBay/ADSK_Software/train.pl -corpus=/Volumes/LaCie_Work/Autodesk/fy15_training/corpora/CHT/corpus -source=zh_hant -target=en -lm_path=../fy15_XX-EN_b/lm -moses_path=/Users/ventzi/courses/EuroMatrixPlus/software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -log_dir=LOG -build_lm=/sw/bin/srilm/macosx -build_recaser=../fy15_XX-EN_b/recaser -device=disk1 -fiscal_year=fy15 -seg_model="/Users/ventzi/Desktop/Autodesk/segmentation/kytea-models/lcmc-0.3.0-1.mod" -archive=### >toCHT.log 2>&1 &
 
 
 

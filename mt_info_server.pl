@@ -4,6 +4,9 @@
 # Created on 17 Oct 2011 by Ventsislav Zhechev
 #
 # ChangeLog
+# v1.10.7		Modified on 09 Apr 2014 by Ventsislav Zhechev
+# Fixed a bug where PT-PT and EN-GB data wasn’t properly gathered as part of engine statistics.
+#
 # v1.10.6		Modified on 04 Mar 2014 by Ventsislav Zhechev
 # Increased the Moses read timeout to 60sec.
 #
@@ -56,7 +59,7 @@
 # Compatibility fix for UIRef lookup API.
 #
 # v1.7.2		Modified on 08 Feb 2013 by Ventsislav Zhechev
-# Updated the workaround for handling EN-PT_PT engines.
+# Updated the workaround for handling EN-PT-PT engines.
 #
 # v1.7.1		Modified on 18 Jan 2013 by Ventsislav Zhechev
 # Added a temporary measure to handle EN to PT-PT translation using PT-BR engines.
@@ -795,7 +798,10 @@ sub check {
 		
 		if ($collectStats && $engine ne "n/a") {
 			my $eng = $engine;
-			$eng =~ s/PT-PT/PT-BR/;
+			#Temporary measure to handle EN to PT-PT translation using PT-BR engines.
+			$eng =~ s/PT_PT/PT_BR/;
+			#Temporary measure until the EN–EN_GB engine is deployed with a proper name.
+			$eng =~ s/EN_GB/EN_UK/;
 			my $statistics = `ssh $server '/local/cms/bin/countMosesWords.pl -logDir=/local/cms/LOG -filterEngine=$eng' 2>/dev/null`;
 			($statistics) = $statistics =~ /(^\{\s*(\w+\s*=>\s*"?[\w?-]+"?,?\s*)*\s*\}$)/;
 			if ($statistics) {
