@@ -205,6 +205,7 @@ END;
 
 SELECT DISTINCT
 	('ZTM'||cast(tmlanguages.TMDATABASEID as varchar2(10))||'_TRANSLATIONS') as TMName,
+	tmlanguages.TMDATABASEID as TMID,
 	(cast(tmlanguages.LANGUAGEPAIRID as varchar2(15))) as TMLang,
 	srclang.PRIMARYLANGCODE as srcPrim, srclang.SUBLANGCODE as srcSec,
 	trglang.PRIMARYLANGCODE as trgPrim, trglang.SUBLANGCODE as trgSec,
@@ -236,8 +237,8 @@ WHERE
 	NOT regexp_like(tmdatabases.NAME, '^ ?_') AND
 	NOT regexp_like(tmdatabases.NAME, 'tmp', 'i') AND
 	NOT regexp_like(tmdatabases.NAME, 'test', 'i') AND
-	(NOT regexp_like(tmdatabases.DESCRIPTION, 'dummy', 'i') AND
-	NOT regexp_like(tmdatabases.DESCRIPTION, 'not use', 'i') OR
+	((NOT regexp_like(tmdatabases.DESCRIPTION, 'dummy', 'i') AND
+	NOT regexp_like(tmdatabases.DESCRIPTION, 'not use', 'i')) OR
 	tmdatabases.DESCRIPTION IS null)
 	)
 ORDER BY
