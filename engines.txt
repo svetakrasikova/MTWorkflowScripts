@@ -3,7 +3,7 @@ fy15_DE-EN_a	3950 1
 fy15_EN-CS_d	 1633 8
 fy15_EN-DA_d	 368 1
 fy15_EN-DE_d	 3282 9
-fy15_EN-EN_UK_c	 332 1
+fy15_EN-EN_GB_a	 332 1
 fy15_EN-ES_c	 1618 8
 fy15_EN-FI_d	 547 1
 fy15_EN-FR_c	 2388 8
