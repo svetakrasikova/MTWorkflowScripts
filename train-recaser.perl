@@ -3,9 +3,13 @@
 # $Id: train-recaser.perl 1326 2007-03-26 05:44:27Z bojar $
 # Previously modified by Ondřej Bojar and others
 #
-# ©2011–2013 Autodesk Development Sàrl
+# ©2011–2014 Autodesk Development Sàrl
 #
 # ChangeLog
+# v2.7.3		Last modified by Ventsislav Zhechev on 15 Apr 2014
+# Updated to use EN_GB for British English.
+# Improved some error messages.
+#
 # v2.7.2		Last modified by Ventsislav Zhechev on 18 Apr 2013
 # Added a -max-lexical-reordering 0 parameter to the call to the train-model.perl script
 #
@@ -127,10 +131,10 @@ sub train_lm {
 		return;
 	}
 	print STDERR "(2) Train language model on cased data @ ".`date`;
-	my $cmd = "$NGRAM_COUNT -text $CORPUS -lm $DIR/cased.srilm.gz -interpolate -".($LANGUAGE eq "en_uk" || $LANGUAGE eq "pt_br" ? "wb" : "kn")."discount";
+	my $cmd = "$NGRAM_COUNT -text $CORPUS -lm $DIR/cased.srilm.gz -interpolate -".($LANGUAGE eq "en_gb" ? "wb" : "kn")."discount";
 	print STDERR $cmd."\n";
 	system($cmd) == 0
-	or die "Language model training failed!\n";
+	or die "Recaser language model training failed!\n";
 }
 
 sub prepare_data {

@@ -124,8 +124,8 @@
 # Fixed a bug with the handling of the $seg_script parameter.
 #
 #####################
-my $version = "v3.6.2";
-my $last_modified = "18 Dec 2013";
+my $version = "v3.6.4";
+my $last_modified = "09 Apr 2014";
 
 use strict;
 #use threads;
@@ -465,7 +465,7 @@ if ((!$sub_pid || !$sub_fork) && (defined $build_lm && (defined $force || !(-e "
 		mkdir($lm_path)
 		or die "Could not create LM path: $lm_path\n";
 	}
-	system(($build_lm ne "1" ? "$build_lm/" : "")."ngram-count -order 5 -unk -interpolate -".($target eq "en_gb" || $target eq ".." ? "wb" : "kn")."discount -memuse -text $corpusDir/corpus.tok.$target.bz2 -lm $lm_path/lm5bin -write-binary-lm") == 0
+	system(($build_lm ne "1" ? "$build_lm/" : "")."ngram-count -order 5 -unk -interpolate -".($target eq "en_gb" ? "wb" : "kn")."discount -memuse -text $corpusDir/corpus.tok.$target.bz2 -lm $lm_path/lm5bin -write-binary-lm") == 0
 	or die "Target language model training failed with exit code ".($? >> 8).": $!\n";
 	my $end = new Benchmark;
 	print LOG "Building target language model completed in ", timestr(timediff($end, $start), 'all'), "\n";
