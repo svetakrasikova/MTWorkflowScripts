@@ -41,7 +41,7 @@ use List::Util qw[min];
 use Cwd;
 
 use Encode qw/encode decode/;
-use IO::Compress::Bzip2 qw/$Bzip2Error/;
+#use IO::Compress::Bzip2 qw/$Bzip2Error/;
 use IO::Uncompress::Bunzip2 qw/$Bunzip2Error/;
 use IO::Socket::INET;
 
@@ -49,7 +49,7 @@ use IPC::Open2;
 
 $| = 1;
 
-require "/Volumes/OptiBay/ADSK_Software/tokenise.pl";
+require "/OptiBay/ADSK_Software/tokenise.pl";
 
 
 our ($input, $language, $testPHs, $translateFuzzy, $prodTest, $version, $mosesFuzzy);
@@ -59,8 +59,8 @@ our ($noTer, $noGtm, $noMeteor);
 die encode "utf-8", "Usage: $0 -input=… -language=… [-testPHs] [-translateFuzzy] [-prodTest] [-version] {-meteorPath=… -meteorScript=…|-noMeteor} {-terTool=…|-noTer} {-gtmTool=…|-noGtm}\n"
 unless defined $input && defined $language && ((defined $meteorPath && defined $meteorScript) || defined $noMeteor) && (defined $terTool || defined $noTer) && (defined $gtmTool || defined $noGtm);
 
-my $base_dir = "/Volumes/OptiBay/ADSK_Software/";
-my $preprocess = $language =~ /^jp|^zh/ ? ["/usr/bin/perl", '-s', "/Volumes/OptiBay/ADSK_Software/word_segmenter.pl", '-segmenter=kytea', "-model=/Users/ventzi/Desktop/Autodesk/segmentation/kytea-models/".($language =~ /^jp/ ? 'jp-0.3.0-utf8-1.mod' : 'lcmc-0.3.0-1.mod')] : "";
+my $base_dir = "/OptiBay/ADSK_Software/";
+my $preprocess = $language =~ /^jp|^zh/ ? ["/usr/bin/perl", '-s', "/OptiBay/ADSK_Software/word_segmenter.pl", '-segmenter=kytea', "-model=/Users/ventzi/Desktop/Autodesk/segmentation/kytea-models/".($language =~ /^jp/ ? 'jp-0.3.0-utf8-1.mod' : 'lcmc-0.3.0-1.mod')] : "";
 
 my ($pre_in, $pre_out);
 my $pid_preprocess = 0;
@@ -342,10 +342,10 @@ foreach my $metric (@metrics) {
 ${"in_ter"}->getline() foreach (1..2);
 
 
-my $scoreFileName = "$folderPath/$suffix.scores.txt.bz2";
+my $scoreFileName = "$folderPath/$suffix.scores.txt";
 print STDERR encode "utf-8", "Scores will be written to “$scoreFileName”\n";
 print STDERR encode "utf-8", "Collecting scores…";
-my $scoreOut = new IO::Compress::Bzip2("$scoreFileName")
+open my $scoreOut, ">$scoreFileName"
 or die encode "utf-8", "Could not write “$scoreFileName”\n";
 print $scoreOut encode "UTF-16LE", chr(0xFEFF);
 print $scoreOut encode "UTF-16LE", "ID\tMatch\tProduct\tRelease\tComponent\t";
