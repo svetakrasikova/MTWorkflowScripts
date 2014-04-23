@@ -1,11 +1,21 @@
 #!/usr/bin/perl -ws
 #####################
 #
-# ©2012–2013 Autodesk Development Sàrl
+# ©2012–2014 Autodesk Development Sàrl
 #
 # Created on 02 Jul 2012 by Ventsislav Zhechev based on evaluateByProduct.pl and generate_evaluation_sets.pl by Ventsislav Zhechev
 #
 # Changelog
+# v0.4.3		Modified on 23 Apr 2014 by Ventsislav Zhechev
+# Removed the creation of an empty productStats.txt file.
+# Fixed a bug in the handling of UTF-8 characters in file names and paths.
+#
+# v0.4.2		Modified on 17 Apr 2014 by Ventsislav Zhechev
+# The script will now exit automatically if an attempt is made to use GTM. GTM 1.4 (from Jan 2008) is incompatible with Java 1.7+ and cannot be used.
+#
+# v0.4.1		Modified on 16 Apr 2014 by Ventsislav Zhechev
+# Unicode-related bug fixes.
+#
 # v0.4			Modified on 18 Mar 2013 by Ventsislav Zhechev
 # CFS is replaced with JFS in the output.
 # Metric order in the output is changed for better readability.
@@ -41,7 +51,7 @@ use List::Util qw[min];
 use Cwd;
 
 use Encode qw/encode decode/;
-#use IO::Compress::Bzip2 qw/$Bzip2Error/;
+use IO::Compress::Bzip2 qw/$Bzip2Error/;
 use IO::Uncompress::Bunzip2 qw/$Bunzip2Error/;
 use IO::Socket::INET;
 
@@ -58,6 +68,9 @@ our ($meteorPath, $meteorScript, $terTool, $gtmTool);
 our ($noTer, $noGtm, $noMeteor);
 die encode "utf-8", "Usage: $0 -input=… -language=… [-testPHs] [-translateFuzzy] [-prodTest] [-version] {-meteorPath=… -meteorScript=…|-noMeteor} {-terTool=…|-noTer} {-gtmTool=…|-noGtm}\n"
 unless defined $input && defined $language && ((defined $meteorPath && defined $meteorScript) || defined $noMeteor) && (defined $terTool || defined $noTer) && (defined $gtmTool || defined $noGtm);
+die encode "utf-8", "GTM 1.4 cannot be used with Java 1.7+. If you have a newer version of GTM or an older verision of Java, modify the script’s source code to disable this message.\n" if defined $gtmTool;
+$meteorPath = decode "utf-8", $meteorPath unless defined $noMeteor;
+$terTool = decode "utf-8", $terTool unless defined $noTer;
 
 my $base_dir = "/OptiBay/ADSK_Software/";
 my $preprocess = $language =~ /^jp|^zh/ ? ["/usr/bin/perl", '-s', "/OptiBay/ADSK_Software/word_segmenter.pl", '-segmenter=kytea', "-model=/Users/ventzi/Desktop/Autodesk/segmentation/kytea-models/".($language =~ /^jp/ ? 'jp-0.3.0-utf8-1.mod' : 'lcmc-0.3.0-1.mod')] : "";
@@ -86,14 +99,14 @@ my %data;
 my @fuzzy;
 print STDERR encode "utf-8", "Ingesting data…";
 {
-	local $/ = "◊÷\n";
+	local $/ = encode "utf-8", "◊÷\n";
 	my $in = new IO::Uncompress::Bunzip2 $input
 	or die encode "utf-8", "Cannot open file “$input”: $Bunzip2Error\n";
 	
-	while (my $line = decode "utf-8", scalar <$in>) {
+	while (my $line = <$in>) {
 		chomp $line;
 		next unless $line;
-		my @line = split //, $line;
+		my @line = split //, decode "utf-8", $line;
 		#[0]: source; [1]: test target; [2]: ref target; [3]: product ("a__b__c"); [4]: WS word count or N/A; [5]: type; ([6]: WPD; [7]: ProdInc)
 		next unless defined $line[3];
 		$line[$_] =~ s/^null$// foreach (0..2);
@@ -105,7 +118,7 @@ print STDERR encode "utf-8", "Ingesting data…";
 		my $type = $line[5];
 		$type = "null" if $type =~ /^\s*$/;
 #		next unless lc $type eq "fuzzy" || lc $type eq "mt" || defined $prodTest;
-		$line[$_] =~ s/[\t\r\n]+/ /g foreach (0..2);
+		$line[$_] =~ s/[\h\v]+/ /g foreach (0..2);
 		
 		my $origSrc = $line[0] if defined $translateFuzzy && lc $type eq "fuzzy";
 		my $scfs = &levenshtein($line[1], $line[2], 1);
@@ -301,23 +314,23 @@ $terTool =~ s/ /\\ /g unless defined $noTer;
 $gtmTool =~ s/ /\\ /g unless defined $noGtm;
 
 my ($prefix, $suffix) = $fileNameBase =~ /^(.*)…(.*)\.sgm$/;
-my $baseDir = cwd();
+my $baseDir = decode "utf-8", cwd();
 
 unless (defined $noGtm) {
 	print STDERR encode "utf-8", "Computing GTM scores…";
-	system(decode "utf-8", "java -Xmx2048M -jar $gtmTool +s -d -e 3 \"$baseDir/${prefix}tst_$suffix.sgm\" \"$baseDir/${prefix}ref_$suffix.sgm\" >\"$baseDir/$prefix$suffix.gtm\" 2>/dev/null");
+	system("utf-8", "java -Xmx2048M -jar $gtmTool +s -d -e 3 \"$baseDir/${prefix}tst_$suffix.sgm\" \"$baseDir/${prefix}ref_$suffix.sgm\" >\"$baseDir/$prefix$suffix.gtm\" 2>/dev/null");
 	print STDERR encode "utf-8", "done\n";
 }
 
 unless (defined $noTer) {
 	print STDERR encode "utf-8", "Computing TER scores…";
-	system(decode "utf-8", "java -Xmx2048M -jar $terTool -o ter -n \"$baseDir/$prefix$suffix\" -s -r \"$baseDir/${prefix}ref_$suffix.trans\" -h \"$baseDir/${prefix}tst_$suffix.trans\" >/dev/null 2>/dev/null");
+	system("java -Xmx2048M -jar $terTool -o ter -n \"$baseDir/$prefix$suffix\" -s -r \"$baseDir/${prefix}ref_$suffix.trans\" -h \"$baseDir/${prefix}tst_$suffix.trans\" >/dev/null");
 	print STDERR encode "utf-8", "done\n";
 }
 
 unless (defined $noMeteor) {
 	print STDERR encode "utf-8", "Computing METEOR scores…";
-	system(decode "utf-8", "cd \"$meteorPath\"; /usr/bin/perl $meteorScript --keepPunctuation -s tst_ -t \"$baseDir/${prefix}tst_$suffix.sgm\" -r \"$baseDir/${prefix}ref_$suffix.sgm\" --plainOutput -outFile \"$baseDir/$prefix$suffix.meteor\" >/dev/null 2>/dev/null");
+	system("cd \"$meteorPath\"; /usr/bin/perl $meteorScript --keepPunctuation -s tst_ -t \"$baseDir/${prefix}tst_$suffix.sgm\" -r \"$baseDir/${prefix}ref_$suffix.sgm\" --plainOutput -outFile \"$baseDir/$prefix$suffix.meteor\" >/dev/null 2>/dev/null");
 	print STDERR encode "utf-8", "done\n";
 }
 
@@ -326,10 +339,6 @@ print STDERR encode "utf-8", "Finished scoring data sets!\n";
 
 my @scores;
 
-open (my $stats, ">$folderPath/productStats.txt")
-or die encode "utf-8", "Cannot write file “$folderPath/productStats.txt”\n";
-
-
 my @metrics = ();
 unshift @metrics, "meteor" unless defined $noMeteor;
 unshift @metrics, "ter" unless defined $noTer;
@@ -337,15 +346,15 @@ unshift @metrics, "gtm" unless defined $noGtm;
 
 foreach my $metric (@metrics) {
 	open ${"in_$metric"}, "<$baseDir/$prefix$suffix.$metric"
-	or die encode "utf-8", "Could not read score file “$prefix$suffix.$metric”\n";
+	or die encode "utf-8", "Could not read score file “$baseDir/$prefix$suffix.$metric”\n";
 }
 ${"in_ter"}->getline() foreach (1..2);
 
 
-my $scoreFileName = "$folderPath/$suffix.scores.txt";
+my $scoreFileName = "$folderPath/$suffix.scores.txt.bz2";
 print STDERR encode "utf-8", "Scores will be written to “$scoreFileName”\n";
 print STDERR encode "utf-8", "Collecting scores…";
-open my $scoreOut, ">$scoreFileName"
+my $scoreOut = new IO::Compress::Bzip2("$scoreFileName")
 or die encode "utf-8", "Could not write “$scoreFileName”\n";
 print $scoreOut encode "UTF-16LE", chr(0xFEFF);
 print $scoreOut encode "UTF-16LE", "ID\tMatch\tProduct\tRelease\tComponent\t";
@@ -391,7 +400,6 @@ for (my $ID = 0; $ID < @{$data{__data__}}; ++$ID) {
 }
 
 close $scoreOut;
-close $stats;
 close ${"in_$_"} foreach @metrics;
 
 print STDERR encode "utf-8", "done!\n";

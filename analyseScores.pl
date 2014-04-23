@@ -1,11 +1,14 @@
 #!/usr/bin/perl -ws
 #####################
 #
-# ©2012–2013 Autodesk Development Sàrl
+# ©2012–2014 Autodesk Development Sàrl
 #
 # Created on 26 Jun 2012 by Ventsislav Zhechev
 #
 # Changelog
+# v0.7.1		Modified on 17 Apr 2014 by Ventsislav Zhechev
+# Updated the usage message.
+#
 # v0.7			Modified on 18 Mar 2013 by Ventsislav Zhechev
 # Updated to use the new metrics format produced by evaluateBySegment.pl
 # JFS and JFS1 are no longer calculated within this script.
@@ -65,7 +68,7 @@ $| = 1;
 
 our ($languages, $noSpearman, $noKendall, $version, $exclusiveType, $excludeType, $outputVersion, $noByLength);
 
-die encode "utf-8", "Usage: $0 -languages=…\n" unless defined $languages;
+die encode "utf-8", "Usage: $0 -languages=… [-noSpearman] [-noKendall] [-noByLength] [-version=…] [-outputVersion=…] [-exclusiveType=…] [-excludeType=…]\n" unless defined $languages;
 
 if (defined $version) {
 	$version = ".$version";
