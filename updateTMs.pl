@@ -4,6 +4,9 @@
 # Created on 10 Jan 2013 by Ventsislav Zhechev
 #
 # ChangeLog
+# v0.2.3	Modified on 25 Apr 2014 by Ventsislav Zhechev
+# Updated the product maps to allow the generation of augmented PT* data.
+#
 # v0.2.2	Modified on 05 Apr 2014 by Ventsislav Zhechev
 # Updated the %newProductMap.
 #
@@ -280,6 +283,7 @@ my %preFlightMap = (
   "AutoCAD_ptb" => "Autocad_doc",
   "Autocad_PTB" => "Autocad_doc",
   "autocad_PTB_main_fix" => "Autocad_doc",
+	"AutoCAD_PTB_Monolingual_Commands" => "Autocad_doc",
   "AutoCAD_rus" => "Autocad_doc",
   "Autocad_RUS" => "Autocad_doc",
   "autocad_rus_main_fix" => "Autocad_doc",
@@ -305,6 +309,8 @@ my %preFlightMap = (
   "AutoCADCivil3D_ita" => "AutoCADCivil3D_doc",
   "AutoCADCivil3D_jpn" => "AutoCADCivil3D_doc",
   "AutoCADCivil3D_kor" => "AutoCADCivil3D_doc",
+	"AutoCADCivil3D_ptb" => "AutoCADCivil3D_doc",
+	"AutodeskCivil3D-Alpha_ptb" => "AutoCADCivil3D_doc",
   "AutoCADCivil3D_plk" => "AutoCADCivil3D_doc",
   "AutoCADCivil3D_rus" => "AutoCADCivil3D_doc",
   "AutoCADCivil3D_uk" => "AutoCADCivil3D_doc",
@@ -316,6 +322,7 @@ my %preFlightMap = (
   "AutoCADElectrical_ita" => "AutoCADElectrical_doc",
   "AutoCADElectrical_jpn" => "AutoCADElectrical_doc",
   "AutoCADElectrical_kor" => "AutoCADElectrical_doc",
+	"AutoCADElectrical_ptb" => "AutoCADElectrical_doc",
   "AutoCADElectrical_rus" => "AutoCADElectrical_doc",
   "AutoCADMap3D_chs" => "AutoCADMap3D_doc",
   "AutoCADMap3D_cht" => "AutoCADMap3D_doc",
@@ -514,6 +521,7 @@ my %preFlightMap = (
   "Factory_Design_Suite_KOR" => "Factory_Design_Suite_doc",
   "Factory_Design_Suite_PLK" => "Factory_Design_Suite_doc",
   "Factory_Design_Suite_PTB" => "Factory_Design_Suite_doc",
+	"Factory_Design_Suite_ptb" => "Factory_Design_Suite_doc",
   "Factory_Design_Suite_RUS" => "Factory_Design_Suite_doc",
   "Games_chs" => "Games_doc",
   "Games_jpn" => "Games_doc",
@@ -548,6 +556,7 @@ my %preFlightMap = (
   "InfrastructureModeler_ptb" => "InfrastructureModeler_doc",
   "InfrastructureModeler_rus" => "InfrastructureModeler_doc",
   "Instructables_las" => "Instructables_doc",
+	"Instructables_ptb" => "Instructables_doc",
   "Inventor_CHS" => "Inventor_doc",
   "Inventor_CHT" => "Inventor_doc",
   "Inventor_CSY" => "Inventor_doc",
@@ -560,6 +569,7 @@ my %preFlightMap = (
   "Inventor_KOR" => "Inventor_doc",
   "Inventor_PLK" => "Inventor_doc",
   "Inventor_PTB" => "Inventor_doc",
+	"Inventor_ptb" => "Inventor_doc",
   "Inventor_Readme_HUN" => "Inventor_doc",
   "Inventor_RUS" => "Inventor_doc",
   "Inventor_main_CHS" => "Inventor_main_doc",
@@ -585,6 +595,7 @@ my %preFlightMap = (
   "Inventor_Publisher_ITA" => "Inventor_Publisher_doc",
   "Inventor_Publisher_JPN" => "Inventor_Publisher_doc",
   "Inventor_Publisher_PTB" => "Inventor_Publisher_doc",
+	"Inventor_Publisher_ptb" => "Inventor_Publisher_doc",
   "Inventor_Publisher_RUS" => "Inventor_Publisher_doc",
   "Inventor_Publisher_main_CHS" => "Inventor_Publisher_main_doc",
   "Inventor_Publisher_main_DEU" => "Inventor_Publisher_main_doc",
@@ -603,6 +614,7 @@ my %preFlightMap = (
   "Marketing_EN-AU" => "Marketing_doc",
   "Marketing_ES-MX" => "Marketing_doc",
   "Marketing_FR-BE" => "Marketing_doc",
+	"Marketing_PT-BR" => "Marketing_doc",
   "Marketing_PT-PT" => "Marketing_doc",
   "Marketing_RO-RO" => "Marketing_doc",
   "Marketing_SK-SK" => "Marketing_doc",
@@ -766,6 +778,7 @@ my %preFlightMap = (
   "Product_Design_Suite_KOR" => "Product_Design_Suite_doc",
   "Product_Design_Suite_PLK" => "Product_Design_Suite_doc",
   "Product_Design_Suite_PTB" => "Product_Design_Suite_doc",
+	"Product_Design_Suite_ptb" => "Product_Design_Suite_doc",
   "Product_Design_Suite_RUS" => "Product_Design_Suite_doc",
   "QTO_FY12_DEU" => "QTO_FY12_doc",
   "QTO_FY12_FRA" => "QTO_FY12_doc",
@@ -800,6 +813,7 @@ my %preFlightMap = (
   "revit_pre-fy12_deu" => "Revit_doc",
   "revit_pre-fy12_esp" => "Revit_doc",
   "Revit_ptb" => "Revit_doc",
+	"Revit_MainHelpLegacy_ptb" => "Revit_doc",
   "Revit_rus" => "Revit_doc",
   "RevitExtensions_chs" => "RevitExtensions_doc",
   "RevitExtensions_deu" => "RevitExtensions_doc",
@@ -812,6 +826,7 @@ my %preFlightMap = (
   "RobotStructuralAnalysis_plk" => "RobotStructuralAnalysis_doc",
   "RobotStructuralAnalysis_rus" => "RobotStructuralAnalysis_doc",
   "SCL_ES-MX" => "SCL_doc",
+	"SCL_PTB" => "SCL_doc",
   "Shared_chs" => "Shared_doc",
   "Shared_cht" => "Shared_doc",
   "Shared_csy" => "Shared_doc",
@@ -833,6 +848,7 @@ my %preFlightMap = (
   "Showcase_kor" => "Showcase_doc",
   "Showcase_rus" => "Showcase_doc",
   "Simulation360_ptg" => "Simulation360_doc",
+	"SimulationJobManager_ptb" => "SimulationJobManager_doc",
   "SimulationJobManager_ptg" => "SimulationJobManager_doc",
   "Sketchbook_ara" => "Sketchbook_doc",
   "Sketchbook_chs" => "Sketchbook_doc",
@@ -869,6 +885,7 @@ my %preFlightMap = (
   "Smart Blank to delete" => "delete",
   "SmartCMS QA - Review" => "delete",
   "Socialcam_ara" => "Socialcam_doc",
+	"Socialcam_ptb" => "Socialcam_doc",
   "Socialcam_tha" => "Socialcam_doc",
   "SoftImage_bilingual_jpn" => "Softimage_doc",
   "softimage_IG" => "Softimage_doc",
@@ -949,6 +966,39 @@ my %preFlightMap = (
   "wiki_strings_ptb" => "wiki_doc",
   "wiki_strings_rus" => "wiki_doc",
   "wikihelp_strings_hun" => "wiki_doc",
+	"Advance_Steel_Advance_Concreate_ptb" => "Advance_Steel_Advance_Concreate_doc",
+	"Suites" => "Suites_doc",
+	"Fusion_ptb" => "Fusion_doc",
+
+	# Software content codes
+	"ACD" => "ACD",
+	"ACD360WEB" => "ACD360WEB",
+	"ACD360MOB" => "ACD360MOB",
+	"ACDWS" => "ACDWS",
+	"ADR" => "ADR",
+	"ADSK360" => "ADSK360",
+	"AIRMAX" => "AIRMAX",
+	"ALSKACD" => "ALSKACD",
+	"AMECH_PP" => "AMECH_PP",
+	"APPSTORE" => "APPSTORE",
+	"AQTO" => "AQTO",
+	"BDS" => "BDS",
+	"CERCIP" => "CERCIP",
+	"CFG360" => "CFG360",
+	"CIV3D" => "CIV3D",
+	"CLOUDS" => "CLOUDS",
+	"FDS" => "FDS",
+	"HSTYLR" => "HSTYLR",
+	"INFMDR" => "INFMDR",
+	"INV" => "INV",
+	"INVFUS" => "INVFUS",
+	"INVPUB" => "INVPUB",
+	"LIRAFX" => "LIRAFX",
+	"MARQUEEAPPS" => "MARQUEEAPPS",
+	"NAV" => "NAV",
+	"PDS" => "PDS",
+	"RVT" => "RVT",
+	"VLT" => "VLT",
 );
 
 my %intProductMap = (
@@ -1522,6 +1572,9 @@ my %newProductMap = (
   "WAM" => "WAM_doc",
   "wiki" => "wiki_doc",
 	"SmartAlign" => "SmartAlign_doc",
+
+	# Software content codes
+	"MF" => "MF",
 );
 
 my $lineCount = 0;
@@ -1535,8 +1588,8 @@ while (my $line = decode "utf-8", $base->getline()) {
 	}
 	chomp $line;
 	my ($source, $target, $tm) = split //, $line;
-	die "Could not find $tm!\n" unless defined $preFlightMap{$tm};
-	$tm = $preFlightMap{$tm};
+	die "Could not find $tm!\n" unless defined $preFlightMap{$tm} || $tm =~ /_doc$/;
+	$tm = $preFlightMap{$tm} unless $tm =~ /_doc$/;
 	++$corpus{$tm}->{$source}->{$target} unless $tm eq "delete";
 }
 close $base;
@@ -1556,8 +1609,8 @@ while (my $line = decode "utf-8", $curr->getline()) {
 	}
 	chomp $line;
 	my ($source, $target, $tm) = split //, $line;
-	die "Could not find $tm!\n" unless defined $newProductMap{$tm};
-	$tm = $newProductMap{$tm};
+	die "Could not find $tm!\n" unless defined $newProductMap{$tm} || $tm =~ /_doc$/;
+	$tm = $newProductMap{$tm} unless $tm =~ /_doc$/;
 	next if $tm eq "delete";
 	if (defined $corpus{$tm} && defined $corpus{$tm}->{$source} && !defined $corpus{$tm}->{$source}->{$target}) {
 		if (1<(()=keys %{$corpus{$tm}->{$source}})) {

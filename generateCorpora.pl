@@ -4,6 +4,9 @@
 # Created on 14 Jan 2013 by Ventsislav Zhechev
 #
 # ChangeLog
+# v0.2.7	Modified on 25 Apr 2014 by Ventsislav Zhechev
+# Updated to use augmented PT* data for PT-PT.
+#
 # v0.2.6	Modified on 06 Apr 2014 by Ventsislav Zhechev
 # Updated the list of product mappings.
 # Optimised the processing of ENU segments by submitting them in batches of 500 for printing.
@@ -120,7 +123,7 @@ my %dataSets = (
 	"NOR"=>"tempTMs/TM_NOR_ALL.bz2",
 	"PLK"=>"tempTMs/TM_PLK_ALL.bz2::sw_corpus/corpus.sw.plk.bz2",
 	"PTB"=>"tempTMs/TM_PTB_ALL.bz2::sw_corpus/corpus.sw.ptb.bz2",
-	"PTG"=>"tempTMs/TM_PTG_ALL.bz2::sw_corpus/corpus.sw.ptg.bz2",
+	"PTG"=>"tempTMs/TM_PT*_ALL.bz2::sw_corpus/corpus.sw.pt*.bz2",
 	"ROM"=>"tempTMs/TM_ROM_ALL.bz2::sw_corpus/corpus.sw.rom.bz2",
 	"RUS"=>"tempTMs/TM_RUS_ALL.bz2::sw_corpus/corpus.sw.rus.bz2",
 	"SLK"=>"tempTMs/TM_SLK_ALL.bz2",

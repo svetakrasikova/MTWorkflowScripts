@@ -4,6 +4,9 @@
 # Created on 11 Feb 2014 by Ventsislav Zhechev
 #
 # ChangeLog
+# v0.2.1		Modified on 28 Apr 2014 by Ventsislav Zhechev
+# Updated engine list.
+#
 # v0.2			Modified on 14 Apr 2014 by Ventsislav Zhechev
 # Updated engine list.
 # Modified the deployment algorithm to make sure each target server is only connected from one thread at a time.
@@ -69,9 +72,9 @@ my %systems = (
 "mtprd03" => ["fy15_EN-PT_BR_d","fy15_EN-ZH_HANS_c",],
 "mtprd04" => ["fy15_EN-PT_BR_d","fy15_EN-ZH_HANS_c",],
 "mtprd05" => ["fy15_EN-PT_BR_d","fy15_EN-ZH_HANS_c",],
-"mtprd06" => ["fy15_EN-PT_BR_d","fy15_EN-ZH_HANS_c",],
-"mtprd07" => ["fy15_EN-PT_BR_d","fy15_EN-ZH_HANS_c",],
-"mtprd08" => ["fy15_EN-PT_BR_d","fy15_EN-ZH_HANS_c",],
+"mtprd06" => ["fy15_EN-PT_PT_d","fy15_EN-ZH_HANS_c",],
+"mtprd07" => ["fy15_EN-PT_PT_d","fy15_EN-ZH_HANS_c",],
+"mtprd08" => ["fy15_EN-PT_PT_d","fy15_EN-ZH_HANS_c",],
 "mtprd09" => ["fy15_EN-CS_d","fy15_EN-ES_c",],
 "mtprd10" => ["fy15_EN-CS_d","fy15_EN-ES_c",],
 "mtprd11" => ["fy15_EN-CS_d","fy15_EN-ES_c",],

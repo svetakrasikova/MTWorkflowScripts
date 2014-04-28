@@ -4,6 +4,9 @@
 # Created on 17 Oct 2011 by Ventsislav Zhechev
 #
 # ChangeLog
+# v1.10.9		Modified on 28 Apr 2014 by Ventsislav Zhechev
+# We now have a proper PT-PT engine to use.
+#
 # v1.10.8		Modified on 14 Apr 2014 by Ventsislav Zhechev
 # We now have a proper EN-GB engine to use.
 #
@@ -801,8 +804,6 @@ sub check {
 		
 		if ($collectStats && $engine ne "n/a") {
 			my $eng = $engine;
-			#Temporary measure to handle EN to PT-PT translation using PT-BR engines.
-			$eng =~ s/PT_PT/PT_BR/;
 			my $statistics = `ssh $server '/local/cms/bin/countMosesWords.pl -logDir=/local/cms/LOG -filterEngine=$eng' 2>/dev/null`;
 			($statistics) = $statistics =~ /(^\{\s*(\w+\s*=>\s*"?[\w?-]+"?,?\s*)*\s*\}$)/;
 			if ($statistics) {
@@ -861,9 +862,6 @@ sub start {
 	my ($data, $client_sock, $engine) = @_;
 	my %liveServers = map {$_ => 1} @{&check(60, $data, undef, $engine)};
 	$data = eval $data;
-	
-	#Temporary measure to handle EN to PT-PT translation using PT-BR engines.
-	$engine =~ s/PT_PT/PT_BR/;
 	
 	my $startedServers = [];
 	foreach my $server (@{$data->{server}}) {
@@ -1206,6 +1204,7 @@ sub translateUIRefs {
 	ko => "kor",
 	pl => "plk",
 	pt_br => "ptb",
+	pt_pt => "ptg",
 	ru => "rus",
 	zh_hans => "chs",
 	zh_hant => "cht",
