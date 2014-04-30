@@ -4,6 +4,10 @@
 # Created by Ventsislav Zhechev on 18 Dec 2012
 #
 # Version history
+# v0.6		Last modified on 30 Mar 2014 by Ventsislav Zhechev
+# Added a command-line option to specify the XX–EN engine.
+# Added a command-line option to specify the cap on maximum not-full deployments to collect.
+#
 # v0.5.2	Last modified on 19 Mar 2014 by Ventsislav Zhechev
 # Updated the status output.
 #
@@ -45,16 +49,16 @@ use List::Util qw/max/;
 
 $| = 1;
 
-our ($serverFile, $engineFile, $largeFirst);
-die encode "utf-8", "Usage: $0 -serverFile=… -engineFile=… [-largeFirst]\n"
-unless defined $serverFile && defined $engineFile;
+our ($serverFile, $engineFile, $largeFirst, $XXENEngine, $maxDeploymentsCap);
+die encode "utf-8", "Usage: $0 -serverFile=… -engineFile=… -XXENEngine=… [-largeFirst] [-maxDeploymentsCap]\n"
+unless defined $serverFile && defined $engineFile && defined $XXENEngine;
 
 my $serverOrder = defined $largeFirst ? -1 : 1;
 print encode "utf-8", "Deploying on ".(defined $largeFirst ? "large" : "small")." servers first.\n";
 
 my %servers;
 my %engines;
-my $XXENEngine = "fy15_XX-EN_b";
+$maxDeploymentsCap ||= 500;
 
 {
 	local $/ = undef;
@@ -176,7 +180,7 @@ sub deployServer {
 			} elsif ($deployment{remainingServerMemory} == $leastMemoryRemaining) {
 				++$leastMemoryDeployments;
 				push @deployments, dclone \%deployment;
-				print STDERR "$leastMemoryDeployments deployments with ${leastMemoryRemaining}MB remaining and $totalInstances instances left to deploy.\n" if $leastMemoryDeployments > 400;
+				print STDERR "$leastMemoryDeployments deployments with ${leastMemoryRemaining}MB remaining and $totalInstances instances left to deploy.\n" if $leastMemoryDeployments > $maxDeploymentsCap*.8;
 			}
 			++$totalDeployments;
 		}
@@ -192,7 +196,7 @@ sub deployServer {
 		
 		#Put an upper limit on the number of best deployments
 		#Stop processing after finding a full deployment
-		last if $leastMemoryDeployments >= 500 || $isFullDeployment;
+		last if $leastMemoryDeployments >= $maxDeploymentsCap || $isFullDeployment;
 	}
 	
 	#Backtrack

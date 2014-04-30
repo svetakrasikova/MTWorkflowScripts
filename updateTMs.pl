@@ -994,10 +994,17 @@ my %preFlightMap = (
 	"INVFUS" => "INVFUS",
 	"INVPUB" => "INVPUB",
 	"LIRAFX" => "LIRAFX",
+	"M360" => "M360",
 	"MARQUEEAPPS" => "MARQUEEAPPS",
+	"MF" => "MF",
+	"MYADSK" => "MYADSK",
 	"NAV" => "NAV",
 	"PDS" => "PDS",
+	"RSAPRO" => "RSAPRO",
+	"RSAPRO360" => "RSAPRO360",
 	"RVT" => "RVT",
+	"SIM360_JM" => "SIM360_JM",
+	"SIM360" => "SIM360",
 	"VLT" => "VLT",
 );
 
@@ -1574,7 +1581,11 @@ my %newProductMap = (
 	"SmartAlign" => "SmartAlign_doc",
 
 	# Software content codes
+	"AIRMAX" => "AIRMAX",
+	"CERCIP" => "CERCIP",
+	"LIRAFX" => "LIRAFX",
 	"MF" => "MF",
+	"SIM360_JM" => "SIM360_JM",
 );
 
 my $lineCount = 0;
