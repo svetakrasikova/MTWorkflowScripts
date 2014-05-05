@@ -630,7 +630,7 @@ sub checkPH {
 		my $trgTag = $tags->[$ph-1] or last;
 		my $tag;
 		if (($tag) = $trgTag =~ m!^\s*</(\w+)[\s>]!m) {
-			if ($toClose[-1]->{tag} eq $tag) {
+			if (@toClose && $toClose[-1]->{tag} eq $tag) {
 				pop @toClose;
 			} else {
 				++$tagOrderError;
