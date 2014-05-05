@@ -4,6 +4,11 @@
 # Created on 17 Oct 2011 by Ventsislav Zhechev
 #
 # ChangeLog
+# v1.10.11	Modified on 06 May 2014 by Ventsislav Zhechev
+# Further status message improvements.
+# Reduced the TCP send buffer to aid the detection of dropped client connections.
+# 
+#
 # v1.10.10	Modified on 05 May 2014 by Ventsislav Zhechev
 # Improved the status messages in case no servers are available to handle translations for a specific engine.
 #
@@ -444,7 +449,7 @@ my $server_sock = new IO::Socket::INET
 	or die encode("utf-8", "Can’t bind server socket on $hostname:$hostport ($@)\n");
 
 $server_sock->sockopt(SO_SNDLOWAT, 1);
-$server_sock->sockopt(SO_SNDBUF, 16384);
+$server_sock->sockopt(SO_SNDBUF, 4048);
 
 
 my $tstamp = strftime("%Y.%m.%d_%H.%M.%S", localtime(time()));
@@ -972,7 +977,7 @@ sub translate {
 			last unless $job;
 			my $dataRef;
 			($job, $dataRef) = %$job;
-			print STDERR encode("utf-8", "$ID: "."Processing job $job on server $host (".$client_sock->peerhost().":".$client_sock->peerport().")…\n") if $DEBUG;
+			print STDERR encode("utf-8", "$ID: "."Processing job $job on server $host, engine $engine (".$client_sock->peerhost().":".$client_sock->peerport().")…\n") if $DEBUG;
 			
 			{ lock $output;
 				$output->{$job} = shared_clone [[], 0];
@@ -989,14 +994,14 @@ sub translate {
 				return if $mustExit;
 				my $mosesSocket;
 				unless ($mosesSocket = new IO::Socket::INET (PeerHost => "$host", PeerPort => $port)) {
-					print STDERR encode "utf-8", "$ID: "."Cannot connect to $host:$port!\n" if $DEBUG;
+					print STDERR encode "utf-8", "$ID: "."Cannot connect to $host:$port, engine $engine!\n" if $DEBUG;
 					$mosesError = 1;
 					$errorCounter = $MAX_ERRORS;
 				}
 				
 				unless ($mosesError) {
 					unless ($mosesSocket->peerhost()) {
-						print STDERR encode "utf-8", "$ID: "."Host $host:$port apparently busy!\n" if $DEBUG;
+						print STDERR encode "utf-8", "$ID: "."Host $host:$port, engine $engine apparently busy!\n" if $DEBUG;
 						$mosesError = 1;
 					} else {
 						$mosesSocket->autoflush(1);
@@ -1007,7 +1012,7 @@ sub translate {
 						foreach my $segment (@$dataRef) {
 							($mosesSocket) = $select->can_write(1);
 							unless ($mosesSocket) {
-								print STDERR encode "utf-8", "$ID: "."Write timeout to $host:$port!\n" if $DEBUG;
+								print STDERR encode "utf-8", "$ID: "."Write timeout to $host:$port, engine $engine!\n" if $DEBUG;
 								$mosesError = 1;
 								last;
 							}
@@ -1015,13 +1020,13 @@ sub translate {
 							
 							($mosesSocket) = $select->can_read(60);
 							unless ($mosesSocket) {
-								print STDERR encode "utf-8", "$ID: "."Read timeout from $host:$port!\n" if $DEBUG;
+								print STDERR encode "utf-8", "$ID: "."Read timeout from $host:$port, engine $engine!\n" if $DEBUG;
 								$mosesError = 1;
 								last;
 							}
 							my $out = decode "utf-8", scalar <$mosesSocket>;
 							unless (defined $out) {
-								print STDERR encode "utf-8", "$ID: "."Couldn’t read a segment from $host:$port!\n" if $DEBUG;
+								print STDERR encode "utf-8", "$ID: "."Couldn’t read a segment from $host:$port, engine $engine!\n" if $DEBUG;
 								$mosesError = 1;
 								last;
 							}
@@ -1034,7 +1039,7 @@ sub translate {
 						}
 						
 						if (($mosesSocket) = $select->handles()) {
-							print STDERR encode "utf-8", "$ID: "."Closing connection to $host:$port!\n" if $DEBUG;
+							print STDERR encode "utf-8", "$ID: "."Closing connection to $host:$port, engine $engine!\n" if $DEBUG;
 							$mosesSocket->shutdown(2);
 							$mosesSocket->close();
 							$select->remove($mosesSocket);
@@ -1049,7 +1054,7 @@ sub translate {
 					if ($errorCounter < $MAX_ERRORS) {
 						$mosesError = 0;
 						++$errorCounter;
-						print STDERR encode("utf-8", "$ID: "."--> Error №$errorCounter for job $job on server $host…\n") if $DEBUG;
+						print STDERR encode("utf-8", "$ID: "."--> Error №$errorCounter for job $job on server $host, engine $engine…\n") if $DEBUG;
 						sleep 1;
 						next;
 					} else {
@@ -1060,11 +1065,11 @@ sub translate {
 						last;
 					}
 				} else {
-					print STDERR encode("utf-8", "$ID: "."--> No errors for job $job on server $host…\n") if $DEBUG;
+					print STDERR encode("utf-8", "$ID: "."--> No errors for job $job on server $host, engine $engine…\n") if $DEBUG;
 					last;
 				}
 			}
-			print STDERR encode("utf-8", "$ID: "."--> ERRORS for job $job on server $host…\n") if $DEBUG && $mosesError;
+			print STDERR encode("utf-8", "$ID: "."--> ERRORS for job $job on server $host, engine $engine…\n") if $DEBUG && $mosesError;
 			last if $mosesError;
 			{ lock $lostClient;
 				if ($lostClient) {
