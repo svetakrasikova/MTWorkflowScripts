@@ -4,6 +4,9 @@
 # Created on 17 Oct 2011 by Ventsislav Zhechev
 #
 # ChangeLog
+# v1.10.10	Modified on 05 May 2014 by Ventsislav Zhechev
+# Improved the status messages in case no servers are available to handle translations for a specific engine.
+#
 # v1.10.9		Modified on 28 Apr 2014 by Ventsislav Zhechev
 # We now have a proper PT-PT engine to use.
 #
@@ -892,14 +895,14 @@ sub findMTServers {
 		if (%temp || ++$retryCount > 20) {
 			last;
 		} else {
-			print STDERR encode("utf-8", "$ID: "."All servers busy; retrying (".$client_sock->peerhost().":".$client_sock->peerport().")…\n") if $DEBUG;
+			print STDERR encode("utf-8", "$ID: "."All servers busy for $engine; retrying (".$client_sock->peerhost().":".$client_sock->peerport().")…\n") if $DEBUG;
 			sleep(2);
 		}
 	}
 	if (%temp) {
 		return %temp;
 	} else {
-		print STDERR encode("utf-8", "$ID: "."Retry limit reached. Closing down (".$client_sock->peerhost().":".$client_sock->peerport().")…\n") if $DEBUG;
+		print STDERR encode("utf-8", "$ID: "."Retry limit reached for $engine. Closing down (".$client_sock->peerhost().":".$client_sock->peerport().")…\n") if $DEBUG;
 		return ();
 	}
 }

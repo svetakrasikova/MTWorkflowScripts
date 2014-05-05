@@ -451,3 +451,4 @@ cat URLList.2013.01.07.txt |perl -MEncode -we 'use utf8;$/=encode"utf-8","◊
 for FOLDER in `ls .`; do for FILE in `ls $FOLDER`; do echo -n "$FOLDER$FILE: "; bzcat $FOLDER$FILE |wc -l; done; done
 for FILE in `ls *bz2`; do echo -n "$FILE: "; bzcat $FILE |wc -l; done
 
+cat servers.txt |perl -ne '($s)=split" ";unless($s=~/^\#/||$s=~/^\s*$/){system"rsync -azyvv moses_server.ventzi.pl cmsuser\@$s:/local/cms/bin/. 2>/dev/null"}'

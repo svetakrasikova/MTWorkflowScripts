@@ -2,7 +2,7 @@
 #
 # file: moses_server.ventzi.pl
 #
-# ©2009–2013 Autodesk Development Sàrl
+# ©2009–2014 Autodesk Development Sàrl
 #
 # Originally by Mirko Plitt
 # Created on 08 Jun 2009
@@ -15,6 +15,9 @@
 #
 #
 # ChangeLog
+# v3.8.8		modified on 05 May 2014 by Ventsislav Zhechev
+# Fixed a bug in the PH order checks.
+#
 # v3.8.7		modified on 17 Oct 2013 by Ventsislav Zhechev
 # Fixed a bug in the processing of glossary terms where only the first glossary term might be replaced in each segment.
 #
@@ -621,20 +624,20 @@ sub checkPH {
 	}
 	
 	#Check for PH order errors and renumber target PHs if errors are found
-	my %toClose;
+	my @toClose;
 	my $tagOrderError;
 	foreach my $ph ($trg =~ /\{(\d+)\}/g) {
 		my $trgTag = $tags->[$ph-1] or last;
 		my $tag;
 		if (($tag) = $trgTag =~ m!^\s*</(\w+)[\s>]!m) {
-			if (defined $toClose{$tag} && @{$toClose{$tag}}) {
-				pop @{$toClose{$tag}};
+			if ($toClose[-1]->{tag} eq $tag) {
+				pop @toClose;
 			} else {
 				++$tagOrderError;
 				last;
 			}
 		} elsif (($tag) = $trgTag =~ m!^\s*<(\w+)[\s>]!m) {
-			push @{$toClose{$tag}}, $ph;
+			push @toClose, {tag => $tag, ph => $ph};
 		}
 	}
 	if ($tagOrderError) {
