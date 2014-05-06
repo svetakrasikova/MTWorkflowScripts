@@ -15,6 +15,9 @@
 #
 #
 # ChangeLog
+# v3.8.9		modified on 06 May 2014 by Ventsislav Zhechev
+# Removed erroneously leftover options for Moses to output search graphs.
+#
 # v3.8.8		modified on 05 May 2014 by Ventsislav Zhechev
 # Fixed a bug in the PH order checks.
 #
@@ -361,8 +364,8 @@ open \*MOSES_LOG, ">${base_dir}LOG/${engine}_moses_$tstamp.log"
 or die encode "utf-8", "Could not write moses log file at “${base_dir}LOG/${engine}_moses_$tstamp.log”\n";
 select \*MOSES_LOG;
 $| = 1;
-my $pid_moses = open3(\*MOSES_IN, \*MOSES_OUT, \*MOSES_ERR, "$moses -osg ${base_dir}LOG/${engine}_moses_$tstamp.sg -xml-input exclusive -f $MOSES_INI")
-or die encode "utf-8", "Could not start decoder with command “$moses -osg ${base_dir}LOG/${engine}_moses_$tstamp.sg -f $MOSES_INI”\n";
+my $pid_moses = open3(\*MOSES_IN, \*MOSES_OUT, \*MOSES_ERR, "$moses -xml-input exclusive -f $MOSES_INI")
+or die encode "utf-8", "Could not start decoder with command “$moses -f $MOSES_INI”\n";
 select \*MOSES_ERR;
 $| = 1;
 for (;;) {
