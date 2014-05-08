@@ -4,10 +4,12 @@
 # Created on 17 Oct 2011 by Ventsislav Zhechev
 #
 # ChangeLog
+# v1.10.12	Modified on 08 May 2014 by Ventsislav Zhechev
+# Parametrised the read timeout for Moses connections.
+#
 # v1.10.11	Modified on 06 May 2014 by Ventsislav Zhechev
 # Further status message improvements.
 # Reduced the TCP send buffer to aid the detection of dropped client connections.
-# 
 #
 # v1.10.10	Modified on 05 May 2014 by Ventsislav Zhechev
 # Improved the status messages in case no servers are available to handle translations for a specific engine.
@@ -449,7 +451,9 @@ my $server_sock = new IO::Socket::INET
 	or die encode("utf-8", "Can’t bind server socket on $hostname:$hostport ($@)\n");
 
 $server_sock->sockopt(SO_SNDLOWAT, 1);
-$server_sock->sockopt(SO_SNDBUF, 4048);
+$server_sock->sockopt(SO_SNDBUF, 512);
+
+$mosesReadTimeout = 90;
 
 
 my $tstamp = strftime("%Y.%m.%d_%H.%M.%S", localtime(time()));
@@ -1018,7 +1022,7 @@ sub translate {
 							}
 							print $mosesSocket encode "utf-8", "$segment\n";
 							
-							($mosesSocket) = $select->can_read(60);
+							($mosesSocket) = $select->can_read($mosesReadTimeout);
 							unless ($mosesSocket) {
 								print STDERR encode "utf-8", "$ID: "."Read timeout from $host:$port, engine $engine!\n" if $DEBUG;
 								$mosesError = 1;
