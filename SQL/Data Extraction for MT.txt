@@ -377,3 +377,7 @@ where URL_SOURCE_LANG like 'ENU' and url_loc_status_id=303 and url_loc_active=1 
 order by id asc, language asc
 
 
+
+select first.uuid, second.* from cus_seg_uuid first, cus_seg_uuid second where first.segmentuid = second.segmentuid and first.uuid <> second.uuid
+select * from CUS_SEG_EN_DE where uuid is null
+select * from CUS_SEG_UUID where segmentuid = 'c6f4d5157ca26420f1e5dabd888d43be'

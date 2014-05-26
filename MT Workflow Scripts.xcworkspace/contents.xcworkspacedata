@@ -35,10 +35,19 @@
          location = "group:Terminology/config.py">
       </FileRef>
       <FileRef
+         location = "group:Terminology/forms.py">
+      </FileRef>
+      <FileRef
          location = "group:runTerminologyService.py">
       </FileRef>
       <FileRef
          location = "group:ImportNGramsToDatabase.py">
+      </FileRef>
+      <FileRef
+         location = "group:Terminology/Terminology_staging.fcgi">
+      </FileRef>
+      <FileRef
+         location = "group:Terminology/Terminology.fcgi">
       </FileRef>
    </Group>
    <FileRef
