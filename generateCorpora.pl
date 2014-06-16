@@ -4,6 +4,9 @@
 # Created on 14 Jan 2013 by Ventsislav Zhechev
 #
 # ChangeLog
+# v0.2.8	Modified on 25 Apr 2014 by Ventsislav Zhechev
+# Updated to exclude segments where the target contains the ‘###’ transaltor marker.
+#
 # v0.2.7	Modified on 25 Apr 2014 by Ventsislav Zhechev
 # Updated to use augmented PT* data for PT-PT.
 #
@@ -349,15 +352,16 @@ my $processLanguage = sub {
 				next if $line =~ /\N{U+0000}/ || $line =~ /♦♦♦/ || $line =~ /(^|)[\h\v]*/;
 				chomp $line;
 				my ($source, $target, $product) = split //, $line;
+				$source =~ s/^\s+|\s+$//g;
+				$source =~ s/[\h\v]+/ /g;
+				$target =~ s/^\s+|\s+$//g;
+				$target =~ s/[\h\v]+/ /g;
+				next if $target =~ m"(?<!#)#{3}(?!#)" && $target ne "###" && $source !~ m"#{3}";
 				++$segments;
 				++$sources;
 #				{lock $enuSegments;
 #					++$enuSegments;
 #				}
-				$source =~ s/^\s+|\s+$//g;
-				$source =~ s/[\h\v]+/ /g;
-				$target =~ s/^\s+|\s+$//g;
-				$target =~ s/[\h\v]+/ /g;
 				if ($products{$product}) {
 					$product = $products{$product} # || $product;
 				} else {
