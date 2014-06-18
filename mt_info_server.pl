@@ -457,7 +457,7 @@ my $server_sock = new IO::Socket::INET
 $server_sock->sockopt(SO_SNDLOWAT, 1);
 $server_sock->sockopt(SO_SNDBUF, 512);
 
-$mosesReadTimeout = 90;
+my $mosesReadTimeout = 90;
 
 
 my $tstamp = strftime("%Y.%m.%d_%H.%M.%S", localtime(time()));
