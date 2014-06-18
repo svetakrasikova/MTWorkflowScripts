@@ -287,6 +287,12 @@ echo -n "zh_hant soft: "; cat passolo/MT_LPU_export/cht/* |/usr/bin/perl -ne 'ch
 /OptiBay/ADSK_Software/updateTMs.pl -baseLine=TMs.2014.04.04/TM_THA_ALL.bz2 -current=TMs.2014.04.04/TM_THA_ALL.bz2 -output=tempTMs/TM_THA_ALL.bz2
 /OptiBay/ADSK_Software/updateTMs.pl -baseLine=TMs.2014.04.04/TM_TUR_ALL.bz2 -current=TMs.2014.04.04/TM_TUR_ALL.bz2 -output=tempTMs/TM_TUR_ALL.bz2
 
+/OptiBay/ADSK_Software/updateTMs.pl -baseLine=tempTMs/TM_PTB_ALL.bz2 -current=TMs.2014.04.04/TM_PTG_ALL.bz2 -output=tempTMs/TM_PT\*_ALL.bz2
+
+
+/OptiBay/ADSK_Software/generateCorpora.pl -threads=16
+
+/OptiBay/ADSK_Software/generateTMX.pl -corpusPath=corpora -outputPath=TMXs -threads=8 -gzip
 
 
 ##Training
@@ -430,8 +436,6 @@ cat kor_*2.csv |./recreate_samples.pl -words=`cat kor_*2.csv|/usr/bin/perl -ne '
 cat corpus.en.txt |/Users/ventzi/courses/EuroMatrixPlus/software/moses-2010-04-08/scripts/scripts-20100409-0412/scripts/lowercase.perl |/Users/ventzi/courses/EuroMatrixPlus/software/tokenise.pl en |/usr/bin/perl -pe 's/\|/│/g;s/</﹤/g;s/>/﹥/g;s/\(/﹙/g;s/\)/﹚/g;' |moses-ventzi -threads 4 -f /OptiBay/Autodesk/fy13_EN-ZH_HANT_a/model/moses.ini 2>/dev/null |moses-ventzi -f /OptiBay/Autodesk/fy13_EN-ZH_HANT_a/recaser/moses.ini 2>/dev/null |/usr/bin/perl -pe 's/│/|/g;s/﹤/</g;s/﹥/>/g;s/﹙/(/g;s/﹚/)/g;' |/usr/bin/perl -pe 'BEGIN{my$c=0}$c+=s/\|UNK\|UNK\|UNK//g;s/ +$//;END{print STDERR "unknowns: $c\n"}' |/Users/ventzi/courses/EuroMatrixPlus/software/detokenise.pl zh_hant >corpus.zh_hant.txt
 
 
-
-/OptiBay/ADSK_Software/generateTMX.pl -corpusPath=corpora -outputPath=TMXs -threads=8 -gzip
 
 
 cat LegacyTranslations/AS/Russian.txt |perl -MEncode -ne 'use utf8;chomp;($s,$t)=split/\t/,decode"utf-8",$_;$s=~s/^\s+|\s+$//g;$t=~s/^\s+|\s+$//g;print encode"utf-8","$s$tADSTPR◊÷\n"' >EN-RU.Graitec.AS

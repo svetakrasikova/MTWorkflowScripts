@@ -1,3 +1,47 @@
+--1-- List the available TMs for all languages
+SELECT DISTINCT
+	('ZTM'||cast(tmlanguages.TMDATABASEID as varchar2(10))||'_TRANSLATIONS') as TMName,
+	tmlanguages.TMDATABASEID as TMID,
+	(cast(tmlanguages.LANGUAGEPAIRID as varchar2(15))) as TMLang,
+	srclang.PRIMARYLANGCODE as srcPrim, srclang.SUBLANGCODE as srcSec,
+	trglang.PRIMARYLANGCODE as trgPrim, trglang.SUBLANGCODE as trgSec,
+	tmdatabases.NAME as TMDetails, tmdatabases.DESCRIPTION as description
+FROM
+	TMDATABASES
+	INNER JOIN
+	(TMLANGUAGES
+		INNER JOIN
+		LANGUAGES srclang
+		ON
+		srclang.LANGUAGEID = tmlanguages.SRCLANGID
+		INNER JOIN
+		LANGUAGES trglang
+		ON
+		trglang.LANGUAGEID = tmlanguages.TGTLANGID)
+	ON
+	tmdatabases.TMDATABASEID = tmlanguages.TMDATABASEID
+WHERE
+	srclang.PRIMARYLANGCODE = 'en'
+	AND
+--	trglang.PRIMARYLANGCODE != 'en'
+--	AND
+--	(trglang.PRIMARYLANGCODE = 'en' AND trglang.SUBLANGCODE = 'GB'
+--	(trglang.PRIMARYLANGCODE = 'ro'
+--)--		AND tmdatabases.TMDATABASEID NOT IN (1, 3188, 5354, 6572, 7035))  --exclusions for ENG
+	--AND 
+	(
+	NOT regexp_like(tmdatabases.NAME, '^ ?_') AND
+	NOT regexp_like(tmdatabases.NAME, 'tmp', 'i') AND
+	NOT regexp_like(tmdatabases.NAME, 'test', 'i') AND
+	((NOT regexp_like(tmdatabases.DESCRIPTION, 'dummy', 'i') AND
+	NOT regexp_like(tmdatabases.DESCRIPTION, 'not use', 'i')) OR
+	tmdatabases.DESCRIPTION IS null)
+	)
+ORDER BY
+	trgPrim ASC, trgSec ASC,
+	TMDetails ASC;
+
+--2-- Aggregate data in temporary tables.
 DECLARE
 	TargetLanguage varchar2(10);
 
@@ -180,11 +224,7 @@ BEGIN
 END;
 
 
-select * from TM_HEB_ALL
-select * from ZTM8860_TRANSLATIONS;
-select count(*) from ZTM9177_TRANSLATIONS
-
-
+--3-- Drop temporary tables after exporting the data.
 DECLARE
 	TargetLangs DBMS_UTILITY.UNCL_ARRAY;
 	cnt binary_integer;
@@ -203,52 +243,10 @@ BEGIN
 END;
 
 
-SELECT DISTINCT
-	('ZTM'||cast(tmlanguages.TMDATABASEID as varchar2(10))||'_TRANSLATIONS') as TMName,
-	tmlanguages.TMDATABASEID as TMID,
-	(cast(tmlanguages.LANGUAGEPAIRID as varchar2(15))) as TMLang,
-	srclang.PRIMARYLANGCODE as srcPrim, srclang.SUBLANGCODE as srcSec,
-	trglang.PRIMARYLANGCODE as trgPrim, trglang.SUBLANGCODE as trgSec,
-	tmdatabases.NAME as TMDetails, tmdatabases.DESCRIPTION as description
-FROM
-	TMDATABASES
-	INNER JOIN
-	(TMLANGUAGES
-		INNER JOIN
-		LANGUAGES srclang
-		ON
-		srclang.LANGUAGEID = tmlanguages.SRCLANGID
-		INNER JOIN
-		LANGUAGES trglang
-		ON
-		trglang.LANGUAGEID = tmlanguages.TGTLANGID)
-	ON
-	tmdatabases.TMDATABASEID = tmlanguages.TMDATABASEID
-WHERE
-	srclang.PRIMARYLANGCODE = 'en'
-	AND
---	trglang.PRIMARYLANGCODE != 'en'
---	AND
---	(trglang.PRIMARYLANGCODE = 'en' AND trglang.SUBLANGCODE = 'GB'
---	(trglang.PRIMARYLANGCODE = 'ro'
---)--		AND tmdatabases.TMDATABASEID NOT IN (1, 3188, 5354, 6572, 7035))  --exclusions for ENG
-	--AND 
-	(
-	NOT regexp_like(tmdatabases.NAME, '^ ?_') AND
-	NOT regexp_like(tmdatabases.NAME, 'tmp', 'i') AND
-	NOT regexp_like(tmdatabases.NAME, 'test', 'i') AND
-	((NOT regexp_like(tmdatabases.DESCRIPTION, 'dummy', 'i') AND
-	NOT regexp_like(tmdatabases.DESCRIPTION, 'not use', 'i')) OR
-	tmdatabases.DESCRIPTION IS null)
-	)
-ORDER BY
-	trgPrim ASC, trgSec ASC,
-	TMDetails ASC;
 
-select * from ZTM8544_TRANSLATIONS
-where sourcevc like '%Depending on the%'
-order by sourcevc
-
+-------------------------------------
+-- debug scripts --
+-------------------------------------
 
 select ap.name, ap.projectid, at.taskid, at.taskNumInProject, at.targetasset, 
 ats.stepname

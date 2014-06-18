@@ -4,6 +4,10 @@
 # Created on 17 Oct 2011 by Ventsislav Zhechev
 #
 # ChangeLog
+# v1.10.13	Modified on 18 Jun 2014 by Ventsislav Zhechev
+# Updated the URL to use for contacting the Term Translation Central.
+# Disabled the UIRef functionality, as it cannot currently be used due to infrastructure changes.
+#
 # v1.10.12	Modified on 08 May 2014 by Ventsislav Zhechev
 # Parametrised the read timeout for Moses connections.
 #
@@ -928,8 +932,9 @@ sub translate {
 	&matchURLs($config->{targetLanguage}, $input);
 	# Check for matching glossary terms
 	&matchGlossary($config->{targetLanguage}, $product, $input) if $product;
+	# This functionality is currently deprecated.
 	# Check for UIRefs that can be pretranslated
-	&translateUIRefs($config->{targetLanguage}, $product, $input) if $product;
+#	&translateUIRefs($config->{targetLanguage}, $product, $input) if $product;
 	
 	my %temp = &findMTServers($confText, $engine, $client_sock, $ID);
 	unless (%temp) {
@@ -1167,7 +1172,7 @@ sub matchGlossary {
 	my $onlineTerms = {};
 	my ($glossary) = $product =~ /^(.*)_gloss/;
 	if ($glossary) {
-		my $request = HTTP::Request->new(GET => 'http://ec2-50-16-68-84.compute-1.amazonaws.com/TermList.perl?language='.uri_escape($targetLanguage).'&glossary='.uri_escape($glossary));
+		my $request = HTTP::Request->new(GET => 'http://langtech.autodesk.com/ttc/TermList.perl?language='.uri_escape($targetLanguage).'&glossary='.uri_escape($glossary));
 		my $result = $www->request($request);
 		if ($result->is_success) {
 			my $content = decode "utf-8", $result->content;
@@ -1201,54 +1206,54 @@ sub matchGlossary {
 	}
 }
 
-
-sub translateUIRefs {
-	my ($targetLanguage, $product, $data) = @_;
-	
-	my %languageMap = (
-	cs => "csy",
-	de => "deu",
-	es => "esp",
-	fr => "fra",
-	hu => "hun",
-	it => "ita",
-	jp => "jpn",
-	ko => "kor",
-	pl => "plk",
-	pt_br => "ptb",
-	pt_pt => "ptg",
-	ru => "rus",
-	zh_hans => "chs",
-	zh_hant => "cht",
-	);
-	
-	return unless defined ($targetLanguage = $languageMap{$targetLanguage});
-	
-#	$product = $products{$product} if defined $products{$product};
-#	$product = $products{$product} if defined $products{$product};
-	
-	my $www = LWP::UserAgent->new;
-	$www->agent("MT Info Service");
-
-	for (my $id = 0; $id < @$data; ++$id) {
-		my %UIRefs;
-		$data->[$id] =~ s§<uiref>(.*?)</uiref>§§
-			my $UIRef = $1;
-			if (!defined $UIRefs{$UIRef}) {
-				my $request = HTTP::Request->new(GET => 'http://ec2-50-19-197-134.compute-1.amazonaws.com:8983/solr/lclookup?q1='.uri_escape(lc $UIRef).'&product='.$product.'&resource=Software&lang='.$targetLanguage);
-				my $result = $www->request($request);
-				if ($result->is_success) {
-					my $content = decode "utf-8", $result->content;
-					($content) = $content =~ m!<result name="response".*?<doc>.*?<str name="$targetLanguage">(.*?)</str>.*?</result>!s;
-					$UIRefs{$UIRef} = $content;
-				} else {
-					$UIRefs{$UIRef} = "";
-				}
-			}
-		$UIRefs{$UIRef} eq "" ? $UIRef : "<uiref translation=\"$UIRefs{$UIRef}\">$UIRef</uiref>";
-		§gxe;
-	}
-}
+# This functionality is currently deprecated.
+#sub translateUIRefs {
+#	my ($targetLanguage, $product, $data) = @_;
+#	
+#	my %languageMap = (
+#	cs => "csy",
+#	de => "deu",
+#	es => "esp",
+#	fr => "fra",
+#	hu => "hun",
+#	it => "ita",
+#	jp => "jpn",
+#	ko => "kor",
+#	pl => "plk",
+#	pt_br => "ptb",
+#	pt_pt => "ptg",
+#	ru => "rus",
+#	zh_hans => "chs",
+#	zh_hant => "cht",
+#	);
+#	
+#	return unless defined ($targetLanguage = $languageMap{$targetLanguage});
+#	
+##	$product = $products{$product} if defined $products{$product};
+##	$product = $products{$product} if defined $products{$product};
+#	
+#	my $www = LWP::UserAgent->new;
+#	$www->agent("MT Info Service");
+#
+#	for (my $id = 0; $id < @$data; ++$id) {
+#		my %UIRefs;
+#		$data->[$id] =~ s§<uiref>(.*?)</uiref>§§
+#			my $UIRef = $1;
+#			if (!defined $UIRefs{$UIRef}) {
+#				my $request = HTTP::Request->new(GET => 'http://ec2-50-19-197-134.compute-1.amazonaws.com:8983/solr/lclookup?q1='.uri_escape(lc $UIRef).'&product='.$product.'&resource=Software&lang='.$targetLanguage);
+#				my $result = $www->request($request);
+#				if ($result->is_success) {
+#					my $content = decode "utf-8", $result->content;
+#					($content) = $content =~ m!<result name="response".*?<doc>.*?<str name="$targetLanguage">(.*?)</str>.*?</result>!s;
+#					$UIRefs{$UIRef} = $content;
+#				} else {
+#					$UIRefs{$UIRef} = "";
+#				}
+#			}
+#		$UIRefs{$UIRef} eq "" ? $UIRef : "<uiref translation=\"$UIRefs{$UIRef}\">$UIRef</uiref>";
+#		§gxe;
+#	}
+#}
 
 
 sub matchURLs {
