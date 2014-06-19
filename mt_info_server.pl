@@ -4,6 +4,11 @@
 # Created on 17 Oct 2011 by Ventsislav Zhechev
 #
 # ChangeLog
+# v1.10.14	Modified on 19 Jun 2014 by Ventsislav Zhechev
+# Added an alias for the ussclpdmtlnx* family of servers.
+# We now accept language codes that use a - instead of _ to separate the language code sections.
+# We now accept ja as the language code for Japanese. 
+#
 # v1.10.13	Modified on 18 Jun 2014 by Ventsislav Zhechev
 # Updated the URL to use for contacting the Term Translation Central.
 # Disabled the UIRef functionality, as it cannot currently be used due to infrastructure changes.
@@ -432,11 +437,9 @@ my %commands = (
 	targetLanguage	=> 1,
 	server					=> 1,
 	port						=> 1,
-	oper						=> 1,
 	operation				=> 1,
 	statistics			=> 1,
 	translate				=> 1,
-	segment					=> 1,
 	product					=> 1,
 	getScore				=> 1,
 );
@@ -556,20 +559,24 @@ while (my $client_socket = $server_sock->accept()) {
 			if ($trgLang) {
 				$trgLang =~ s/^ +| +$//g;
 				$trgLang = lc $trgLang;
+				$trgLang =~ tr/-/_/;
 				$trgLang = $localeMap{lc $trgLang} unless $trgLang =~ /^\p{IsAlpha}\p{IsAlpha}(_\p{IsAlpha}{2,4})?$/;
 				unless ($trgLang) {
 					print $client_sock encode("utf-8", " Unknown target language specified! Aborting…\n");
 					next;
 				}
+				$trgLang = "jp" if $trgLang eq "ja";
 			}
 			if ($srcLang) {
 				$srcLang =~ s/^ +| +$//g;
 				$srcLang = lc $srcLang;
+				$srcLang =~ tr/-/_/;
 				$srcLang = $localeMap{lc $srcLang} unless $srcLang =~ /^\p{IsAlpha}\p{IsAlpha}(_\p{IsAlpha}{2,4})?$/;
 				unless ($srcLang) {
 					print $client_sock encode("utf-8", " Unknown source language specified! Aborting…\n");
 					next;
 				}
+				$srcLang = "jp" if $srcLang eq "ja";
 			}
 			if ($translate) {
 				if (!$srcLang) {
@@ -594,6 +601,7 @@ while (my $client_socket = $server_sock->accept()) {
 					$server = "[$server]" if $server =~ /\?\?/ && !($server =~ /]/);
 					$server =~ s/mtprd\?\?/mtprd01, mtprd02, mtprd03, mtprd04, mtprd05, mtprd06, mtprd07, mtprd08, mtprd09, mtprd10, mtprd11, mtprd12/;
 					$server =~ s/ussclpdapcmsl\?\?/ussclpdapcmsl01, ussclpdapcmsl02, ussclpdapcmsl03, ussclpdapcmsl04, ussclpdapcmsl05, ussclpdapcmsl06, ussclpdapcmsl07, ussclpdapcmsl08, ussclpdapcmsl09, ussclpdapcmsl10, ussclpdapcmsl11, ussclpdapcmsl12/;
+					$server =~ s/ussclpdmtlnx\?\?/ussclpdmtlnx001, ussclpdmtlnx002, ussclpdmtlnx003, ussclpdmtlnx004, ussclpdmtlnx005, ussclpdmtlnx006, ussclpdmtlnx007, ussclpdmtlnx008, ussclpdmtlnx009, ussclpdmtlnx010, ussclpdmtlnx011, ussclpdmtlnx012/;
 					if ($server =~ /]/) {
 						$server =~ s/([\w\.]+)/"$1"/g;
 						$server = eval $server;
