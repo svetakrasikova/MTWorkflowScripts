@@ -377,5 +377,6 @@ order by id asc, language asc
 
 
 select first.uuid, second.* from cus_seg_uuid first, cus_seg_uuid second where first.segmentuid = second.segmentuid and first.uuid <> second.uuid
-select * from CUS_SEG_EN_DE where uuid is null
+select DBTABLENAME from cus_seg_locales
+select count(*) from CUS_SEG_EN_CS_CZ where CONTENTOWNER not like 'MARKETING_CQ'
 select * from CUS_SEG_UUID where segmentuid = 'c6f4d5157ca26420f1e5dabd888d43be'
