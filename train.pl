@@ -8,6 +8,9 @@
 # Last modified by Ventsislav Zhechev
 #
 # ChangeLog
+# v3.6.5		Modified by Ventsislav Zhechev on 01 Jul 2014
+# Fixed bugs with the per-product processing.
+#
 # v3.6.4		Modified by Ventsislav Zhechev on 09 Apr 2014
 # Ensured EN_GB is processed properly. (We no longer use EN_UK as a language code.)
 #
@@ -261,16 +264,17 @@ sub tokeniser {
 			or die "Could not write tokenised corpus “$trgCorpus”: $Bzip2Error!\n";
 			
 			while (<PREPROCESS_OUT>) {
+				chomp;
 				my $line = decode "utf-8", $_;
 				$line =~ tr/|<>()/│﹤﹥﹙﹚/;
+				$line =~ s/^\s+|\s+$//g;
 				#Add product code to each token
 				if (defined $perProduct) {
-					chomp $line;
-#					my $product = $productQueue->dequeue();
 					my $product = <PREPROCESS_OUT>;
-					$line .= "◊$product\n" if $product;
+					chomp $product;
+					$line =~ s/(\s|$)/◊$product$1/g if $product;
 				}
-				print $TOKENISED_OUT encode "utf-8", $line;
+				print $TOKENISED_OUT encode "utf-8", "$line\n";
 			}
 			
 			close PREPROCESS_OUT;
@@ -294,22 +298,15 @@ sub tokeniser {
 			next if $line =~ /^\s*$/;
 			($line, my $product) = split /◊/, $line;
 			$product ||= "";
-#			$productQueue->enqueue($product) if defined $perProduct;
 			$line =~ tr/İI/iı/ if !$saveCase && $language =~ /tr/;
 			$line =~ tr/\r/ /;
 			$line = tokenise($tokData, $saveCase ? $line : lc $line);
 			print PREPROCESS_IN encode "utf-8", "$line\n";
 			print PREPROCESS_IN "$product\n" if defined $perProduct;
-#			$line = decode "utf-8", scalar <PREPROCESS_OUT>;
-#			$line =~ tr/|<>()/│﹤﹥﹙﹚/;
-#			#Add product code to each token
-#			$line =~ s/(\s|$)/◊$product$1/g if defined $perProduct && $product;
-#			print $TOKENISED_OUT encode "utf-8", $line;
 		}
 		
 		close $CORPUS_IN;		
 		
-#		$preprocessThread->join();
 		close PREPROCESS_IN;
 		close PREPROCESS_OUT;
 
@@ -330,11 +327,11 @@ sub tokeniser {
 			$product ||= "";
 			$line =~ tr/İI/iı/ if !$saveCase && $language =~ /tr/;
 			$line =~ tr/\r/ /;
-			$line = tokenise($tokData, $saveCase ? $line : lc $line)."\n";
+			$line = tokenise($tokData, $saveCase ? $line : lc $line);
 			$line =~ tr/|<>()/│﹤﹥﹙﹚/;
 			#Add product code to each token
 			$line =~ s/(\s|$)/◊$product$1/g if defined $perProduct && $product;
-			print $TOKENISED_OUT encode "utf-8", $line;
+			print $TOKENISED_OUT encode "utf-8", "$line\n";
 		}
 		
 		close $CORPUS_IN;

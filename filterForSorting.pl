@@ -10,7 +10,7 @@
 # Updated the lists of stop-words.
 #
 # v0.3.3		Modified by Ventsislav Zhechev on 05 Jul 2013
-# The source and target languages are now passes as required command line arguments.
+# The source and target languages are now passed as required command line arguments.
 # Updated the lists of stop-words.
 #
 # v0.3.2		Modified by Ventsislav Zhechev on 27 Jun 2013
