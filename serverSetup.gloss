@@ -4,6 +4,9 @@
 # Created on 21 Sep 2012 by Ventsislav Zhechev
 #
 # ChangeLog
+# Modified on 07 Aug 2014
+# Added entries to the REVIT_gloss
+#
 # Modified on 11 Jul 2014
 # Significantly modified the product code mappings to bring them in line with current intersystem usage
 #
@@ -21904,6 +21907,10 @@
 	{
 		term => "leader line",
 		es => "línea directriz",
+	},
+	{
+		term => "lighting fixture",
+		de => "leuchte",
 	},
 	{
 		term => "linework",
