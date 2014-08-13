@@ -9,6 +9,8 @@ fast_mt_*
 gtm-*
 ibleu-*
 zeromq-*
+tercom-*
+eval/
 
 temp/
 *old*
