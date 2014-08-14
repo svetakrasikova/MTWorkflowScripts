@@ -15,6 +15,9 @@
 #
 #
 # ChangeLog
+# v3.8.10		modified on 14 Aug 2014 by Ventsislav Zhechev
+# Added a JP-specific check to fix a specific placeholder disorder.
+#
 # v3.8.9		modified on 06 May 2014 by Ventsislav Zhechev
 # Removed erroneously leftover options for Moses to output search graphs.
 #
@@ -627,25 +630,30 @@ sub checkPH {
 	}
 	
 	#Check for PH order errors and renumber target PHs if errors are found
-	my @toClose;
-	my $tagOrderError;
-	foreach my $ph ($trg =~ /\{(\d+)\}/g) {
-		my $trgTag = $tags->[$ph-1] or last;
-		my $tag;
-		if (($tag) = $trgTag =~ m!^\s*</(\w+)[\s>]!m) {
-			if (@toClose && $toClose[-1]->{tag} eq $tag) {
-				pop @toClose;
-			} else {
-				++$tagOrderError;
-				last;
+	if ($tgtlang eq "jp" && $src =~ /^\{1}.*\{2}$/ && $trg !~ /^\{1}.*\{2}$/) {
+		$trg =~ s/{\d}/ /g;
+		$trg = "{1}$trg\{2\}";
+	} else {
+		my @toClose;
+		my $tagOrderError;
+		foreach my $ph ($trg =~ /\{(\d+)\}/g) {
+			my $trgTag = $tags->[$ph-1] or last;
+			my $tag;
+			if (($tag) = $trgTag =~ m!^\s*</(\w+)[\s>]!m) {
+				if (@toClose && $toClose[-1]->{tag} eq $tag) {
+					pop @toClose;
+				} else {
+					++$tagOrderError;
+					last;
+				}
+			} elsif (($tag) = $trgTag =~ m!^\s*<(\w+)[\s>]!m) {
+				push @toClose, {tag => $tag, ph => $ph};
 			}
-		} elsif (($tag) = $trgTag =~ m!^\s*<(\w+)[\s>]!m) {
-			push @toClose, {tag => $tag, ph => $ph};
 		}
-	}
-	if ($tagOrderError) {
-		my $tag = 0;
-		$trg =~ s/(?<=\{)\d+(?=\})/++$tag/ge;
+		if ($tagOrderError) {
+			my $tag = 0;
+			$trg =~ s/(?<=\{)\d+(?=\})/++$tag/ge;
+		}
 	}
 	
 	if ($PHMap) {
