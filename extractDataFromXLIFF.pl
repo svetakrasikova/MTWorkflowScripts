@@ -1,11 +1,13 @@
 #!/usr/bin/perl -ws
 #
-# ©2011 Autodesk Development Sàrl
+# ©2011–2014 Autodesk Development Sàrl
 # Created on 29 May 2012 by Ventsislav Zhechev
-# Last modified on 29 May 2012 by Ventsislav Zhechev
 #
 # ChangeLog
-# v0.1
+# v0.2		modified on 24 Jul 2014 by Ventsislav Zhechev
+# Modified to extract data from parallel original/post-edited XLIFFs
+#
+# v0.1		modified on 29 May 2012 by Ventsislav Zhechev
 # Initial version
 #
 ###########################
@@ -20,14 +22,19 @@ use IO::Uncompress::Unzip;
 $| = 1;
 
 
-our ($input);
+our ($input, $postEdited);
 
-die encode("UTF-8", "Usage: $0 -input=…\n")
+die encode("UTF-8", "Usage: $0 -input=… [-postEdited=…]\n")
 unless defined $input;
 
 
 my $in = new IO::Uncompress::Unzip $input
 or die encode "UTF-8", "Cannot read file $input!\n";
+my $pe;
+if (defined $postEdited) {
+	$pe = new IO::Uncompress::Unzip $postEdited
+	or die encode "UTF-8", "Cannot read file $postEdited!\n";
+}
 
 
 $/ = "</trans-unit>";
@@ -36,9 +43,10 @@ $/ = "</trans-unit>";
 #my %goodFiles = map {$_ => 1} (1718, 7536);
 
 my ($MTWords, $TMWords, $MTSegs, $TMSegs, $MTScore, $TMScore, $file) = map {$_ = 0} 1..7;
-my ($fileNo, $fileName);
+#my ($fileNo, $fileName);
 while (my $segment = decode "UTF-8", scalar <$in>) {
-	if ($segment =~ m!<file!) {
+	my $peSegment = defined $postEdited ? decode "UTF-8", scalar <$pe> : undef;
+#	if ($segment =~ m!<file!) {
 #		if ($file) {
 #			if ($fileNo && $goodFiles{$fileNo}) {
 #				print encode "UTF-8", "File ${fileNo}.$fileName:\n";
@@ -47,34 +55,53 @@ while (my $segment = decode "UTF-8", scalar <$in>) {
 #			}
 #			($MTWords, $TMWords, $MTSegs, $TMSegs, $MTScore, $TMScore) = map {$_ = 0} 1..6;
 #		}
-		($fileNo, $fileName) = $segment =~ m!<file.*?SW_ProdTest/en/(\d+)\.(.+?)\.en\.html!;
-		++$file;
-	}
+#		($fileNo, $fileName) = $segment =~ m!<file.*?SW_ProdTest/en/(\d+)\.(.+?)\.en\.html!;
+#		++$file;
+#	}
 	$segment =~ s/^.+(?=<trans-unit)//s;
 	if ($segment =~ /<trans-unit/) {
+		$peSegment =~ s/^.+(?=<trans-unit)//s;
+		die encode "utf-8", "1. FUCK the mismatched XLIFFs!\n" unless defined $peSegment && $peSegment =~ /<trans-unit/;
 		
-		my ($source, $target) = $segment =~ m!^.*?<source>(.*?)</source>.*$!s;
-		unless (defined $source) {
-			die encode "utf-8", "Could not handle segment «$segment»\n";
-		}
+		my ($source, $target) = $segment =~ m!^.*?<source>(.*?)</source><target>(.*?)</target>.*$!s;
+		die encode "utf-8", "Could not handle segment «$segment»\n" unless defined $source;
+		my ($peSource, $peTarget) = $peSegment =~ m!^.*?<source>(.*?)</source><target>(.*?)</target>.*$!s if defined $peSegment;
+		die encode "utf-8", "2. FUCK the mismatched XLIFFs!\n$source --> $peSource\n" unless !(defined $peSegment) || $source eq $peSource;
 		$source =~ s!^\s+|\s+$!!sg;
-#		$target =~ s!^\s+|\s+$!!sg;
+		$target =~ s!^\s+|\s+$!!sg;
 		$source =~ s!<ph.*?({\d+})</ph>!$1!sg;
-#		$target =~ s!<ph.*?({\d+})</ph>!$1!sg;
+		$target =~ s!<ph.*?({\d+})</ph>!$1!sg;
+		if (defined $peTarget) {
+			$peTarget =~ s!^\s+|\s+$!!sg;
+			$peTarget =~ s!<ph.*?({\d+})</ph>!$1!sg;
+		}
 #		print encode "UTF-8", "$source\n$target\n\n";
 
-		my ($score, $wc) = $segment =~ m!^.*<iws\:segment-metadata tm_score\=\"(.+?)\".*?ws_word_count\=\"(.+?)\".*?$!s;
+		my ($score, $wc, $transType) = $segment =~ m!^.*<iws\:segment-metadata tm_score\=\"(.+?)\".*?ws_word_count\=\"(.+?)\".*?(?:translation_\w+?\=\"(.+?)\".*?)?$!s;
+		$score =~ s/^-(\d+)(\d{3})$/-$1.$2/;
+		$score =~ s/^-(\d+),(\d{3})\.00$/-$1.$2/;
+		$transType ||= "fuzzy";
 		
-#		if ($status =~ /machine_translation_mt/) {
-		if ($score < 100) {
-			$MTWords += $wc;
-			++$MTSegs;
-			$MTScore += $score;
-			print encode "UTF-8", "$source\n";
-		} else {
-			$TMWords += $wc;
-			++$TMSegs;
-			$TMScore += $score;
+		if ($transType eq "machine_translation_mt" || ($transType eq "fuzzy" && $score < 100)) {
+#		if ($score < 100) {
+			unless ($transType eq "fuzzy") {
+				$MTWords += $wc;
+				++$MTSegs;
+				$MTScore += $score;
+			} else {
+				$TMWords += $wc;
+				++$TMSegs;
+				$TMScore += $score;
+			}
+			if (defined $peTarget) {
+				print encode "UTF-8", "$source$target$peTargetGWD__Alpha__all$wc".($transType eq "fuzzy" ? "Fuzzy" : "MT")."$score1◊÷\n";
+			} else {
+				print encode "UTF-8", "$source --> $target\n";
+			}
+#		} else {
+#			$TMWords += $wc;
+#			++$TMSegs;
+#			$TMScore += $score;
 		}
 		
 	} else {
@@ -89,10 +116,6 @@ print STDERR encode "UTF-8", "\tTM Segments: $TMSegs; TM Words: $TMWords; TM avg
 
 
 close $in;
-
-#print encode "UTF-8", "MT Segments: $MTSegs; MT Words: $MTWords; MT avg Words: ".($MTSegs ? $MTWords/$MTSegs : 0)."; MT avg Score: ".($MTSegs ? $MTScore/$MTSegs : 0)."\n";
-#print encode "UTF-8", "TM Segments: $TMSegs; TM Words: $TMWords; TM avg Words: ".($TMSegs ? $TMWords/$TMSegs : 0)."; TM avg Score: ".($TMSegs ? $TMScore/$TMSegs : 0)."\n";
-
 
 
 
