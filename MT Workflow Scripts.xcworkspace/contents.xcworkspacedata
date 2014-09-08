@@ -51,9 +51,6 @@
       </FileRef>
    </Group>
    <FileRef
-      location = "group:Revised MT Engine RAM Usage and Distribution.numbers">
-   </FileRef>
-   <FileRef
       location = "group:SQL/Data Extraction for MT.txt">
    </FileRef>
    <FileRef
