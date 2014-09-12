@@ -251,43 +251,44 @@ echo -n "zh_hant soft: "; cat passolo/MT_LPU_export/cht/* |/usr/bin/perl -ne 'ch
 
 
 
-/OptiBay/ADSK_Software/updateTMs.pl -baseLine=../fy13_training/2012.05.09\ Data\ Dump/TM_CHS_ALL.bz2 -current=TMs.2014.04.04/TM_CHS_ALL.bz2 -output=tempTMs/TM_CHS_ALL.bz2
-/OptiBay/ADSK_Software/updateTMs.pl -baseLine=../fy13_training/2012.05.09\ Data\ Dump/TM_CHT_ALL.bz2 -current=TMs.2014.04.04/TM_CHT_ALL.bz2 -output=tempTMs/TM_CHT_ALL.bz2
-/OptiBay/ADSK_Software/updateTMs.pl -baseLine=../fy13_training/2012.05.09\ Data\ Dump/TM_CSY_ALL.bz2 -current=TMs.2014.04.04/TM_CSY_ALL.bz2 -output=tempTMs/TM_CSY_ALL.bz2
-/OptiBay/ADSK_Software/updateTMs.pl -baseLine=../fy13_training/2012.05.09\ Data\ Dump/TM_DNK_ALL.bz2 -current=TMs.2014.04.04/TM_DNK_ALL.bz2 -output=tempTMs/TM_DNK_ALL.bz2
-/OptiBay/ADSK_Software/updateTMs.pl -baseLine=../fy13_training/2012.05.09\ Data\ Dump/TM_DEU_ALL.bz2 -current=TMs.2014.04.04/TM_DEU_ALL.bz2 -output=tempTMs/TM_DEU_ALL.bz2
-/OptiBay/ADSK_Software/updateTMs.pl -baseLine=../fy13_training/2012.05.09\ Data\ Dump/TM_ENG_ALL.bz2 -current=TMs.2014.04.04/TM_ENG_ALL.bz2 -output=tempTMs/TM_ENG_ALL.bz2
-/OptiBay/ADSK_Software/updateTMs.pl -baseLine=../fy13_training/2012.05.09\ Data\ Dump/TM_ESP_ALL.bz2 -current=TMs.2014.04.04/TM_ESP_ALL.bz2 -output=tempTMs/TM_ESP_ALL.bz2
-/OptiBay/ADSK_Software/updateTMs.pl -baseLine=../fy13_training/2012.05.09\ Data\ Dump/TM_FIN_ALL.bz2 -current=TMs.2014.04.04/TM_FIN_ALL.bz2 -output=tempTMs/TM_FIN_ALL.bz2
-/OptiBay/ADSK_Software/updateTMs.pl -baseLine=../fy13_training/2012.05.09\ Data\ Dump/TM_FRA_ALL.bz2 -current=TMs.2014.04.04/TM_FRA_ALL.bz2 -output=tempTMs/TM_FRA_ALL.bz2
-/OptiBay/ADSK_Software/updateTMs.pl -baseLine=../fy13_training/2012.05.09\ Data\ Dump/TM_HUN_ALL.bz2 -current=TMs.2014.04.04/TM_HUN_ALL.bz2 -output=tempTMs/TM_HUN_ALL.bz2
-/OptiBay/ADSK_Software/updateTMs.pl -baseLine=../fy13_training/2012.05.09\ Data\ Dump/TM_ITA_ALL.bz2 -current=TMs.2014.04.04/TM_ITA_ALL.bz2 -output=tempTMs/TM_ITA_ALL.bz2
-/OptiBay/ADSK_Software/updateTMs.pl -baseLine=../fy13_training/2012.05.09\ Data\ Dump/TM_JPN_ALL.bz2 -current=TMs.2014.04.04/TM_JPN_ALL.bz2 -output=tempTMs/TM_JPN_ALL.bz2
-/OptiBay/ADSK_Software/updateTMs.pl -baseLine=../fy13_training/2012.05.09\ Data\ Dump/TM_KOR_ALL.bz2 -current=TMs.2014.04.04/TM_KOR_ALL.bz2 -output=tempTMs/TM_KOR_ALL.bz2
-/OptiBay/ADSK_Software/updateTMs.pl -baseLine=../fy13_training/2012.05.09\ Data\ Dump/TM_NLD_ALL.bz2 -current=TMs.2014.04.04/TM_NLD_ALL.bz2 -output=tempTMs/TM_NLD_ALL.bz2
-/OptiBay/ADSK_Software/updateTMs.pl -baseLine=../fy13_training/2012.05.09\ Data\ Dump/TM_NOR_ALL.bz2 -current=TMs.2014.04.04/TM_NOR_ALL.bz2 -output=tempTMs/TM_NOR_ALL.bz2
-/OptiBay/ADSK_Software/updateTMs.pl -baseLine=../fy13_training/2012.05.09\ Data\ Dump/TM_PLK_ALL.bz2 -current=TMs.2014.04.04/TM_PLK_ALL.bz2 -output=tempTMs/TM_PLK_ALL.bz2
-/OptiBay/ADSK_Software/updateTMs.pl -baseLine=../fy13_training/2012.05.09\ Data\ Dump/TM_PTB_ALL.bz2 -current=TMs.2014.04.04/TM_PTB_ALL.bz2 -output=tempTMs/TM_PTB_ALL.bz2
-/OptiBay/ADSK_Software/updateTMs.pl -baseLine=../fy13_training/2012.05.09\ Data\ Dump/TM_RUS_ALL.bz2 -current=TMs.2014.04.04/TM_RUS_ALL.bz2 -output=tempTMs/TM_RUS_ALL.bz2
-/OptiBay/ADSK_Software/updateTMs.pl -baseLine=../fy13_training/2012.05.09\ Data\ Dump/TM_SWE_ALL.bz2 -current=TMs.2014.04.04/TM_SWE_ALL.bz2 -output=tempTMs/TM_SWE_ALL.bz2
-/OptiBay/ADSK_Software/updateTMs.pl -baseLine=../fy13_training/2012.05.09\ Data\ Dump/TM_VIT_ALL.bz2 -current=TMs.2014.04.04/TM_VIT_ALL.bz2 -output=tempTMs/TM_VIT_ALL.bz2
+/OptiBay/ADSK_Software/updateTMs.pl -baseLine=../fy13_training/2012.05.09\ Data\ Dump/TM_CHS_ALL.bz2 -current=TMs.2014.09.11/TM_CHS_ALL.bz2 -output=tempTMs/TM_CHS_ALL.bz2
+/OptiBay/ADSK_Software/updateTMs.pl -baseLine=../fy13_training/2012.05.09\ Data\ Dump/TM_CHT_ALL.bz2 -current=TMs.2014.09.11/TM_CHT_ALL.bz2 -output=tempTMs/TM_CHT_ALL.bz2
+/OptiBay/ADSK_Software/updateTMs.pl -baseLine=../fy13_training/2012.05.09\ Data\ Dump/TM_CSY_ALL.bz2 -current=TMs.2014.09.11/TM_CSY_ALL.bz2 -output=tempTMs/TM_CSY_ALL.bz2
+/OptiBay/ADSK_Software/updateTMs.pl -baseLine=../fy13_training/2012.05.09\ Data\ Dump/TM_DNK_ALL.bz2 -current=TMs.2014.09.11/TM_DNK_ALL.bz2 -output=tempTMs/TM_DNK_ALL.bz2
+/OptiBay/ADSK_Software/updateTMs.pl -baseLine=../fy13_training/2012.05.09\ Data\ Dump/TM_DEU_ALL.bz2 -current=TMs.2014.09.11/TM_DEU_ALL.bz2 -output=tempTMs/TM_DEU_ALL.bz2
+/OptiBay/ADSK_Software/updateTMs.pl -baseLine=../fy13_training/2012.05.09\ Data\ Dump/TM_ENG_ALL.bz2 -current=TMs.2014.09.11/TM_ENG_ALL.bz2 -output=tempTMs/TM_ENG_ALL.bz2
+/OptiBay/ADSK_Software/updateTMs.pl -baseLine=../fy13_training/2012.05.09\ Data\ Dump/TM_ESP_ALL.bz2 -current=TMs.2014.09.11/TM_ESP_ALL.bz2 -output=tempTMs/TM_ESP_ALL.bz2
+/OptiBay/ADSK_Software/updateTMs.pl -baseLine=../fy13_training/2012.05.09\ Data\ Dump/TM_FIN_ALL.bz2 -current=TMs.2014.09.11/TM_FIN_ALL.bz2 -output=tempTMs/TM_FIN_ALL.bz2
+/OptiBay/ADSK_Software/updateTMs.pl -baseLine=../fy13_training/2012.05.09\ Data\ Dump/TM_FRA_ALL.bz2 -current=TMs.2014.09.11/TM_FRA_ALL.bz2 -output=tempTMs/TM_FRA_ALL.bz2
+/OptiBay/ADSK_Software/updateTMs.pl -baseLine=../fy13_training/2012.05.09\ Data\ Dump/TM_HUN_ALL.bz2 -current=TMs.2014.09.11/TM_HUN_ALL.bz2 -output=tempTMs/TM_HUN_ALL.bz2
+/OptiBay/ADSK_Software/updateTMs.pl -baseLine=../fy13_training/2012.05.09\ Data\ Dump/TM_ITA_ALL.bz2 -current=TMs.2014.09.11/TM_ITA_ALL.bz2 -output=tempTMs/TM_ITA_ALL.bz2
+/OptiBay/ADSK_Software/updateTMs.pl -baseLine=../fy13_training/2012.05.09\ Data\ Dump/TM_JPN_ALL.bz2 -current=TMs.2014.09.11/TM_JPN_ALL.bz2 -output=tempTMs/TM_JPN_ALL.bz2
+/OptiBay/ADSK_Software/updateTMs.pl -baseLine=../fy13_training/2012.05.09\ Data\ Dump/TM_KOR_ALL.bz2 -current=TMs.2014.09.11/TM_KOR_ALL.bz2 -output=tempTMs/TM_KOR_ALL.bz2
+/OptiBay/ADSK_Software/updateTMs.pl -baseLine=../fy13_training/2012.05.09\ Data\ Dump/TM_NLD_ALL.bz2 -current=TMs.2014.09.11/TM_NLD_ALL.bz2 -output=tempTMs/TM_NLD_ALL.bz2
+/OptiBay/ADSK_Software/updateTMs.pl -baseLine=../fy13_training/2012.05.09\ Data\ Dump/TM_NOR_ALL.bz2 -current=TMs.2014.09.11/TM_NOR_ALL.bz2 -output=tempTMs/TM_NOR_ALL.bz2
+/OptiBay/ADSK_Software/updateTMs.pl -baseLine=../fy13_training/2012.05.09\ Data\ Dump/TM_PLK_ALL.bz2 -current=TMs.2014.09.11/TM_PLK_ALL.bz2 -output=tempTMs/TM_PLK_ALL.bz2
+/OptiBay/ADSK_Software/updateTMs.pl -baseLine=../fy13_training/2012.05.09\ Data\ Dump/TM_PTB_ALL.bz2 -current=TMs.2014.09.11/TM_PTB_ALL.bz2 -output=tempTMs/TM_PTB_ALL.bz2
+/OptiBay/ADSK_Software/updateTMs.pl -baseLine=../fy13_training/2012.05.09\ Data\ Dump/TM_RUS_ALL.bz2 -current=TMs.2014.09.11/TM_RUS_ALL.bz2 -output=tempTMs/TM_RUS_ALL.bz2
+/OptiBay/ADSK_Software/updateTMs.pl -baseLine=../fy13_training/2012.05.09\ Data\ Dump/TM_SWE_ALL.bz2 -current=TMs.2014.09.11/TM_SWE_ALL.bz2 -output=tempTMs/TM_SWE_ALL.bz2
+/OptiBay/ADSK_Software/updateTMs.pl -baseLine=../fy13_training/2012.05.09\ Data\ Dump/TM_VIT_ALL.bz2 -current=TMs.2014.09.11/TM_VIT_ALL.bz2 -output=tempTMs/TM_VIT_ALL.bz2
 
-/OptiBay/ADSK_Software/updateTMs.pl -baseLine=TMs.2014.04.04/TM_ARA_ALL.bz2 -current=TMs.2014.04.04/TM_ARA_ALL.bz2 -output=tempTMs/TM_ARA_ALL.bz2
-/OptiBay/ADSK_Software/updateTMs.pl -baseLine=TMs.2014.04.04/TM_ELL_ALL.bz2 -current=TMs.2014.04.04/TM_ELL_ALL.bz2 -output=tempTMs/TM_ELL_ALL.bz2
-/OptiBay/ADSK_Software/updateTMs.pl -baseLine=TMs.2014.04.04/TM_ENA_ALL.bz2 -current=TMs.2014.04.04/TM_ENA_ALL.bz2 -output=tempTMs/TM_ENA_ALL.bz2
-/OptiBay/ADSK_Software/updateTMs.pl -baseLine=TMs.2014.04.04/TM_FRB_ALL.bz2 -current=TMs.2014.04.04/TM_FRB_ALL.bz2 -output=tempTMs/TM_FRB_ALL.bz2
-/OptiBay/ADSK_Software/updateTMs.pl -baseLine=TMs.2014.04.04/TM_FRC_ALL.bz2 -current=TMs.2014.04.04/TM_FRC_ALL.bz2 -output=tempTMs/TM_FRC_ALL.bz2
-/OptiBay/ADSK_Software/updateTMs.pl -baseLine=TMs.2014.04.04/TM_HEB_ALL.bz2 -current=TMs.2014.04.04/TM_HEB_ALL.bz2 -output=tempTMs/TM_HEB_ALL.bz2
-/OptiBay/ADSK_Software/updateTMs.pl -baseLine=TMs.2014.04.04/TM_HIN_ALL.bz2 -current=TMs.2014.04.04/TM_HIN_ALL.bz2 -output=tempTMs/TM_HIN_ALL.bz2
-/OptiBay/ADSK_Software/updateTMs.pl -baseLine=TMs.2014.04.04/TM_IND_ALL.bz2 -current=TMs.2014.04.04/TM_IND_ALL.bz2 -output=tempTMs/TM_IND_ALL.bz2
-/OptiBay/ADSK_Software/updateTMs.pl -baseLine=TMs.2014.04.04/TM_LAS_ALL.bz2 -current=TMs.2014.04.04/TM_LAS_ALL.bz2 -output=tempTMs/TM_LAS_ALL.bz2
-/OptiBay/ADSK_Software/updateTMs.pl -baseLine=TMs.2014.04.04/TM_PTG_ALL.bz2 -current=TMs.2014.04.04/TM_PTG_ALL.bz2 -output=tempTMs/TM_PTG_ALL.bz2
-/OptiBay/ADSK_Software/updateTMs.pl -baseLine=TMs.2014.04.04/TM_ROM_ALL.bz2 -current=TMs.2014.04.04/TM_ROM_ALL.bz2 -output=tempTMs/TM_ROM_ALL.bz2
-/OptiBay/ADSK_Software/updateTMs.pl -baseLine=TMs.2014.04.04/TM_SLK_ALL.bz2 -current=TMs.2014.04.04/TM_SLK_ALL.bz2 -output=tempTMs/TM_SLK_ALL.bz2
-/OptiBay/ADSK_Software/updateTMs.pl -baseLine=TMs.2014.04.04/TM_THA_ALL.bz2 -current=TMs.2014.04.04/TM_THA_ALL.bz2 -output=tempTMs/TM_THA_ALL.bz2
-/OptiBay/ADSK_Software/updateTMs.pl -baseLine=TMs.2014.04.04/TM_TUR_ALL.bz2 -current=TMs.2014.04.04/TM_TUR_ALL.bz2 -output=tempTMs/TM_TUR_ALL.bz2
+/OptiBay/ADSK_Software/updateTMs.pl -baseLine=TMs.2014.09.11/TM_ARA_ALL.bz2 -current=TMs.2014.09.11/TM_ARA_ALL.bz2 -output=tempTMs/TM_ARA_ALL.bz2
+/OptiBay/ADSK_Software/updateTMs.pl -baseLine=TMs.2014.09.11/TM_ELL_ALL.bz2 -current=TMs.2014.09.11/TM_ELL_ALL.bz2 -output=tempTMs/TM_ELL_ALL.bz2
+/OptiBay/ADSK_Software/updateTMs.pl -baseLine=TMs.2014.09.11/TM_ENA_ALL.bz2 -current=TMs.2014.09.11/TM_ENA_ALL.bz2 -output=tempTMs/TM_ENA_ALL.bz2
+/OptiBay/ADSK_Software/updateTMs.pl -baseLine=TMs.2014.09.11/TM_FRB_ALL.bz2 -current=TMs.2014.09.11/TM_FRB_ALL.bz2 -output=tempTMs/TM_FRB_ALL.bz2
+/OptiBay/ADSK_Software/updateTMs.pl -baseLine=TMs.2014.09.11/TM_FRC_ALL.bz2 -current=TMs.2014.09.11/TM_FRC_ALL.bz2 -output=tempTMs/TM_FRC_ALL.bz2
+/OptiBay/ADSK_Software/updateTMs.pl -baseLine=TMs.2014.09.11/TM_HEB_ALL.bz2 -current=TMs.2014.09.11/TM_HEB_ALL.bz2 -output=tempTMs/TM_HEB_ALL.bz2
+/OptiBay/ADSK_Software/updateTMs.pl -baseLine=TMs.2014.09.11/TM_HIN_ALL.bz2 -current=TMs.2014.09.11/TM_HIN_ALL.bz2 -output=tempTMs/TM_HIN_ALL.bz2
+/OptiBay/ADSK_Software/updateTMs.pl -baseLine=TMs.2014.09.11/TM_IND_ALL.bz2 -current=TMs.2014.09.11/TM_IND_ALL.bz2 -output=tempTMs/TM_IND_ALL.bz2
+/OptiBay/ADSK_Software/updateTMs.pl -baseLine=TMs.2014.09.11/TM_LAS_ALL.bz2 -current=TMs.2014.09.11/TM_LAS_ALL.bz2 -output=tempTMs/TM_LAS_ALL.bz2
+/OptiBay/ADSK_Software/updateTMs.pl -baseLine=TMs.2014.09.11/TM_PTG_ALL.bz2 -current=TMs.2014.09.11/TM_PTG_ALL.bz2 -output=tempTMs/TM_PTG_ALL.bz2
+/OptiBay/ADSK_Software/updateTMs.pl -baseLine=TMs.2014.09.11/TM_ROM_ALL.bz2 -current=TMs.2014.09.11/TM_ROM_ALL.bz2 -output=tempTMs/TM_ROM_ALL.bz2
+/OptiBay/ADSK_Software/updateTMs.pl -baseLine=TMs.2014.09.11/TM_SLK_ALL.bz2 -current=TMs.2014.09.11/TM_SLK_ALL.bz2 -output=tempTMs/TM_SLK_ALL.bz2
+/OptiBay/ADSK_Software/updateTMs.pl -baseLine=TMs.2014.09.11/TM_THA_ALL.bz2 -current=TMs.2014.09.11/TM_THA_ALL.bz2 -output=tempTMs/TM_THA_ALL.bz2
+/OptiBay/ADSK_Software/updateTMs.pl -baseLine=TMs.2014.09.11/TM_TUR_ALL.bz2 -current=TMs.2014.09.11/TM_TUR_ALL.bz2 -output=tempTMs/TM_TUR_ALL.bz2
 
-/OptiBay/ADSK_Software/updateTMs.pl -baseLine=tempTMs/TM_PTB_ALL.bz2 -current=TMs.2014.04.04/TM_PTG_ALL.bz2 -output=tempTMs/TM_PT\*_ALL.bz2
+/OptiBay/ADSK_Software/updateTMs.pl -baseLine=tempTMs/TM_PTB_ALL.bz2 -current=TMs.2014.09.11/TM_PTG_ALL.bz2 -output=tempTMs/TM_PT\*_ALL.bz2
+/OptiBay/ADSK_Software/updateTMs.pl -baseLine=sw_corpus/corpus.sw.ptb.bz2 -current=sw_corpus/corpus.sw.ptg.bz2 -output=sw_corpus/corpus.sw.pt\*.bz2
 
 
 /OptiBay/ADSK_Software/generateCorpora.pl -threads=16

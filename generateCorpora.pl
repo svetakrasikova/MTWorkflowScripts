@@ -4,6 +4,9 @@
 # Created on 14 Jan 2013 by Ventsislav Zhechev
 #
 # ChangeLog
+# v0.2.10	Modified on 12 Sep 2014 by Ventsislav Zhechev
+# Updated the list of product mappings.
+#
 # v0.2.9	Modified on 01 Jul 2014 by Ventsislav Zhechev
 # Updated the list of product mappings.
 #
@@ -157,7 +160,7 @@ my %products = (
 "ACD360MOB"=>"ACD",
 "ACD360WEB"=>"ACD",
 "ACDMAC"=>"ACD",
-#"ACDSYS_doc" => "ACDSYS",
+"ACDSYS_doc" => "ACDSYS",
 "ACDWS"=>"ACD",
 "ACE_doc" => "ACE",
 "ACM_doc" => "ACM",
@@ -211,6 +214,7 @@ my %products = (
 "CLOUDS"=>"CLOUDS",
 "Composite_doc" => "PTFM",
 "conref_resourcesXML_doc" => "N/A",
+"Configurator_doc" => "CFG360",
 "Copyright_doc" => "PTFM",
 "DirectConnect_doc" => "PTFM",
 "EDM_doc" => "EDM",
@@ -234,6 +238,7 @@ my %products = (
 "Instructables_doc" => "INSTD",
 "INV"=>"INV",
 "Inventor_doc" => "INV",
+"Inventor_HSM_doc" => "INV",
 "Inventor_main_doc" => "INV",
 "Inventor_Publisher_doc" => "INVPUB",
 "Inventor_Publisher_main_doc" => "INVPUB",
@@ -306,12 +311,13 @@ my %products = (
 "SIM360" => "ALGSIM",
 "SIMDFM"=>"ALGSIM",
 "Simulation360_doc" => "ALGSIM",
+"Simulation_Composite_doc" => "ALGSIM",
 "SimulationJobManager_doc" => "ALGSIM",
 "Sketchbook_doc" => "ALSK",
 "SketchbookDesigner_doc" => "ALSK",
 "SketchBookPro_doc" => "ALSK",
 "SKETPRO"=>"ALSK",
-#"SmartAlign_doc" => "SMAL",
+"SmartAlign_doc" => "SMAL",
 "Socialcam_doc" => "SOCAM",
 "Softimage_doc" => "SFTIM",
 "STRDET" => "ASD",
@@ -321,6 +327,7 @@ my %products = (
 "TORCH" => "TORCH",
 "trisoft_corp_conrefs_doc" => "N/A",
 "Vault_doc" => "EDM",
+"Vault_Solidworks_addin_doc" => "EDM",
 "Viewers_doc" => "ADR",
 "VLT"=>"EDM",
 "WAM_doc" => "WAM",
@@ -367,9 +374,6 @@ my $processLanguage = sub {
 				next if $target =~ m"(?<!#)#{3}(?!#)" && $target ne "###" && $source !~ m"#{3}";
 				++$segments;
 				++$sources;
-#				{lock $enuSegments;
-#					++$enuSegments;
-#				}
 				if ($products{$product}) {
 					$product = $products{$product} # || $product;
 				} else {
@@ -379,8 +383,6 @@ my $processLanguage = sub {
 				$product = "N/A" if $product =~ m"^◊÷";
 				print $sourceOutput encode "utf-8", "$source◊$product\n";
 				print $targetOutput encode "utf-8", "$target◊$product\n";
-#				sleep 1 while $englishQueue->pending() > 1500000;
-#				$englishQueue->enqueue(encode "utf-8", "$source◊$product\n");
 				if (@englishSegments >= $maxENSegments) {
 					$englishQueue->enqueue(\@englishSegments);
 					@englishSegments = ();
