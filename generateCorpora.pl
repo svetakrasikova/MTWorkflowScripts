@@ -4,6 +4,9 @@
 # Created on 14 Jan 2013 by Ventsislav Zhechev
 #
 # ChangeLog
+# v0.3		Modified on 12 Sep 2014 by Ventsislav Zhechev
+# Disabled the aggregate output of ENU segments.
+#
 # v0.2.10	Modified on 12 Sep 2014 by Ventsislav Zhechev
 # Updated the list of product mappings.
 #
@@ -335,15 +338,14 @@ my %products = (
 );
 
 
-system "mkdir -p corpora/ENU";
-system "touch corpora/ENU/corpus.xx.bz2";
-my $enuSegments :shared = 0;
+#system "mkdir -p corpora/ENU";
+#system "touch corpora/ENU/corpus.xx.bz2";
 
 my $languageQueue = new Thread::Queue;
-my $englishQueue = new Thread::Queue;
+#my $englishQueue = new Thread::Queue;
 
-my @englishSegments;
-my $maxENSegments = 500;
+#my @englishSegments;
+#my $maxENSegments = 500;
 
 my $processLanguage = sub {
 	#	print encode "utf-8", "∞∞∞ Enter thread ".threads->tid()."\n";
@@ -377,17 +379,16 @@ my $processLanguage = sub {
 				if ($products{$product}) {
 					$product = $products{$product} # || $product;
 				} else {
-					print STDERR "Product $product not found in database!\nCurrent file: $fileName\n";
-					die;
+					die "Product $product not found in database!\tCurrent file: $fileName\n";
 				}
 				$product = "N/A" if $product =~ m"^◊÷";
 				print $sourceOutput encode "utf-8", "$source◊$product\n";
 				print $targetOutput encode "utf-8", "$target◊$product\n";
-				if (@englishSegments >= $maxENSegments) {
-					$englishQueue->enqueue(\@englishSegments);
-					@englishSegments = ();
-				}
-				push @englishSegments, encode "utf-8", "$source◊$product\n";
+#				if (@englishSegments >= $maxENSegments) {
+#					$englishQueue->enqueue(\@englishSegments);
+#					@englishSegments = ();
+#				}
+#				push @englishSegments, encode "utf-8", "$source◊$product\n";
 			}
 			
 			close $input;
@@ -398,27 +399,27 @@ my $processLanguage = sub {
 		close $targetOutput;
 		print encode "utf-8", "\tProcessed $segments segments for language $language.\n";
 	}
-	if (@englishSegments) {
-		$englishQueue->enqueue(\@englishSegments);
-		@englishSegments = ();
-	}
+#	if (@englishSegments) {
+#		$englishQueue->enqueue(\@englishSegments);
+#		@englishSegments = ();
+#	}
 	#	print encode "utf-8", "∞∞∞ Exit thread ".threads->tid()."\n";
 };
 
 
 my @threads = map {threads->create($processLanguage)} 1..$threads;
-my $englishThread = threads->create(sub {
-	my $enuOutput = new IO::Compress::Bzip2 "corpora/ENU/corpus.en.bz2" or die encode "utf-8", "Cannot write corpus file “corpora/ENU/corpus.en.bz2”: $Bzip2Error\n";
-	local $" = "";
-	for(;;) {
-		my $segments = $englishQueue->dequeue();
-		last unless defined $segments;
-		$enuSegments += @$segments;
-		print $enuOutput "@$segments";
-	}
-	close $enuOutput;
-	print encode "utf-8", "Output $enuSegments EN-US segments for language model building.\n";
-});
+#my $englishThread = threads->create(sub {
+#	my $enuOutput = new IO::Compress::Bzip2 "corpora/ENU/corpus.en.bz2" or die encode "utf-8", "Cannot write corpus file “corpora/ENU/corpus.en.bz2”: $Bzip2Error\n";
+#	local $" = "";
+#	for(;;) {
+#		my $segments = $englishQueue->dequeue();
+#		last unless defined $segments;
+#		$enuSegments += @$segments;
+#		print $enuOutput "@$segments";
+#	}
+#	close $enuOutput;
+#	print encode "utf-8", "Output $enuSegments EN-US segments for language model building.\n";
+#});
 
 $languageQueue->enqueue($_) foreach shuffle keys %languages;
 
@@ -427,9 +428,9 @@ $languageQueue->enqueue(undef) foreach 1..$threads;
 #print encode "utf-8", "∞∞∞ Wait for processing threads to finish\n";
 $_->join() foreach @threads;
 #print encode "utf-8", "∞∞∞ Tell English thread to finish\n";
-$englishQueue->enqueue(undef);
-#print encode "utf-8", "∞∞∞ Wait for English thread to finish\n";
-$englishThread->join();
+#$englishQueue->enqueue(undef);
+##print encode "utf-8", "∞∞∞ Wait for English thread to finish\n";
+#$englishThread->join();
 
 
 1;
