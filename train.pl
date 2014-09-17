@@ -8,6 +8,9 @@
 # Last modified by Ventsislav Zhechev
 #
 # ChangeLog
+# v3.6.7		Modified by Ventsislav Zhechev on 17 Sep 2014
+# It is no longer needed to copy recaser moses.ini file for XX-EN trainings.
+#
 # v3.6.6		Modified by Ventsislav Zhechev on 17 Sep 2014
 # Fixed a bug where the script would exit prematurely in a situation where no corpus cleaning is needed, but a target language model needs to be created.
 #
@@ -503,12 +506,12 @@ unless (!(defined $force) && -e "./model/moses.ini" || $first_step > $last_step)
 waitpid($pid, 0) if $forked && $pid;
 
 ## Copy recaser moses.ini file for XX-EN trainings.
-if ($source ne "xx" && $target eq "en") {
-	print LOG "Copying recaser setup files from XX-EN folder…\n";
-	mkdir "recaser";
-	system("cp -p $build_recaser/moses.* recaser/.") == 0
-	or warn "Could not copy recaser setup files!\n";
-}
+#if ($source ne "xx" && $target eq "en") {
+#	print LOG "Copying recaser setup files from XX-EN folder…\n";
+#	mkdir "recaser";
+#	system("cp -p $build_recaser/moses.* recaser/.") == 0
+#	or warn "Could not copy recaser setup files!\n";
+#}
 
 ## Archive interim files
 $date = decode("utf-8", `/bin/date`);
