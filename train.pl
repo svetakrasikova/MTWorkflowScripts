@@ -8,6 +8,9 @@
 # Last modified by Ventsislav Zhechev
 #
 # ChangeLog
+# v3.6.6		Modified by Ventsislav Zhechev on 17 Sep 2014
+# Fixed a bug where the script would exit prematurely in a situation where no corpus cleaning is needed, but a target language model needs to be created.
+#
 # v3.6.5		Modified by Ventsislav Zhechev on 01 Jul 2014
 # Fixed bugs with the per-product processing.
 #
@@ -467,7 +470,7 @@ if ((!$sub_pid || !$sub_fork) && (defined $build_lm && (defined $force || !(-e "
 	my $end = new Benchmark;
 	print LOG "Building target language model completed in ", timestr(timediff($end, $start), 'all'), "\n";
 	print STDERR "Training target language model complete!\n";
-	exit(0);
+	exit(0) if $sub_fork;
 }
 
 
