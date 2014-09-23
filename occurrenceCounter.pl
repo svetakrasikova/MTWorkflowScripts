@@ -6,6 +6,9 @@
 # Created on 02 Jul 2013 by Ventsislav Zhechev
 #
 # Changelog
+# v0.4.3		Modified by Ventsislav Zhechev on 19 Sep 2014
+# The script will now die properly if the source or target corpus isn’t found.
+#
 # v0.4.2		Modified by Ventsislav Zhechev on 02 Jul 2014
 # Changed the format of the .list output file so that it could be easily read in by Excel.
 # Changed the extension of the .list output file to .list.csv
@@ -127,8 +130,10 @@ my $processSegment = sub {
 my $startTime = new Benchmark;
 my @threads = map {threads->create($processSegment)} 1..$threads;
 
-open my $src, "<$sourceCorpus";
-open my $trg, "<$targetCorpus";
+open my $src, "<$sourceCorpus"
+or die "$sourceCorpus not found!\n";
+open my $trg, "<$targetCorpus"
+or die "$targetCorpus not found!\n";
 while (my $sourceSegment = decode "utf-8", scalar <$src>) {
 	unless ($.%10000) {
 		print STDERR ".";
