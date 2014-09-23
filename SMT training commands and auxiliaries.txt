@@ -411,11 +411,20 @@ echo -n "zh_hant soft: "; cat passolo/MT_LPU_export/cht/* |/usr/bin/perl -ne 'ch
 
 
 
+#################################
+## Per-Product Trainings for Ambiguous Terminology Extraction
+/OptiBay/ADSK_Software/train.pl -corpus=/Volumes/LaCie_Work/Autodesk/fy15_analysis/corpora/CSY/corpus -source=en -target=cs -lm_path=lm -build_lm=/sw/bin/srilm/macosx -moses_path=/Users/ventzi/courses/EuroMatrixPlus/software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -log_dir=LOG -device=disk1 -fiscal_year=fy15 -binarise=0 -perProduct >CSY.sw.log 2>&1 &
+/OptiBay/ADSK_Software/train.pl -corpus=/Volumes/LaCie_Work/Autodesk/fy15_analysis/corpora/ESP/corpus -source=en -target=es -lm_path=lm -build_lm=/sw/bin/srilm/macosx -moses_path=/Users/ventzi/courses/EuroMatrixPlus/software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -log_dir=LOG -device=disk1 -fiscal_year=fy15 -binarise=0 -perProduct >ESP.sw.log 2>&1 &
+/OptiBay/ADSK_Software/train.pl -corpus=/Volumes/LaCie_Work/Autodesk/fy15_analysis/corpora/HUN/corpus -source=en -target=hu -lm_path=lm -build_lm=/sw/bin/srilm/macosx -moses_path=/Users/ventzi/courses/EuroMatrixPlus/software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -log_dir=LOG -device=disk1 -fiscal_year=fy15 -binarise=0 -perProduct >HUN.sw.log 2>&1 &
+/OptiBay/ADSK_Software/train.pl -corpus=/Volumes/LaCie_Work/Autodesk/fy15_analysis/corpora/KOR/corpus -source=en -target=ko -lm_path=lm -build_lm=/sw/bin/srilm/macosx -moses_path=/Users/ventzi/courses/EuroMatrixPlus/software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -log_dir=LOG -device=disk1 -fiscal_year=fy15 -binarise=0 -perProduct >KOR.sw.log 2>&1 &
+/OptiBay/ADSK_Software/train.pl -corpus=/Volumes/LaCie_Work/Autodesk/fy15_analysis/corpora/PLK/corpus -source=en -target=pl -lm_path=lm -build_lm=/sw/bin/srilm/macosx -moses_path=/Users/ventzi/courses/EuroMatrixPlus/software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -log_dir=LOG -device=disk1 -fiscal_year=fy15 -binarise=0 -perProduct >PLK.sw.log 2>&1 &
+/OptiBay/ADSK_Software/train.pl -corpus=/Volumes/LaCie_Work/Autodesk/fy15_analysis/corpora/PTB/corpus -source=en -target=pt_br -lm_path=lm -build_lm=/sw/bin/srilm/macosx -moses_path=/Users/ventzi/courses/EuroMatrixPlus/software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -log_dir=LOG -device=disk1 -fiscal_year=fy15 -binarise=0 -perProduct >PTB.sw.log 2>&1 &
+/OptiBay/ADSK_Software/train.pl -corpus=/Volumes/LaCie_Work/Autodesk/fy15_analysis/corpora/PTG/corpus -source=en -target=pt_pt -lm_path=lm -build_lm=/sw/bin/srilm/macosx -moses_path=/Users/ventzi/courses/EuroMatrixPlus/software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -log_dir=LOG -device=disk1 -fiscal_year=fy15 -binarise=0 -perProduct >PTG.sw.log 2>&1 &
 
 
+zcat fy15_EN-CS_a/model/phrase-table.gz |/OptiBay/ADSK_Software/filterForSorting.pl -sourceLanguage=en -targetLanguage=cs |LC_ALL=C sort -k 1,1 -k 12,12 -k 9nr,9 -S 1024M --parallel=8 --field-separator=\| |/OptiBay/ADSK_Software/conflateTargets.pl |/OptiBay/ADSK_Software/calculateAmbiguities.pl -output=fy15_EN-CS_a/model/ambiguousTerms.json |bzip2 >fy15_EN-CS_a/model/ambiguousTerms.log.bz2
 
-
-
+/OptiBay/ADSK_Software/occurrenceCounter.pl -sourceCorpus=fy15_EN-CS_a/corpus/corpus.clean.en -targetCorpus=fy15_EN-CS_a/corpus/corpus.clean.cs -ambiguousStrings=fy15_EN-CS_a/model/ambiguousTerms.json -threads=8 |bzip2 >fy15_EN-CS_a/model/ambiguousTerms.occurrence.bz2
 
 #################################
 cat chs_*1.csv |./create_samples.pl -words=`cat chs_*1.csv|/usr/bin/perl -ne 'BEGIN{my$c=0}my(undef,undef,$w)=split//,$_;$c+=$w;END{print"$c\n"}'` -percentage=37 -output=productivity_QA_sample_chs.csv
