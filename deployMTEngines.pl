@@ -4,6 +4,10 @@
 # Created on 11 Feb 2014 by Ventsislav Zhechev
 #
 # ChangeLog
+# v0.2.3		Modified on 19 Sep 2014 by Ventsislav Zhechev
+# Updated engine list for FY16.
+# The list of servers is now taken from the %systems hash, instead of being hard-coded.
+#
 # v0.2.2		Modified on 29 Apr 2014 by Ventsislav Zhechev
 # Updated PT-PT engine.
 #
@@ -46,45 +50,45 @@ $| = 1;
 
 
 my %systems = (
-"ussclpdapcmsl01" => ["fy15_EN-DA_d","fy15_EN-EN_GB_a","fy15_EN-FR_c","fy15_EN-HU_d","fy15_EN-NO_d","fy15_EN-PL_d","fy15_EN-VI_c","fy15_RU-EN_a","fy15_XX-EN_b",],
-"ussclpdapcmsl02" => ["fy15_DE-EN_a","fy15_EN-ES_c","fy15_EN-JP_c","fy15_EN-SV_d","fy15_XX-EN_b",],
-"ussclpdapcmsl03" => ["fy15_EN-IT_d","fy15_EN-NL_d","fy15_EN-RU_d","fy15_EN-ZH_HANS_c","fy15_KO-EN_a","fy15_XX-EN_b",],
-"ussclpdapcmsl04" => ["fy15_EN-CS_d","fy15_EN-FI_d","fy15_IT-EN_a","fy15_JP-EN_a","fy15_XX-EN_b",],
-"ussclpdapcmsl05" => ["fy15_EN-ES_c","fy15_EN-PT_BR_d","fy15_ES-EN_a","fy15_PL-EN_a","fy15_XX-EN_b",],
-"ussclpdapcmsl06" => ["fy15_EN-CS_d","fy15_EN-DE_d","fy15_EN-ZH_HANT_c","fy15_ZH_HANT-EN_a","fy15_XX-EN_b",],
-"ussclpdapcmsl07" => ["fy15_EN-DE_d","fy15_EN-IT_d","fy15_EN-KO_c","fy15_EN-PL_d","fy15_EN-ZH_HANT_c",],
-"ussclpdapcmsl08" => ["fy15_EN-DE_d","fy15_EN-IT_d","fy15_EN-KO_c","fy15_EN-PL_d","fy15_EN-ZH_HANT_c",],
-"ussclpdapcmsl09" => ["fy15_EN-DE_d","fy15_EN-IT_d","fy15_EN-KO_c","fy15_EN-PL_d","fy15_EN-ZH_HANT_c",],
-"ussclpdapcmsl10" => ["fy15_EN-DE_d","fy15_EN-IT_d","fy15_EN-KO_c","fy15_EN-PL_d","fy15_EN-ZH_HANT_c",],
-"ussclpdapcmsl11" => ["fy15_EN-DE_d","fy15_EN-IT_d","fy15_EN-KO_c","fy15_EN-PL_d","fy15_EN-ZH_HANT_c",],
-"ussclpdapcmsl12" => ["fy15_EN-DE_d","fy15_EN-IT_d","fy15_EN-KO_c","fy15_EN-PL_d","fy15_EN-ZH_HANT_c",],
-"ussclpdmtlnx001" => ["fy15_EN-DE_d","fy15_EN-IT_d","fy15_EN-KO_c","fy15_EN-PL_d","fy15_EN-ZH_HANT_c",],
-"ussclpdmtlnx002" => ["fy15_EN-ES_c","fy15_EN-PT_BR_d","fy15_FR-EN_a","fy15_PT_BR-EN_a","fy15_XX-EN_b",],
-"ussclpdmtlnx003" => ["fy15_EN-CS_d","fy15_EN-FR_c","fy15_EN-KO_c","fy15_ZH_HANS-EN_a","fy15_XX-EN_b",],
-"ussclpdmtlnx004" => ["fy15_EN-FR_c","fy15_EN-HU_d","fy15_EN-JP_c","fy15_EN-RU_d",],
-"ussclpdmtlnx005" => ["fy15_EN-FR_c","fy15_EN-HU_d","fy15_EN-JP_c","fy15_EN-RU_d",],
-"ussclpdmtlnx006" => ["fy15_EN-FR_c","fy15_EN-HU_d","fy15_EN-JP_c","fy15_EN-RU_d",],
-"ussclpdmtlnx007" => ["fy15_EN-FR_c","fy15_EN-HU_d","fy15_EN-JP_c","fy15_EN-RU_d",],
-"ussclpdmtlnx008" => ["fy15_EN-FR_c","fy15_EN-HU_d","fy15_EN-JP_c","fy15_EN-RU_d",],
-"ussclpdmtlnx009" => ["fy15_EN-FR_c","fy15_EN-HU_d","fy15_EN-JP_c","fy15_EN-RU_d",],
-"ussclpdmtlnx010" => ["fy15_EN-JP_c","fy15_EN-PT_BR_d","fy15_EN-RU_d","fy15_EN-ZH_HANS_c",],
-"ussclpdmtlnx011" => ["fy15_EN-CS_d","fy15_EN-ES_c","fy15_EN-HU_d","fy15_EN-JP_c","fy15_EN-PT_BR_d",],
-"ussclpdmtlnx012" => ["fy15_EN-DE_d","fy15_EN-JP_c","fy15_EN-ZH_HANS_c",],
-"mtprd01" => ["fy15_HU-EN_a","fy15_XX-EN_b",],
-"mtprd02" => ["fy15_CS-EN_a","fy15_XX-EN_b",],
-"mtprd03" => ["fy15_EN-PT_BR_d","fy15_EN-ZH_HANS_c",],
-"mtprd04" => ["fy15_EN-PT_BR_d","fy15_EN-ZH_HANS_c",],
-"mtprd05" => ["fy15_EN-PT_BR_d","fy15_EN-ZH_HANS_c",],
-"mtprd06" => ["fy15_EN-PT_PT_e","fy15_EN-ZH_HANS_c",],
-"mtprd07" => ["fy15_EN-PT_PT_e","fy15_EN-ZH_HANS_c",],
-"mtprd08" => ["fy15_EN-PT_PT_e","fy15_EN-ZH_HANS_c",],
-"mtprd09" => ["fy15_EN-CS_d","fy15_EN-ES_c",],
-"mtprd10" => ["fy15_EN-CS_d","fy15_EN-ES_c",],
-"mtprd11" => ["fy15_EN-CS_d","fy15_EN-ES_c",],
-"mtprd12" => ["fy15_EN-CS_d","fy15_EN-ES_c",],
+"ussclpdapcmsl01" => ["fy16_EN-DA_a","fy16_EN-EN_GB_a","fy16_EN-FR_a","fy16_EN-HU_a","fy16_EN-NO_a","fy16_EN-PL_a","fy16_RU-EN_a",],
+"ussclpdapcmsl02" => ["fy16_DE-EN_a","fy16_EN-ES_a","fy16_EN-JP_a","fy16_EN-SV_a",],
+"ussclpdapcmsl03" => ["fy16_EN-IT_a","fy16_EN-NL_a","fy16_EN-RU_a","fy16_EN-ZH_HANS_a","fy16_KO-EN_a",],
+"ussclpdapcmsl04" => ["fy16_EN-CS_a","fy16_EN-FI_a","fy16_IT-EN_a","fy16_JP-EN_a",],
+"ussclpdapcmsl05" => ["fy16_EN-ES_a","fy16_EN-PT_BR_a","fy16_ES-EN_a","fy16_PL-EN_a",],
+"ussclpdapcmsl06" => ["fy16_EN-CS_a","fy16_EN-DE_a","fy16_EN-ZH_HANT_a","fy16_ZH_HANT-EN_a",],
+"ussclpdapcmsl07" => ["fy16_EN-DE_a","fy16_EN-IT_a","fy16_EN-KO_a","fy16_EN-PL_a","fy16_EN-ZH_HANT_a",],
+"ussclpdapcmsl08" => ["fy16_EN-DE_a","fy16_EN-IT_a","fy16_EN-KO_a","fy16_EN-PL_a","fy16_EN-ZH_HANT_a",],
+"ussclpdapcmsl09" => ["fy16_EN-DE_a","fy16_EN-IT_a","fy16_EN-KO_a","fy16_EN-PL_a","fy16_EN-ZH_HANT_a",],
+"ussclpdapcmsl10" => ["fy16_EN-DE_a","fy16_EN-IT_a","fy16_EN-KO_a","fy16_EN-PL_a","fy16_EN-ZH_HANT_a",],
+"ussclpdapcmsl11" => ["fy16_EN-DE_a","fy16_EN-IT_a","fy16_EN-KO_a","fy16_EN-PL_a","fy16_EN-ZH_HANT_a",],
+"ussclpdapcmsl12" => ["fy16_EN-DE_a","fy16_EN-IT_a","fy16_EN-KO_a","fy16_EN-PL_a","fy16_EN-ZH_HANT_a",],
+"ussclpdmtlnx001" => ["fy16_EN-DE_a","fy16_EN-IT_a","fy16_EN-KO_a","fy16_EN-PL_a","fy16_EN-ZH_HANT_a",],
+"ussclpdmtlnx002" => ["fy16_EN-ES_a","fy16_EN-PT_BR_a","fy16_FR-EN_a","fy16_PT_BR-EN_a",],
+"ussclpdmtlnx003" => ["fy16_EN-CS_a","fy16_EN-FR_a","fy16_EN-KO_a","fy16_ZH_HANS-EN_a",],
+"ussclpdmtlnx004" => ["fy16_EN-FR_a","fy16_EN-HU_a","fy16_EN-JP_a","fy16_EN-RU_a",],
+"ussclpdmtlnx005" => ["fy16_EN-FR_a","fy16_EN-HU_a","fy16_EN-JP_a","fy16_EN-RU_a",],
+"ussclpdmtlnx006" => ["fy16_EN-FR_a","fy16_EN-HU_a","fy16_EN-JP_a","fy16_EN-RU_a",],
+"ussclpdmtlnx007" => ["fy16_EN-FR_a","fy16_EN-HU_a","fy16_EN-JP_a","fy16_EN-RU_a",],
+"ussclpdmtlnx008" => ["fy16_EN-FR_a","fy16_EN-HU_a","fy16_EN-JP_a","fy16_EN-RU_a",],
+"ussclpdmtlnx009" => ["fy16_EN-FR_a","fy16_EN-HU_a","fy16_EN-JP_a","fy16_EN-RU_a",],
+"ussclpdmtlnx010" => ["fy16_EN-JP_a","fy16_EN-PT_BR_a","fy16_EN-RU_a","fy16_EN-ZH_HANS_a",],
+"ussclpdmtlnx011" => ["fy16_EN-CS_a","fy16_EN-ES_a","fy16_EN-HU_a","fy16_EN-JP_a","fy16_EN-PT_BR_a",],
+"ussclpdmtlnx012" => ["fy16_EN-DE_a","fy16_EN-JP_a","fy16_EN-ZH_HANS_a",],
+"mtprd01" => ["fy16_HU-EN_a",],
+"mtprd02" => ["fy16_CS-EN_a",],
+"mtprd03" => ["fy16_EN-PT_BR_a","fy16_EN-ZH_HANS_a",],
+"mtprd04" => ["fy16_EN-PT_BR_a","fy16_EN-ZH_HANS_a",],
+"mtprd05" => ["fy16_EN-PT_BR_a","fy16_EN-ZH_HANS_a",],
+"mtprd06" => ["fy16_EN-PT_PT_a","fy16_EN-ZH_HANS_a",],
+"mtprd07" => ["fy16_EN-PT_PT_a","fy16_EN-ZH_HANS_a",],
+"mtprd08" => ["fy16_EN-PT_PT_a","fy16_EN-ZH_HANS_a",],
+"mtprd09" => ["fy16_EN-CS_a","fy16_EN-ES_a",],
+"mtprd10" => ["fy16_EN-CS_a","fy16_EN-ES_a",],
+"mtprd11" => ["fy16_EN-CS_a","fy16_EN-ES_a",],
+"mtprd12" => ["fy16_EN-CS_a","fy16_EN-ES_a",],
 );
 
-my $busyList :shared = shared_clone { map {$_ => 0} qw/mtprd01 mtprd02 mtprd03 mtprd04 mtprd05 mtprd06 mtprd07 mtprd08 mtprd09 mtprd10 mtprd11 mtprd12 ussclpdapcmsl01 ussclpdapcmsl02 ussclpdapcmsl03 ussclpdapcmsl04 ussclpdapcmsl05 ussclpdapcmsl06 ussclpdapcmsl07 ussclpdapcmsl08 ussclpdapcmsl09 ussclpdapcmsl10 ussclpdapcmsl11 ussclpdapcmsl12 ussclpdmtlns001 ussclpdmtlns002 ussclpdmtlns003 ussclpdmtlns004 ussclpdmtlns005 ussclpdmtlns006 ussclpdmtlns007 ussclpdmtlns008 ussclpdmtlns009 ussclpdmtlns010 ussclpdmtlns011 ussclpdmtlns012/ };
+my $busyList :shared = shared_clone { map {$_ => 0} keys %systems };
 
 my $deployments = new Thread::Queue;
 

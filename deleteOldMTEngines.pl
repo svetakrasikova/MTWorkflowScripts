@@ -52,9 +52,21 @@ my @servers = (
 "ussclpdapcmsl10",
 "ussclpdapcmsl11",
 "ussclpdapcmsl12",
+"ussclpdmtlnx001",
+"ussclpdmtlnx002",
+"ussclpdmtlnx003",
+"ussclpdmtlnx004",
+"ussclpdmtlnx005",
+"ussclpdmtlnx006",
+"ussclpdmtlnx007",
+"ussclpdmtlnx008",
+"ussclpdmtlnx009",
+"ussclpdmtlnx010",
+"ussclpdmtlnx011",
+"ussclpdmtlnx012",
 );
 
-my $engines = join " /local/cms/", split / /, " fy15_EN-CS_a fy15_EN-DA_a fy15_EN-DE_a fy15_EN-FI_a fy15_EN-HU_a fy15_EN-IT_a fy15_EN-NL_a fy15_EN-NO_a fy15_EN-PL_a fy15_EN-PT_BR_a fy15_EN-RU_a fy15_EN-SV_a fy15_EN-CS_b fy15_EN-DA_b fy15_EN-DE_b fy15_EN-EN_UK_a fy15_EN-ES_a fy15_EN-FI_b fy15_EN-FR_a fy15_EN-HU_b fy15_EN-IT_b fy15_EN-JP_a fy15_EN-KO_a fy15_EN-NL_b fy15_EN-NO_b fy15_EN-PL_b fy15_EN-PT_BR_b fy15_EN-RU_b fy15_EN-SV_b fy15_EN-VI_a fy15_EN-ZH_HANS_a fy15_EN-ZH_HANT_a";
+my $engines = join " /local/cms/", split / /, "fy15_EN-CS_c fy15_EN-DA_c fy15_EN-DE_c fy15_EN-ES_b fy15_EN-FI_c fy15_EN-FR_b fy15_EN-HU_c fy15_EN-IT_c fy15_EN-JP_b fy15_EN-KO_b fy15_EN-NL_c fy15_EN-NO_c fy15_EN-PL_c fy15_EN-PT_BR_c fy15_EN-PT_PT_c fy15_EN-RU_c fy15_EN-SV_c fy15_EN-VI_b fy15_EN-ZH_HANS_b fy15_EN-ZH_HANT_b";
 
 my $tasks = new Thread::Queue;
 
