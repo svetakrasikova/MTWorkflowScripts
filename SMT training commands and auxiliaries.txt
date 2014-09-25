@@ -295,6 +295,17 @@ echo -n "zh_hant soft: "; cat passolo/MT_LPU_export/cht/* |/usr/bin/perl -ne 'ch
 
 /OptiBay/ADSK_Software/generateTMX.pl -corpusPath=corpora -outputPath=TMXs -threads=8 -gzip
 
+### Edit by Samuel on 24 September 2014
+### Note: Replace XXX in user and password params by login credentials for the Athena DB
+### 
+# (1) Get a list of all Athena TMs, including meta data, and store them in 'selection.txt'
+sh fetchSegmentsFromAthena.sh -user=XXX -password=XXX > selection.txt
+# (2) Edit selection.txt: Prefix lines with # for TMs to be excluded
+# (3) Fetch all segments from the selected Athena TMs and aggregate them into one bzipped file per language in the 'athena_segments' folder
+mkdir athena_segments
+sh fetchSegmentsFromAthena.sh -user=XXX -password=XXX -selection=selection.txt -targetdir=athena_segments
+###
+
 
 ##Training
 #EN-CS
