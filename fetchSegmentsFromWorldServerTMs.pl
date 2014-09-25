@@ -23,11 +23,11 @@ use List::MoreUtils qw(uniq);
 # Created: Sep 17, 2014
 # ---
 # Description:
-# Fetches all segments stored in the Athena TMs and aggregates them by language.
+# Fetches all segments stored in the WorldServer TMs and aggregates them by language.
 
 $ENV{'NLS_LANG'} = 'AMERICAN_SWITZERLAND.UTF8'; # needed to fetch perl-ready bytecode data from the DB
 
-# DB Connection Parameters (Athena PRD)
+# DB Connection Parameters (WorldServer PRD)
 
 # STAGING
 #my $DB_PORT = 1521;
@@ -51,7 +51,7 @@ $threads ||= 8;
 $host ||= $DB_HOST;
 $service_name ||= $DB_SERVICE_NAME;
 $port ||= $DB_PORT;
-die("Error: You must provide -user and -password to connect to the Athena database. Aborting")
+die("Error: You must provide -user and -password to connect to the WorldServer database. Aborting")
 	unless defined $user && defined $password;
 
 if( defined $selection ) {
@@ -141,7 +141,7 @@ ORDER BY
 	my $db_handle = connectToDB($host, $service_name, $port, $user, $password);
 	my $resultset = executeQuery($db_handle, $query);
 	# print header
-	say "# List of available TMs in Athena. Format:";
+	say "# List of available TMs in WorldServer. Format:";
 	say "# source language -> target language: details (description) ### TM_ID LANG_ID";
 	say "# ---";
 	say "# USAGE:";
@@ -168,8 +168,11 @@ ORDER BY
 		} else {
 			$description = '';
 		}
-		# print row
-		print "$src_prim -> $trg_prim\_$trg_sec: $details $description### $tm_id $lang_pair_id\n";
+		# exclude certain languages
+		if( not ($trg_prim eq 'en' && $trg_sec eq '  ') ) { # exclude TMs with US English as target language
+			# print row
+			print "$src_prim -> $trg_prim\_$trg_sec: $details $description### $tm_id $lang_pair_id\n";
+		}
 	}
 	say "# This output must be saved to a file for further processing. Run $0 > /path/to/file and see the top of that file for further instructions.";
 	# disconnect from database

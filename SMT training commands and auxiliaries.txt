@@ -249,45 +249,54 @@ echo -n "zh_hans soft: "; cat passolo/MT_LPU_export/chs/* |/usr/bin/perl -ne 'ch
 echo -n "zh_hant doc : "; bzcat 2012.05.09\ Data\ Dump/TM_CHT_ALL.bz2 |/usr/bin/perl -ne 'BEGIN{$/="◊÷\n"}chomp;m/^(.*?)(.*?)/s;next unless defined$1&&defined$2&&$1&&$2;++$t;$s=$1;$s=~s/\r?\n//g&&++$c;END{print"all:$t;multi:$c;frac:%".($c/$t*100.)."\n"}'
 echo -n "zh_hant soft: "; cat passolo/MT_LPU_export/cht/* |/usr/bin/perl -ne 'chomp;m/^(.*?)\t(.*?)$/;next unless defined$1 && defined$2 && $1 && $2;print"$1\n"' |wc -l
 
+### Edit by Samuel on 25 September 2014
+### Note: Replace XXX in user and password params by login credentials for the WorldServer DB
+### 
+# (1) Get a list of all WorldServer TMs, including meta data, and store them in 'TMselection.txt'
+sh fetchSegmentsFromWorldServerTMs.sh -user=XXX -password=XXX > TMselection.txt
+# (2) Edit TMselection.txt: Prefix lines with # for TMs to be excluded
+# (3) Fetch all segments from the selected WorldServer TMs and aggregate them into one bzipped file per language in the 'TMs.20xx.xx.xx' folder
+mkdir TMs.20xx.xx.xx
+sh fetchSegmentsFromWorldServerTMs.sh -user=XXX -password=XXX -selection=TMselection.txt -targetdir=TMs.20xx.xx.xx
+###
 
+/OptiBay/ADSK_Software/updateTMs.pl -baseLine=../fy13_training/2012.05.09\ Data\ Dump/TM_CHS_ALL.bz2 -current=TMs.20xx.xx.xx/segments.zh_CN.bz2 -output=tempTMs/TM_CHS_ALL.bz2
+/OptiBay/ADSK_Software/updateTMs.pl -baseLine=../fy13_training/2012.05.09\ Data\ Dump/TM_CHT_ALL.bz2 -current=TMs.20xx.xx.xx/segments.zh_TW.bz2 -output=tempTMs/TM_CHT_ALL.bz2
+/OptiBay/ADSK_Software/updateTMs.pl -baseLine=../fy13_training/2012.05.09\ Data\ Dump/TM_CSY_ALL.bz2 -current=TMs.20xx.xx.xx/segments.cs_CZ.bz2 -output=tempTMs/TM_CSY_ALL.bz2
+/OptiBay/ADSK_Software/updateTMs.pl -baseLine=../fy13_training/2012.05.09\ Data\ Dump/TM_DNK_ALL.bz2 -current=TMs.20xx.xx.xx/segments.da_DK.bz2 -output=tempTMs/TM_DNK_ALL.bz2
+/OptiBay/ADSK_Software/updateTMs.pl -baseLine=../fy13_training/2012.05.09\ Data\ Dump/TM_DEU_ALL.bz2 -current=TMs.20xx.xx.xx/segments.de.bz2 -output=tempTMs/TM_DEU_ALL.bz2
+/OptiBay/ADSK_Software/updateTMs.pl -baseLine=../fy13_training/2012.05.09\ Data\ Dump/TM_ENG_ALL.bz2 -current=TMs.20xx.xx.xx/segments.en_GB.bz2 -output=tempTMs/TM_ENG_ALL.bz2
+/OptiBay/ADSK_Software/updateTMs.pl -baseLine=../fy13_training/2012.05.09\ Data\ Dump/TM_ESP_ALL.bz2 -current=TMs.20xx.xx.xx/segments.es.bz2 -output=tempTMs/TM_ESP_ALL.bz2
+/OptiBay/ADSK_Software/updateTMs.pl -baseLine=../fy13_training/2012.05.09\ Data\ Dump/TM_FIN_ALL.bz2 -current=TMs.20xx.xx.xx/segments.fi_FI.bz2 -output=tempTMs/TM_FIN_ALL.bz2
+/OptiBay/ADSK_Software/updateTMs.pl -baseLine=../fy13_training/2012.05.09\ Data\ Dump/TM_FRA_ALL.bz2 -current=TMs.20xx.xx.xx/segments.fr.bz2 -output=tempTMs/TM_FRA_ALL.bz2
+/OptiBay/ADSK_Software/updateTMs.pl -baseLine=../fy13_training/2012.05.09\ Data\ Dump/TM_HUN_ALL.bz2 -current=TMs.20xx.xx.xx/segments.hu_HU.bz2 -output=tempTMs/TM_HUN_ALL.bz2
+/OptiBay/ADSK_Software/updateTMs.pl -baseLine=../fy13_training/2012.05.09\ Data\ Dump/TM_ITA_ALL.bz2 -current=TMs.20xx.xx.xx/segments.it.bz2 -output=tempTMs/TM_ITA_ALL.bz2
+/OptiBay/ADSK_Software/updateTMs.pl -baseLine=../fy13_training/2012.05.09\ Data\ Dump/TM_JPN_ALL.bz2 -current=TMs.20xx.xx.xx/segments.ja_JP.bz2 -output=tempTMs/TM_JPN_ALL.bz2
+/OptiBay/ADSK_Software/updateTMs.pl -baseLine=../fy13_training/2012.05.09\ Data\ Dump/TM_KOR_ALL.bz2 -current=TMs.20xx.xx.xx/segments.ko_KR.bz2 -output=tempTMs/TM_KOR_ALL.bz2
+/OptiBay/ADSK_Software/updateTMs.pl -baseLine=../fy13_training/2012.05.09\ Data\ Dump/TM_NLD_ALL.bz2 -current=TMs.20xx.xx.xx/segments.nl_NL.bz2 -output=tempTMs/TM_NLD_ALL.bz2
+/OptiBay/ADSK_Software/updateTMs.pl -baseLine=../fy13_training/2012.05.09\ Data\ Dump/TM_NOR_ALL.bz2 -current=TMs.20xx.xx.xx/segments.nb_NO.bz2 -output=tempTMs/TM_NOR_ALL.bz2
+/OptiBay/ADSK_Software/updateTMs.pl -baseLine=../fy13_training/2012.05.09\ Data\ Dump/TM_PLK_ALL.bz2 -current=TMs.20xx.xx.xx/segments.pl_PL.bz2 -output=tempTMs/TM_PLK_ALL.bz2
+/OptiBay/ADSK_Software/updateTMs.pl -baseLine=../fy13_training/2012.05.09\ Data\ Dump/TM_PTB_ALL.bz2 -current=TMs.20xx.xx.xx/segments.pt_BR.bz2 -output=tempTMs/TM_PTB_ALL.bz2
+/OptiBay/ADSK_Software/updateTMs.pl -baseLine=../fy13_training/2012.05.09\ Data\ Dump/TM_RUS_ALL.bz2 -current=TMs.20xx.xx.xx/segments.ru_RU.bz2 -output=tempTMs/TM_RUS_ALL.bz2
+/OptiBay/ADSK_Software/updateTMs.pl -baseLine=../fy13_training/2012.05.09\ Data\ Dump/TM_SWE_ALL.bz2 -current=TMs.20xx.xx.xx/segments.sv_SE.bz2 -output=tempTMs/TM_SWE_ALL.bz2
+/OptiBay/ADSK_Software/updateTMs.pl -baseLine=../fy13_training/2012.05.09\ Data\ Dump/TM_VIT_ALL.bz2 -current=TMs.20xx.xx.xx/segments.vi_VN.bz2 -output=tempTMs/TM_VIT_ALL.bz2
 
-/OptiBay/ADSK_Software/updateTMs.pl -baseLine=../fy13_training/2012.05.09\ Data\ Dump/TM_CHS_ALL.bz2 -current=TMs.2014.09.11/TM_CHS_ALL.bz2 -output=tempTMs/TM_CHS_ALL.bz2
-/OptiBay/ADSK_Software/updateTMs.pl -baseLine=../fy13_training/2012.05.09\ Data\ Dump/TM_CHT_ALL.bz2 -current=TMs.2014.09.11/TM_CHT_ALL.bz2 -output=tempTMs/TM_CHT_ALL.bz2
-/OptiBay/ADSK_Software/updateTMs.pl -baseLine=../fy13_training/2012.05.09\ Data\ Dump/TM_CSY_ALL.bz2 -current=TMs.2014.09.11/TM_CSY_ALL.bz2 -output=tempTMs/TM_CSY_ALL.bz2
-/OptiBay/ADSK_Software/updateTMs.pl -baseLine=../fy13_training/2012.05.09\ Data\ Dump/TM_DNK_ALL.bz2 -current=TMs.2014.09.11/TM_DNK_ALL.bz2 -output=tempTMs/TM_DNK_ALL.bz2
-/OptiBay/ADSK_Software/updateTMs.pl -baseLine=../fy13_training/2012.05.09\ Data\ Dump/TM_DEU_ALL.bz2 -current=TMs.2014.09.11/TM_DEU_ALL.bz2 -output=tempTMs/TM_DEU_ALL.bz2
-/OptiBay/ADSK_Software/updateTMs.pl -baseLine=../fy13_training/2012.05.09\ Data\ Dump/TM_ENG_ALL.bz2 -current=TMs.2014.09.11/TM_ENG_ALL.bz2 -output=tempTMs/TM_ENG_ALL.bz2
-/OptiBay/ADSK_Software/updateTMs.pl -baseLine=../fy13_training/2012.05.09\ Data\ Dump/TM_ESP_ALL.bz2 -current=TMs.2014.09.11/TM_ESP_ALL.bz2 -output=tempTMs/TM_ESP_ALL.bz2
-/OptiBay/ADSK_Software/updateTMs.pl -baseLine=../fy13_training/2012.05.09\ Data\ Dump/TM_FIN_ALL.bz2 -current=TMs.2014.09.11/TM_FIN_ALL.bz2 -output=tempTMs/TM_FIN_ALL.bz2
-/OptiBay/ADSK_Software/updateTMs.pl -baseLine=../fy13_training/2012.05.09\ Data\ Dump/TM_FRA_ALL.bz2 -current=TMs.2014.09.11/TM_FRA_ALL.bz2 -output=tempTMs/TM_FRA_ALL.bz2
-/OptiBay/ADSK_Software/updateTMs.pl -baseLine=../fy13_training/2012.05.09\ Data\ Dump/TM_HUN_ALL.bz2 -current=TMs.2014.09.11/TM_HUN_ALL.bz2 -output=tempTMs/TM_HUN_ALL.bz2
-/OptiBay/ADSK_Software/updateTMs.pl -baseLine=../fy13_training/2012.05.09\ Data\ Dump/TM_ITA_ALL.bz2 -current=TMs.2014.09.11/TM_ITA_ALL.bz2 -output=tempTMs/TM_ITA_ALL.bz2
-/OptiBay/ADSK_Software/updateTMs.pl -baseLine=../fy13_training/2012.05.09\ Data\ Dump/TM_JPN_ALL.bz2 -current=TMs.2014.09.11/TM_JPN_ALL.bz2 -output=tempTMs/TM_JPN_ALL.bz2
-/OptiBay/ADSK_Software/updateTMs.pl -baseLine=../fy13_training/2012.05.09\ Data\ Dump/TM_KOR_ALL.bz2 -current=TMs.2014.09.11/TM_KOR_ALL.bz2 -output=tempTMs/TM_KOR_ALL.bz2
-/OptiBay/ADSK_Software/updateTMs.pl -baseLine=../fy13_training/2012.05.09\ Data\ Dump/TM_NLD_ALL.bz2 -current=TMs.2014.09.11/TM_NLD_ALL.bz2 -output=tempTMs/TM_NLD_ALL.bz2
-/OptiBay/ADSK_Software/updateTMs.pl -baseLine=../fy13_training/2012.05.09\ Data\ Dump/TM_NOR_ALL.bz2 -current=TMs.2014.09.11/TM_NOR_ALL.bz2 -output=tempTMs/TM_NOR_ALL.bz2
-/OptiBay/ADSK_Software/updateTMs.pl -baseLine=../fy13_training/2012.05.09\ Data\ Dump/TM_PLK_ALL.bz2 -current=TMs.2014.09.11/TM_PLK_ALL.bz2 -output=tempTMs/TM_PLK_ALL.bz2
-/OptiBay/ADSK_Software/updateTMs.pl -baseLine=../fy13_training/2012.05.09\ Data\ Dump/TM_PTB_ALL.bz2 -current=TMs.2014.09.11/TM_PTB_ALL.bz2 -output=tempTMs/TM_PTB_ALL.bz2
-/OptiBay/ADSK_Software/updateTMs.pl -baseLine=../fy13_training/2012.05.09\ Data\ Dump/TM_RUS_ALL.bz2 -current=TMs.2014.09.11/TM_RUS_ALL.bz2 -output=tempTMs/TM_RUS_ALL.bz2
-/OptiBay/ADSK_Software/updateTMs.pl -baseLine=../fy13_training/2012.05.09\ Data\ Dump/TM_SWE_ALL.bz2 -current=TMs.2014.09.11/TM_SWE_ALL.bz2 -output=tempTMs/TM_SWE_ALL.bz2
-/OptiBay/ADSK_Software/updateTMs.pl -baseLine=../fy13_training/2012.05.09\ Data\ Dump/TM_VIT_ALL.bz2 -current=TMs.2014.09.11/TM_VIT_ALL.bz2 -output=tempTMs/TM_VIT_ALL.bz2
+/OptiBay/ADSK_Software/updateTMs.pl -baseLine=TMs.20xx.xx.xx/segments.ar_SA.bz2 -current=TMs.20xx.xx.xx/segments.ar_SA.bz2 -output=tempTMs/TM_ARA_ALL.bz2
+/OptiBay/ADSK_Software/updateTMs.pl -baseLine=TMs.20xx.xx.xx/segments.el_GR.bz2 -current=TMs.20xx.xx.xx/segments.el_GR.bz2 -output=tempTMs/TM_ELL_ALL.bz2
+/OptiBay/ADSK_Software/updateTMs.pl -baseLine=TMs.20xx.xx.xx/segments.en_AU.bz2 -current=TMs.20xx.xx.xx/segments.en_AU.bz2 -output=tempTMs/TM_ENA_ALL.bz2
+/OptiBay/ADSK_Software/updateTMs.pl -baseLine=TMs.20xx.xx.xx/segments.fr_BE.bz2 -current=TMs.20xx.xx.xx/segments.fr_BE.bz2 -output=tempTMs/TM_FRB_ALL.bz2
+/OptiBay/ADSK_Software/updateTMs.pl -baseLine=TMs.20xx.xx.xx/segments.fr_CA.bz2 -current=TMs.20xx.xx.xx/segments.fr_CA.bz2 -output=tempTMs/TM_FRC_ALL.bz2
+/OptiBay/ADSK_Software/updateTMs.pl -baseLine=TMs.20xx.xx.xx/segments.he_IL.bz2 -current=TMs.20xx.xx.xx/segments.he_IL.bz2 -output=tempTMs/TM_HEB_ALL.bz2
+/OptiBay/ADSK_Software/updateTMs.pl -baseLine=TMs.20xx.xx.xx/segments.hi_IN.bz2 -current=TMs.20xx.xx.xx/segments.hi_IN.bz2 -output=tempTMs/TM_HIN_ALL.bz2
+/OptiBay/ADSK_Software/updateTMs.pl -baseLine=TMs.20xx.xx.xx/segments.id_ID.bz2 -current=TMs.20xx.xx.xx/segments.id_ID.bz2 -output=tempTMs/TM_IND_ALL.bz2
+/OptiBay/ADSK_Software/updateTMs.pl -baseLine=TMs.20xx.xx.xx/segments.es_MX.bz2 -current=TMs.20xx.xx.xx/segments.es_MX.bz2 -output=tempTMs/TM_LAS_ALL.bz2
+/OptiBay/ADSK_Software/updateTMs.pl -baseLine=TMs.20xx.xx.xx/segments.pt_PT.bz2 -current=TMs.20xx.xx.xx/segments.pt_PT.bz2 -output=tempTMs/TM_PTG_ALL.bz2
+/OptiBay/ADSK_Software/updateTMs.pl -baseLine=TMs.20xx.xx.xx/segments.ro_RO.bz2 -current=TMs.20xx.xx.xx/segments.ro_RO.bz2 -output=tempTMs/TM_ROM_ALL.bz2
+/OptiBay/ADSK_Software/updateTMs.pl -baseLine=TMs.20xx.xx.xx/segments.sk_SK.bz2 -current=TMs.20xx.xx.xx/segments.sk_SK.bz2 -output=tempTMs/TM_SLK_ALL.bz2
+/OptiBay/ADSK_Software/updateTMs.pl -baseLine=TMs.20xx.xx.xx/segments.th_TH.bz2 -current=TMs.20xx.xx.xx/segments.th_TH.bz2 -output=tempTMs/TM_THA_ALL.bz2
+/OptiBay/ADSK_Software/updateTMs.pl -baseLine=TMs.20xx.xx.xx/segments.tr_TR.bz2 -current=TMs.20xx.xx.xx/segments.tr_TR.bz2 -output=tempTMs/TM_TUR_ALL.bz2
 
-/OptiBay/ADSK_Software/updateTMs.pl -baseLine=TMs.2014.09.11/TM_ARA_ALL.bz2 -current=TMs.2014.09.11/TM_ARA_ALL.bz2 -output=tempTMs/TM_ARA_ALL.bz2
-/OptiBay/ADSK_Software/updateTMs.pl -baseLine=TMs.2014.09.11/TM_ELL_ALL.bz2 -current=TMs.2014.09.11/TM_ELL_ALL.bz2 -output=tempTMs/TM_ELL_ALL.bz2
-/OptiBay/ADSK_Software/updateTMs.pl -baseLine=TMs.2014.09.11/TM_ENA_ALL.bz2 -current=TMs.2014.09.11/TM_ENA_ALL.bz2 -output=tempTMs/TM_ENA_ALL.bz2
-/OptiBay/ADSK_Software/updateTMs.pl -baseLine=TMs.2014.09.11/TM_FRB_ALL.bz2 -current=TMs.2014.09.11/TM_FRB_ALL.bz2 -output=tempTMs/TM_FRB_ALL.bz2
-/OptiBay/ADSK_Software/updateTMs.pl -baseLine=TMs.2014.09.11/TM_FRC_ALL.bz2 -current=TMs.2014.09.11/TM_FRC_ALL.bz2 -output=tempTMs/TM_FRC_ALL.bz2
-/OptiBay/ADSK_Software/updateTMs.pl -baseLine=TMs.2014.09.11/TM_HEB_ALL.bz2 -current=TMs.2014.09.11/TM_HEB_ALL.bz2 -output=tempTMs/TM_HEB_ALL.bz2
-/OptiBay/ADSK_Software/updateTMs.pl -baseLine=TMs.2014.09.11/TM_HIN_ALL.bz2 -current=TMs.2014.09.11/TM_HIN_ALL.bz2 -output=tempTMs/TM_HIN_ALL.bz2
-/OptiBay/ADSK_Software/updateTMs.pl -baseLine=TMs.2014.09.11/TM_IND_ALL.bz2 -current=TMs.2014.09.11/TM_IND_ALL.bz2 -output=tempTMs/TM_IND_ALL.bz2
-/OptiBay/ADSK_Software/updateTMs.pl -baseLine=TMs.2014.09.11/TM_LAS_ALL.bz2 -current=TMs.2014.09.11/TM_LAS_ALL.bz2 -output=tempTMs/TM_LAS_ALL.bz2
-/OptiBay/ADSK_Software/updateTMs.pl -baseLine=TMs.2014.09.11/TM_PTG_ALL.bz2 -current=TMs.2014.09.11/TM_PTG_ALL.bz2 -output=tempTMs/TM_PTG_ALL.bz2
-/OptiBay/ADSK_Software/updateTMs.pl -baseLine=TMs.2014.09.11/TM_ROM_ALL.bz2 -current=TMs.2014.09.11/TM_ROM_ALL.bz2 -output=tempTMs/TM_ROM_ALL.bz2
-/OptiBay/ADSK_Software/updateTMs.pl -baseLine=TMs.2014.09.11/TM_SLK_ALL.bz2 -current=TMs.2014.09.11/TM_SLK_ALL.bz2 -output=tempTMs/TM_SLK_ALL.bz2
-/OptiBay/ADSK_Software/updateTMs.pl -baseLine=TMs.2014.09.11/TM_THA_ALL.bz2 -current=TMs.2014.09.11/TM_THA_ALL.bz2 -output=tempTMs/TM_THA_ALL.bz2
-/OptiBay/ADSK_Software/updateTMs.pl -baseLine=TMs.2014.09.11/TM_TUR_ALL.bz2 -current=TMs.2014.09.11/TM_TUR_ALL.bz2 -output=tempTMs/TM_TUR_ALL.bz2
-
-/OptiBay/ADSK_Software/updateTMs.pl -baseLine=tempTMs/TM_PTB_ALL.bz2 -current=TMs.2014.09.11/TM_PTG_ALL.bz2 -output=tempTMs/TM_PT\*_ALL.bz2
+/OptiBay/ADSK_Software/updateTMs.pl -baseLine=tempTMs/TM_PTB_ALL.bz2 -current=TMs.20xx.xx.xx/TM_PTG_ALL.bz2 -output=tempTMs/TM_PT\*_ALL.bz2
 /OptiBay/ADSK_Software/updateTMs.pl -baseLine=sw_corpus/corpus.sw.ptb.bz2 -current=sw_corpus/corpus.sw.ptg.bz2 -output=sw_corpus/corpus.sw.pt\*.bz2
 
 
@@ -295,16 +304,7 @@ echo -n "zh_hant soft: "; cat passolo/MT_LPU_export/cht/* |/usr/bin/perl -ne 'ch
 
 /OptiBay/ADSK_Software/generateTMX.pl -corpusPath=corpora -outputPath=TMXs -threads=8 -gzip
 
-### Edit by Samuel on 24 September 2014
-### Note: Replace XXX in user and password params by login credentials for the Athena DB
-### 
-# (1) Get a list of all Athena TMs, including meta data, and store them in 'selection.txt'
-sh fetchSegmentsFromAthena.sh -user=XXX -password=XXX > selection.txt
-# (2) Edit selection.txt: Prefix lines with # for TMs to be excluded
-# (3) Fetch all segments from the selected Athena TMs and aggregate them into one bzipped file per language in the 'athena_segments' folder
-mkdir athena_segments
-sh fetchSegmentsFromAthena.sh -user=XXX -password=XXX -selection=selection.txt -targetdir=athena_segments
-###
+
 
 
 ##Training
