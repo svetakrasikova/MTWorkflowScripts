@@ -1,0 +1,57 @@
+0600:::.gitignore
+0600:::.project
+0700:::ExtractGlossary.pl
+0700:::JSONtoXLS.pl
+0600:::LICENSE
+0600:::MT Workflow Scripts.xcworkspace/contents.xcworkspacedata
+0600:::MT Workflow Scripts.xcworkspace/xcuserdata/ventzi.xcuserdatad/UserInterfaceState.xcuserstate
+0600:::MT Workflow Scripts.xcworkspace/xcuserdata/ventzi.xcuserdatad/xcdebugger/Breakpoints.xcbkptlist
+0600:::MT Workflow Scripts.xcworkspace/xcuserdata/ventzi.xcuserdatad/xcdebugger/Breakpoints_v2.xcbkptlist
+0700:::MTRelayService.pl
+0600:::README.md
+0600:::SMT training commands and auxiliaries.txt
+0600:::SQL/Data Extraction for MT.txt
+0700:::analyseScores.pl
+0700:::archiveNohupFiles.pl
+0700:::calculateAmbiguities.pl
+0700:::calculateTMStatistics.pl
+0700:::checkMemoryUsage.sh
+0700:::checkServerDiskSpace.sh
+0700:::checkServerMemory.sh
+0700:::conflateTargets.pl
+0700:::countMosesWords.pl
+0700:::deleteOldMTEngines.pl
+0700:::deployMTEngines.pl
+0700:::detokenise.pl
+0600:::engines.txt
+0700:::evaluateBySegment.pl
+0700:::exportTermsFromDatabase.py
+0700:::extractAbbreviations.pl
+0700:::extractDataFromXLIFF.pl
+0700:::extractNGrams.pl
+0700:::extractPassoloData.pl
+0600:::fetchSegmentsFromWorldServerTMs.pl
+0600:::fetchSegmentsFromWorldServerTMs.sh
+0700:::filterForSorting.pl
+0700:::findEngineDeployment.pl
+0700:::generateCorpora.pl
+0700:::generateTMX.pl
+0700:::generate_evaluation_sets.pl
+0700:::moses_server.ventzi.pl
+0700:::mt_info_dummy.pl
+0700:::mt_info_server.pl
+0700:::multiParser.pl
+0700:::occurrenceCounter.pl
+0700:::reorder_deu.pl
+0700:::reorder_jpn.pl
+0700:::segmentation_server.pl
+0600:::serverSetup.debug.ini
+0600:::serverSetup.gloss
+0600:::serverSetup.ini
+0600:::servers.txt
+0700:::tmx2plain.marketing.pl
+0700:::tokenise.pl
+0700:::train-recaser.perl
+0700:::train.pl
+0700:::updateTMs.pl
+0700:::word_segmenter.pl
