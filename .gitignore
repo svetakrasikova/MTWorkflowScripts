@@ -3,6 +3,7 @@
 
 *.py[cod]
 deployment.*
+moses_dispatcher*
 
 Oracle/
 giza-pp*
@@ -11,10 +12,12 @@ gtm-*
 ibleu-*
 zeromq-*
 tercom-*
+costa-mt-*
 eval/
 
 temp/
 *old*
+test*
 
 Terminology/
 Solr/
