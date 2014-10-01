@@ -1,116 +1,3 @@
-md -p mecab
-md -p kytea.mod1
-md -p kytea.mod7
-
-#BREAK
-
-##Ventzi tokenizer
-/OptiBay/Autodesk/train.pl -corpus=/Users/ventzi/Desktop/Autodesk/segmentation/JPNdata/full\ data/corpus -source=en -target=jp -lm_path=lm -moses_path=/Users/ventzi/courses/EuroMatrixPlus/software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -first_step=1 -last_step=9 -log_dir=../LOG -seg_script=/Users/ventzi/Desktop/Autodesk/segmentation/JPNdata/word_segmenter.pl -segmenter=mecab -tokenizer_path=/Users/ventzi/courses/EuroMatrixPlus/software -build_lm=/sw/bin/srilm/macosx -build_recaser=./recaser -lc_script=/Users/ventzi/courses/EuroMatrixPlus/software/moses-2010-04-08/scripts/scripts-20100409-0412/scripts/lowercase.perl -device=disk1 -reorder_cmd="/Users/ventzi/Desktop/Autodesk/segmentation/Hidenori/Reorder/reorder_jpn.pl -parser_cmd=\"/OptiBay/Autodesk/multiParser.pl -threads=8 -parser_cmd=\\\"/Users/ventzi/Desktop/Autodesk/segmentation/Hidenori/OPENNLP/1.5/opennlp-tools-1.5.0/bin/opennlp Parser /Users/ventzi/Desktop/Autodesk/segmentation/Hidenori/OPENNLP/Data/en-parser-chunking.zip 2>/dev/null\\\"\""
-/OptiBay/Autodesk/train.pl -corpus=/Users/ventzi/Desktop/Autodesk/segmentation/JPNdata/full\ data/corpus -source=en -target=jp -lm_path=lm -moses_path=/Users/ventzi/courses/EuroMatrixPlus/software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -first_step=1 -last_step=9 -log_dir=../LOG -seg_script=/Users/ventzi/Desktop/Autodesk/segmentation/JPNdata/word_segmenter.pl -segmenter=kytea -seg_model="/Users/ventzi/Desktop/Autodesk/segmentation/kytea-models/yomi-0.2.0-utf8-1.mod" -tokenizer_path=/Users/ventzi/courses/EuroMatrixPlus/software -build_lm=/sw/bin/srilm/macosx -build_recaser=./recaser -lc_script=/Users/ventzi/courses/EuroMatrixPlus/software/moses-2010-04-08/scripts/scripts-20100409-0412/scripts/lowercase.perl -device=disk1 -reorder_cmd="/OptiBay/ADSK_Software/reorder_jpn.pl -parser_cmd=\"/OptiBay/ADSK_Software/multiParser.pl -threads=8 -parser_cmd=\\\"/Users/ventzi/Desktop/Autodesk/segmentation/Hidenori/OPENNLP/1.5/opennlp-tools-1.5.0/bin/opennlp Parser /Users/ventzi/Desktop/Autodesk/segmentation/Hidenori/OPENNLP/Data/en-parser-chunking.zip 2>LOG/opennlp.log\\\"\""
-/OptiBay/Autodesk/train.pl -corpus=/Users/ventzi/Desktop/Autodesk/segmentation/JPNdata/full\ data/corpus -source=en -target=jp -lm_path=lm -moses_path=/Users/ventzi/courses/EuroMatrixPlus/software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -first_step=1 -last_step=9 -log_dir=../LOG -seg_script=/Users/ventzi/Desktop/Autodesk/segmentation/JPNdata/word_segmenter.pl -segmenter=kytea -seg_model="/Users/ventzi/Desktop/Autodesk/segmentation/kytea-models/yomi-0.2.0-utf8-7.mod" -tokenizer_path=/Users/ventzi/courses/EuroMatrixPlus/software -build_lm=/sw/bin/srilm/macosx -build_recaser=./recaser -lc_script=/Users/ventzi/courses/EuroMatrixPlus/software/moses-2010-04-08/scripts/scripts-20100409-0412/scripts/lowercase.perl -device=disk1 -reorder_cmd="/Users/ventzi/Desktop/Autodesk/segmentation/Hidenori/Reorder/reorder_jpn.pl -parser_cmd=\"/OptiBay/Autodesk/multiParser.pl -threads=6 -parser_cmd=\\\"/Users/ventzi/Desktop/Autodesk/segmentation/Hidenori/OPENNLP/1.5/opennlp-tools-1.5.0/bin/opennlp Parser /Users/ventzi/Desktop/Autodesk/segmentation/Hidenori/OPENNLP/Data/en-parser-chunking.zip 2>/dev/null\\\"\""
-
-/OptiBay/Autodesk/train.pl -corpus=/Users/ventzi/Desktop/Autodesk/segmentation/JPNdata/full\ data/corpus -source=en -target=jp -lm_path=lm -moses_path=/Users/ventzi/courses/EuroMatrixPlus/software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -first_step=1 -last_step=9 -log_dir=../LOG -seg_script=/Users/ventzi/Desktop/Autodesk/segmentation/JPNdata/word_segmenter.pl -segmenter=kytea -seg_model="/Users/ventzi/Desktop/Autodesk/segmentation/kytea-models/yomi-0.2.0-utf8-1.mod" -tokenizer_path=/Users/ventzi/courses/EuroMatrixPlus/software -build_lm=/sw/bin/srilm/macosx -build_recaser=./recaser -lc_script=/Users/ventzi/courses/EuroMatrixPlus/software/moses-2010-04-08/scripts/scripts-20100409-0412/scripts/lowercase.perl -device=disk1 -reorder_cmd="/Users/ventzi/Desktop/Autodesk/segmentation/Hidenori/Reorder/reorder_jpn.pl -parser_cmd=\"/OptiBay/Autodesk/multiParser.pl -threads=5 -parser_cmd=\\\"/usr/bin/java -Xmx768M -Xmx2048M -jar /Users/ventzi/Desktop/Autodesk/segmentation/BerkeleyParser/berkeleyParser_new.jar -gr /Users/ventzi/Desktop/Autodesk/segmentation/BerkeleyParser/eng_sm6.gr -nThreads 1 -maxLength 3430\\\"\""
-
-/OptiBay/Autodesk/train.pl -corpus=/Users/ventzi/Desktop/Autodesk/segmentation/JPNdata/full\ data/corpus -source=en -target=jp -lm_path=lm -moses_path=/Users/ventzi/courses/EuroMatrixPlus/software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -first_step=1 -last_step=9 -log_dir=../LOG -seg_script=/Users/ventzi/Desktop/Autodesk/segmentation/JPNdata/word_segmenter.pl -segmenter=kytea -seg_model="/Users/ventzi/Desktop/Autodesk/segmentation/kytea-models/yomi-0.2.0-utf8-1.mod" -tokenizer_path=/Users/ventzi/courses/EuroMatrixPlus/software -build_lm=/sw/bin/srilm/macosx -build_recaser=./recaser -lc_script=/Users/ventzi/courses/EuroMatrixPlus/software/moses-2010-04-08/scripts/scripts-20100409-0412/scripts/lowercase.perl -device=disk1 -reorder_cmd="/Users/ventzi/Desktop/Autodesk/segmentation/Hidenori/Reorder/reorder_jpn.pl -parser_cmd=\"/OptiBay/Autodesk/multiParser.pl -threads=8 -parser_cmd=\\\"/usr/bin/java -Xmx348M -Xmx2048M -cp /Users/ventzi/Desktop/Autodesk/segmentation/StanfordParser/stanford-parser-2011-04-20/stanford-parser_new.jar edu.stanford.nlp.parser.lexparser.LexicalizedParser -sentences newline -tokenized -outputFormat "oneline" -outputFormatOptions "markHeadNodes" /Users/ventzi/Desktop/Autodesk/segmentation/StanfordParser/stanford-parser-2011-04-20/englishPCFG.ser.gz - 2>stanford.log\\\"\""
-
-/OptiBay/Autodesk/train.pl -corpus=/Users/ventzi/Desktop/Autodesk/segmentation/JPNdata/full\ data/corpus -source=en -target=jp -lm_path=lm -moses_path=/Users/ventzi/courses/EuroMatrixPlus/software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -first_step=1 -last_step=9 -log_dir=../LOG -seg_script=/Users/ventzi/Desktop/Autodesk/segmentation/JPNdata/word_segmenter.pl -segmenter=kytea -seg_model="/Users/ventzi/Desktop/Autodesk/segmentation/kytea-models/yomi-0.2.0-utf8-1.mod" -tokenizer_path=/Users/ventzi/courses/EuroMatrixPlus/software -build_lm=/sw/bin/srilm/macosx -build_recaser=./recaser -lc_script=/Users/ventzi/courses/EuroMatrixPlus/software/moses-2010-04-08/scripts/scripts-20100409-0412/scripts/lowercase.perl -device=disk1 -reorder_cmd="/Users/ventzi/Desktop/Autodesk/segmentation/Hidenori/Reorder/reorder_jpn.pl -parser_cmd=\"/OptiBay/Autodesk/multiParser.pl -threads=5 -parser_cmd=\\\"/Users/ventzi/Desktop/Autodesk/segmentation/CharniakParser/reranking-parser/first-stage/PARSE/parseIt -l3430 -N50 -t7 /Users/ventzi/Desktop/Autodesk/segmentation/CharniakParser/reranking-parser/first-stage/DATA/EN/ |/Users/ventzi/Desktop/Autodesk/segmentation/CharniakParser/reranking-parser/second-stage/programs/features/best-parses -l /Users/ventzi/Desktop/Autodesk/segmentation/CharniakParser/reranking-parser/second-stage/models/ec50spfinal/features.gz /Users/ventzi/Desktop/Autodesk/segmentation/CharniakParser/reranking-parser/second-stage/models/ec50spfinal/cvlm-l1c10P1-weights.gz\\\"\""
-
-
-
-##Autodesk tokenizer
-/OptiBay/Autodesk/train.pl -corpus=/Users/ventzi/Desktop/Autodesk/segmentation/JPNdata/full\ data/corpus -source=en -target=jp -lm_path=lm -moses_path=/Users/ventzi/courses/EuroMatrixPlus/software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -first_step=1 -last_step=9 -log_dir=../LOG -seg_script=/Users/ventzi/Desktop/Autodesk/segmentation/JPNdata/word_segmenter.pl -segmenter=mecab -tokenizer_path=//Users/ventzi/Desktop/Autodesk/segmentation/JPNdata -build_lm=/sw/bin/srilm/macosx -build_recaser=./recaser -lc_script=/Users/ventzi/courses/EuroMatrixPlus/software/moses-2010-04-08/scripts/scripts-20100409-0412/scripts/lowercase.perl -reorder_cmd="/Users/ventzi/Desktop/Autodesk/segmentation/Hidenori/Reorder/reorder_jpn.pl -parser_cmd=\"/Users/ventzi/Desktop/Autodesk/segmentation/Hidenori/OPENNLP/1.5/opennlp-tools-1.5.0/bin/opennlp Parser /Users/ventzi/Desktop/Autodesk/segmentation/Hidenori/OPENNLP/Data/en-parser-chunking.zip\""
-/OptiBay/Autodesk/train.pl -corpus=/Users/ventzi/Desktop/Autodesk/segmentation/JPNdata/full\ data/corpus -source=en -target=jp -lm_path=lm -moses_path=/Users/ventzi/courses/EuroMatrixPlus/software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -first_step=1 -last_step=9 -log_dir=../LOG -seg_script=/Users/ventzi/Desktop/Autodesk/segmentation/JPNdata/word_segmenter.pl -segmenter=kytea -seg_model="/Users/ventzi/Desktop/Autodesk/segmentation/kytea-models/yomi-0.2.0-utf8-1.mod" -tokenizer_path=/Users/ventzi/Desktop/Autodesk/segmentation/JPNdata -build_lm=/sw/bin/srilm/macosx -build_recaser=./recaser -lc_script=/Users/ventzi/courses/EuroMatrixPlus/software/moses-2010-04-08/scripts/scripts-20100409-0412/scripts/lowercase.perl -reorder_cmd="/Users/ventzi/Desktop/Autodesk/segmentation/Hidenori/Reorder/reorder_jpn.pl -parser_cmd=\"/Users/ventzi/Desktop/Autodesk/segmentation/Hidenori/OPENNLP/1.5/opennlp-tools-1.5.0/bin/opennlp Parser /Users/ventzi/Desktop/Autodesk/segmentation/Hidenori/OPENNLP/Data/en-parser-chunking.zip\""
-/OptiBay/Autodesk/train.pl -corpus=/Users/ventzi/Desktop/Autodesk/segmentation/JPNdata/full\ data/corpus -source=en -target=jp -lm_path=lm -moses_path=/Users/ventzi/courses/EuroMatrixPlus/software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -first_step=1 -last_step=9 -log_dir=../LOG -seg_script=/Users/ventzi/Desktop/Autodesk/segmentation/JPNdata/word_segmenter.pl -segmenter=kytea -seg_model="/Users/ventzi/Desktop/Autodesk/segmentation/kytea-models/yomi-0.2.0-utf8-7.mod" -tokenizer_path=/Users/ventzi/Desktop/Autodesk/segmentation/JPNdata -build_lm=/sw/bin/srilm/macosx -build_recaser=./recaser -lc_script=/Users/ventzi/courses/EuroMatrixPlus/software/moses-2010-04-08/scripts/scripts-20100409-0412/scripts/lowercase.perl -reorder_cmd="/Users/ventzi/Desktop/Autodesk/segmentation/Hidenori/Reorder/reorder_jpn.pl -parser_cmd=\"/Users/ventzi/Desktop/Autodesk/segmentation/Hidenori/OPENNLP/1.5/opennlp-tools-1.5.0/bin/opennlp Parser /Users/ventzi/Desktop/Autodesk/segmentation/Hidenori/OPENNLP/Data/en-parser-chunking.zip\""
-
-
-#BREAK
-
-md -p mecab/test
-md -p kytea.mod1/test
-md -p kytea.mod7/test
-
-##Ventzi tokeniser
-nice bzcat "/Users/ventzi/Desktop/Autodesk/segmentation/JPNdata/test set/test.jp.bz2" |/Users/ventzi/courses/EuroMatrixPlus/software/tokenise.pl jp |perl -pe 's/\|/│/g;s/</﹤/g;s/>/﹥/g;s/\(/﹙/g;s/\)/﹚/g;' |/Users/ventzi/Desktop/Autodesk/segmentation/JPNdata/word_segmenter.pl -segmenter=mecab -seg_path=/usr/local/bin/ |bzip2 >mecab/test/test.jp.tok.bz2&
-nice bzcat "/Users/ventzi/Desktop/Autodesk/segmentation/JPNdata/test set/test.jp.bz2" |/Users/ventzi/courses/EuroMatrixPlus/software/tokenise.pl jp |perl -pe 's/\|/│/g;s/</﹤/g;s/>/﹥/g;s/\(/﹙/g;s/\)/﹚/g;' |/Users/ventzi/Desktop/Autodesk/segmentation/JPNdata/word_segmenter.pl -segmenter=kytea -seg_path=/usr/local/bin/ -model="/Users/ventzi/Desktop/Autodesk/segmentation/kytea-models/yomi-0.2.0-utf8-1.mod" |bzip2 >kytea.mod1/test/test.jp.tok.bz2&
-nice bzcat "/Users/ventzi/Desktop/Autodesk/segmentation/JPNdata/test set/test.jp.bz2" |/Users/ventzi/courses/EuroMatrixPlus/software/tokenise.pl jp |perl -pe 's/\|/│/g;s/</﹤/g;s/>/﹥/g;s/\(/﹙/g;s/\)/﹚/g;' |/Users/ventzi/Desktop/Autodesk/segmentation/JPNdata/word_segmenter.pl -segmenter=kytea -seg_path=/usr/local/bin/ -model="/Users/ventzi/Desktop/Autodesk/segmentation/kytea-models/yomi-0.2.0-utf8-7.mod" |bzip2 >kytea.mod7/test/test.jp.tok.bz2&
-
-nice bzcat "/Users/ventzi/Desktop/Autodesk/segmentation/JPNdata/test set/test.en.bz2" |/Users/ventzi/courses/EuroMatrixPlus/software/moses-2010-04-08/scripts/scripts-20100409-0412/scripts/lowercase.perl |/Users/ventzi/courses/EuroMatrixPlus/software/tokenise.pl en |perl -pe 's/\|/│/g;s/</﹤/g;s/>/﹥/g;s/\(/﹙/g;s/\)/﹚/g;' |bzip2 >mecab/test/test.en.tok.bz2&
-#→REORDER
-nice bzcat "/Users/ventzi/Desktop/Autodesk/segmentation/JPNdata/test set/test.en.bz2" |/Users/ventzi/courses/EuroMatrixPlus/software/moses-2010-04-08/scripts/scripts-20100409-0412/scripts/lowercase.perl |/Users/ventzi/courses/EuroMatrixPlus/software/tokenise.pl en |/Users/ventzi/Desktop/Autodesk/segmentation/Hidenori/Reorder/reorder_jpn.pl -parser_cmd="/OptiBay/Autodesk/multiParser.pl -threads=4 -parser_cmd=\"/Users/ventzi/Desktop/Autodesk/segmentation/Hidenori/OPENNLP/1.5/opennlp-tools-1.5.0/bin/opennlp Parser /Users/ventzi/Desktop/Autodesk/segmentation/Hidenori/OPENNLP/Data/en-parser-chunking.zip 2>/dev/null\"" |bzip2 >mecab/test/test.en.tok.bz2&
-
-nice bzcat "/Users/ventzi/Desktop/Autodesk/segmentation/JPNdata/test set/test.en.bz2" |/Users/ventzi/courses/EuroMatrixPlus/software/moses-2010-04-08/scripts/scripts-20100409-0412/scripts/lowercase.perl |/Users/ventzi/courses/EuroMatrixPlus/software/tokenise.pl en |/Users/ventzi/Desktop/Autodesk/segmentation/Hidenori/Reorder/reorder_jpn.pl -parser_cmd="/OptiBay/Autodesk/multiParser.pl -threads=8 -parser_cmd=\"/usr/bin/java -Xmx384M -Xmx2048M -cp /Users/ventzi/Desktop/Autodesk/segmentation/StanfordParser/stanford-parser-2011-04-20/stanford-parser_new.jar edu.stanford.nlp.parser.lexparser.LexicalizedParser -sentences newline -tokenized -outputFormat "oneline" -outputFormatOptions "markHeadNodes" /Users/ventzi/Desktop/Autodesk/segmentation/StanfordParser/stanford-parser-2011-04-20/englishPCFG.ser.gz - 2>stanford.trans.log\"" |bzip2 >mecab/test/test.en.tok.bz2&
-
-
-cp -p mecab/test/test.en.tok.bz2 kytea.mod1/test/.
-cp -p mecab/test/test.en.tok.bz2 kytea.mod7/test/.
-
-##Autodesk tokeniser
-nice bzcat "/Users/ventzi/Desktop/Autodesk/segmentation/JPNdata/test set/test.jp.bz2" |/usr/bin/perl -ne 'BEGIN{require"/Users/ventzi/Desktop/Autodesk/segmentation/JPNdata/tokenizer.perl";binmode STDIN,":encoding(utf8)";binmode STDOUT,":encoding(utf8)"}chomp;print&tokenize("jp",$_),"\n"' |perl -pe 's/\|/│/g;s/</﹤/g;s/>/﹥/g;s/\(/﹙/g;s/\)/﹚/g;' |/Users/ventzi/Desktop/Autodesk/segmentation/JPNdata/word_segmenter.pl -segmenter=mecab -seg_path=/usr/local/bin/ |bzip2 >mecab/test/test.jp.tok.bz2&
-nice bzcat "/Users/ventzi/Desktop/Autodesk/segmentation/JPNdata/test set/test.jp.bz2" |/usr/bin/perl -ne 'BEGIN{require"/Users/ventzi/Desktop/Autodesk/segmentation/JPNdata/tokenizer.perl";binmode STDIN,":encoding(utf8)";binmode STDOUT,":encoding(utf8)"}chomp;print&tokenize("jp",$_),"\n"' |perl -pe 's/\|/│/g;s/</﹤/g;s/>/﹥/g;s/\(/﹙/g;s/\)/﹚/g;' |/Users/ventzi/Desktop/Autodesk/segmentation/JPNdata/word_segmenter.pl -segmenter=kytea -seg_path=/usr/local/bin/ -model="/Users/ventzi/Desktop/Autodesk/segmentation/kytea-models/yomi-0.2.0-utf8-1.mod" |bzip2 >kytea.mod1/test/test.jp.tok.bz2&
-nice bzcat "/Users/ventzi/Desktop/Autodesk/segmentation/JPNdata/test set/test.jp.bz2" |/usr/bin/perl -ne 'BEGIN{require"/Users/ventzi/Desktop/Autodesk/segmentation/JPNdata/tokenizer.perl";binmode STDIN,":encoding(utf8)";binmode STDOUT,":encoding(utf8)"}chomp;print&tokenize("jp",$_),"\n"' |perl -pe 's/\|/│/g;s/</﹤/g;s/>/﹥/g;s/\(/﹙/g;s/\)/﹚/g;' |/Users/ventzi/Desktop/Autodesk/segmentation/JPNdata/word_segmenter.pl -segmenter=kytea -seg_path=/usr/local/bin/ -model="/Users/ventzi/Desktop/Autodesk/segmentation/kytea-models/yomi-0.2.0-utf8-7.mod" |bzip2 >kytea.mod7/test/test.jp.tok.bz2&
-
-nice bzcat "/Users/ventzi/Desktop/Autodesk/segmentation/JPNdata/test set/test.en.bz2" |/Users/ventzi/courses/EuroMatrixPlus/software/moses-2010-04-08/scripts/scripts-20100409-0412/scripts/lowercase.perl |/usr/bin/perl -ne 'BEGIN{require"/Users/ventzi/Desktop/Autodesk/segmentation/JPNdata/tokenizer.perl";binmode STDIN,":encoding(utf8)";binmode STDOUT,":encoding(utf8)"}chomp;print&tokenize("en",$_),"\n"' |perl -pe 's/\|/│/g;s/</﹤/g;s/>/﹥/g;s/\(/﹙/g;s/\)/﹚/g;' |bzip2 >"mecab/test/test.en.tok.bz2"&
-#→REORDER
-nice bzcat "/Users/ventzi/Desktop/Autodesk/segmentation/JPNdata/test set/test.en.bz2" |/Users/ventzi/courses/EuroMatrixPlus/software/moses-2010-04-08/scripts/scripts-20100409-0412/scripts/lowercase.perl |/usr/bin/perl -ne 'BEGIN{require"/Users/ventzi/Desktop/Autodesk/segmentation/JPNdata/tokenizer.perl";binmode STDIN,":encoding(utf8)";binmode STDOUT,":encoding(utf8)"}chomp;print&tokenize("en",$_),"\n"' |perl -pe 's/\|/│/g;s/</﹤/g;s/>/﹥/g;s/\(/﹙/g;s/\)/﹚/g;' |/Users/ventzi/Desktop/Autodesk/segmentation/Hidenori/Reorder/reorder_jpn.pl -parser_cmd="/Users/ventzi/Desktop/Autodesk/segmentation/Hidenori/OPENNLP/1.5/opennlp-tools-1.5.0/bin/opennlp Parser /Users/ventzi/Desktop/Autodesk/segmentation/Hidenori/OPENNLP/Data/en-parser-chunking.zip" |bzip2 >"mecab/test/test.en.tok.bz2"&
-
-#BREAK
-
-ln -s "/Users/ventzi/Desktop/Autodesk/segmentation/JPNdata/test set/test.en.tok.bz2" mecab/test/.
-ln -s "/Users/ventzi/Desktop/Autodesk/segmentation/JPNdata/test set/test.en.tok.bz2" kytea.mod1/test/.
-ln -s "/Users/ventzi/Desktop/Autodesk/segmentation/JPNdata/test set/test.en.tok.bz2" kytea.mod7/test/.
-
-#BREAK
-
-# ln -s /OptiBay/Autodesk/JPN/mecab/model mecab/.
-# ln -s /OptiBay/Autodesk/JPN/kytea.mod1/model kytea.mod1/.
-# ln -s /OptiBay/Autodesk/JPN/kytea.mod7/model kytea.mod7/.
-
-#BREAK
-#EN–JP Translation
-nice bzcat mecab/test/test.en.tok.bz2 |moses-ventzi -threads 8 -f mecab/model/moses.ini 2>/dev/null |moses-ventzi -f mecab/recaser/moses.ini 2>/dev/null |/usr/bin/perl -pe 'BEGIN{my$c=0}$c+=s/\|UNK\|UNK\|UNK//g;s/ +$//;END{print STDERR "mecab unknowns: $c\n"}' |bzip2 >mecab/test/trans.jp.tok.bz2 &
-nice bzcat kytea.mod1/test/test.en.tok.bz2 |moses-ventzi -threads 8 -f kytea.mod1/model/moses.ini 2>/dev/null |moses-ventzi -f kytea.mod1/recaser/moses.ini 2>/dev/null |/usr/bin/perl -pe 'BEGIN{my$c=0}$c+=s/\|UNK\|UNK\|UNK//g;s/ +$//;END{print STDERR "kytea.mod1 unknowns: $c\n"}' |bzip2 >kytea.mod1/test/trans.jp.tok.bz2 &
-nice bzcat kytea.mod7/test/test.en.tok.bz2 |moses-ventzi -threads 8 -f kytea.mod7/model/moses.ini 2>/dev/null |moses-ventzi -f kytea.mod7/recaser/moses.ini 2>/dev/null |/usr/bin/perl -pe 'BEGIN{my$c=0}$c+=s/\|UNK\|UNK\|UNK//g;s/ +$//;END{print STDERR "kytea.mod7 unknowns: $c\n"}' |bzip2 >kytea.mod7/test/trans.jp.tok.bz2 &
-
-
-bzcat <FILE_NAME> |/Users/ventzi/courses/EuroMatrixPlus/software/moses-2010-04-08/scripts/scripts-20100409-0412/scripts/lowercase.perl |/Users/ventzi/courses/EuroMatrixPlus/software/tokenise.pl en |/Users/ventzi/Desktop/Autodesk/segmentation/Hidenori/Reorder/reorder_jpn.pl -parser_cmd="/OptiBay/Autodesk/multiParser.pl -threads=1 -parser_cmd=\"/usr/bin/java -Xmx348M -Xmx2048M -cp /Users/ventzi/Desktop/Autodesk/segmentation/StanfordParser/stanford-parser-2011-08-04/stanford-parser.jar edu.stanford.nlp.parser.lexparser.LexicalizedParser -sentences newline -tokenized -outputFormat "oneline" -outputFormatOptions "markHeadNodes" /Users/ventzi/Desktop/Autodesk/segmentation/StanfordParser/stanford-parser-2011-08-04/grammar/englishPCFG.ser.gz - 2>stanford.trans.log\"" |/usr/bin/perl -pe 's/\|/│/g;s/</﹤/g;s/>/﹥/g;s/\(/﹙/g;s/\)/﹚/g;' |moses-ventzi -threads 2 -f model/moses.ini 2>/dev/null |moses-ventzi -f recaser/moses.ini 2>/dev/null |/usr/bin/perl -pe 's/│/|/g;s/﹤/</g;s/﹥/>/g;s/﹙/(/g;s/﹚/)/g;' |/usr/bin/perl -pe 'BEGIN{my$c=0}$c+=s/\|UNK\|UNK\|UNK//g;s/ +$//;END{print STDERR "unknowns: $c\n"}' |/Users/ventzi/courses/EuroMatrixPlus/software/detokenise.pl jp |bzip2 > <FILE_NAME> &
-
-bzcat <FILE_NAME> |/Users/ventzi/courses/EuroMatrixPlus/software/moses-2010-04-08/scripts/scripts-20100409-0412/scripts/lowercase.perl |/Users/ventzi/courses/EuroMatrixPlus/software/tokenise.pl en |/Users/ventzi/Desktop/Autodesk/segmentation/Hidenori/Reorder/reorder_jpn.pl -parser_cmd="/OptiBay/Autodesk/multiParser.pl -threads=1 -parser_cmd=\"/Users/ventzi/Desktop/Autodesk/segmentation/Hidenori/OPENNLP/1.5/opennlp-tools-1.5.0/bin/opennlp Parser /Users/ventzi/Desktop/Autodesk/segmentation/Hidenori/OPENNLP/Data/en-parser-chunking.zip 2>opennlp.trans.log\"" |/usr/bin/perl -pe 's/\|/│/g;s/</﹤/g;s/>/﹥/g;s/\(/﹙/g;s/\)/﹚/g;' |moses-ventzi -threads 2 -f model/moses.ini 2>/dev/null |moses-ventzi -f recaser/moses.ini 2>/dev/null |/usr/bin/perl -pe 's/│/|/g;s/﹤/</g;s/﹥/>/g;s/﹙/(/g;s/﹚/)/g;' |/usr/bin/perl -pe 'BEGIN{my$c=0}$c+=s/\|UNK\|UNK\|UNK//g;s/ +$//;END{print STDERR "unknowns: $c\n"}' |/Users/ventzi/courses/EuroMatrixPlus/software/detokenise.pl jp |bzip2 > <FILE_NAME> &
-
-bzcat <FILE_NAME> |/Users/ventzi/courses/EuroMatrixPlus/software/moses-2010-04-08/scripts/scripts-20100409-0412/scripts/lowercase.perl |/Users/ventzi/courses/EuroMatrixPlus/software/tokenise.pl en |/usr/bin/perl -pe 's/\|/│/g;s/</﹤/g;s/>/﹥/g;s/\(/﹙/g;s/\)/﹚/g;' |moses-ventzi -threads 2 -f model/moses.ini 2>/dev/null |moses-ventzi -f recaser/moses.ini 2>/dev/null |/usr/bin/perl -pe 's/│/|/g;s/﹤/</g;s/﹥/>/g;s/﹙/(/g;s/﹚/)/g;' |/usr/bin/perl -pe 'BEGIN{my$c=0}$c+=s/\|UNK\|UNK\|UNK//g;s/ +$//;END{print STDERR "unknowns: $c\n"}' |/Users/ventzi/courses/EuroMatrixPlus/software/detokenise.pl jp |bzip2 > <FILE_NAME> &
-
-
-#JP–EN Translation
-nice bzcat mecab/test/test.jp.tok.bz2 |moses-ventzi -threads 3 -f mecab/model/moses.ini 2>/dev/null |moses-ventzi -f mecab/recaser/moses.ini 2>/dev/null |/usr/bin/perl -pe 'BEGIN{my$c=0}$c+=s/\|UNK\|UNK\|UNK//g;s/ +$//;END{print STDERR "mecab unknowns: $c\n"}' |bzip2 >mecab/test/trans.en.tok.bz2 &
-nice bzcat kytea.mod1/test/test.jp.tok.bz2 |moses-ventzi -threads 3 -f kytea.mod1/model/moses.ini 2>/dev/null |moses-ventzi -f kytea.mod1/recaser/moses.ini 2>/dev/null |/usr/bin/perl -pe 'BEGIN{my$c=0}$c+=s/\|UNK\|UNK\|UNK//g;s/ +$//;END{print STDERR "kytea.mod1 unknowns: $c\n"}' |bzip2 >kytea.mod1/test/trans.en.tok.bz2 &
-nice bzcat kytea.mod7/test/test.jp.tok.bz2 |moses-ventzi -threads 2 -f kytea.mod7/model/moses.ini 2>/dev/null |moses-ventzi -f kytea.mod7/recaser/moses.ini 2>/dev/null |/usr/bin/perl -pe 'BEGIN{my$c=0}$c+=s/\|UNK\|UNK\|UNK//g;s/ +$//;END{print STDERR "kytea.mod7 unknowns: $c\n"}' |bzip2 >kytea.mod7/test/trans.en.tok.bz2 &
-
-
-#EN-KO Translation
-bzcat <FILE_NAME> |/Users/ventzi/courses/EuroMatrixPlus/software/moses-2010-04-08/scripts/scripts-20100409-0412/scripts/lowercase.perl |/Users/ventzi/courses/EuroMatrixPlus/software/tokenise.pl en |/Users/ventzi/Desktop/Autodesk/segmentation/Hidenori/Reorder/reorder_jpn.pl -parser_cmd="/OptiBay/Autodesk/multiParser.pl -threads=1 -parser_cmd=\"/usr/bin/java -Xmx348M -Xmx2048M -cp /Users/ventzi/Desktop/Autodesk/segmentation/StanfordParser/stanford-parser-2011-08-04/stanford-parser.jar edu.stanford.nlp.parser.lexparser.LexicalizedParser -sentences newline -tokenized -outputFormat "oneline" -outputFormatOptions "markHeadNodes" /Users/ventzi/Desktop/Autodesk/segmentation/StanfordParser/stanford-parser-2011-08-04/grammar/englishPCFG.ser.gz - 2>stanford.trans.log\"" |/usr/bin/perl -pe 's/\|/│/g;s/</﹤/g;s/>/﹥/g;s/\(/﹙/g;s/\)/﹚/g;' |moses-ventzi -threads 2 -f model/moses.ini 2>/dev/null |moses-ventzi -f recaser/moses.ini 2>/dev/null |/usr/bin/perl -pe 's/│/|/g;s/﹤/</g;s/﹥/>/g;s/﹙/(/g;s/﹚/)/g;' |/usr/bin/perl -pe 'BEGIN{my$c=0}$c+=s/\|UNK\|UNK\|UNK//g;s/ +$//;END{print STDERR "unknowns: $c\n"}' |/Users/ventzi/courses/EuroMatrixPlus/software/detokenise.pl ko |bzip2 > <FILE_NAME> &
-
-bzcat <FILE_NAME> |/Users/ventzi/courses/EuroMatrixPlus/software/moses-2010-04-08/scripts/scripts-20100409-0412/scripts/lowercase.perl |/Users/ventzi/courses/EuroMatrixPlus/software/tokenise.pl en |/Users/ventzi/Desktop/Autodesk/segmentation/Hidenori/Reorder/reorder_jpn.pl -parser_cmd="/OptiBay/Autodesk/multiParser.pl -threads=1 -parser_cmd=\"/Users/ventzi/Desktop/Autodesk/segmentation/Hidenori/OPENNLP/1.5/opennlp-tools-1.5.0/bin/opennlp Parser /Users/ventzi/Desktop/Autodesk/segmentation/Hidenori/OPENNLP/Data/en-parser-chunking.zip 2>opennlp.trans.log\"" |/usr/bin/perl -pe 's/\|/│/g;s/</﹤/g;s/>/﹥/g;s/\(/﹙/g;s/\)/﹚/g;' |moses-ventzi -threads 2 -f model/moses.ini 2>/dev/null |moses-ventzi -f recaser/moses.ini 2>/dev/null |/usr/bin/perl -pe 's/│/|/g;s/﹤/</g;s/﹥/>/g;s/﹙/(/g;s/﹚/)/g;' |/usr/bin/perl -pe 'BEGIN{my$c=0}$c+=s/\|UNK\|UNK\|UNK//g;s/ +$//;END{print STDERR "unknowns: $c\n"}' |/Users/ventzi/courses/EuroMatrixPlus/software/detokenise.pl ko |bzip2 > <FILE_NAME> &
-
-bzcat <FILE_NAME> |/Users/ventzi/courses/EuroMatrixPlus/software/moses-2010-04-08/scripts/scripts-20100409-0412/scripts/lowercase.perl |/Users/ventzi/courses/EuroMatrixPlus/software/tokenise.pl en |/usr/bin/perl -pe 's/\|/│/g;s/</﹤/g;s/>/﹥/g;s/\(/﹙/g;s/\)/﹚/g;' |moses-ventzi -threads 2 -f /OptiBay/Autodesk/fy13_EN-KO_c/model/moses.ini 2>/dev/null |moses-ventzi -f /OptiBay/Autodesk/fy13_EN-KO_c/recaser/moses.ini 2>/dev/null |/usr/bin/perl -pe 's/│/|/g;s/﹤/</g;s/﹥/>/g;s/﹙/(/g;s/﹚/)/g;' |/usr/bin/perl -pe 'BEGIN{my$c=0}$c+=s/\|UNK\|UNK\|UNK//g;s/ +$//;END{print STDERR "unknowns: $c\n"}' |/Users/ventzi/courses/EuroMatrixPlus/software/detokenise.pl ko |bzip2 > <FILE_NAME> &
-
-
-#EN-PT Translation
-bzcat <FILE_NAME> |/Users/ventzi/courses/EuroMatrixPlus/software/moses-2010-04-08/scripts/scripts-20100409-0412/scripts/lowercase.perl |/Users/ventzi/courses/EuroMatrixPlus/software/tokenise.pl en |/usr/bin/perl -pe 's/\|/│/g;s/</﹤/g;s/>/﹥/g;s/\(/﹙/g;s/\)/﹚/g;' |moses-ventzi -threads 2 -f model/moses.ini 2>/dev/null |moses-ventzi -f recaser/moses.ini 2>/dev/null |/usr/bin/perl -pe 's/│/|/g;s/﹤/</g;s/﹥/>/g;s/﹙/(/g;s/﹚/)/g;' |/usr/bin/perl -pe 'BEGIN{my$c=0}$c+=s/\|UNK\|UNK\|UNK//g;s/ +$//;END{print STDERR "unknowns: $c\n"}' |/Users/ventzi/courses/EuroMatrixPlus/software/detokenise.pl pt-br |bzip2 > <FILE_NAME> &
-
-
-#EN–FR Translation
-nice bzcat <FILE_NAME> |/Users/ventzi/courses/EuroMatrixPlus/software/moses-2010-04-08/scripts/scripts-20100409-0412/scripts/lowercase.perl |/Users/ventzi/courses/EuroMatrixPlus/software/tokenise.pl en |/usr/bin/perl -pe 's/\|/│/g;s/</﹤/g;s/>/﹥/g;s/\(/﹙/g;s/\)/﹚/g;' |moses-ventzi -threads 8 -f model/moses.ini 2>/dev/null |moses-ventzi -f recaser/moses.ini 2>/dev/null |/usr/bin/perl -pe 's/│/|/g;s/﹤/</g;s/﹥/>/g;s/﹙/(/g;s/﹚/)/g;' |/usr/bin/perl -pe 'BEGIN{my$c=0}$c+=s/\|UNK\|UNK\|UNK//g;s/ +$//;END{print STDERR "unknowns: $c\n"}' |/Users/ventzi/courses/EuroMatrixPlus/software/detokenise.pl fr |bzip2 > <FILE_NAME> &
-
-#BREAK
-
-##EN–JP
-~/Desktop/Autodesk/segmentation/JPNdata/generate_evaluation_sets.pl en jp . mecabkytea.mod1kytea.mod7 "`pwd`" "/Users/ventzi/Desktop/курсове - университет/ATTEMPT/data/ICHEC/eval/meteor" meteor.pl "/Users/ventzi/Desktop/курсове - университет/ATTEMPT/data/ICHEC/eval" mteval-v11b.pl "/Users/ventzi/Desktop/курсове - университет/EuroMatrixPlus/software/tercom-0.7.25/tercom.7.25.jar"
-
-##JP–EN
-~/Desktop/Autodesk/segmentation/JPNdata/generate_evaluation_sets.pl jp en . mecabkytea.mod1kytea.mod7 "`pwd`" "/Users/ventzi/Desktop/курсове - университет/ATTEMPT/data/ICHEC/eval/meteor" meteor.pl "/Users/ventzi/Desktop/курсове - университет/ATTEMPT/data/ICHEC/eval" mteval-v11b.pl "/Users/ventzi/Desktop/курсове - университет/EuroMatrixPlus/software/tercom-0.7.25/tercom.7.25.jar"
-
-
-#BREAK
-
 
 ###### Placeholder statistics calculation
 /usr/bin/perl -ne 'BEGIN{my$PH=my$PHL=my$t=my$l=0}++$l;++$PHL if/\{\d+\}/;$PH+=()=/(\{\d+\})/g;$t+=scalar(split/ /,$_);END{print"Total PHs: $PH (out of $t: ".($PH/$t*100)."%)\nLines with PHs: $PHL (out of $l: ".($PHL/$l*100)."%)\n"}'
@@ -118,136 +5,8 @@ nice bzcat <FILE_NAME> |/Users/ventzi/courses/EuroMatrixPlus/software/moses-2010
 
 
 ###### Main engine training data collection/preparation
-### Clean old data (MAKE SURE TO CHECK THE LANGUAGE ORDER)
-bzcat FRA_EN-US_FR-FR.txt.bz2 |/usr/bin/perl -e 'while(my$l=<>){chomp$l;$l=~s,<ut>.*?</ut>, ,g;$l=~s,<!\[CDATA\[|]]>, ,gi;$l=~s,</?.+? ?/?>, ,g;$l=~s/ +/ /g;$l=~s/^ | $//g;unless($l=~/^(&lt; p .*)?$/||$l=~/\d{5,7}\.png/){my$s=$l;$l=<>;chomp$l;$l=~s,<ut>.*?</ut>, ,g;$l=~s,<!\[CDATA\[|]]>, ,gi;$l=~s,</?.+? ?/?>, ,g;$l=~s/ +/ /g;$l=~s/^ | $//g;print"$s$l\n"unless$l=~/^$/}else{$l=<>}}' |bzip2 >FRA_clean_EN-US_FR-FR.txt.bz2
-###
-perl -we '@ls=qw(ARA CSY DNK DEU ELL ENA ENG ENU LAS ESP FIN FRB FRC FRA HUN IND ITA JPN KOR NLD NOR PLK PTB PTG ROM RUS SLK SWE THA TUR VIT CHS CHT);foreach$l(@ls){mkdir "corpora/$l"}'
-perl -we '%ls=(ARA=>"ar",CSY=>"cs",DNK=>"da",DEU=>"de",ENA=>"en_au",ENG=>"en_uk",LAS=>"es_mx",ESP=>"es",FIN=>"fi",FRB=>"fr_be",FRC=>"fr_ca",FRA=>"fr",HUN=>"hu",IND=>"id",ITA=>"it",JPN=>"jp",KOR=>"ko",NLD=>"nl",NOR=>"no",PLK=>"pl",PTB=>"pt_br",PTG=>"pt_pt",ROM=>"ro",RUS=>"ru",SLK=>"sk",SWE=>"sv",THA=>"th",TUR=>"tr",VIT=>"vi",CHS=>"zh_hans",CHT=>"zh_hant",ENU=>"xx");foreach$l(keys%ls){system"rm -f corpora/$l/corpus.en.bz2 corpora/$l/corpus.$ls{$l}.bz2"}'
 
 
-bzcat TMs.2013.09.13/TM_CSY_ALL.bz2 |/usr/bin/perl -ne 'BEGIN{$/="◊÷\n";open S,">corpora/CSY/corpus.en";open T,">corpora/CSY/corpus.cs"}chomp;m/^(.*?)(.*?)/s;next unless defined$1&&defined$2&&$1&&$2;++$a;$s=$1;$t=$2;$s=~s/\r?\n/ /g&&++$c;$t=~s/\r?\n/ /g;print S"$s\n";print T"$t\n";END{close S;close T;print"doc all:$a;multi:$c;frac:%".($c/$a*100.)."\n"}'
-cat passolo/MT_LPU_export/csy/* |/usr/bin/perl -ne 'BEGIN{open S,">>corpora/CSY/corpus.en";open T,">>corpora/CSY/corpus.cs"}chomp;m/^(.*?)\t(.*?)$/;next unless defined$1&&defined$2&&$1&&$2;++$a;print S"$1\n";print T"$2\n";END{close S;close T;print"soft all:$a\n"}'
-
-bzcat TMs.2013.09.13/TM_DNK_ALL.bz2 |/usr/bin/perl -ne 'BEGIN{$/="◊÷\n";open S,">corpora/DNK/corpus.en";open T,">corpora/DNK/corpus.da"}chomp;m/^(.*?)(.*?)/s;next unless defined$1&&defined$2&&$1&&$2;++$a;$s=$1;$t=$2;$s=~s/\r?\n/ /g&&++$c;$t=~s/\r?\n/ /g;print S"$s\n";print T"$t\n";END{close S;close T;print"doc all:$a;multi:$c;frac:%".($c/$a*100.)."\n"}'
-
-bzcat TMs.2013.09.13/TM_DEU_ALL.bz2 |/usr/bin/perl -ne 'BEGIN{$/="◊÷\n";open S,">corpora/DEU/corpus.en";open T,">corpora/DEU/corpus.de"}chomp;m/^(.*?)(.*?)/s;next unless defined$1&&defined$2&&$1&&$2;++$a;$s=$1;$t=$2;$s=~s/\r?\n/ /g&&++$c;$t=~s/\r?\n/ /g;print S"$s\n";print T"$t\n";END{close S;close T;print"doc all:$a;multi:$c;frac:%".($c/$a*100.)."\n"}'
-bzcat old\ data/PS_old_exported/deu_clean_EN-US_DE-DE.txt.bz2 old\ data/Learning+Training/deu_clean_EN-US_DE-DE.txt.bz2 |/usr/bin/perl -ne 'BEGIN{open S,">>corpora/DEU/corpus.en";open T,">>corpora/DEU/corpus.de"}chomp;m/^(.*?)(.*)/s;next unless defined$1&&defined$2&&$1&&$2;++$a;print S"$1\n";print T"$2\n";END{close S;close T;print"mrkt all:$a\n"}'
-cat passolo/MT_LPU_export/deu/* |/usr/bin/perl -ne 'BEGIN{open S,">>corpora/DEU/corpus.en";open T,">>corpora/DEU/corpus.de"}chomp;m/^(.*?)\t(.*?)$/;next unless defined$1&&defined$2&&$1&&$2;++$a;print S"$1\n";print T"$2\n";END{close S;close T;print"soft all:$a\n"}'
-
-bzcat TMs.2013.09.13/TM_ENG_ALL.bz2 |/usr/bin/perl -ne 'BEGIN{$/="◊÷\n";open S,">corpora/ENG/corpus.en";open T,">corpora/ENG/corpus.en_uk"}chomp;m/^(.*?)(.*?)/s;next unless defined$1&&defined$2&&$1&&$2;++$a;$s=$1;$t=$2;$s=~s/\r?\n/ /g&&++$c;$t=~s/\r?\n/ /g;print S"$s\n";print T"$t\n";END{close S;close T;print"doc all:$a;multi:$c;frac:%".($c/$a*100.)."\n"}'
-
-bzcat TMs.2013.09.13/TM_ESP_ALL.bz2 |/usr/bin/perl -ne 'BEGIN{$/="◊÷\n";open S,">corpora/ESP/corpus.en";open T,">corpora/ESP/corpus.es"}chomp;m/^(.*?)(.*?)/s;next unless defined$1&&defined$2&&$1&&$2;++$a;$s=$1;$t=$2;$s=~s/\r?\n/ /g&&++$c;$t=~s/\r?\n/ /g;print S"$s\n";print T"$t\n";END{close S;close T;print"doc all:$a;multi:$c;frac:%".($c/$a*100.)."\n"}'
-bzcat old\ data/PS_old_exported/esp_clean_EN-US_ES-ES.txt.bz2 old\ data/Learning+Training/esp_clean_EN-US_ES-ES.txt.bz2 old\ data/Learning+Training/LAS_clean_EN-US_ES-MX.txt.bz2 |/usr/bin/perl -ne 'BEGIN{open S,">>corpora/ESP/corpus.en";open T,">>corpora/ESP/corpus.es"}chomp;m/^(.*?)(.*)/s;next unless defined$1&&defined$2&&$1&&$2;++$a;print S"$1\n";print T"$2\n";END{close S;close T;print"mrkt all:$a\n"}'
-cat passolo/MT_LPU_export/esp/* |/usr/bin/perl -ne 'BEGIN{open S,">>corpora/ESP/corpus.en";open T,">>corpora/ESP/corpus.es"}chomp;m/^(.*?)\t(.*?)$/;next unless defined$1&&defined$2&&$1&&$2;++$a;print S"$1\n";print T"$2\n";END{close S;close T;print"soft all:$a\n"}'
-
-bzcat TMs.2013.09.13/TM_FIN_ALL.bz2 |/usr/bin/perl -ne 'BEGIN{$/="◊÷\n";open S,">corpora/FIN/corpus.en";open T,">corpora/FIN/corpus.fi"}chomp;m/^(.*?)(.*?)/s;next unless defined$1&&defined$2&&$1&&$2;++$a;$s=$1;$t=$2;$s=~s/\r?\n/ /g&&++$c;$t=~s/\r?\n/ /g;print S"$s\n";print T"$t\n";END{close S;close T;print"doc all:$a;multi:$c;frac:%".($c/$a*100.)."\n"}'
-
-bzcat TMs.2013.09.13/TM_FRA_ALL.bz2 |/usr/bin/perl -ne 'BEGIN{$/="◊÷\n";open S,">corpora/FRA/corpus.en";open T,">corpora/FRA/corpus.fr"}chomp;m/^(.*?)(.*?)/s;next unless defined$1&&defined$2&&$1&&$2;++$a;$s=$1;$t=$2;$s=~s/\r?\n/ /g&&++$c;$t=~s/\r?\n/ /g;print S"$s\n";print T"$t\n";END{close S;close T;print"doc all:$a;multi:$c;frac:%".($c/$a*100.)."\n"}'
-bzcat old\ data/PS_old_exported/fra_clean_EN-US_FR-FR.txt.bz2 old\ data/Learning+Training/FRA_clean_EN-US_FR-FR.txt.bz2 |/usr/bin/perl -ne 'BEGIN{open S,">>corpora/FRA/corpus.en";open T,">>corpora/FRA/corpus.fr"}chomp;m/^(.*?)(.*)/s;next unless defined$1&&defined$2&&$1&&$2;++$a;print S"$1\n";print T"$2\n";END{close S;close T;print"mrkt all:$a\n"}'
-cat passolo/MT_LPU_export/fra/* |/usr/bin/perl -ne 'BEGIN{open S,">>corpora/FRA/corpus.en";open T,">>corpora/FRA/corpus.fr"}chomp;m/^(.*?)\t(.*?)$/;next unless defined$1&&defined$2&&$1&&$2;++$a;print S"$1\n";print T"$2\n";END{close S;close T;print"soft all:$a\n"}'
-
-bzcat TMs.2013.09.13/TM_HUN_ALL.bz2 |/usr/bin/perl -ne 'BEGIN{$/="◊÷\n";open S,">corpora/HUN/corpus.en";open T,">corpora/HUN/corpus.hu"}chomp;m/^(.*?)(.*?)/s;next unless defined$1&&defined$2&&$1&&$2;++$a;$s=$1;$t=$2;$s=~s/\r?\n/ /g&&++$c;$t=~s/\r?\n/ /g;print S"$s\n";print T"$t\n";END{close S;close T;print"doc all:$a;multi:$c;frac:%".($c/$a*100.)."\n"}'
-cat passolo/MT_LPU_export/hun/* |/usr/bin/perl -ne 'BEGIN{open S,">>corpora/HUN/corpus.en";open T,">>corpora/HUN/corpus.hu"}chomp;m/^(.*?)\t(.*?)$/;next unless defined$1&&defined$2&&$1&&$2;++$a;print S"$1\n";print T"$2\n";END{close S;close T;print"soft all:$a\n"}'
-
-bzcat TMs.2013.09.13/TM_ITA_ALL.bz2 |/usr/bin/perl -ne 'BEGIN{$/="◊÷\n";open S,">corpora/ITA/corpus.en";open T,">corpora/ITA/corpus.it"}chomp;m/^(.*?)(.*?)/s;next unless defined$1&&defined$2&&$1&&$2;++$a;$s=$1;$t=$2;$s=~s/\r?\n/ /g&&++$c;$t=~s/\r?\n/ /g;print S"$s\n";print T"$t\n";END{close S;close T;print"doc all:$a;multi:$c;frac:%".($c/$a*100.)."\n"}'
-bzcat old\ data/PS_old_exported/ita_clean_EN-US_IT-IT.txt.bz2 old\ data/Learning+Training/ITA_clean_EN-US_IT-IT.txt.bz2 |/usr/bin/perl -ne 'BEGIN{open S,">>corpora/ITA/corpus.en";open T,">>corpora/ITA/corpus.it"}chomp;m/^(.*?)(.*)/s;next unless defined$1&&defined$2&&$1&&$2;++$a;print S"$1\n";print T"$2\n";END{close S;close T;print"mrkt all:$a\n"}'
-cat passolo/MT_LPU_export/ita/* |/usr/bin/perl -ne 'BEGIN{open S,">>corpora/ITA/corpus.en";open T,">>corpora/ITA/corpus.it"}chomp;m/^(.*?)\t(.*?)$/;next unless defined$1&&defined$2&&$1&&$2;++$a;print S"$1\n";print T"$2\n";END{close S;close T;print"soft all:$a\n"}'
-
-bzcat TMs.2013.09.13/TM_JPN_ALL.bz2 |/usr/bin/perl -ne 'BEGIN{$/="◊÷\n";open S,">corpora/JPN/corpus.en";open T,">corpora/JPN/corpus.jp"}chomp;m/^(.*?)(.*?)/s;next unless defined$1&&defined$2&&$1&&$2;++$a;$s=$1;$t=$2;$s=~s/\r?\n/ /g&&++$c;$t=~s/\r?\n/ /g;print S"$s\n";print T"$t\n";END{close S;close T;print"doc all:$a;multi:$c;frac:%".($c/$a*100.)."\n"}'
-cat passolo/MT_LPU_export/jpn/* |/usr/bin/perl -ne 'BEGIN{open S,">>corpora/JPN/corpus.en";open T,">>corpora/JPN/corpus.jp"}chomp;m/^(.*?)\t(.*?)$/;next unless defined$1&&defined$2&&$1&&$2;++$a;print S"$1\n";print T"$2\n";END{close S;close T;print"soft all:$a\n"}'
-
-bzcat TMs.2013.09.13/TM_KOR_ALL.bz2 |/usr/bin/perl -ne 'BEGIN{$/="◊÷\n";open S,">corpora/KOR/corpus.en";open T,">corpora/KOR/corpus.ko"}chomp;m/^(.*?)(.*?)/s;next unless defined$1&&defined$2&&$1&&$2;++$a;$s=$1;$t=$2;$s=~s/\r?\n/ /g&&++$c;$t=~s/\r?\n/ /g;print S"$s\n";print T"$t\n";END{close S;close T;print"doc all:$a;multi:$c;frac:%".($c/$a*100.)."\n"}'
-cat passolo/MT_LPU_export/kor/* |/usr/bin/perl -ne 'BEGIN{open S,">>corpora/KOR/corpus.en";open T,">>corpora/KOR/corpus.ko"}chomp;m/^(.*?)\t(.*?)$/;next unless defined$1&&defined$2&&$1&&$2;++$a;print S"$1\n";print T"$2\n";END{close S;close T;print"soft all:$a\n"}'
-
-bzcat TMs.2013.09.13/TM_NLD_ALL.bz2 |/usr/bin/perl -ne 'BEGIN{$/="◊÷\n";open S,">corpora/NLD/corpus.en";open T,">corpora/NLD/corpus.nl"}chomp;m/^(.*?)(.*?)/s;next unless defined$1&&defined$2&&$1&&$2;++$a;$s=$1;$t=$2;$s=~s/\r?\n/ /g&&++$c;$t=~s/\r?\n/ /g;print S"$s\n";print T"$t\n";END{close S;close T;print"doc all:$a;multi:$c;frac:%".($c/$a*100.)."\n"}'
-
-bzcat TMs.2013.09.13/TM_NOR_ALL.bz2 |/usr/bin/perl -ne 'BEGIN{$/="◊÷\n";open S,">corpora/NOR/corpus.en";open T,">corpora/NOR/corpus.no"}chomp;m/^(.*?)(.*?)/s;next unless defined$1&&defined$2&&$1&&$2;++$a;$s=$1;$t=$2;$s=~s/\r?\n/ /g&&++$c;$t=~s/\r?\n/ /g;print S"$s\n";print T"$t\n";END{close S;close T;print"doc all:$a;multi:$c;frac:%".($c/$a*100.)."\n"}'
-
-bzcat TMs.2013.09.13/TM_PLK_ALL.bz2 |/usr/bin/perl -ne 'BEGIN{$/="◊÷\n";open S,">corpora/PLK/corpus.en";open T,">corpora/PLK/corpus.pl"}chomp;m/^(.*?)(.*?)/s;next unless defined$1&&defined$2&&$1&&$2;++$a;$s=$1;$t=$2;$s=~s/\r?\n/ /g&&++$c;$t=~s/\r?\n/ /g;print S"$s\n";print T"$t\n";END{close S;close T;print"doc all:$a;multi:$c;frac:%".($c/$a*100.)."\n"}'
-cat passolo/MT_LPU_export/plk/* |/usr/bin/perl -ne 'BEGIN{open S,">>corpora/PLK/corpus.en";open T,">>corpora/PLK/corpus.pl"}chomp;m/^(.*?)\t(.*?)$/;next unless defined$1&&defined$2&&$1&&$2;++$a;print S"$1\n";print T"$2\n";END{close S;close T;print"soft all:$a\n"}'
-
-bzcat TMs.2013.09.13/TM_PTB_ALL.bz2 |/usr/bin/perl -ne 'BEGIN{$/="◊÷\n";open S,">corpora/PTB/corpus.en";open T,">corpora/PTB/corpus.pt_br"}chomp;m/^(.*?)(.*?)/s;next unless defined$1&&defined$2&&$1&&$2;++$a;$s=$1;$t=$2;$s=~s/\r?\n/ /g&&++$c;$t=~s/\r?\n/ /g;print S"$s\n";print T"$t\n";END{close S;close T;print"doc all:$a;multi:$c;frac:%".($c/$a*100.)."\n"}'
-cat passolo/MT_LPU_export/ptb/* |/usr/bin/perl -ne 'BEGIN{open S,">>corpora/PTB/corpus.en";open T,">>corpora/PTB/corpus.pt_br"}chomp;m/^(.*?)\t(.*?)$/;next unless defined$1&&defined$2&&$1&&$2;++$a;print S"$1\n";print T"$2\n";END{close S;close T;print"soft all:$a\n"}'
-
-bzcat TMs.2013.09.13/TM_RUS_ALL.bz2 |/usr/bin/perl -ne 'BEGIN{$/="◊÷\n";open S,">corpora/RUS/corpus.en";open T,">corpora/RUS/corpus.ru"}chomp;m/^(.*?)(.*?)/s;next unless defined$1&&defined$2&&$1&&$2;++$a;$s=$1;$t=$2;$s=~s/\r?\n/ /g&&++$c;$t=~s/\r?\n/ /g;print S"$s\n";print T"$t\n";END{close S;close T;print"doc all:$a;multi:$c;frac:%".($c/$a*100.)."\n"}'
-bzcat old\ data/PS_old_exported/rus_clean_EN-US_RU-RU.txt.bz2 |/usr/bin/perl -ne 'BEGIN{open S,">>corpora/RUS/corpus.en";open T,">>corpora/RUS/corpus.ru"}chomp;m/^(.*?)(.*)/s;next unless defined$1&&defined$2&&$1&&$2;++$a;print S"$1\n";print T"$2\n";END{close S;close T;print"mrkt all:$a\n"}'
-cat passolo/MT_LPU_export/rus/* |/usr/bin/perl -ne 'BEGIN{open S,">>corpora/RUS/corpus.en";open T,">>corpora/RUS/corpus.ru"}chomp;m/^(.*?)\t(.*?)$/;next unless defined$1&&defined$2&&$1&&$2;++$a;print S"$1\n";print T"$2\n";END{close S;close T;print"soft all:$a\n"}'
-
-bzcat TMs.2013.09.13/TM_SWE_ALL.bz2 |/usr/bin/perl -ne 'BEGIN{$/="◊÷\n";open S,">corpora/SWE/corpus.en";open T,">corpora/SWE/corpus.sv"}chomp;m/^(.*?)(.*?)/s;next unless defined$1&&defined$2&&$1&&$2;++$a;$s=$1;$t=$2;$s=~s/\r?\n/ /g&&++$c;$t=~s/\r?\n/ /g;print S"$s\n";print T"$t\n";END{close S;close T;print"doc all:$a;multi:$c;frac:%".($c/$a*100.)."\n"}'
-
-bzcat TMs.2013.09.13/TM_VIT_ALL.bz2 |/usr/bin/perl -ne 'BEGIN{$/="◊÷\n";open S,">corpora/VIT/corpus.en";open T,">corpora/VIT/corpus.vi"}chomp;m/^(.*?)(.*?)/s;next unless defined$1&&defined$2&&$1&&$2;++$a;$s=$1;$t=$2;$s=~s/\r?\n/ /g&&++$c;$t=~s/\r?\n/ /g;print S"$s\n";print T"$t\n";END{close S;close T;print"doc all:$a;multi:$c;frac:%".($c/$a*100.)."\n"}'
-
-bzcat TMs.2013.09.13/TM_CHS_ALL.bz2 |/usr/bin/perl -ne 'BEGIN{$/="◊÷\n";open S,">corpora/CHS/corpus.en";open T,">corpora/CHS/corpus.zh_hans";$/="◊÷\n"}chomp;m/^(.*?)(.*?)/s;next unless defined$1&&defined$2&&$1&&$2;++$a;$s=$1;$t=$2;$s=~s/\r?\n/ /g&&++$c;$t=~s/\r?\n/ /g;print S"$s\n";print T"$t\n";END{close S;close T;print"doc all:$a;multi:$c;frac:%".($c/$a*100.)."\n"}'
-cat passolo/MT_LPU_export/chs/* |/usr/bin/perl -ne 'BEGIN{open S,">>corpora/CHS/corpus.en";open T,">>corpora/CHS/corpus.zh_hans"}chomp;m/^(.*?)\t(.*?)$/;next unless defined$1&&defined$2&&$1&&$2;++$a;print S"$1\n";print T"$2\n";END{close S;close T;print"soft all:$a\n"}'
-
-bzcat TMs.2013.09.13/TM_CHT_ALL.bz2 |/usr/bin/perl -ne 'BEGIN{$/="◊÷\n";open S,">corpora/CHT/corpus.en";open T,">corpora/CHT/corpus.zh_hant"}chomp;m/^(.*?)(.*?)/s;next unless defined$1&&defined$2&&$1&&$2;++$a;$s=$1;$t=$2;$s=~s/\r?\n/ /g&&++$c;$t=~s/\r?\n/ /g;print S"$s\n";print T"$t\n";END{close S;close T;print"doc all:$a;multi:$c;frac:%".($c/$a*100.)."\n"}'
-cat passolo/MT_LPU_export/cht/* |/usr/bin/perl -ne 'BEGIN{open S,">>corpora/CHT/corpus.en";open T,">>corpora/CHT/corpus.zh_hant"}chomp;m/^(.*?)\t(.*?)$/;next unless defined$1&&defined$2&&$1&&$2;++$a;print S"$1\n";print T"$2\n";END{close S;close T;print"soft all:$a\n"}'
-
-
-bzip2 -v corpora/*/*
-
-
-perl -we '%ls=(ARA=>"ar",CSY=>"cs",DNK=>"da",DEU=>"de",ENA=>"en_au",ENG=>"en_uk",LAS=>"es_mx",ESP=>"es",FIN=>"fi",FRB=>"fr_be",FRC=>"fr_ca",FRA=>"fr",HUN=>"hu",IND=>"id",ITA=>"it",JPN=>"jp",KOR=>"ko",NLD=>"nl",NOR=>"no",PLK=>"pl",PTB=>"pt_br",PTG=>"pt_pt",ROM=>"ro",RUS=>"ru",SLK=>"sk",SWE=>"sv",THA=>"th",TUR=>"tr",VIT=>"vi",CHS=>"zh_hans",CHT=>"zh_hant");foreach$l(keys%ls){system"bzcat corpora/$l/corpus.en.bz2 >>corpora/ENU/corpus.en";system"bzcat corpora/$l/corpus.$ls{$l}.bz2 >corpora/ENU/corpus.xx"}system"bzip2 -v corpora/ENU/*"'
-
-
-#Count segments
-echo -n "cs      doc : "; bzcat 2012.05.09\ Data\ Dump/TM_CSY_ALL.bz2 |/usr/bin/perl -ne 'BEGIN{$/="◊÷\n"}chomp;m/^(.*?)(.*?)/s;next unless defined$1&&defined$2&&$1&&$2;++$t;$s=$1;$s=~s/\r?\n//g&&++$c;END{print"all:$t;multi:$c;frac:%".($c/$t*100.)."\n"}'
-echo -n "cs      soft: "; cat passolo/MT_LPU_export/csy/* |/usr/bin/perl -ne 'chomp;m/^(.*?)\t(.*?)$/;next unless defined$1 && defined$2 && $1 && $2;print"$1\n"' |wc -l
-
-echo -n "da      doc : "; bzcat 2012.05.09\ Data\ Dump/TM_DNK_ALL.bz2 |/usr/bin/perl -ne 'BEGIN{$/="◊÷\n"}chomp;m/^(.*?)(.*?)/s;next unless defined$1&&defined$2&&$1&&$2;++$t;$s=$1;$s=~s/\r?\n//g&&++$c;END{print"all:$t;multi:$c;frac:%".($c/$t*100.)."\n"}'
-
-echo -n "de      doc : "; bzcat 2012.05.09\ Data\ Dump/TM_DEU_ALL.bz2 |/usr/bin/perl -ne 'BEGIN{$/="◊÷\n"}chomp;m/^(.*?)(.*?)/s;next unless defined$1&&defined$2&&$1&&$2;++$t;$s=$1;$s=~s/\r?\n//g&&++$c;END{print"all:$t;multi:$c;frac:%".($c/$t*100.)."\n"}'
-echo -n "de      mark: "; bzcat old\ data/PS_old_exported/deu_clean_EN-US_DE-DE.txt.bz2 old\ data/Learning+Training/deu_clean_EN-US_DE-DE.txt.bz2 |/usr/bin/perl -ne 'chomp;m/^(.*?)(.*?)$/;next unless defined$1 && defined$2 && $1 && $2;print"$1\n"' |wc -l
-echo -n "de      soft: "; cat passolo/MT_LPU_export/deu/* |/usr/bin/perl -ne 'chomp;m/^(.*?)\t(.*?)$/;next unless defined$1 && defined$2 && $1 && $2;print"$1\n"' |wc -l
-
-echo -n "en_uk   doc : "; bzcat 2012.05.09\ Data\ Dump/TM_ENG_ALL.bz2 |/usr/bin/perl -ne 'BEGIN{$/="◊÷\n"}chomp;m/^(.*?)(.*?)/s;next unless defined$1&&defined$2&&$1&&$2;++$t;$s=$1;$s=~s/\r?\n//g&&++$c;END{print"all:$t;multi:$c;frac:%".($c/$t*100.)."\n"}'
-
-echo -n "es      doc : "; bzcat 2012.05.09\ Data\ Dump/TM_ESP_ALL.bz2 |/usr/bin/perl -ne 'BEGIN{$/="◊÷\n"}chomp;m/^(.*?)(.*?)/s;next unless defined$1&&defined$2&&$1&&$2;++$t;$s=$1;$s=~s/\r?\n//g&&++$c;END{print"all:$t;multi:$c;frac:%".($c/$t*100.)."\n"}'
-echo -n "es      mark: "; bzcat old\ data/PS_old_exported/esp_clean_EN-US_ES-ES.txt.bz2 old\ data/Learning+Training/esp_clean_EN-US_ES-ES.txt.bz2 old\ data/Learning+Training/LAS_clean_EN-US_ES-MX.txt.bz2 |/usr/bin/perl -ne 'chomp;m/^(.*?)(.*?)$/;next unless defined$1 && defined$2 && $1 && $2;print"$1\n"' |wc -l
-echo -n "es      soft: "; cat passolo/MT_LPU_export/esp/* |/usr/bin/perl -ne 'chomp;m/^(.*?)\t(.*?)$/;next unless defined$1 && defined$2 && $1 && $2;print"$1\n"' |wc -l
-
-echo -n "fi      doc : "; bzcat 2012.05.09\ Data\ Dump/TM_FIN_ALL.bz2 |/usr/bin/perl -ne 'BEGIN{$/="◊÷\n"}chomp;m/^(.*?)(.*?)/s;next unless defined$1&&defined$2&&$1&&$2;++$t;$s=$1;$s=~s/\r?\n//g&&++$c;END{print"all:$t;multi:$c;frac:%".($c/$t*100.)."\n"}'
-
-echo -n "fr      doc : "; bzcat 2012.05.09\ Data\ Dump/TM_FRA_ALL.bz2 |/usr/bin/perl -ne 'BEGIN{$/="◊÷\n"}chomp;m/^(.*?)(.*?)/s;next unless defined$1&&defined$2&&$1&&$2;++$t;$s=$1;$s=~s/\r?\n//g&&++$c;END{print"all:$t;multi:$c;frac:%".($c/$t*100.)."\n"}'
-echo -n "fr      mark: "; bzcat old\ data/PS_old_exported/fra_clean_EN-US_FR-FR.txt.bz2 old\ data/Learning+Training/FRA_clean_EN-US_FR-FR.txt.bz2 |/usr/bin/perl -ne 'chomp;m/^(.*?)(.*?)$/;next unless defined$1 && defined$2 && $1 && $2;print"$1\n"' |wc -l
-echo -n "fr      soft: "; cat passolo/MT_LPU_export/fra/* |/usr/bin/perl -ne 'chomp;m/^(.*?)\t(.*?)$/;next unless defined$1 && defined$2 && $1 && $2;print"$1\n"' |wc -l
-
-echo -n "hu      doc : "; bzcat 2012.05.09\ Data\ Dump/TM_HUN_ALL.bz2 |/usr/bin/perl -ne 'BEGIN{$/="◊÷\n"}chomp;m/^(.*?)(.*?)/s;next unless defined$1&&defined$2&&$1&&$2;++$t;$s=$1;$s=~s/\r?\n//g&&++$c;END{print"all:$t;multi:$c;frac:%".($c/$t*100.)."\n"}'
-echo -n "hu      soft: "; cat passolo/MT_LPU_export/hun/* |/usr/bin/perl -ne 'chomp;m/^(.*?)\t(.*?)$/;next unless defined$1 && defined$2 && $1 && $2;print"$1\n"' |wc -l
-
-echo -n "it      doc : "; bzcat 2012.05.09\ Data\ Dump/TM_ITA_ALL.bz2 |/usr/bin/perl -ne 'BEGIN{$/="◊÷\n"}chomp;m/^(.*?)(.*?)/s;next unless defined$1&&defined$2&&$1&&$2;++$t;$s=$1;$s=~s/\r?\n//g&&++$c;END{print"all:$t;multi:$c;frac:%".($c/$t*100.)."\n"}'
-echo -n "it      mark: "; bzcat old\ data/PS_old_exported/ita_clean_EN-US_IT-IT.txt.bz2 old\ data/Learning+Training/ITA_clean_EN-US_IT-IT.txt.bz2 |/usr/bin/perl -ne 'chomp;m/^(.*?)(.*?)$/;next unless defined$1 && defined$2 && $1 && $2;print"$1\n"' |wc -l
-echo -n "it      soft: "; cat passolo/MT_LPU_export/ita/* |/usr/bin/perl -ne 'chomp;m/^(.*?)\t(.*?)$/;next unless defined$1 && defined$2 && $1 && $2;print"$1\n"' |wc -l
-
-echo -n "jp      doc : "; bzcat 2012.05.09\ Data\ Dump/TM_JPN_ALL.bz2 |/usr/bin/perl -ne 'BEGIN{$/="◊÷\n"}chomp;m/^(.*?)(.*?)/s;next unless defined$1&&defined$2&&$1&&$2;++$t;$s=$1;$s=~s/\r?\n//g&&++$c;END{print"all:$t;multi:$c;frac:%".($c/$t*100.)."\n"}'
-echo -n "jp      soft: "; cat passolo/MT_LPU_export/jpn/* |/usr/bin/perl -ne 'chomp;m/^(.*?)\t(.*?)$/;next unless defined$1 && defined$2 && $1 && $2;print"$1\n"' |wc -l
-
-echo -n "ko      doc : "; bzcat 2012.05.09\ Data\ Dump/TM_KOR_ALL.bz2 |/usr/bin/perl -ne 'BEGIN{$/="◊÷\n"}chomp;m/^(.*?)(.*?)/s;next unless defined$1&&defined$2&&$1&&$2;++$t;$s=$1;$s=~s/\r?\n//g&&++$c;END{print"all:$t;multi:$c;frac:%".($c/$t*100.)."\n"}'
-echo -n "ko      soft: "; cat passolo/MT_LPU_export/kor/* |/usr/bin/perl -ne 'chomp;m/^(.*?)\t(.*?)$/;next unless defined$1 && defined$2 && $1 && $2;print"$1\n"' |wc -l
-
-echo -n "nl      doc : "; bzcat 2012.05.09\ Data\ Dump/TM_NLD_ALL.bz2 |/usr/bin/perl -ne 'BEGIN{$/="◊÷\n"}chomp;m/^(.*?)(.*?)/s;next unless defined$1&&defined$2&&$1&&$2;++$t;$s=$1;$s=~s/\r?\n//g&&++$c;END{print"all:$t;multi:$c;frac:%".($c/$t*100.)."\n"}'
-
-echo -n "no      doc : "; bzcat 2012.05.09\ Data\ Dump/TM_NOR_ALL.bz2 |/usr/bin/perl -ne 'BEGIN{$/="◊÷\n"}chomp;m/^(.*?)(.*?)/s;next unless defined$1&&defined$2&&$1&&$2;++$t;$s=$1;$s=~s/\r?\n//g&&++$c;END{print"all:$t;multi:$c;frac:%".($c/$t*100.)."\n"}'
-
-echo -n "pl      doc : "; bzcat 2012.05.09\ Data\ Dump/TM_PLK_ALL.bz2 |/usr/bin/perl -ne 'BEGIN{$/="◊÷\n"}chomp;m/^(.*?)(.*?)/s;next unless defined$1&&defined$2&&$1&&$2;++$t;$s=$1;$s=~s/\r?\n//g&&++$c;END{print"all:$t;multi:$c;frac:%".($c/$t*100.)."\n"}'
-echo -n "pl      soft: "; cat passolo/MT_LPU_export/plk/* |/usr/bin/perl -ne 'chomp;m/^(.*?)\t(.*?)$/;next unless defined$1 && defined$2 && $1 && $2;print"$1\n"' |wc -l
-
-echo -n "pt_br   doc : "; bzcat 2012.05.09\ Data\ Dump/TM_PTB_ALL.bz2 |/usr/bin/perl -ne 'BEGIN{$/="◊÷\n"}chomp;m/^(.*?)(.*?)/s;next unless defined$1&&defined$2&&$1&&$2;++$t;$s=$1;$s=~s/\r?\n//g&&++$c;END{print"all:$t;multi:$c;frac:%".($c/$t*100.)."\n"}'
-echo -n "pt_br   soft: "; cat passolo/MT_LPU_export/ptb/* |/usr/bin/perl -ne 'chomp;m/^(.*?)\t(.*?)$/;next unless defined$1 && defined$2 && $1 && $2;print"$1\n"' |wc -l
-
-echo -n "ru      doc : "; bzcat 2012.05.09\ Data\ Dump/TM_RUS_ALL.bz2 |/usr/bin/perl -ne 'BEGIN{$/="◊÷\n"}chomp;m/^(.*?)(.*?)/s;next unless defined$1&&defined$2&&$1&&$2;++$t;$s=$1;$s=~s/\r?\n//g&&++$c;END{print"all:$t;multi:$c;frac:%".($c/$t*100.)."\n"}'
-echo -n "ru      mark: "; bzcat old\ data/PS_old_exported/rus_clean_EN-US_RU-RU.txt.bz2 |/usr/bin/perl -ne 'chomp;m/^(.*?)(.*?)$/;next unless defined$1 && defined$2 && $1 && $2;print"$1\n"' |wc -l
-echo -n "ru      soft: "; cat passolo/MT_LPU_export/rus/* |/usr/bin/perl -ne 'chomp;m/^(.*?)\t(.*?)$/;next unless defined$1 && defined$2 && $1 && $2;print"$1\n"' |wc -l
-
-echo -n "sv      doc : "; bzcat 2012.05.09\ Data\ Dump/TM_SWE_ALL.bz2 |/usr/bin/perl -ne 'BEGIN{$/="◊÷\n"}chomp;m/^(.*?)(.*?)/s;next unless defined$1&&defined$2&&$1&&$2;++$t;$s=$1;$s=~s/\r?\n//g&&++$c;END{print"all:$t;multi:$c;frac:%".($c/$t*100.)."\n"}'
-
-echo -n "vi      doc : "; bzcat 2012.05.09\ Data\ Dump/TM_VIT_ALL.bz2 |/usr/bin/perl -ne 'BEGIN{$/="◊÷\n"}chomp;m/^(.*?)(.*?)/s;next unless defined$1&&defined$2&&$1&&$2;++$t;$s=$1;$s=~s/\r?\n//g&&++$c;END{print"all:$t;multi:$c;frac:%".($c/$t*100.)."\n"}'
-
-echo -n "zh_hans doc : "; bzcat 2012.05.09\ Data\ Dump/TM_CHS_ALL.bz2 |/usr/bin/perl -ne 'BEGIN{$/="◊÷\n"}chomp;m/^(.*?)(.*?)/s;next unless defined$1&&defined$2&&$1&&$2;++$t;$s=$1;$s=~s/\r?\n//g&&++$c;END{print"all:$t;multi:$c;frac:%".($c/$t*100.)."\n"}'
-echo -n "zh_hans soft: "; cat passolo/MT_LPU_export/chs/* |/usr/bin/perl -ne 'chomp;m/^(.*?)\t(.*?)$/;next unless defined$1 && defined$2 && $1 && $2;print"$1\n"' |wc -l
-
-echo -n "zh_hant doc : "; bzcat 2012.05.09\ Data\ Dump/TM_CHT_ALL.bz2 |/usr/bin/perl -ne 'BEGIN{$/="◊÷\n"}chomp;m/^(.*?)(.*?)/s;next unless defined$1&&defined$2&&$1&&$2;++$t;$s=$1;$s=~s/\r?\n//g&&++$c;END{print"all:$t;multi:$c;frac:%".($c/$t*100.)."\n"}'
-echo -n "zh_hant soft: "; cat passolo/MT_LPU_export/cht/* |/usr/bin/perl -ne 'chomp;m/^(.*?)\t(.*?)$/;next unless defined$1 && defined$2 && $1 && $2;print"$1\n"' |wc -l
 
 ### Edit by Samuel on 25 September 2014
 ### Note: Replace XXX in user and password params by login credentials for the WorldServer DB
@@ -448,6 +207,16 @@ zcat fy15_EN-PT_PT_a/model/phrase-table.gz |/OptiBay/ADSK_Software/filterForSort
 /OptiBay/ADSK_Software/occurrenceCounter.pl -sourceCorpus=fy15_EN-PL_a/corpus/corpus.clean.en -targetCorpus=fy15_EN-PL_a/corpus/corpus.clean.pl -ambiguousStrings=fy15_EN-PL_a/model/ambiguousTerms.json -threads=8 |bzip2 >fy15_EN-PL_a/model/ambiguousTerms.occurrence.bz2
 /OptiBay/ADSK_Software/occurrenceCounter.pl -sourceCorpus=fy15_EN-PT_BR_a/corpus/corpus.clean.en -targetCorpus=fy15_EN-PT_BR_a/corpus/corpus.clean.pt_br -ambiguousStrings=fy15_EN-PT_BR_a/model/ambiguousTerms.json -threads=8 |bzip2 >fy15_EN-PT_BR_a/model/ambiguousTerms.occurrence.bz2
 /OptiBay/ADSK_Software/occurrenceCounter.pl -sourceCorpus=fy15_EN-PT_PT_a/corpus/corpus.clean.en -targetCorpus=fy15_EN-PT_PT_a/corpus/corpus.clean.pt_pt -ambiguousStrings=fy15_EN-PT_PT_a/model/ambiguousTerms.json -threads=8 |bzip2 >fy15_EN-PT_PT_a/model/ambiguousTerms.occurrence.bz2
+
+
+bzcat corpora/CSY/corpus.en.bz2 |perl -MEncode -ne 'use utf8;chomp;(undef,$p)=split/◊/,decode("utf-8",$_),-1;++$ps{$p};print STDERR "."unless$.%10000;print STDERR "$."unless$.%500000;END{print"\n";foreach$p(sort{$ps{$b}<=>$ps{$a}}keys%ps){print encode"utf-8","$p\t$ps{$p}\n"}}'
+bzcat corpora/ESP/corpus.en.bz2 |perl -MEncode -ne 'use utf8;chomp;(undef,$p)=split/◊/,decode("utf-8",$_),-1;++$ps{$p};print STDERR "."unless$.%10000;print STDERR "$."unless$.%500000;END{print"\n";foreach$p(sort{$ps{$b}<=>$ps{$a}}keys%ps){print encode"utf-8","$p\t$ps{$p}\n"}}'
+bzcat corpora/HUN/corpus.en.bz2 |perl -MEncode -ne 'use utf8;chomp;(undef,$p)=split/◊/,decode("utf-8",$_),-1;++$ps{$p};print STDERR "."unless$.%10000;print STDERR "$."unless$.%500000;END{print"\n";foreach$p(sort{$ps{$b}<=>$ps{$a}}keys%ps){print encode"utf-8","$p\t$ps{$p}\n"}}'
+bzcat corpora/ITA/corpus.en.bz2 |perl -MEncode -ne 'use utf8;chomp;(undef,$p)=split/◊/,decode("utf-8",$_),-1;++$ps{$p};print STDERR "."unless$.%10000;print STDERR "$."unless$.%500000;END{print"\n";foreach$p(sort{$ps{$b}<=>$ps{$a}}keys%ps){print encode"utf-8","$p\t$ps{$p}\n"}}'
+bzcat corpora/KOR/corpus.en.bz2 |perl -MEncode -ne 'use utf8;chomp;(undef,$p)=split/◊/,decode("utf-8",$_),-1;++$ps{$p};print STDERR "."unless$.%10000;print STDERR "$."unless$.%500000;END{print"\n";foreach$p(sort{$ps{$b}<=>$ps{$a}}keys%ps){print encode"utf-8","$p\t$ps{$p}\n"}}'
+bzcat corpora/PLK/corpus.en.bz2 |perl -MEncode -ne 'use utf8;chomp;(undef,$p)=split/◊/,decode("utf-8",$_),-1;++$ps{$p};print STDERR "."unless$.%10000;print STDERR "$."unless$.%500000;END{print"\n";foreach$p(sort{$ps{$b}<=>$ps{$a}}keys%ps){print encode"utf-8","$p\t$ps{$p}\n"}}'
+bzcat corpora/PTB/corpus.en.bz2 |perl -MEncode -ne 'use utf8;chomp;(undef,$p)=split/◊/,decode("utf-8",$_),-1;++$ps{$p};print STDERR "."unless$.%10000;print STDERR "$."unless$.%500000;END{print"\n";foreach$p(sort{$ps{$b}<=>$ps{$a}}keys%ps){print encode"utf-8","$p\t$ps{$p}\n"}}'
+bzcat corpora/PTG/corpus.en.bz2 |perl -MEncode -ne 'use utf8;chomp;(undef,$p)=split/◊/,decode("utf-8",$_),-1;++$ps{$p};print STDERR "."unless$.%10000;print STDERR "$."unless$.%500000;END{print"\n";foreach$p(sort{$ps{$b}<=>$ps{$a}}keys%ps){print encode"utf-8","$p\t$ps{$p}\n"}}'
 
 #################################
 cat chs_*1.csv |./create_samples.pl -words=`cat chs_*1.csv|/usr/bin/perl -ne 'BEGIN{my$c=0}my(undef,undef,$w)=split//,$_;$c+=$w;END{print"$c\n"}'` -percentage=37 -output=productivity_QA_sample_chs.csv

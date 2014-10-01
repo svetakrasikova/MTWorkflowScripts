@@ -38,9 +38,6 @@
          location = "group:Terminology/forms.py">
       </FileRef>
       <FileRef
-         location = "group:runTerminologyService.py">
-      </FileRef>
-      <FileRef
          location = "group:ImportNGramsToDatabase.py">
       </FileRef>
       <FileRef
