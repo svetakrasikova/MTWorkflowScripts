@@ -167,4 +167,7 @@
    <FileRef
       location = "group:SMT training commands and auxiliaries.txt">
    </FileRef>
+   <FileRef
+      location = "group:getMTTimeline.pl">
+   </FileRef>
 </Workspace>
