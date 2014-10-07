@@ -4,9 +4,14 @@
 # Created on 03 Oct 2014 by Ventsislav Zhechev
 #
 # ChangeLog
+# v0.2		modified on 07 Oct 2014 by Ventsislav Zhechev
+# Now we also output statistics per source language/target language/product.
+# Also aggregates/prints cumulative statistics per product and per source language/target language.
+# Improved handling of language codes.
+#
 # v0.1		modified on 06 Oct 2014 by Ventsislav Zhechev
 # Initial version
-# Will print out statistics from the current nohup.out file per product/target language/source language.
+# Prints out statistics from the current nohup.out file per product/target language/source language.
 #
 ###########################
 
@@ -111,6 +116,8 @@ while (my $line = decode "utf-8", scalar <$log>) {
 			$data->{targetLanguage} ||= "en";
 			$data->{sourceLanguage} = $localeMap{lc $data->{sourceLanguage}} if defined $localeMap{lc $data->{sourceLanguage}};
 			$data->{targetLanguage} = $localeMap{lc $data->{targetLanguage}} if defined $localeMap{lc $data->{targetLanguage}};
+			$data->{sourceLanguage} =~ tr/-/_/;
+			$data->{targetLanguage} =~ tr/-/_/;
 			$data->{product} ||= "none";
 			@{$translationStats{$currentUser}}{qw/sourceLanguage targetLanguage translate product/} = @$data{qw/sourceLanguage targetLanguage translate product/};
 			
@@ -120,15 +127,33 @@ while (my $line = decode "utf-8", scalar <$log>) {
 			$stats->{segments} += $data->{translate};
 			++$stats->{sessions};
 			$stats->{duration} = DateTime::Duration->new() unless defined $stats->{duration};
+			#Source Language -> Target Language -> all
+			$stats = $MTStatsSTP{$data->{sourceLanguage}}->{$data->{targetLanguage}}->{__all__};
+			$stats = $MTStatsSTP{$data->{sourceLanguage}}->{$data->{targetLanguage}}->{__all__} = {} unless defined $stats;
+			$stats->{segments} += $data->{translate};
+			++$stats->{sessions};
+			$stats->{duration} = DateTime::Duration->new() unless defined $stats->{duration};
 			#Target Language -> Source Language -> Product
 			$stats = $MTStatsTSP{$data->{targetLanguage}}->{$data->{sourceLanguage}}->{$data->{product}};
 			$stats = $MTStatsTSP{$data->{targetLanguage}}->{$data->{sourceLanguage}}->{$data->{product}} = {} unless defined $stats;
 			$stats->{segments} += $data->{translate};
 			++$stats->{sessions};
 			$stats->{duration} = DateTime::Duration->new() unless defined $stats->{duration};
+			#Target Language -> Source Language -> all
+			$stats = $MTStatsTSP{$data->{targetLanguage}}->{$data->{sourceLanguage}}->{__all__};
+			$stats = $MTStatsTSP{$data->{targetLanguage}}->{$data->{sourceLanguage}}->{__all__} = {} unless defined $stats;
+			$stats->{segments} += $data->{translate};
+			++$stats->{sessions};
+			$stats->{duration} = DateTime::Duration->new() unless defined $stats->{duration};
 			#Product -> Target Language -> Source Language
 			$stats = $MTStatsPTS{$data->{product}}->{$data->{targetLanguage}}->{$data->{sourceLanguage}};
 			$stats = $MTStatsPTS{$data->{product}}->{$data->{targetLanguage}}->{$data->{sourceLanguage}} = {} unless defined $stats;
+			$stats->{segments} += $data->{translate};
+			++$stats->{sessions};
+			$stats->{duration} = DateTime::Duration->new() unless defined $stats->{duration};
+			#Product -> all
+			$stats = $MTStatsPTS{$data->{product}}->{__all__};
+			$stats = $MTStatsPTS{$data->{product}}->{__all__} = {} unless defined $stats;
 			$stats->{segments} += $data->{translate};
 			++$stats->{sessions};
 			$stats->{duration} = DateTime::Duration->new() unless defined $stats->{duration};
@@ -147,8 +172,11 @@ while (my $line = decode "utf-8", scalar <$log>) {
 		if (defined $userStats) {
 			my $duration = $connectionStats{$currentUser}->{end}->subtract_datetime($connectionStats{$currentUser}->{start});
 			$MTStatsSTP{$userStats->{sourceLanguage}}->{$userStats->{targetLanguage}}->{$userStats->{product}}->{duration}->add_duration($duration);
+			$MTStatsSTP{$userStats->{sourceLanguage}}->{$userStats->{targetLanguage}}->{__all__}->{duration}->add_duration($duration);
 			$MTStatsTSP{$userStats->{targetLanguage}}->{$userStats->{sourceLanguage}}->{$userStats->{product}}->{duration}->add_duration($duration);
+			$MTStatsTSP{$userStats->{targetLanguage}}->{$userStats->{sourceLanguage}}->{__all__}->{duration}->add_duration($duration);
 			$MTStatsPTS{$userStats->{product}}->{$userStats->{targetLanguage}}->{$userStats->{sourceLanguage}}->{duration}->add_duration($duration);
+			$MTStatsPTS{$userStats->{product}}->{__all__}->{duration}->add_duration($duration);
 		}
 		
 		delete($userData{$user});
@@ -160,8 +188,26 @@ $sftp->disconnect();
 
 print encode "utf-8", "Start time: $startTime; End time: $endTime\n";
 
+foreach my $sourceLanguage (sort {$a cmp $b} keys %MTStatsSTP) {
+	foreach my $targetLanguage (sort {$a cmp $b} keys %{$MTStatsSTP{$sourceLanguage}}) {
+		foreach my $product (sort {lc $a cmp lc $b} keys %{$MTStatsSTP{$sourceLanguage}->{$targetLanguage}}) {
+			my $data = $MTStatsSTP{$sourceLanguage}->{$targetLanguage}->{$product};
+			if ($product eq "__all__") {
+				print encode "utf-8", "Total translation duration from “$sourceLanguage” into “$targetLanguage” for “__all__”: ".$durationFormat->format_duration($data->{duration})."; Sessions: $data->{sessions}; Segments: $data->{segments}\n";
+				next;
+			}
+			print encode "utf-8", "Total translation duration from “$sourceLanguage” into “$targetLanguage” for “$product”: ".$durationFormat->format_duration($data->{duration})."; Sessions: $data->{sessions}; Segments: $data->{segments}\n";
+		}
+	}
+}
+
 foreach my $product (sort {$a cmp $b} keys %MTStatsPTS) {
 	foreach my $targetLanguage (sort {$a cmp $b} keys %{$MTStatsPTS{$product}}) {
+		if ($targetLanguage eq "__all__") {
+			my $data = $MTStatsPTS{$product}->{$targetLanguage};
+			print encode "utf-8", "Total translation duration for “$product” into “__all__” from “__all__”: ".$durationFormat->format_duration($data->{duration})."; Sessions: $data->{sessions}; Segments: $data->{segments}\n";
+			next;
+		}
 		foreach my $sourceLanguage (sort {$a cmp $b} keys %{$MTStatsPTS{$product}->{$targetLanguage}}) {
 			my $data = $MTStatsPTS{$product}->{$targetLanguage}->{$sourceLanguage};
 			print encode "utf-8", "Total translation duration for “$product” into “$targetLanguage” from “$sourceLanguage”: ".$durationFormat->format_duration($data->{duration})."; Sessions: $data->{sessions}; Segments: $data->{segments}\n";
