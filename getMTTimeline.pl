@@ -4,6 +4,11 @@
 # Created on 03 Oct 2014 by Ventsislav Zhechev
 #
 # ChangeLog
+# v0.3		modified on 09 Oct 2014 by Ventsislav Zhechev
+# Parametrised the log file name and event list file name.
+# Now we can read bzip2-ed files.
+# A list of sessions with metadata is output in the eventFile encoded in UTF-16LE with BOM.
+#
 # v0.2		modified on 07 Oct 2014 by Ventsislav Zhechev
 # Now we also output statistics per source language/target language/product.
 # Also aggregates/prints cumulative statistics per product and per source language/target language.
@@ -23,7 +28,8 @@ use Net::SFTP::Foreign::Constants ':flags';
 use DateTime::Format::Builder;
 use DateTime::Format::Duration;
 
-use IO::Uncompress::Bunzip2;
+use IO::Compress::Bzip2;
+use IO::Uncompress::Bunzip2 qw/bunzip2/;
 
 my %localeMap = (
 	czech												=> "cs",
@@ -64,8 +70,9 @@ my %localeMap = (
 
 $| = 1;
 
-our ($server);
-my $file = "nohup.out";
+our ($server, $file, $eventFile);
+die encode "utf-8", "Usage: $0 -server=… -file=… -eventFile=…\n"
+unless defined $server && defined $file && defined $eventFile;
 my $dir = "/local/cms";
 
 my %toCheck;
@@ -77,6 +84,11 @@ my (%MTStatsSTP, %MTStatsTSP, %MTStatsPTS);
 my %MTVolumeStats;
 my ($startTime, $endTime);
 
+open my $eventList, ">$eventFile"
+or die encode "utf-8", "Cannot write file MTEvents.1.txt!\n";
+print $eventList encode "UTF-16LE", chr(0xFEFF);
+print $eventList encode "UTF-16LE", "Client\tStart Timestamp\tEnd Timestamp\tDuration\tSegments\tSource Language\tTargetLanguage\tProduct\tCommands\tBad Commands\n";
+
 my $dateParser = DateTime::Format::Builder->new();
 $dateParser->parser(
 	regex => qr/^(\d{4})\.(\d{2})\.(\d{2})_(\d{2})\.(\d{2})\.(\d{2})$/,
@@ -84,11 +96,19 @@ $dateParser->parser(
 	extra => { time_zone => "CET" },
 	on_fail => sub { my %args = @_; warn encode "utf-8", "Coudln’t parse date $args{input}!\n"; },
 );
-my $durationFormat = DateTime::Format::Duration->new(pattern => '%kh %Mm %Ss', normalise => 'ISO');
+my $durationFormat = DateTime::Format::Duration->new(pattern => '%1mm %ed,%k:%M:%S', normalise => 'ISO');
+my $durationLogFormat = DateTime::Format::Duration->new(pattern => '%H:%M:%S', normalise => 'ISO');
 
-my $sftp = Net::SFTP::Foreign->new($server, user => 'cmsuser', key_path => '/Users/ventzi/.ssh/id_rsa');
-$sftp->die_on_error("Cannot connect to server $server: $!\n");
-my $log = $sftp->open("$dir/$file", SSH2_FXF_READ) or die "Could not read $dir/$file on server $server!\n";
+my $log;
+my $sftp;
+if ($file !~ /\.bz2$/) {
+	$sftp = Net::SFTP::Foreign->new($server, user => 'cmsuser', key_path => '/Users/ventzi/.ssh/id_rsa');
+	$sftp->die_on_error("Cannot connect to server $server: $!\n");
+	$log = $sftp->open("$dir/$file", SSH2_FXF_READ) or die "Could not read $dir/$file on server $server!\n";
+} else {
+	open $log, "ssh -n cmsuser\@$server 'bzcat $dir/$file' 2>/dev/null |"
+	or die encode "utf-8", "Cannot start ssh to read bzip2 file!\n";
+}
 while (my $line = decode "utf-8", scalar <$log>) {
 	chomp $line;
 	if ($line =~ /^Connection from ([\d.]+:\d{4,5}) (.*)…$/) {
@@ -160,6 +180,11 @@ while (my $line = decode "utf-8", scalar <$log>) {
 		}
 		$userData{$user}->{commands} ||= [];
 		push @{$userData{$user}->{commands}}, $command;
+	} elsif ($line =~ /^?Bad command “(.*)” received from ([\d.]+:\d{4,5})! Aborting…$/) {
+		# Bad user not use good command…
+		my ($command, $user) = ($1, $2);
+		die "Unknown user $user!\n" unless defined $userData{$user}->{ID};
+		++$userData{$user}->{badCommands};
 	} elsif ($line =~ /^Closed connection to ([\d.]+:\d{4,5}) (.*)\.$/) {
 		# Bye bye user!
 		my ($user, $timeStamp) = ($1, $dateParser->parse_datetime($2));
@@ -179,18 +204,22 @@ while (my $line = decode "utf-8", scalar <$log>) {
 			$MTStatsPTS{$userStats->{product}}->{__all__}->{duration}->add_duration($duration);
 		}
 		
+		print $eventList encode "UTF-16LE", "$user\t".$connectionStats{$currentUser}->{start}->ymd('-')." ".$connectionStats{$currentUser}->{start}->hms(':')."\t".$connectionStats{$currentUser}->{end}->ymd('-')." ".$connectionStats{$currentUser}->{end}->hms(':')."\t".$durationLogFormat->format_duration($connectionStats{$currentUser}->{end}->subtract_datetime($connectionStats{$currentUser}->{start}))."\t".(defined $userStats ? join "\t", @{$userStats}{qw/translate sourceLanguage targetLanguage product/} : "\t\t\t")."\t".(defined $userData{$user}->{commands} ? join ", ", @{$userData{$user}->{commands}} : "")."\t".(defined $userData{$user}->{badCommands} ? $userData{$user}->{badCommands} : 0)."\n";
+#		print encode "utf-8", "$user\t".$connectionStats{$currentUser}->{start}->ymd('-')." ".$connectionStats{$currentUser}->{start}->hms(':')."\t".$connectionStats{$currentUser}->{end}->ymd('-')." ".$connectionStats{$currentUser}->{end}->hms(':')."\t".$durationLogFormat->format_duration($connectionStats{$currentUser}->{end}->subtract_datetime($connectionStats{$currentUser}->{start}))."\t".(defined $userStats ? join "\t", @{$userStats}{qw/translate sourceLanguage targetLanguage product/} : "\t\t\t")."\t".(defined $userData{$user}->{commands} ? join ", ", @{$userData{$user}->{commands}} : "")."\t".(defined $userData{$user}->{badCommands} ? $userData{$user}->{badCommands} : 0)."\n";
+		
 		delete($userData{$user});
 	}
 }
 close $log;
-$sftp->disconnect();
+$sftp->disconnect() if $file !~ /\.bz2$/;
+close $eventList;
 
 
 print encode "utf-8", "Start time: $startTime; End time: $endTime\n";
 
 foreach my $sourceLanguage (sort {$a cmp $b} keys %MTStatsSTP) {
 	foreach my $targetLanguage (sort {$a cmp $b} keys %{$MTStatsSTP{$sourceLanguage}}) {
-		foreach my $product (sort {lc $a cmp lc $b} keys %{$MTStatsSTP{$sourceLanguage}->{$targetLanguage}}) {
+		foreach my $product (sort {$a eq "__all__" && $b eq "none" ? -1 : ($a eq "none" && $b eq "__all__" ? 1 : ($a eq "__all__" || $a eq "none" ? -1 : ($b eq "__all__" || $b eq "none" ? 1 : (lc $a cmp lc $b))))} keys %{$MTStatsSTP{$sourceLanguage}->{$targetLanguage}}) {
 			my $data = $MTStatsSTP{$sourceLanguage}->{$targetLanguage}->{$product};
 			if ($product eq "__all__") {
 				print encode "utf-8", "Total translation duration from “$sourceLanguage” into “$targetLanguage” for “__all__”: ".$durationFormat->format_duration($data->{duration})."; Sessions: $data->{sessions}; Segments: $data->{segments}\n";
