@@ -4,6 +4,9 @@
 # Created on 03 Oct 2014 by Ventsislav Zhechev
 #
 # ChangeLog
+# v0.3.1	modified on 10 Oct 2014 by Ventsislav Zhechev
+# The langauge code ja now maps to jp.
+#
 # v0.3		modified on 09 Oct 2014 by Ventsislav Zhechev
 # Parametrised the log file name and event list file name.
 # Now we can read bzip2-ed files.
@@ -43,6 +46,7 @@ my %localeMap = (
 	french											=> "fr",
 	hungarian										=> "hu",
 	italian											=> "it",
+	ja													=> "jp",
 	japanese										=> "jp",
 	korean											=> "ko",
 	dutch_netherlands						=> "nl",
