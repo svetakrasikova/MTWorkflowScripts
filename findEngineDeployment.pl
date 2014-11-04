@@ -4,6 +4,9 @@
 # Created by Ventsislav Zhechev on 18 Dec 2012
 #
 # Version history
+# v0.7		Last modified on 03 Nov 2014 by Ventsislav Zhechev
+# Disabled the code dealing with setting up deployment commands for an XX–EN engine, as that engine is no longer used.
+#
 # v0.6		Last modified on 30 Mar 2014 by Ventsislav Zhechev
 # Added a command-line option to specify the XX–EN engine.
 # Added a command-line option to specify the cap on maximum not-full deployments to collect.
@@ -49,9 +52,12 @@ use List::Util qw/max/;
 
 $| = 1;
 
-our ($serverFile, $engineFile, $largeFirst, $XXENEngine, $maxDeploymentsCap);
-die encode "utf-8", "Usage: $0 -serverFile=… -engineFile=… -XXENEngine=… [-largeFirst] [-maxDeploymentsCap]\n"
-unless defined $serverFile && defined $engineFile && defined $XXENEngine;
+#our ($serverFile, $engineFile, $largeFirst, $XXENEngine, $maxDeploymentsCap);
+#die encode "utf-8", "Usage: $0 -serverFile=… -engineFile=… -XXENEngine=… [-largeFirst] [-maxDeploymentsCap]\n"
+#unless defined $serverFile && defined $engineFile && defined $XXENEngine;
+our ($serverFile, $engineFile, $largeFirst, $maxDeploymentsCap);
+die encode "utf-8", "Usage: $0 -serverFile=… -engineFile=… [-largeFirst] [-maxDeploymentsCap]\n"
+unless defined $serverFile && defined $engineFile;
 
 my $serverOrder = defined $largeFirst ? -1 : 1;
 print encode "utf-8", "Deploying on ".(defined $largeFirst ? "large" : "small")." servers first.\n";
@@ -281,15 +287,15 @@ sub printDeployment {
 	my %serverListByLanguage;
 	foreach my $server (@serverList) {
 		print encode "utf-8", "\t\"$server\" => [";
-		my $hasXX = 0;
+#		my $hasXX = 0;
 		foreach my $engine (sort {$a cmp $b} grep {$deployment{$server}->{$_}} keys %{$deployment{$server}}) {
 			print encode "utf-8", "\"$engine\",";
-			$hasXX ||= $engine =~ /_.*-EN_.$/;
+#			$hasXX ||= $engine =~ /_.*-EN_.$/;
 			my ($source, $target) = map {lc $_} $engine =~ /^.*?_(\w+)-(\w+)_.*?$/;
 			$serverListByLanguage{$source}->{$target} = [] unless defined $serverListByLanguage{$source}->{$target};
 			push @{$serverListByLanguage{$source}->{$target}}, $server;
 		}
-		print encode "utf-8", "\"$XXENEngine\"," if $hasXX;
+#		print encode "utf-8", "\"$XXENEngine\"," if $hasXX;
 		print encode "utf-8", "],\n";
 	}
 	print encode "utf-8", "((\n";
