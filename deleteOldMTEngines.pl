@@ -66,7 +66,7 @@ my @servers = (
 "ussclpdmtlnx012",
 );
 
-my $engines = join " /local/cms/", split / /, "fy15_EN-CS_d fy15_EN-DA_d fy15_EN-DE_d fy15_EN-ES_c fy15_EN-FI_d fy15_EN-FR_c fy15_EN-HU_d fy15_EN-IT_d fy15_EN-JP_c fy15_EN-KO_c fy15_EN-NL_d fy15_EN-NO_d fy15_EN-PL_d fy15_EN-PT_BR_d fy15_EN-PT_PT_d fy15_EN-RU_d fy15_EN-SV_d fy15_EN-VI_c fy15_EN-ZH_HANS_c fy15_EN-ZH_HANT_c";
+my $engines = "/local/cms/".join " /local/cms/", split / /, "fy14* fy15*";
 
 my $tasks = new Thread::Queue;
 
