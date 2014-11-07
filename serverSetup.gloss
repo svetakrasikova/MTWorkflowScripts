@@ -4,6 +4,10 @@
 # Created on 21 Sep 2012 by Ventsislav Zhechev
 #
 # ChangeLog
+# Modified on 07 Nov 2014
+# Added product codes for Nastran, Nastran In-CAD and SimStudio
+#
+#
 # Modified on 07 Aug 2014
 # Added entries to the REVIT_gloss
 #
@@ -195,6 +199,9 @@
 "VAULT"=>"VLT",
 "VAULT_ADDIN_ACAD"=>"VLT",
 "ADKVRD"=>"VRED",
+"NSTRN"=>"SIM360U",
+"NINCAD"=>"SIM360U",
+"SIMSTUDIO"=>"SIM360U",
 
 
 # Mapping MT short names to glossaries
