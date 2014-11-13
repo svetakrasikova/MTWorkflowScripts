@@ -4,6 +4,10 @@
 # Created on 17 Oct 2011 by Ventsislav Zhechev
 #
 # ChangeLog
+# v1.11			Modified on 13 Nov 2014 by Ventsislav Zhechev
+# Now we treat EN-* as a source language as if it were plain EN, whilst sending a special marker to the worker instance indicating the actual source language.
+# This processing only applies when dealing with translation requests and not translating into plain EN.
+#
 # v1.10.14	Modified on 19 Jun 2014 by Ventsislav Zhechev
 # Added an alias for the ussclpdmtlnx* family of servers.
 # We now accept language codes that use a - instead of _ to separate the language code sections.
@@ -635,15 +639,22 @@ while (my $client_socket = $server_sock->accept()) {
 					last if $encodingError;
 				}
 				foreach $trgLang ($trgLang ? ($trgLang) : @languages) {
-					next if $srcLang eq $trgLang || ($srcLang ne "en" && $trgLang ne "en");
+					if ($srcLang eq $trgLang) {
+						print $client_sock encode("utf-8", " Source and target languages have to be different.!\n") if $translate;
+						next;
+					}
+					if (($translate ? $srcLang !~ m"^en" : $srcLang ne "en") && $trgLang ne "en") {
+						print $client_sock encode("utf-8", " Neither the source nor target language is English!\n") if $translate;
+						next;
+					}
 					my $reply = "{sourceLanguage => \"$srcLang\", targetLanguage => \"$trgLang\"";
 					$reply .= ", " if $server || $port;
 					if ($server && $server eq "1") {
-						my @srvs = map {"\"$_\""} @{$servers{$srcLang}->{$trgLang}};
+						my @srvs = map {"\"$_\""} @{$servers{$srcLang =~ /^en_/ && $translate && $trgLang ne "en" ? "en" : $srcLang}->{$trgLang}};
 						$reply .= "server => [@srvs]";
 						$reply .= ", " if $port;
 					} elsif ($server) {
-						my %srvs = map {$_ => 1} @{$servers{$srcLang}->{$trgLang}};
+						my %srvs = map {$_ => 1} @{$servers{$srcLang =~ /^en_/ && $translate && $trgLang ne "en" ? "en" : $srcLang}->{$trgLang}};
 						unless (ref $server) {
 							unless ($srvs{$server}) {
 								print $client_sock encode("utf-8", " No engine for ‘$srcLang => $trgLang’ available on server ‘$server’!\n");
@@ -664,14 +675,14 @@ while (my $client_socket = $server_sock->accept()) {
 						}
 						$reply .= ", " if $port;
 					}
-					$reply .= "port => ".($ports{$srcLang}->{$trgLang} || -1) if $port;
+					$reply .= "port => ".($ports{$srcLang =~ /^en_/ && $translate && $trgLang ne "en" ? "en" : $srcLang}->{$trgLang} || -1) if $port;
 					
 					$reply .= "}\n";
 					
 					unless ($oper || $translate) {
 						print $client_sock encode("utf-8", $reply);
 					} else {
-						my $engine = $engines{$srcLang}->{$trgLang};
+						my $engine = $engines{$srcLang =~ /^en_/ && $translate && $trgLang ne "en" ? "en" : $srcLang}->{$trgLang};
 						if ($engine) {
 							if ($engine eq "n/a") {
 								print $client_sock encode("utf-8", "{engine => \"n/a\", translate => 0}\n") if $translate;
@@ -1033,7 +1044,7 @@ sub translate {
 								$mosesError = 1;
 								last;
 							}
-							print $mosesSocket encode "utf-8", "$segment\n";
+							print $mosesSocket encode "utf-8", "$segment".($config->{sourceLanguage} =~ /^en_/ ? "◊÷$config->{sourceLanguage}" : "")."\n";
 							
 							($mosesSocket) = $select->can_read($mosesReadTimeout);
 							unless ($mosesSocket) {
