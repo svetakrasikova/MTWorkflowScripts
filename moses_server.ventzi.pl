@@ -274,6 +274,8 @@ use Sys::Hostname;
 use IPC::Open2;
 use IPC::Open3;
 use POSIX qw/strftime/;
+use lib '/local/cms/bin';
+use varcon;
 
 delete @ENV{qw(IFS CDPATH ENV BASH_ENV PATH)}; # Make %ENV safer
 $ENV{PATH} = "/usr/bin:/usr/local/bin:/local/cms/bin:/local/cms/moses/mosesdecoder/moses-cmd/src:/local/cms/bin/opennlp/bin";
@@ -294,7 +296,7 @@ $moses ||= "moses".($VENTZI ? "-ventzi" : "");
 #($moses) = $moses =~ /^(moses(?:-ventzi)?)$/;
 my ($srclang, $tgtlang) = map {lc $_} ($engine =~ /(?:^|_)(\p{IsAlpha}+(?:_\p{IsAlpha}+)?)-(\p{IsAlpha}+(?:_\p{IsAlpha}+)?)_/); #extract the language codes from the engine name
 if (defined $hostname) {
-	($hostname) = $hostname =~ /(\p{IsAlpha}+)/;
+	($hostname) = $hostname =~ /([\p{IsAlNum}.]+)/;
 } else {
 	$hostname = &hostname();
 }
@@ -395,6 +397,51 @@ if ($preprocess) {
 	$| = 1;
 }
 
+# spawn translation dictionary for conversion between GB and US English
+
+my $file = '/local/cms/bin/varcon.txt';   # the dictionary file; see also http://wordlist.aspell.net/varcon-readme/
+my $from = 'B';            # from *B*ritish English
+my $to = 'A';              # to *A*merican English
+my $ques = 0;
+my %trans;
+    
+my $s = open IN, $file;
+
+if (!$s) {
+    print STDERR "Unable to open $file\n";
+    exit (1);
+}
+
+sub add (\@$) {
+    return if grep {$_ eq $_[1]} @{$_[0]};
+    push @{$_[0]}, $_[1];
+}
+
+while (<IN>) {
+    next if varcon::filter $_;
+    my %r = varcon::readline($_);
+    foreach my $f ($from eq '-' ? (grep {$_ ne $to} keys %varcon::map) : $from) {
+        foreach my $v (0..3) {
+            foreach (@{$r{$f}[$v]}) {
+                add @{$trans{$_}}, $r{$to}[0][0];
+            }
+        }
+    }
+}
+
+sub translateToken {
+	return $_ unless defined $trans{$_};
+    if (@{$trans{$_}} == 1) {
+        return $trans{$_}[0];
+    } elsif (@{$trans{$_}} > 1 && $ques == 1) {
+        return $trans{$_}[0];
+    } elsif (@{$trans{$_}} > 1 && $ques == 2) {
+        return '?'.join('/', @{$trans{$_}}).'?';
+    } else {
+        return $_;
+    }
+}
+
 
 #local $SIG{PIPE} = sub { $tstamp = strftime("%Y.%m.%d_%H.%M.%S", localtime(time())); die encode "utf-8", $server_sock->sockhost.":".$server_sock->sockport.": Connection dropped / Preprocessor or Moses pipe is broken. Aborting on $tstamp…\n" };
 local $SIG{PIPE} = 'IGNORE';
@@ -456,6 +503,10 @@ while (my $client_sock = $server_sock->accept()) {
 			
 			chomp $src;
 			
+			# check if source language is an English variant other than US
+			my $eng_variant;
+			($src, $eng_variant) = split '◊÷', $src; # ◊÷xx suffix means language variant xx
+			
 			#Shortcircuit for empty input.
 			if ($src =~ /^\s*$/) {
 				print $client_sock "\n";
@@ -494,6 +545,11 @@ while (my $client_sock = $server_sock->accept()) {
 					print $client_sock encode("utf-8", &checkPH($src, "### Non MT-Translatable: too long ###", \%PHMap)."0\n");
 				} else {
 					$wc += $words;
+					
+					# Lexical translation to en_US if source language is en_GB
+					if (defined $eng_variant && $eng_variant eq "en_gb") {
+						$pre_src = join " ", map {&translateToken($_)} split / /, $pre_src;
+					}
 					
 					foreach my $gloss (sort {length $b <=> length $a} keys %gloss) {
 						if ($pre_src =~ />/) {
