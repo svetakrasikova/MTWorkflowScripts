@@ -36,5 +36,9 @@ ssh -n cmsuser@ussclpdmtlnx009 "hostname; free -tm" 2>/dev/null
 ssh -n cmsuser@ussclpdmtlnx010 "hostname; free -tm" 2>/dev/null
 ssh -n cmsuser@ussclpdmtlnx011 "hostname; free -tm" 2>/dev/null
 ssh -n cmsuser@ussclpdmtlnx012 "hostname; free -tm" 2>/dev/null
+ssh -n cmsuser@ussclpdmtlnx013 "hostname; free -tm" 2>/dev/null
+ssh -n cmsuser@ussclpdmtlnx014 "hostname; free -tm" 2>/dev/null
+ssh -n cmsuser@ussclpdmtlnx015 "hostname; free -tm" 2>/dev/null
+ssh -n cmsuser@ussclpdmtlnx016 "hostname; free -tm" 2>/dev/null
 ssh -n cmsuser@neucmslinux		 "hostname; free -tm" 2>/dev/null
 ssh -n cmsuser@ussclsdcmslnx01 "hostname; free -tm" 2>/dev/null

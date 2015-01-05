@@ -36,5 +36,9 @@ ssh -n cmsuser@ussclpdmtlnx009 'hostname; df -m |grep var' 2>/dev/null
 ssh -n cmsuser@ussclpdmtlnx010 'hostname; df -m |grep var' 2>/dev/null
 ssh -n cmsuser@ussclpdmtlnx011 'hostname; df -m |grep var' 2>/dev/null
 ssh -n cmsuser@ussclpdmtlnx012 'hostname; df -m |grep var' 2>/dev/null
+ssh -n cmsuser@ussclpdmtlnx013 'hostname; df -m |grep var' 2>/dev/null
+ssh -n cmsuser@ussclpdmtlnx014 'hostname; df -m |grep var' 2>/dev/null
+ssh -n cmsuser@ussclpdmtlnx015 'hostname; df -m |grep var' 2>/dev/null
+ssh -n cmsuser@ussclpdmtlnx016 'hostname; df -m |grep var' 2>/dev/null
 ssh -n cmsuser@neucmslinux		 'hostname; df -m |grep cms' 2>/dev/null
 ssh -n cmsuser@ussclsdcmslnx01 'hostname; df -m |grep var' 2>/dev/null
