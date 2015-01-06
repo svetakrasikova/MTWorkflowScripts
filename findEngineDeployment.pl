@@ -1,9 +1,12 @@
 #!/usr/bin/perl -ws
 #
-# ©2012–2014 Autodesk Development Sàrl
+# ©2012–2015 Autodesk Development Sàrl
 # Created by Ventsislav Zhechev on 18 Dec 2012
 #
 # Version history
+# v0.7.1	Last modified on 06 Jan 2015 by Ventsislav Zhechev
+# Fixed a bug that came up when a full deployment could be completed while leaving some servers empty.
+#
 # v0.7		Last modified on 03 Nov 2014 by Ventsislav Zhechev
 # Disabled the code dealing with setting up deployment commands for an XX–EN engine, as that engine is no longer used.
 #
@@ -52,9 +55,6 @@ use List::Util qw/max/;
 
 $| = 1;
 
-#our ($serverFile, $engineFile, $largeFirst, $XXENEngine, $maxDeploymentsCap);
-#die encode "utf-8", "Usage: $0 -serverFile=… -engineFile=… -XXENEngine=… [-largeFirst] [-maxDeploymentsCap]\n"
-#unless defined $serverFile && defined $engineFile && defined $XXENEngine;
 our ($serverFile, $engineFile, $largeFirst, $maxDeploymentsCap);
 die encode "utf-8", "Usage: $0 -serverFile=… -engineFile=… [-largeFirst] [-maxDeploymentsCap]\n"
 unless defined $serverFile && defined $engineFile;
@@ -161,6 +161,7 @@ sub deployServer {
 	#Consider in order all best engine distributions for the server
 	foreach my $deployment (@{$deployedEngineIDs{$server}}) {
 		#As we haven’t stored the actual deployment lattice, we have to make sure we don’t produce illegal deployments
+		#(that is, we might not have the engines we need to fulfill this deployment attempt)
 		next if @$deployment ~~ sub { $testEngines{$_[0]}->[1] <= 0 };
 		#Setup the environment to indicate that we are investigating a particular deployment
 		foreach my $engine (@$deployment) {
@@ -171,8 +172,8 @@ sub deployServer {
 		}
 		$deployment{remainingServerMemory} += $testServers{$server};
 		
-		#Check if there are servers left
-		if (@serverList) {
+		#Check if there are servers and engines left
+		if (@serverList && grep {$testEngines{$_}->[1]} @engineList) {
 			#Continue deployment on the next server if it could produce a better result
 			&deployServer() unless $deployment{remainingServerMemory} > $leastMemoryRemaining;
 		} else {
@@ -222,8 +223,10 @@ sub addEngine {
 	my $availableMemory = $testServers{$server};
 
 	#Go through the available engines
+	my $savedEngineCount = 0;
 	foreach my $engineID (($lastEngineID+1)..$#engineList) {
 		my $engine = $engineList[$engineID];
+		$savedEngineCount = $testEngines{$engine}->[1];
 		#Engines are sorted by increasing memory, so no further engine could fit and we can cut the branch
 		last if $testEngines{$engine}->[0] > $testServers{$server};
 		next unless $testEngines{$engine}->[1];
@@ -287,15 +290,12 @@ sub printDeployment {
 	my %serverListByLanguage;
 	foreach my $server (@serverList) {
 		print encode "utf-8", "\t\"$server\" => [";
-#		my $hasXX = 0;
 		foreach my $engine (sort {$a cmp $b} grep {$deployment{$server}->{$_}} keys %{$deployment{$server}}) {
 			print encode "utf-8", "\"$engine\",";
-#			$hasXX ||= $engine =~ /_.*-EN_.$/;
 			my ($source, $target) = map {lc $_} $engine =~ /^.*?_(\w+)-(\w+)_.*?$/;
 			$serverListByLanguage{$source}->{$target} = [] unless defined $serverListByLanguage{$source}->{$target};
 			push @{$serverListByLanguage{$source}->{$target}}, $server;
 		}
-#		print encode "utf-8", "\"$XXENEngine\"," if $hasXX;
 		print encode "utf-8", "],\n";
 	}
 	print encode "utf-8", "((\n";
