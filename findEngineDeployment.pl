@@ -223,10 +223,8 @@ sub addEngine {
 	my $availableMemory = $testServers{$server};
 
 	#Go through the available engines
-	my $savedEngineCount = 0;
 	foreach my $engineID (($lastEngineID+1)..$#engineList) {
 		my $engine = $engineList[$engineID];
-		$savedEngineCount = $testEngines{$engine}->[1];
 		#Engines are sorted by increasing memory, so no further engine could fit and we can cut the branch
 		last if $testEngines{$engine}->[0] > $testServers{$server};
 		next unless $testEngines{$engine}->[1];
