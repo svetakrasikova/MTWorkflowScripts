@@ -1,9 +1,12 @@
 #!/usr/local/bin/perl -wTs
 #
-# ©2011–2014 Autodesk Development Sàrl
+# ©2011–2015 Autodesk Development Sàrl
 # Created on 17 Oct 2011 by Ventsislav Zhechev
 #
 # ChangeLog
+# v1.11.1		Modified on 09 Jan 2015 by Ventsislav Zhechev
+# Minor updates to instruction sequence.
+#
 # v1.11			Modified on 13 Nov 2014 by Ventsislav Zhechev
 # Now we treat EN-* as a source language as if it were plain EN, whilst sending a special marker to the worker instance indicating the actual source language.
 # This processing only applies when dealing with translation requests and not translating into plain EN.
@@ -962,8 +965,6 @@ sub translate {
 	}
 	my $liveServers :shared = shared_clone \%temp;
 	
-	print $client_sock "{engine => \"$engine\", translate => ".(scalar @$input)."}\n";
-	
 	# Calculate the optimum job size based on the number of available servers and the number of available segments
 	my $jobSize = ceil(@$input / (keys %$liveServers));
 	$jobSize = 25 if $jobSize > 25;
@@ -1141,6 +1142,8 @@ sub translate {
 	print STDERR encode("utf-8", "$ID: "."Enqueueing work…\n") if $DEBUG;
 	$jobQueue->enqueue({$_ => $jobs->{$_}}) foreach sort {$a <=> $b} keys %$jobs;
 	
+	print $client_sock "{engine => \"$engine\", translate => ".(scalar @$input)."}\n";
+	
 	# Execution loop—in case some servers that we thought were available fail to complete their jobs in time.
 	while ($jobQueue->pending()) {
 		print STDERR encode("utf-8", "$ID: "."Creating MT threads (".$client_sock->peerhost().":".$client_sock->peerport().")…\n") if $DEBUG;
@@ -1166,15 +1169,7 @@ sub translate {
 		}
 	
 	}
-		# We should not have leftover jobs.
-#		print STDERR encode("utf-8", "$ID: "."Checking for leftover jobs…\n") if $DEBUG;
-#		foreach my $job (($lastDoneJob + 1)..((keys %$output) - 1)) {
-#			unless (defined $output->{$job} && $output->{$job}->[1]) {
-#				print STDERR encode("utf-8", "$ID: "."--> Could not print job $job…\n") if $DEBUG;
-#				print $client_sock encode("utf-8", "$ID: "." Could not process MT job! MT server error. Please contact ventsislav.zhechev\@autodesk.com and try again later! \n");
-#				last;
-#			}
-#		}
+	# We should not have leftover jobs at this point.
 }
 
 
