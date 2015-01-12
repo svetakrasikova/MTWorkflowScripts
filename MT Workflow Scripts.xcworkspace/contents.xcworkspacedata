@@ -168,6 +168,12 @@
       location = "group:SMT training commands and auxiliaries.txt">
    </FileRef>
    <FileRef
+      location = "group:fetchSegmentsFromWorldServerTMs.pl">
+   </FileRef>
+   <FileRef
+      location = "group:fetchSegmentsFromWorldServerTMs.sh">
+   </FileRef>
+   <FileRef
       location = "group:getMTTimeline.pl">
    </FileRef>
 </Workspace>
