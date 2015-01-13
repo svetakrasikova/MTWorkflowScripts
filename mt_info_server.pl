@@ -4,6 +4,9 @@
 # Created on 17 Oct 2011 by Ventsislav Zhechev
 #
 # ChangeLog
+# v1.11.2		Modified on 13 Jan 2015 by Ventsislav Zhechev
+# Distributed glossary matching to be performed per sub-task, to minimise lead time for the client in case of very large jobs.
+#
 # v1.11.1		Modified on 09 Jan 2015 by Ventsislav Zhechev
 # Minor updates to instruction sequence.
 #
@@ -953,7 +956,9 @@ sub translate {
 	# Check for matching URLs
 	&matchURLs($config->{targetLanguage}, $input);
 	# Check for matching glossary terms
-	&matchGlossary($config->{targetLanguage}, $product, $input) if $product;
+	my $onlineTerms :shared = shared_clone {};
+	$onlineTerms = shared_clone &getOnlineTerms($config->{targetLanguage}, $product) if $product;
+#	&matchGlossary($config->{targetLanguage}, $product, $input) if $product;
 	# This functionality is currently deprecated.
 	# Check for UIRefs that can be pretranslated
 #	&translateUIRefs($config->{targetLanguage}, $product, $input) if $product;
@@ -1008,9 +1013,13 @@ sub translate {
 			($job, $dataRef) = %$job;
 			print STDERR encode("utf-8", "$ID: "."Processing job $job on server $host, engine $engine (".$client_sock->peerhost().":".$client_sock->peerport().")…\n") if $DEBUG;
 			
+			my $firstTry = 1;
 			{ lock $output;
+				$firstTry = !exists $output->{$job};
 				$output->{$job} = shared_clone [[], 0];
 			}
+			#Only process glossary matching, if it’s the first time we are tackling this job.
+			&matchGlossary($config->{targetLanguage}, $product, $dataRef, $onlineTerms) if $firstTry && $product;
 
 			my $mosesError = my $errorCounter = 0;
 			for (;;) {
@@ -1172,17 +1181,16 @@ sub translate {
 	# We should not have leftover jobs at this point.
 }
 
-
-sub matchGlossary {
-	my ($targetLanguage, $product, $data) = @_;
+sub getOnlineTerms {
+	my ($targetLanguage, $product) = @_;
 	
 	$product = $products{$product} if defined $products{$product};
 	$product = $products{$product} if defined $products{$product};
 	#	print STDERR encode "utf-8", "Matching glossary for product $product and language $targetLanguage…\n";
-
+	
 	my $www = LWP::UserAgent->new;
 	$www->agent("MT Info Service");
-
+	
 	my $onlineTerms = {};
 	my ($glossary) = $product =~ /^(.*)_gloss/;
 	if ($glossary) {
@@ -1194,6 +1202,16 @@ sub matchGlossary {
 			$onlineTerms = eval $content;
 		}
 	}
+	
+	return $onlineTerms;
+}
+
+sub matchGlossary {
+	my ($targetLanguage, $product, $data, $onlineTerms) = @_;
+	
+	$product = $products{$product} if defined $products{$product};
+	$product = $products{$product} if defined $products{$product};
+	#	print STDERR encode "utf-8", "Matching glossary for product $product and language $targetLanguage…\n";
 	
 	return unless (defined $glossary{$product} && defined $glossary{$product}->{languages}->{$targetLanguage}) || %$onlineTerms;
 	
