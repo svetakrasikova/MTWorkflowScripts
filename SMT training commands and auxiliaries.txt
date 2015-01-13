@@ -13,7 +13,6 @@
 ### 
 # (1) Get a list of all WorldServer TMs, including meta data, and store them in 'TMselection.txt'
 sh /OptiBay/ADSK_Software/fetchSegmentsFromWorldServerTMs.sh -user=XXX -password=XXX > TMselection.txt
-# Note: The script will complain about 'fetchSegmentsFromWorldServerTMs.sh: line 5: tantclient: command not found' -> this is fine
 # (2) Edit TMselection.txt: Prefix lines with # for TMs to be excluded
 # (3) Fetch all segments from the selected WorldServer TMs and aggregate them into one bzipped file per language in the 'TMs.20xx.xx.xx' folder
 mkdir TMs.20xx.xx.xx
