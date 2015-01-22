@@ -1,9 +1,14 @@
 #!/usr/bin/perl -ws
 #
-# ©2013–2014 Autodesk Development Sàrl
+# ©2013–2015 Autodesk Development Sàrl
 # Created on 14 Jan 2013 by Ventsislav Zhechev
 #
 # ChangeLog
+#
+# v0.3.1	Modified on 14 Jan 2015 by Samuel Läubli
+# Included software strings for Turkish.
+# Updated the list of product mappings.
+#
 # v0.3		Modified on 12 Sep 2014 by Ventsislav Zhechev
 # Disabled the aggregate output of ENU segments.
 #
@@ -141,7 +146,7 @@ my %dataSets = (
 	"SLK"=>"tempTMs/TM_SLK_ALL.bz2",
 	"SWE"=>"tempTMs/TM_SWE_ALL.bz2",
 	"THA"=>"tempTMs/TM_THA_ALL.bz2",
-	"TUR"=>"tempTMs/TM_TUR_ALL.bz2",
+	"TUR"=>"tempTMs/TM_TUR_ALL.bz2::sw_corpus/corpus.sw.tur.bz2",
 	"VIT"=>"tempTMs/TM_VIT_ALL.bz2",
 	"CHS"=>"tempTMs/TM_CHS_ALL.bz2::sw_corpus/corpus.sw.chs.bz2",
 	"CHT"=>"tempTMs/TM_CHT_ALL.bz2::sw_corpus/corpus.sw.cht.bz2",
@@ -223,6 +228,7 @@ my %products = (
 "EDM_doc" => "EDM",
 "Educational_Suite_doc" => "DES_ACA",
 "emea_channel_news_doc" => "MARKETING",
+"Ember_doc" => "SPARK",
 "EntertainmentCreationSuites_doc" => "ECS",
 "entities_doc" => "N/A",
 "ES_InstallGuide_doc" => "PTFM",
@@ -230,6 +236,7 @@ my %products = (
 "Factory_Design_Suite_doc" => "FDS",
 "FDS"=>"FDS",
 "Fusion_doc" => "INV",
+"GCSO_doc" => "MARKETING",
 "Games_doc" => "GAMES",
 "homestyler_doc" => "HSTYLR",
 "HSTYLR"=>"HSTYLR",
@@ -242,6 +249,7 @@ my %products = (
 "INV"=>"INV",
 "Inventor_doc" => "INV",
 "Inventor_HSM_doc" => "INV",
+"Inventor_ETO_doc" => "INVETO",
 "Inventor_main_doc" => "INV",
 "Inventor_Publisher_doc" => "INVPUB",
 "Inventor_Publisher_main_doc" => "INVPUB",
@@ -289,6 +297,7 @@ my %products = (
 "PLTDS"=>"PLTDS",
 "PNID" => "PLNT3D",
 "Product_Design_Suite_doc" => "PDS",
+"Pixlr_doc" => "TORCH",
 "QTO_FY12_doc" => "AQTO",
 "QuantityTakeoff_doc" => "AQTO",
 "raster_doc" => "ARDES",
@@ -304,6 +313,7 @@ my %products = (
 "RVT"=>"REVIT",
 "SCFD"=>"ALGSIM",
 "SCL_doc" => "SCL",
+"SFDC_Articles_doc" => "MARKETING",
 "SFTIM"=>"SFTIM",
 "Shared_doc" => "PTFM",
 "Showcase_doc" => "SHOWCASE",
