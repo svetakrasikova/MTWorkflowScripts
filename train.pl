@@ -3,11 +3,14 @@
 # train.pl
 # Versatile script for training Autodesk MT systems based on Moses
 #
-# ©2011–2014 Autodesk Development Sàrl
+# ©2011–2015 Autodesk Development Sàrl
 # Originally a shell script by François Masselot
 # Last modified by Ventsislav Zhechev
 #
 # ChangeLog
+# v3.6.8		Modified by Ventsislav Zhechev on 22 Jan 2015
+# Fixed a bug where a trailing / in the supplied engine name would result in the engine archive being created in the wrong place.
+#
 # v3.6.7		Modified by Ventsislav Zhechev on 17 Sep 2014
 # It is no longer needed to copy recaser moses.ini file for XX-EN trainings.
 #
@@ -133,8 +136,8 @@
 # Fixed a bug with the handling of the $seg_script parameter.
 #
 #####################
-my $version = "v3.6.4";
-my $last_modified = "09 Apr 2014";
+my $version = "v3.6.8";
+my $last_modified = "22 Jan 2015";
 
 use strict;
 #use threads;
@@ -170,6 +173,8 @@ binmode STDIN, ":encoding(utf-8)";
 binmode STDOUT, ":encoding(utf-8)";
 
 if ($engine) {
+	#Strip trailing / from engine name if present
+	$engine =~ s/\/$//;
 	my ($src, $trg) = $engine =~ /^fy\d+_([\w_]+)-([\w_]+)_\w(?:\/?)$/;
 	if ($source && $target && ($source ne $src || $target ne $trg)) {
 		die "Source and/or target language does not correspond to engine name!!! Aborting…\n";
@@ -314,7 +319,6 @@ sub tokeniser {
 		close $CORPUS_IN;		
 		
 		close PREPROCESS_IN;
-		close PREPROCESS_OUT;
 
 		waitpid($preprocessThread, 0);
 		waitpid($preprocess_pid, 0);
