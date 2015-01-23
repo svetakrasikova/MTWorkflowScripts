@@ -24,3 +24,7 @@ TerminologyDatabase*
 Solr/
 NeXLT/
 SW_JSONs/
+
+OPENNLP/
+segmentation/
+moses-trunk/
