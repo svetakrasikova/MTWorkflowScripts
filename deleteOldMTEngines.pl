@@ -84,7 +84,7 @@ my $delete = sub {
 			last;
 		}
 		#Get the list of engines deployed on this server
-		my $engines = join " ", grep {!defined $servers{$server}->{$_}} split /\n/, `ssh -qn cmsuser\@$server 'ls /local/cms/ |grep fy'`;
+		my $engines = join " ", map {"/local/cms/$_"} grep {!defined $servers{$server}->{$_}} split /\n/, `ssh -qn cmsuser\@$server 'ls /local/cms/ |grep fy'`;
 		if ($engines) {
 			if (defined $testDrive) {
 				print STDOUT threads->tid().": ", join " ", "ssh", "-qn", "cmsuser\@$server", "'rm -rvf $engines'", "\n";
