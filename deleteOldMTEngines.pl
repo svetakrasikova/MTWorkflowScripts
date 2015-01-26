@@ -83,12 +83,17 @@ my $delete = sub {
 			print STDOUT threads->tid().": Finished work!\n";
 			last;
 		}
-		my $engines = join " ", grep {!defined $servers{$server}->{$_}} split /\n/, `ssh -n cmsuser\@$server 'ls /local/cms/ |grep fy' 2>/dev/null`;
-		if (defined $testDrive) {
-			print STDOUT threads->tid().": ", join " ", "ssh", "-n", "cmsuser\@$server", "'rm -rvf $engines'", "\n" if $engines;
-		} elsif ($engines) {
-			print STDOUT threads->tid().": ".($tasks->pending()-$threads)." servers left. Deleting using command: ", join " ", "ssh", "-n", "cmsuser\@$server", "'rm -rvf $engines'", "\n";
-			system "ssh", "-n", "cmsuser\@$server", "rm -rvf $engines";
+		#Get the list of engines deployed on this server
+		my $engines = join " ", grep {!defined $servers{$server}->{$_}} split /\n/, `ssh -qn cmsuser\@$server 'ls /local/cms/ |grep fy'`;
+		if ($engines) {
+			if (defined $testDrive) {
+				print STDOUT threads->tid().": ", join " ", "ssh", "-qn", "cmsuser\@$server", "'rm -rvf $engines'", "\n";
+			} else {
+				print STDOUT threads->tid().": ".($tasks->pending()-$threads)." servers left. Deleting using command: ", join " ", "ssh", "-qn", "cmsuser\@$server", "'rm -rvf $engines'", "\n";
+				system "ssh", "-qn", "cmsuser\@$server", "rm -rvf $engines";
+			}
+		} else {
+			print STDOUT "Nothing to delete on $server!\n";
 		}
 	}
 };
