@@ -1,12 +1,14 @@
 ####################
 #
-# ©2012–2014 Autodesk Development Sàrl
+# ©2012–2015 Autodesk Development Sàrl
 # Created on 21 Sep 2012 by Ventsislav Zhechev
 #
 # ChangeLog
+# Modified on 26 Jan 2015
+# Added product codes for Alias Speedform and Inventor HSM
+#
 # Modified on 07 Nov 2014
 # Added product codes for Nastran, Nastran In-CAD and SimStudio
-#
 #
 # Modified on 07 Aug 2014
 # Added entries to the REVIT_gloss
@@ -227,6 +229,7 @@
 "AIRMAX"=>"PTFM_gloss",
 "AKN"=>"MARKETING_gloss",
 "ALSK"=>"ALSK_gloss",
+"ALSSF"=>"ALIAS_gloss",
 "AMECH_PP"=>"ACM_gloss",
 "APPSTORE"=>"PTFM_gloss",
 "AQTO"=>"AQTO_gloss",
@@ -276,6 +279,7 @@
 "INV"=>"INV_gloss",
 "INVETO"=>"INV_gloss",
 "INVFUS"=>"INV_gloss",
+"INVHSM"=>"INV_gloss",
 "INVLTS"=>"INV_gloss",
 "INVPUB"=>"INVPUB_gloss",
 "KYN"=>"KYN_gloss",
