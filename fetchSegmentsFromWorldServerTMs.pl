@@ -221,7 +221,7 @@ sub fetchSegments {
 	my( $tm_name, $lang_pair_id, $product_name, $db_handle, $file_handle ) = @_;
 	die("Error: Not enough parameters specified for fetchSegments(). Aborting")
 		unless defined $tm_name && defined $lang_pair_id && defined $db_handle && defined $file_handle;
-	my $query = "SELECT SOURCEVC, TARGETVC FROM $tm_name WHERE LANGUAGEPAIRID = $lang_pair_id";
+	my $query = "SELECT SOURCEVC, TARGETVC FROM $tm_name WHERE LANGUAGEPAIRID = $lang_pair_id and ATTR1377 = 'false'";
 	my $resultset = executeQuery($db_handle, $query);
 	while( my @row = $resultset->fetchrow_array ) {
 		my $segment_src = $row[0];
