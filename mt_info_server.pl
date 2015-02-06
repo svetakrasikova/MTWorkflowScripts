@@ -4,6 +4,9 @@
 # Created on 17 Oct 2011 by Ventsislav Zhechev
 #
 # ChangeLog
+# v1.11.3		Modified on 06 Feb 2015 by Ventsislav Zhechev
+# Fixed a bug where product-specific terminology would be applied to WorldServer placeholder content.
+#
 # v1.11.2		Modified on 13 Jan 2015 by Ventsislav Zhechev
 # Distributed glossary matching to be performed per sub-task, to minimise lead time for the client in case of very large jobs.
 #
@@ -1219,7 +1222,9 @@ sub matchGlossary {
 		next unless defined $term->{$targetLanguage};
 		#		print STDERR encode "utf-8", "Trying out term “".$term->{term}."”…\n";
 		for (my $id = 0; $id < @$data; ++$id) {
-			my $tempData = lc $data->[$id];
+			#Get a lowercased copy of the segment, excluding any potential WorldServer placeholder content
+			#By splitting into two parts, we get the segment content alone in the first and the WorldServer placeholder content (if any) in the second
+			my ($tempData) = map {lc $_} split m'#!@%!#', $data->[$id], 2;
 			if ($tempData =~ /(?:^|\P{IsAlNum})(?<!\p{IsAlNum}[\-_])\Q$term->{term}\E(?:e?s)?(?![\-_]\p{IsAlNum})(?:\P{IsAlNum}|$)/) {
 				#				print STDERR encode "utf-8", "…term found in line “".$data->[$id]."”\n";
 				$data->[$id] =~ s/$/$term->{term}$term->{$targetLanguage}/;
@@ -1229,7 +1234,8 @@ sub matchGlossary {
 	foreach my $term (keys %$onlineTerms) {
 		#		print STDERR encode "utf-8", "Trying out term “".$term."”…\n";
 		for (my $id = 0; $id < @$data; ++$id) {
-			my $tempData = lc $data->[$id];
+			#Get a lowercased copy of the segment, excluding any potential WorldServer placeholder content
+			my ($tempData) = map {lc $_} split m'#!@%!#', $data->[$id], 2;
 			if ($tempData =~ /(?:^|\P{IsAlNum})(?<!\p{IsAlNum}[\-_])\Q$term\E(?:e?s)?(?![\-_]\p{IsAlNum})(?:\P{IsAlNum}|$)/) {
 				#				print STDERR encode "utf-8", "…term found in line “".$data->[$id]."”\n";
 				$data->[$id] =~ s/$/$term$onlineTerms->{$term}/;
