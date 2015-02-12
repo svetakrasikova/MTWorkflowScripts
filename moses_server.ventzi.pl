@@ -554,15 +554,15 @@ while (my $client_sock = $server_sock->accept()) {
 					}
 					
 					foreach my $gloss (sort {length $b <=> length $a} keys %gloss) {
-						print LOG encode "utf-8", "Substituting for ‘$gloss’ in string ‘$pre_src’\n";
+#						print LOG encode "utf-8", "Substituting for ‘$gloss’ in string ‘$pre_src’\n";
 						if ($pre_src =~ />/) {
-							$pre_src =~ s/(^|[^\"]>|[^\p{IsAlNum}\">])(?<!\p{IsAlNum}[\-_])\Q$gloss\E(?:e?s)?(?![\-_]\p{IsAlNum})(?=[^\p{IsAlNum}\"<](?![^\"]+\">)|[^<]*<[^\/]|$)/$1<gloss translation="$gloss{$gloss}">$gloss<\/gloss>/g;
+							$pre_src =~ s/(^|[^\"]>|[^\p{IsAlNum}\">])(?<!\p{IsAlNum}[\-_])\Q$gloss\E(?:e?s)?(?![\-_]\p{IsAlNum})(?=[^\p{IsAlNum}\"<](?![^\"]*\">)|[^<]*<[^\/]|$)/$1<gloss translation="$gloss{$gloss}">$gloss<\/gloss>/g;
 						} else {
 							$pre_src =~ s/(^|[^\p{IsAlNum}\"])(?<!\p{IsAlNum}[\-_])\Q$gloss\E(?:e?s)?(?![\-_]\p{IsAlNum})(?=[^\p{IsAlNum}\"]|$)/$1<gloss translation="$gloss{$gloss}">$gloss<\/gloss>/g;
 						}
 					}
 					
-					print LOG encode "utf-8", "Finished gloss substitutions for string ‘$pre_src’\n";
+#					print LOG encode "utf-8", "Finished gloss substitutions for string ‘$pre_src’\n";
 					$pre_src =~ s/(\d+)/<uiref translation=$UIRefs{$1}<\/uiref>/g;
 					
 					print MOSES_IN encode "utf-8", "$pre_src\n";
