@@ -72,10 +72,10 @@ my %servers = (
 "mtprd06" => ["fy16_EN-FR_b",],
 "mtprd07" => ["fy16_EN-FR_b",],
 "mtprd08" => ["fy16_EN-FR_b",],
-"mtprd09" => ["fy16_EN-KO_b",],
-"mtprd10" => ["fy16_EN-ZH_HANT_b",],
-"mtprd11" => ["fy16_EN-RU_b",],
-"mtprd12" => ["fy16_EN-RU_b",],
+"mtprd09" => ["fy16_EN-KO_b","fy16_EN-EN_GB_b",],
+"mtprd10" => ["fy16_EN-ZH_HANT_b","fy16_EN-EN_GB_b",],
+"mtprd11" => ["fy16_EN-RU_b","fy16_EN-EN_GB_b",],
+"mtprd12" => ["fy16_EN-RU_b","fy16_EN-EN_GB_b",],
 );
 
 #Reformat to make searching faster.
