@@ -115,7 +115,13 @@ if ($file !~ /\.bz2$/) {
 	open $log, "ssh -qn cmsuser\@$server 'bzcat $dir/$file' 2>/dev/null |"
 	or die encode "utf-8", "Cannot start ssh to read bzip2 file!\n";
 }
+my $counter = 0;
 while (my $line = decode "utf-8", scalar <$log>) {
+	++$counter;
+	unless ($counter % 10000) {
+		print STDERR ".";
+		print STDERR "[$counter]" unless $counter % 500000;
+	}
 	chomp $line;
 	if ($line =~ /^Connection from ([\d.]+:\d{4,5}) (.*)…$/) {
 		# First encounter of user
