@@ -10,7 +10,6 @@ use threads;
 use Thread::Queue;
 
 use feature qw(say); # say 'something' == print 'something' . "\n";
-use Data::Dumper;    # remove in production
 
 use DBI;
 
