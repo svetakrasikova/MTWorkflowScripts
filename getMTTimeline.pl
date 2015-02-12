@@ -4,6 +4,8 @@
 # Created on 03 Oct 2014 by Ventsislav Zhechev
 #
 # ChangeLog
+# !!! Subsequent changes tracked on GitHub only !!!
+#
 # v0.3.1	modified on 10 Oct 2014 by Ventsislav Zhechev
 # The langauge code ja now maps to jp.
 #
@@ -110,7 +112,7 @@ if ($file !~ /\.bz2$/) {
 	$sftp->die_on_error("Cannot connect to server $server: $!\n");
 	$log = $sftp->open("$dir/$file", SSH2_FXF_READ) or die "Could not read $dir/$file on server $server!\n";
 } else {
-	open $log, "ssh -n cmsuser\@$server 'bzcat $dir/$file' 2>/dev/null |"
+	open $log, "ssh -qn cmsuser\@$server 'bzcat $dir/$file' 2>/dev/null |"
 	or die encode "utf-8", "Cannot start ssh to read bzip2 file!\n";
 }
 while (my $line = decode "utf-8", scalar <$log>) {
