@@ -2,7 +2,7 @@
 #
 # file: moses_server.ventzi.pl
 #
-# ©2009–2014 Autodesk Development Sàrl
+# ©2009–2015 Autodesk Development Sàrl
 #
 # Originally by Mirko Plitt
 # Created on 08 Jun 2009
@@ -15,6 +15,8 @@
 #
 #
 # ChangeLog
+# !!! Subsequent changes tracked on GitHub only !!!
+#
 # v3.8.10		modified on 14 Aug 2014 by Ventsislav Zhechev
 # Added a JP-specific check to fix a specific placeholder disorder.
 #
@@ -553,7 +555,7 @@ while (my $client_sock = $server_sock->accept()) {
 					
 					foreach my $gloss (sort {length $b <=> length $a} keys %gloss) {
 						if ($pre_src =~ />/) {
-							$pre_src =~ s/(^|[^\"]>|[^\p{IsAlNum}\">])(?<!\p{IsAlNum}[\-_])\Q$gloss\E(?:e?s)?(?![\-_]\p{IsAlNum})(?=[^\p{IsAlNum}\"<]|<[^\/]|$)/$1<gloss translation="$gloss{$gloss}">$gloss<\/gloss>/g;
+							$pre_src =~ s/(^|[^\"]>|[^\p{IsAlNum}\">])(?<!\p{IsAlNum}[\-_])\Q$gloss\E(?:e?s)?(?![\-_]\p{IsAlNum})(?=[^\p{IsAlNum}\"<](?![^\"]+\">))|[^<]*<[^\/]|$)/$1<gloss translation="$gloss{$gloss}">$gloss<\/gloss>/g;
 						} else {
 							$pre_src =~ s/(^|[^\p{IsAlNum}\"])(?<!\p{IsAlNum}[\-_])\Q$gloss\E(?:e?s)?(?![\-_]\p{IsAlNum})(?=[^\p{IsAlNum}\"]|$)/$1<gloss translation="$gloss{$gloss}">$gloss<\/gloss>/g;
 						}
