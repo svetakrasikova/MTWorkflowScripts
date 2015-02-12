@@ -1,7 +1,9 @@
 .DS_Store
+*.xcuserstate
 
 *.py[cod]
 deployment.*
+moses_dispatcher*
 
 Oracle/
 giza-pp*
@@ -9,11 +11,20 @@ fast_mt_*
 gtm-*
 ibleu-*
 zeromq-*
+tercom-*
+costa-mt-*
+eval/
 
 temp/
 *old*
+test*
 
 Terminology/
+TerminologyDatabase*
 Solr/
 NeXLT/
 SW_JSONs/
+
+OPENNLP/
+segmentation/
+moses-trunk/

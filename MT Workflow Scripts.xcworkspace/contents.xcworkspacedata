@@ -35,15 +35,18 @@
          location = "group:Terminology/config.py">
       </FileRef>
       <FileRef
-         location = "group:runTerminologyService.py">
+         location = "group:Terminology/forms.py">
       </FileRef>
       <FileRef
          location = "group:ImportNGramsToDatabase.py">
       </FileRef>
+      <FileRef
+         location = "group:Terminology/Terminology_staging.fcgi">
+      </FileRef>
+      <FileRef
+         location = "group:Terminology/Terminology.fcgi">
+      </FileRef>
    </Group>
-   <FileRef
-      location = "group:Revised MT Engine RAM Usage and Distribution.numbers">
-   </FileRef>
    <FileRef
       location = "group:SQL/Data Extraction for MT.txt">
    </FileRef>
@@ -156,6 +159,21 @@
       location = "group:archiveNohupFiles.pl">
    </FileRef>
    <FileRef
+      location = "group:extractAbbreviations.pl">
+   </FileRef>
+   <FileRef
+      location = "group:extractDataFromXLIFF.pl">
+   </FileRef>
+   <FileRef
       location = "group:SMT training commands and auxiliaries.txt">
+   </FileRef>
+   <FileRef
+      location = "group:fetchSegmentsFromWorldServerTMs.pl">
+   </FileRef>
+   <FileRef
+      location = "group:fetchSegmentsFromWorldServerTMs.sh">
+   </FileRef>
+   <FileRef
+      location = "group:getMTTimeline.pl">
    </FileRef>
 </Workspace>

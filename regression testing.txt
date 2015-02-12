@@ -1,0 +1,339 @@
+perl -MEncode -MIO::Uncompress::Bunzip2 -MIO::Compress::Bzip2 -e 'use utf8;$sf=new IO::Uncompress::Bunzip2"chinese_t_mem_EN-US.txt.bz2";$rf=new IO::Uncompress::Bunzip2"chinese_t_mem_ZH-TW.txt.bz2";$tf=new IO::Uncompress::Bunzip2"chinese_t_mem_ZH-TW.trans.bz2";$of=new IO::Compress::Bzip2"chinese_t_mem.test.bz2";while($s=decode"utf-8",scalar<$sf>){$r=decode"utf-8",scalar<$rf>;$t=decode"utf-8",scalar<$tf>;chomp$s;chomp$r;chomp$t;($t,$m)=split//,$t;print$of encode"utf-8","$s$t$rMoldflow__2013__UIMT0$m◊÷\n"}close$sf;close$rf;close$tf;close$of;'&
+
+perl -MEncode -MIO::Uncompress::Bunzip2 -MIO::Compress::Bzip2 -e 'use utf8;$sf=new IO::Uncompress::Bunzip2"french_mem_EN-US.txt.bz2";$rf=new IO::Uncompress::Bunzip2"french_mem_FR-FR.txt.bz2";$tf=new IO::Uncompress::Bunzip2"french_mem_FR-FR.trans.bz2";$of=new IO::Compress::Bzip2"french_mem.test.bz2";while($s=decode"utf-8",scalar<$sf>){$r=decode"utf-8",scalar<$rf>;$t=decode"utf-8",scalar<$tf>;chomp$s;chomp$r;chomp$t;($t,$m)=split//,$t;print$of encode"utf-8","$s$t$rMoldflow__2013__UIMT0$m◊÷\n"}close$sf;close$rf;close$tf;close$of;'&
+
+perl -MEncode -MIO::Uncompress::Bunzip2 -MIO::Compress::Bzip2 -e 'use utf8;$sf=new IO::Uncompress::Bunzip2"german_mem_EN-US.txt.bz2";$rf=new IO::Uncompress::Bunzip2"german_mem_DE-DE.txt.bz2";$tf=new IO::Uncompress::Bunzip2"german_mem_DE-DE.trans.bz2";$of=new IO::Compress::Bzip2"german_mem.test.bz2";while($s=decode"utf-8",scalar<$sf>){$r=decode"utf-8",scalar<$rf>;$t=decode"utf-8",scalar<$tf>;chomp$s;chomp$r;chomp$t;($t,$m)=split//,$t;print$of encode"utf-8","$s$t$rMoldflow__2013__UIMT0$m◊÷\n"}close$sf;close$rf;close$tf;close$of;'&
+
+perl -MEncode -MIO::Uncompress::Bunzip2 -MIO::Compress::Bzip2 -e 'use utf8;$sf=new IO::Uncompress::Bunzip2"italian_mem_EN-US.txt.bz2";$rf=new IO::Uncompress::Bunzip2"italian_mem_IT-IT.txt.bz2";$tf=new IO::Uncompress::Bunzip2"italian_mem_IT-IT.trans.bz2";$of=new IO::Compress::Bzip2"italian_mem.test.bz2";while($s=decode"utf-8",scalar<$sf>){$r=decode"utf-8",scalar<$rf>;$t=decode"utf-8",scalar<$tf>;chomp$s;chomp$r;chomp$t;($t,$m)=split//,$t;print$of encode"utf-8","$s$t$rMoldflow__2013__UIMT0$m◊÷\n"}close$sf;close$rf;close$tf;close$of;'&
+
+perl -MEncode -MIO::Uncompress::Bunzip2 -MIO::Compress::Bzip2 -e 'use utf8;$sf=new IO::Uncompress::Bunzip2"jpn_mem_EN-US.txt.bz2";$rf=new IO::Uncompress::Bunzip2"jpn_mem_JA.txt.bz2";$tf=new IO::Uncompress::Bunzip2"jpn_mem_JA.trans.bz2";$of=new IO::Compress::Bzip2"jpn_mem.test.bz2";while($s=decode"utf-8",scalar<$sf>){$r=decode"utf-8",scalar<$rf>;$t=decode"utf-8",scalar<$tf>;chomp$s;chomp$r;chomp$t;($t,$m)=split//,$t;print$of encode"utf-8","$s$t$rMoldflow__2013__UIMT0$m◊÷\n"}close$sf;close$rf;close$tf;close$of;'&
+
+perl -MEncode -MIO::Uncompress::Bunzip2 -MIO::Compress::Bzip2 -e 'use utf8;$sf=new IO::Uncompress::Bunzip2"korean_mem_EN-US.txt.bz2";$rf=new IO::Uncompress::Bunzip2"korean_mem_KO-KR.txt.bz2";$tf=new IO::Uncompress::Bunzip2"korean_mem_KO-KR.trans.bz2";$of=new IO::Compress::Bzip2"korean_mem.test.bz2";while($s=decode"utf-8",scalar<$sf>){$r=decode"utf-8",scalar<$rf>;$t=decode"utf-8",scalar<$tf>;chomp$s;chomp$r;chomp$t;($t,$m)=split//,$t;print$of encode"utf-8","$s$t$rMoldflow__2013__UIMT0$m◊÷\n"}close$sf;close$rf;close$tf;close$of;'&
+
+perl -MEncode -MIO::Uncompress::Bunzip2 -MIO::Compress::Bzip2 -e 'use utf8;$sf=new IO::Uncompress::Bunzip2"portuguese_mem_EN-US.txt.bz2";$rf=new IO::Uncompress::Bunzip2"portuguese_mem_PT-PT.txt.bz2";$tf=new IO::Uncompress::Bunzip2"portuguese_mem_PT-PT.trans.bz2";$of=new IO::Compress::Bzip2"portuguese_mem.test.bz2";while($s=decode"utf-8",scalar<$sf>){$r=decode"utf-8",scalar<$rf>;$t=decode"utf-8",scalar<$tf>;chomp$s;chomp$r;chomp$t;($t,$m)=split//,$t;print$of encode"utf-8","$s$t$rMoldflow__2013__UIMT0$m◊÷\n"}close$sf;close$rf;close$tf;close$of;'&
+
+perl -MEncode -MIO::Uncompress::Bunzip2 -MIO::Compress::Bzip2 -e 'use utf8;$sf=new IO::Uncompress::Bunzip2"schinese_mem_EN-US.txt.bz2";$rf=new IO::Uncompress::Bunzip2"schinese_mem_ZH-CN.txt.bz2";$tf=new IO::Uncompress::Bunzip2"schinese_mem_ZH-CN.trans.bz2";$of=new IO::Compress::Bzip2"schinese_mem.test.bz2";while($s=decode"utf-8",scalar<$sf>){$r=decode"utf-8",scalar<$rf>;$t=decode"utf-8",scalar<$tf>;chomp$s;chomp$r;chomp$t;($t,$m)=split//,$t;print$of encode"utf-8","$s$t$rMoldflow__2013__UIMT0$m◊÷\n"}close$sf;close$rf;close$tf;close$of;'&
+
+perl -MEncode -MIO::Uncompress::Bunzip2 -MIO::Compress::Bzip2 -e 'use utf8;$sf=new IO::Uncompress::Bunzip2"spanish_mem_EN-US.txt.bz2";$rf=new IO::Uncompress::Bunzip2"spanish_mem_ES-ES.txt.bz2";$tf=new IO::Uncompress::Bunzip2"spanish_mem_ES-ES.trans.bz2";$of=new IO::Compress::Bzip2"spanish_mem.test.bz2";while($s=decode"utf-8",scalar<$sf>){$r=decode"utf-8",scalar<$rf>;$t=decode"utf-8",scalar<$tf>;chomp$s;chomp$r;chomp$t;($t,$m)=split//,$t;print$of encode"utf-8","$s$t$rMoldflow__2013__UIMT0$m◊÷\n"}close$sf;close$rf;close$tf;close$of;'&
+
+
+
+/Volumes/OptiBay/ADSK_Software/evaluateBySegment.pl -input=chinese_t_mem.test.bz2 -language=zh_hant -prodTest -meteorPath="/Users/ventzi/Desktop/курсове - университет/ATTEMPT/data/ICHEC/eval/meteor" -meteorScript=meteor.pl -terTool="/Users/ventzi/Desktop/курсове - университет/EuroMatrixPlus/software/tercom-0.7.25/tercom.7.25.jar" -noGtm
+
+/Volumes/OptiBay/ADSK_Software/evaluateBySegment.pl -input=french_mem.test.bz2 -language=fr -prodTest -meteorPath="/Users/ventzi/Desktop/курсове - университет/ATTEMPT/data/ICHEC/eval/meteor" -meteorScript=meteor.pl -terTool="/Users/ventzi/Desktop/курсове - университет/EuroMatrixPlus/software/tercom-0.7.25/tercom.7.25.jar" -noGtm
+
+/Volumes/OptiBay/ADSK_Software/evaluateBySegment.pl -input=german_mem.test.bz2 -language=de -prodTest -meteorPath="/Users/ventzi/Desktop/курсове - университет/ATTEMPT/data/ICHEC/eval/meteor" -meteorScript=meteor.pl -terTool="/Users/ventzi/Desktop/курсове - университет/EuroMatrixPlus/software/tercom-0.7.25/tercom.7.25.jar" -noGtm
+
+/Volumes/OptiBay/ADSK_Software/evaluateBySegment.pl -input=italian_mem.test.bz2 -language=it -prodTest -meteorPath="/Users/ventzi/Desktop/курсове - университет/ATTEMPT/data/ICHEC/eval/meteor" -meteorScript=meteor.pl -terTool="/Users/ventzi/Desktop/курсове - университет/EuroMatrixPlus/software/tercom-0.7.25/tercom.7.25.jar" -noGtm
+
+/Volumes/OptiBay/ADSK_Software/evaluateBySegment.pl -input=jpn_mem.test.bz2 -language=jp -prodTest -meteorPath="/Users/ventzi/Desktop/курсове - университет/ATTEMPT/data/ICHEC/eval/meteor" -meteorScript=meteor.pl -terTool="/Users/ventzi/Desktop/курсове - университет/EuroMatrixPlus/software/tercom-0.7.25/tercom.7.25.jar" -noGtm
+
+/Volumes/OptiBay/ADSK_Software/evaluateBySegment.pl -input=korean_mem.test.bz2 -language=ko -prodTest -meteorPath="/Users/ventzi/Desktop/курсове - университет/ATTEMPT/data/ICHEC/eval/meteor" -meteorScript=meteor.pl -terTool="/Users/ventzi/Desktop/курсове - университет/EuroMatrixPlus/software/tercom-0.7.25/tercom.7.25.jar" -noGtm
+
+/Volumes/OptiBay/ADSK_Software/evaluateBySegment.pl -input=portuguese_mem.test.bz2 -language=pt_pt -prodTest -meteorPath="/Users/ventzi/Desktop/курсове - университет/ATTEMPT/data/ICHEC/eval/meteor" -meteorScript=meteor.pl -terTool="/Users/ventzi/Desktop/курсове - университет/EuroMatrixPlus/software/tercom-0.7.25/tercom.7.25.jar" -noGtm
+
+/Volumes/OptiBay/ADSK_Software/evaluateBySegment.pl -input=schinese_mem.test.bz2 -language=zh_hans -prodTest -meteorPath="/Users/ventzi/Desktop/курсове - университет/ATTEMPT/data/ICHEC/eval/meteor" -meteorScript=meteor.pl -terTool="/Users/ventzi/Desktop/курсове - университет/EuroMatrixPlus/software/tercom-0.7.25/tercom.7.25.jar" -noGtm
+
+/Volumes/OptiBay/ADSK_Software/evaluateBySegment.pl -input=spanish_mem.test.bz2 -language=es -prodTest -meteorPath="/Users/ventzi/Desktop/курсове - университет/ATTEMPT/data/ICHEC/eval/meteor" -meteorScript=meteor.pl -terTool="/Users/ventzi/Desktop/курсове - университет/EuroMatrixPlus/software/tercom-0.7.25/tercom.7.25.jar" -noGtm
+
+
+
+	JFS.mean	JFS.var	JFS.skew	JFS.kurt	JFS1.mean	JFS1.var	JFS1.skew	JFS1.kurt	SCFS.mean	SCFS.var	SCFS.skew	SCFS.kurt	WPD.mean	WPD.var	WPD.skew	WPD.kurt	ProdIncrease.mean	ProdIncrease.var	ProdIncrease.skew	ProdIncrease.kurt	CFS.mean	CFS.var	CFS.skew	CFS.kurt	WFS.mean	WFS.var	WFS.skew	WFS.kurt	METEOR.mean	METEOR.var	METEOR.skew	METEOR.kurt	TER.mean	TER.var	TER.skew	TER.kurt	PER.mean	PER.var	PER.skew	PER.kurt	Precision.mean	Precision.var	Precision.skew	Precision.kurt	Recall.mean	Recall.var	Recall.skew	Recall.kurt	Length.mean	Length.var	Length.skew	Length.kurt
+	0,478709656147706	0,0794621722183615	0,27637919719688	-0,772343674321151	0,584751875036146	0,0666154313753838	-0,0175224802735198	-0,873339860481942	0,5663977928408	0,069042027091096	-0,0091071645591539	-0,892891078529504	0	0	0	0	-16,9037063407139	460,80220996194	-3,06076016373179	20,6143501360314	0,616248117696408	0,0544680407603912	0,0189388023227233	-0,722136731928884	0,497063738343057	0,0802544521426154	0,227723162912771	-0,791665776720491	0,639368001273512	0,06973501646769	-0,538064735263018	-0,43013403175881	0,535945014599851	0,545552966387612	53,1270285339505	4362,97347761301	0,351008113061043	0,0568265884573895	0,625502931795096	0,299023883635033	0,649564403567537	0,058744259458347	-0,574919277456795	0,178529653835535	0,660415004579027	0,0606560323113683	-0,637663688579548	0,155549441966043	14,4881421765634	183,346678883718	6,33045898689496	152,893399406528
+
+
+
+perl -MEncode -MIO::Uncompress::Bunzip2 -MIO::Compress::Bzip2 -e 'use utf8;$sf=new IO::Uncompress::Bunzip2"chinese_t_mem_EN-US.txt.bz2";$rf=new IO::Uncompress::Bunzip2"chinese_t_mem_ZH-TW.txt.bz2";$of=new IO::Compress::Bzip2"cht.mf.bz2";while($s=decode"utf-8",scalar<$sf>){$r=decode"utf-8",scalar<$rf>;chomp$s;chomp$r;print$of encode"utf-8","$s$rMoldflow◊÷\n"}close$sf;close$rf;close$of;'&
+
+perl -MEncode -MIO::Uncompress::Bunzip2 -MIO::Compress::Bzip2 -e 'use utf8;$sf=new IO::Uncompress::Bunzip2"french_mem_EN-US.txt.bz2";$rf=new IO::Uncompress::Bunzip2"french_mem_FR-FR.txt.bz2";$of=new IO::Compress::Bzip2"fra.mf.bz2";while($s=decode"utf-8",scalar<$sf>){$r=decode"utf-8",scalar<$rf>;chomp$s;chomp$r;print$of encode"utf-8","$s$rMoldflow◊÷\n"}close$sf;close$rf;close$of;'&
+
+perl -MEncode -MIO::Uncompress::Bunzip2 -MIO::Compress::Bzip2 -e 'use utf8;$sf=new IO::Uncompress::Bunzip2"german_mem_EN-US.txt.bz2";$rf=new IO::Uncompress::Bunzip2"german_mem_DE-DE.txt.bz2";$of=new IO::Compress::Bzip2"deu.mf.bz2";while($s=decode"utf-8",scalar<$sf>){$r=decode"utf-8",scalar<$rf>;chomp$s;chomp$r;print$of encode"utf-8","$s$rMoldflow◊÷\n"}close$sf;close$rf;close$of;'&
+
+perl -MEncode -MIO::Uncompress::Bunzip2 -MIO::Compress::Bzip2 -e 'use utf8;$sf=new IO::Uncompress::Bunzip2"italian_mem_EN-US.txt.bz2";$rf=new IO::Uncompress::Bunzip2"italian_mem_IT-IT.txt.bz2";$of=new IO::Compress::Bzip2"ita.mf.bz2";while($s=decode"utf-8",scalar<$sf>){$r=decode"utf-8",scalar<$rf>;chomp$s;chomp$r;print$of encode"utf-8","$s$rMoldflow◊÷\n"}close$sf;close$rf;close$of;'&
+
+perl -MEncode -MIO::Uncompress::Bunzip2 -MIO::Compress::Bzip2 -e 'use utf8;$sf=new IO::Uncompress::Bunzip2"jpn_mem_EN-US.txt.bz2";$rf=new IO::Uncompress::Bunzip2"jpn_mem_JA.txt.bz2";$of=new IO::Compress::Bzip2"jpn.mf.bz2";while($s=decode"utf-8",scalar<$sf>){$r=decode"utf-8",scalar<$rf>;chomp$s;chomp$r;print$of encode"utf-8","$s$rMoldflow◊÷\n"}close$sf;close$rf;close$of;'&
+
+perl -MEncode -MIO::Uncompress::Bunzip2 -MIO::Compress::Bzip2 -e 'use utf8;$sf=new IO::Uncompress::Bunzip2"korean_mem_EN-US.txt.bz2";$rf=new IO::Uncompress::Bunzip2"korean_mem_KO-KR.txt.bz2";$of=new IO::Compress::Bzip2"kor.mf.bz2";while($s=decode"utf-8",scalar<$sf>){$r=decode"utf-8",scalar<$rf>;chomp$s;chomp$r;print$of encode"utf-8","$s$rMoldflow◊÷\n"}close$sf;close$rf;close$of;'&
+
+perl -MEncode -MIO::Uncompress::Bunzip2 -MIO::Compress::Bzip2 -e 'use utf8;$sf=new IO::Uncompress::Bunzip2"portuguese_mem_EN-US.txt.bz2";$rf=new IO::Uncompress::Bunzip2"portuguese_mem_PT-PT.txt.bz2";$of=new IO::Compress::Bzip2"ptg.mf.bz2";while($s=decode"utf-8",scalar<$sf>){$r=decode"utf-8",scalar<$rf>;chomp$s;chomp$r;print$of encode"utf-8","$s$rMoldflow◊÷\n"}close$sf;close$rf;close$of;'&
+
+perl -MEncode -MIO::Uncompress::Bunzip2 -MIO::Compress::Bzip2 -e 'use utf8;$sf=new IO::Uncompress::Bunzip2"schinese_mem_EN-US.txt.bz2";$rf=new IO::Uncompress::Bunzip2"schinese_mem_ZH-CN.txt.bz2";$of=new IO::Compress::Bzip2"chs.mf.bz2";while($s=decode"utf-8",scalar<$sf>){$r=decode"utf-8",scalar<$rf>;chomp$s;chomp$r;print$of encode"utf-8","$s$rMoldflow◊÷\n"}close$sf;close$rf;close$of;'&
+
+perl -MEncode -MIO::Uncompress::Bunzip2 -MIO::Compress::Bzip2 -e 'use utf8;$sf=new IO::Uncompress::Bunzip2"spanish_mem_EN-US.txt.bz2";$rf=new IO::Uncompress::Bunzip2"spanish_mem_ES-ES.txt.bz2";$of=new IO::Compress::Bzip2"esp.mf.bz2";while($s=decode"utf-8",scalar<$sf>){$r=decode"utf-8",scalar<$rf>;chomp$s;chomp$r;print$of encode"utf-8","$s$rMoldflow◊÷\n"}close$sf;close$rf;close$of;'&
+
+
+
+
+bzcat ../DataDump_2012.11.20/TM_CHS_ALL.bz2 ../passolo/chs.all.bz2 ../MoldflowDump2012.11.27/chs.mf.bz2 |perl -MEncode -MIO::Compress::Bzip2 -ne 'BEGIN{use utf8;$/=encode"utf-8","◊÷\n";$sf=new IO::Compress::Bzip2"CHS/corpus.en.bz2";$tf=new IO::Compress::Bzip2"CHS/corpus.zh_hans.bz2"}use utf8;chomp;$l=decode"utf-8",$_;$l=~tr/\r\n/  /;($s,$t)=split//,$l;print$sf encode"utf-8","$s\n";print$tf encode"utf-8","$t\n";END{close$sf;close$tf}'&
+
+bzcat ../DataDump_2012.11.20/TM_CHT_ALL.bz2 ../passolo/cht.all.bz2 ../MoldflowDump2012.11.27/cht.mf.bz2 |perl -MEncode -MIO::Compress::Bzip2 -ne 'BEGIN{use utf8;$/=encode"utf-8","◊÷\n";$sf=new IO::Compress::Bzip2"CHT/corpus.en.bz2";$tf=new IO::Compress::Bzip2"CHT/corpus.zh_hant.bz2"}use utf8;chomp;$l=decode"utf-8",$_;$l=~tr/\r\n/  /;($s,$t)=split//,$l;print$sf encode"utf-8","$s\n";print$tf encode"utf-8","$t\n";END{close$sf;close$tf}'&
+
+bzcat ../DataDump_2012.11.20/TM_CSY_ALL.bz2 ../passolo/csy.all.bz2 |perl -MEncode -MIO::Compress::Bzip2 -ne 'BEGIN{use utf8;$/=encode"utf-8","◊÷\n";$sf=new IO::Compress::Bzip2"CSY/corpus.en.bz2";$tf=new IO::Compress::Bzip2"CSY/corpus.cs.bz2"}use utf8;chomp;$l=decode"utf-8",$_;$l=~tr/\r\n/  /;($s,$t)=split//,$l;print$sf encode"utf-8","$s\n";print$tf encode"utf-8","$t\n";END{close$sf;close$tf}'&
+
+bzcat ../DataDump_2012.11.20/TM_DEU_ALL.bz2 ../passolo/deu.all.bz2 ../MoldflowDump2012.11.27/deu.mf.bz2 |perl -MEncode -MIO::Compress::Bzip2 -ne 'BEGIN{use utf8;$/=encode"utf-8","◊÷\n";$sf=new IO::Compress::Bzip2"DEU/corpus.en.bz2";$tf=new IO::Compress::Bzip2"DEU/corpus.de.bz2"}use utf8;chomp;$l=decode"utf-8",$_;$l=~tr/\r\n/  /;($s,$t)=split//,$l;print$sf encode"utf-8","$s\n";print$tf encode"utf-8","$t\n";END{close$sf;close$tf}'&
+
+bzcat ../DataDump_2012.11.20/TM_DNK_ALL.bz2 |perl -MEncode -MIO::Compress::Bzip2 -ne 'BEGIN{use utf8;$/=encode"utf-8","◊÷\n";$sf=new IO::Compress::Bzip2"DNK/corpus.en.bz2";$tf=new IO::Compress::Bzip2"DNK/corpus.da.bz2"}use utf8;chomp;$l=decode"utf-8",$_;$l=~tr/\r\n/  /;($s,$t)=split//,$l;print$sf encode"utf-8","$s\n";print$tf encode"utf-8","$t\n";END{close$sf;close$tf}'&
+
+bzcat ../DataDump_2012.11.20/TM_ENG_ALL.bz2 ../passolo/eng.all.bz2 |perl -MEncode -MIO::Compress::Bzip2 -ne 'BEGIN{use utf8;$/=encode"utf-8","◊÷\n";$sf=new IO::Compress::Bzip2"ENG/corpus.en.bz2";$tf=new IO::Compress::Bzip2"ENG/corpus.en_uk.bz2"}use utf8;chomp;$l=decode"utf-8",$_;$l=~tr/\r\n/  /;($s,$t)=split//,$l;print$sf encode"utf-8","$s\n";print$tf encode"utf-8","$t\n";END{close$sf;close$tf}'&
+
+bzcat ../DataDump_2012.11.20/TM_ESP_ALL.bz2 ../passolo/esp.all.bz2 ../MoldflowDump2012.11.27/esp.mf.bz2 |perl -MEncode -MIO::Compress::Bzip2 -ne 'BEGIN{use utf8;$/=encode"utf-8","◊÷\n";$sf=new IO::Compress::Bzip2"ESP/corpus.en.bz2";$tf=new IO::Compress::Bzip2"ESP/corpus.es.bz2"}use utf8;chomp;$l=decode"utf-8",$_;$l=~tr/\r\n/  /;($s,$t)=split//,$l;print$sf encode"utf-8","$s\n";print$tf encode"utf-8","$t\n";END{close$sf;close$tf}'&
+
+bzcat ../DataDump_2012.11.20/TM_FIN_ALL.bz2 |perl -MEncode -MIO::Compress::Bzip2 -ne 'BEGIN{use utf8;$/=encode"utf-8","◊÷\n";$sf=new IO::Compress::Bzip2"FIN/corpus.en.bz2";$tf=new IO::Compress::Bzip2"FIN/corpus.fi.bz2"}use utf8;chomp;$l=decode"utf-8",$_;$l=~tr/\r\n/  /;($s,$t)=split//,$l;print$sf encode"utf-8","$s\n";print$tf encode"utf-8","$t\n";END{close$sf;close$tf}'&
+
+bzcat ../DataDump_2012.11.20/TM_FRA_ALL.bz2 ../passolo/fra.all.bz2 ../MoldflowDump2012.11.27/fra.mf.bz2 |perl -MEncode -MIO::Compress::Bzip2 -ne 'BEGIN{use utf8;$/=encode"utf-8","◊÷\n";$sf=new IO::Compress::Bzip2"FRA/corpus.en.bz2";$tf=new IO::Compress::Bzip2"FRA/corpus.fr.bz2"}use utf8;chomp;$l=decode"utf-8",$_;$l=~tr/\r\n/  /;($s,$t)=split//,$l;print$sf encode"utf-8","$s\n";print$tf encode"utf-8","$t\n";END{close$sf;close$tf}'&
+
+bzcat ../DataDump_2012.11.20/TM_HUN_ALL.bz2 ../passolo/hun.all.bz2 |perl -MEncode -MIO::Compress::Bzip2 -ne 'BEGIN{use utf8;$/=encode"utf-8","◊÷\n";$sf=new IO::Compress::Bzip2"HUN/corpus.en.bz2";$tf=new IO::Compress::Bzip2"HUN/corpus.hu.bz2"}use utf8;chomp;$l=decode"utf-8",$_;$l=~tr/\r\n/  /;($s,$t)=split//,$l;print$sf encode"utf-8","$s\n";print$tf encode"utf-8","$t\n";END{close$sf;close$tf}'&
+
+bzcat ../DataDump_2012.11.20/TM_ITA_ALL.bz2 ../passolo/ita.all.bz2 ../MoldflowDump2012.11.27/ita.mf.bz2 |perl -MEncode -MIO::Compress::Bzip2 -ne 'BEGIN{use utf8;$/=encode"utf-8","◊÷\n";$sf=new IO::Compress::Bzip2"ITA/corpus.en.bz2";$tf=new IO::Compress::Bzip2"ITA/corpus.it.bz2"}use utf8;chomp;$l=decode"utf-8",$_;$l=~tr/\r\n/  /;($s,$t)=split//,$l;print$sf encode"utf-8","$s\n";print$tf encode"utf-8","$t\n";END{close$sf;close$tf}'&
+
+bzcat ../DataDump_2012.11.20/TM_JPN_ALL.bz2 ../passolo/jpn.all.bz2 ../MoldflowDump2012.11.27/jpn.mf.bz2 |perl -MEncode -MIO::Compress::Bzip2 -ne 'BEGIN{use utf8;$/=encode"utf-8","◊÷\n";$sf=new IO::Compress::Bzip2"JPN/corpus.en.bz2";$tf=new IO::Compress::Bzip2"JPN/corpus.jp.bz2"}use utf8;chomp;$l=decode"utf-8",$_;$l=~tr/\r\n/  /;($s,$t)=split//,$l;print$sf encode"utf-8","$s\n";print$tf encode"utf-8","$t\n";END{close$sf;close$tf}'&
+
+bzcat ../DataDump_2012.11.20/TM_KOR_ALL.bz2 ../passolo/kor.all.bz2 ../MoldflowDump2012.11.27/kor.mf.bz2 |perl -MEncode -MIO::Compress::Bzip2 -ne 'BEGIN{use utf8;$/=encode"utf-8","◊÷\n";$sf=new IO::Compress::Bzip2"KOR/corpus.en.bz2";$tf=new IO::Compress::Bzip2"KOR/corpus.ko.bz2"}use utf8;chomp;$l=decode"utf-8",$_;$l=~tr/\r\n/  /;($s,$t)=split//,$l;print$sf encode"utf-8","$s\n";print$tf encode"utf-8","$t\n";END{close$sf;close$tf}'&
+
+bzcat ../DataDump_2012.11.20/TM_NLD_ALL.bz2 |perl -MEncode -MIO::Compress::Bzip2 -ne 'BEGIN{use utf8;$/=encode"utf-8","◊÷\n";$sf=new IO::Compress::Bzip2"NLD/corpus.en.bz2";$tf=new IO::Compress::Bzip2"NLD/corpus.nl.bz2"}use utf8;chomp;$l=decode"utf-8",$_;$l=~tr/\r\n/  /;($s,$t)=split//,$l;print$sf encode"utf-8","$s\n";print$tf encode"utf-8","$t\n";END{close$sf;close$tf}'&
+
+bzcat ../DataDump_2012.11.20/TM_PLK_ALL.bz2 ../passolo/plk.all.bz2 |perl -MEncode -MIO::Compress::Bzip2 -ne 'BEGIN{use utf8;$/=encode"utf-8","◊÷\n";$sf=new IO::Compress::Bzip2"PLK/corpus.en.bz2";$tf=new IO::Compress::Bzip2"PLK/corpus.pl.bz2"}use utf8;chomp;$l=decode"utf-8",$_;$l=~tr/\r\n/  /;($s,$t)=split//,$l;print$sf encode"utf-8","$s\n";print$tf encode"utf-8","$t\n";END{close$sf;close$tf}'&
+
+bzcat ../DataDump_2012.11.20/TM_PTB_ALL.bz2 ../passolo/ptb.all.bz2 |perl -MEncode -MIO::Compress::Bzip2 -ne 'BEGIN{use utf8;$/=encode"utf-8","◊÷\n";$sf=new IO::Compress::Bzip2"PTB/corpus.en.bz2";$tf=new IO::Compress::Bzip2"PTB/corpus.pt_br.bz2"}use utf8;chomp;$l=decode"utf-8",$_;$l=~tr/\r\n/  /;($s,$t)=split//,$l;print$sf encode"utf-8","$s\n";print$tf encode"utf-8","$t\n";END{close$sf;close$tf}'&
+
+bzcat ../DataDump_2012.11.20/TM_PTG_ALL.bz2 ../MoldflowDump2012.11.27/ptg.mf.bz2 |perl -MEncode -MIO::Compress::Bzip2 -ne 'BEGIN{use utf8;$/=encode"utf-8","◊÷\n";$sf=new IO::Compress::Bzip2"PTG/corpus.en.bz2";$tf=new IO::Compress::Bzip2"PTG/corpus.pt_pt.bz2"}use utf8;chomp;$l=decode"utf-8",$_;$l=~tr/\r\n/  /;($s,$t)=split//,$l;print$sf encode"utf-8","$s\n";print$tf encode"utf-8","$t\n";END{close$sf;close$tf}'&
+
+bzcat ../DataDump_2012.11.20/TM_RUS_ALL.bz2 ../passolo/rus.all.bz2 |perl -MEncode -MIO::Compress::Bzip2 -ne 'BEGIN{use utf8;$/=encode"utf-8","◊÷\n";$sf=new IO::Compress::Bzip2"RUS/corpus.en.bz2";$tf=new IO::Compress::Bzip2"RUS/corpus.ru.bz2"}use utf8;chomp;$l=decode"utf-8",$_;$l=~tr/\r\n/  /;($s,$t)=split//,$l;print$sf encode"utf-8","$s\n";print$tf encode"utf-8","$t\n";END{close$sf;close$tf}'&
+
+
+
+
+
+
+/Volumes/OptiBay/ADSK_Software/evaluateBySegment.pl -input=weloc_data_cs_CZ.txt.bz2 -language=cs -prodTest -meteorPath="/Users/ventzi/Desktop/курсове - университет/ATTEMPT/data/ICHEC/eval/meteor" -meteorScript=meteor.pl -terTool="/Users/ventzi/Desktop/курсове - университет/EuroMatrixPlus/software/tercom-0.7.25/tercom.7.25.jar" -noGtm
+
+/Volumes/OptiBay/ADSK_Software/evaluateBySegment.pl -input=weloc_data_de_DE.txt.bz2 -language=de -prodTest -meteorPath="/Users/ventzi/Desktop/курсове - университет/ATTEMPT/data/ICHEC/eval/meteor" -meteorScript=meteor.pl -terTool="/Users/ventzi/Desktop/курсове - университет/EuroMatrixPlus/software/tercom-0.7.25/tercom.7.25.jar" -noGtm
+
+/Volumes/OptiBay/ADSK_Software/evaluateBySegment.pl -input=weloc_data_es_ES.txt.bz2 -language=es -prodTest -meteorPath="/Users/ventzi/Desktop/курсове - университет/ATTEMPT/data/ICHEC/eval/meteor" -meteorScript=meteor.pl -terTool="/Users/ventzi/Desktop/курсове - университет/EuroMatrixPlus/software/tercom-0.7.25/tercom.7.25.jar" -noGtm
+
+/Volumes/OptiBay/ADSK_Software/evaluateBySegment.pl -input=weloc_data_fr_FR.txt.bz2 -language=fr -prodTest -meteorPath="/Users/ventzi/Desktop/курсове - университет/ATTEMPT/data/ICHEC/eval/meteor" -meteorScript=meteor.pl -terTool="/Users/ventzi/Desktop/курсове - университет/EuroMatrixPlus/software/tercom-0.7.25/tercom.7.25.jar" -noGtm
+
+/Volumes/OptiBay/ADSK_Software/evaluateBySegment.pl -input=weloc_data_it_IT.txt.bz2 -language=it -prodTest -meteorPath="/Users/ventzi/Desktop/курсове - университет/ATTEMPT/data/ICHEC/eval/meteor" -meteorScript=meteor.pl -terTool="/Users/ventzi/Desktop/курсове - университет/EuroMatrixPlus/software/tercom-0.7.25/tercom.7.25.jar" -noGtm
+
+/Volumes/OptiBay/ADSK_Software/evaluateBySegment.pl -input=weloc_data_ja_JP.txt.bz2 -language=jp -prodTest -meteorPath="/Users/ventzi/Desktop/курсове - университет/ATTEMPT/data/ICHEC/eval/meteor" -meteorScript=meteor.pl -terTool="/Users/ventzi/Desktop/курсове - университет/EuroMatrixPlus/software/tercom-0.7.25/tercom.7.25.jar" -noGtm
+
+/Volumes/OptiBay/ADSK_Software/evaluateBySegment.pl -input=weloc_data_ko_KR.txt.bz2 -language=ko -prodTest -meteorPath="/Users/ventzi/Desktop/курсове - университет/ATTEMPT/data/ICHEC/eval/meteor" -meteorScript=meteor.pl -terTool="/Users/ventzi/Desktop/курсове - университет/EuroMatrixPlus/software/tercom-0.7.25/tercom.7.25.jar" -noGtm
+
+/Volumes/OptiBay/ADSK_Software/evaluateBySegment.pl -input=weloc_data_pl_PL.txt.bz2 -language=pl -prodTest -meteorPath="/Users/ventzi/Desktop/курсове - университет/ATTEMPT/data/ICHEC/eval/meteor" -meteorScript=meteor.pl -terTool="/Users/ventzi/Desktop/курсове - университет/EuroMatrixPlus/software/tercom-0.7.25/tercom.7.25.jar" -noGtm
+
+/Volumes/OptiBay/ADSK_Software/evaluateBySegment.pl -input=weloc_data_pt_BR.txt.bz2 -language=pt_br -prodTest -meteorPath="/Users/ventzi/Desktop/курсове - университет/ATTEMPT/data/ICHEC/eval/meteor" -meteorScript=meteor.pl -terTool="/Users/ventzi/Desktop/курсове - университет/EuroMatrixPlus/software/tercom-0.7.25/tercom.7.25.jar" -noGtm
+
+/Volumes/OptiBay/ADSK_Software/evaluateBySegment.pl -input=weloc_data_ru_RU.txt.bz2 -language=ru -prodTest -meteorPath="/Users/ventzi/Desktop/курсове - университет/ATTEMPT/data/ICHEC/eval/meteor" -meteorScript=meteor.pl -terTool="/Users/ventzi/Desktop/курсове - университет/EuroMatrixPlus/software/tercom-0.7.25/tercom.7.25.jar" -noGtm
+
+/Volumes/OptiBay/ADSK_Software/evaluateBySegment.pl -input=weloc_data_zh_CN.txt.bz2 -language=zh_hans -prodTest -meteorPath="/Users/ventzi/Desktop/курсове - университет/ATTEMPT/data/ICHEC/eval/meteor" -meteorScript=meteor.pl -terTool="/Users/ventzi/Desktop/курсове - университет/EuroMatrixPlus/software/tercom-0.7.25/tercom.7.25.jar" -noGtm
+
+/Volumes/OptiBay/ADSK_Software/evaluateBySegment.pl -input=weloc_data_zh_TW.txt.bz2 -language=zh_hant -prodTest -meteorPath="/Users/ventzi/Desktop/курсове - университет/ATTEMPT/data/ICHEC/eval/meteor" -meteorScript=meteor.pl -terTool="/Users/ventzi/Desktop/курсове - университет/EuroMatrixPlus/software/tercom-0.7.25/tercom.7.25.jar" -noGtm
+
+
+
+
+bzcat weloc_data_cs_CZ.txt.bz2 |perl -MEncode -ne 'use utf8;$l=$_;(undef,undef,$r)=split//,decode"utf-8",$l;print$l unless$r=~/^(\s*|null)$/' |bzip2 >weloc_data_cs_CZ.filtered.txt.bz2&
+bzcat weloc_data_de_DE.txt.bz2 |perl -MEncode -ne 'use utf8;$l=$_;(undef,undef,$r)=split//,decode"utf-8",$l;print$l unless$r=~/^(\s*|null)$/' |bzip2 >weloc_data_de_DE.filtered.txt.bz2&
+bzcat weloc_data_es_ES.txt.bz2 |perl -MEncode -ne 'use utf8;$l=$_;(undef,undef,$r)=split//,decode"utf-8",$l;print$l unless$r=~/^(\s*|null)$/' |bzip2 >weloc_data_es_ES.filtered.txt.bz2&
+bzcat weloc_data_fr_FR.txt.bz2 |perl -MEncode -ne 'use utf8;$l=$_;(undef,undef,$r)=split//,decode"utf-8",$l;print$l unless$r=~/^(\s*|null)$/' |bzip2 >weloc_data_fr_FR.filtered.txt.bz2&
+bzcat weloc_data_it_IT.txt.bz2 |perl -MEncode -ne 'use utf8;$l=$_;(undef,undef,$r)=split//,decode"utf-8",$l;print$l unless$r=~/^(\s*|null)$/' |bzip2 >weloc_data_it_IT.filtered.txt.bz2&
+bzcat weloc_data_ja_JP.txt.bz2 |perl -MEncode -ne 'use utf8;$l=$_;(undef,undef,$r)=split//,decode"utf-8",$l;print$l unless$r=~/^(\s*|null)$/' |bzip2 >weloc_data_ja_JP.filtered.txt.bz2&
+bzcat weloc_data_ko_KR.txt.bz2 |perl -MEncode -ne 'use utf8;$l=$_;(undef,undef,$r)=split//,decode"utf-8",$l;print$l unless$r=~/^(\s*|null)$/' |bzip2 >weloc_data_ko_KR.filtered.txt.bz2&
+bzcat weloc_data_pl_PL.txt.bz2 |perl -MEncode -ne 'use utf8;$l=$_;(undef,undef,$r)=split//,decode"utf-8",$l;print$l unless$r=~/^(\s*|null)$/' |bzip2 >weloc_data_pl_PL.filtered.txt.bz2&
+bzcat weloc_data_pt_BR.txt.bz2 |perl -MEncode -ne 'use utf8;$l=$_;(undef,undef,$r)=split//,decode"utf-8",$l;print$l unless$r=~/^(\s*|null)$/' |bzip2 >weloc_data_pt_BR.filtered.txt.bz2&
+bzcat weloc_data_ru_RU.txt.bz2 |perl -MEncode -ne 'use utf8;$l=$_;(undef,undef,$r)=split//,decode"utf-8",$l;print$l unless$r=~/^(\s*|null)$/' |bzip2 >weloc_data_ru_RU.filtered.txt.bz2&
+bzcat weloc_data_zh_CN.txt.bz2 |perl -MEncode -ne 'use utf8;$l=$_;(undef,undef,$r)=split//,decode"utf-8",$l;print$l unless$r=~/^(\s*|null)$/' |bzip2 >weloc_data_zh_CN.filtered.txt.bz2&
+bzcat weloc_data_zh_TW.txt.bz2 |perl -MEncode -ne 'use utf8;$l=$_;(undef,undef,$r)=split//,decode"utf-8",$l;print$l unless$r=~/^(\s*|null)$/' |bzip2 >weloc_data_zh_TW.filtered.txt.bz2&
+
+
+bzcat weloc_data_cs_CZ.txt.bz2 |perl -MEncode -ne 'use utf8;($s)=split//,decode"utf-8",$_;print encode"utf-8","$s\n"' |bzip2 >weloc_data_cs_CZ.src.txt.bz2&
+bzcat weloc_data_de_DE.txt.bz2 |perl -MEncode -ne 'use utf8;($s)=split//,decode"utf-8",$_;print encode"utf-8","$s\n"' |bzip2 >weloc_data_de_DE.src.txt.bz2&
+bzcat weloc_data_es_ES.txt.bz2 |perl -MEncode -ne 'use utf8;($s)=split//,decode"utf-8",$_;print encode"utf-8","$s\n"' |bzip2 >weloc_data_es_ES.src.txt.bz2&
+bzcat weloc_data_fr_FR.txt.bz2 |perl -MEncode -ne 'use utf8;($s)=split//,decode"utf-8",$_;print encode"utf-8","$s\n"' |bzip2 >weloc_data_fr_FR.src.txt.bz2&
+bzcat weloc_data_it_IT.txt.bz2 |perl -MEncode -ne 'use utf8;($s)=split//,decode"utf-8",$_;print encode"utf-8","$s\n"' |bzip2 >weloc_data_it_IT.src.txt.bz2&
+bzcat weloc_data_ja_JP.txt.bz2 |perl -MEncode -ne 'use utf8;($s)=split//,decode"utf-8",$_;print encode"utf-8","$s\n"' |bzip2 >weloc_data_ja_JP.src.txt.bz2&
+bzcat weloc_data_ko_KR.txt.bz2 |perl -MEncode -ne 'use utf8;($s)=split//,decode"utf-8",$_;print encode"utf-8","$s\n"' |bzip2 >weloc_data_ko_KR.src.txt.bz2&
+bzcat weloc_data_pl_PL.txt.bz2 |perl -MEncode -ne 'use utf8;($s)=split//,decode"utf-8",$_;print encode"utf-8","$s\n"' |bzip2 >weloc_data_pl_PL.src.txt.bz2&
+bzcat weloc_data_pt_BR.txt.bz2 |perl -MEncode -ne 'use utf8;($s)=split//,decode"utf-8",$_;print encode"utf-8","$s\n"' |bzip2 >weloc_data_pt_BR.src.txt.bz2&
+bzcat weloc_data_ru_RU.txt.bz2 |perl -MEncode -ne 'use utf8;($s)=split//,decode"utf-8",$_;print encode"utf-8","$s\n"' |bzip2 >weloc_data_ru_RU.src.txt.bz2&
+bzcat weloc_data_zh_CN.txt.bz2 |perl -MEncode -ne 'use utf8;($s)=split//,decode"utf-8",$_;print encode"utf-8","$s\n"' |bzip2 >weloc_data_zh_CN.src.txt.bz2&
+bzcat weloc_data_zh_TW.txt.bz2 |perl -MEncode -ne 'use utf8;($s)=split//,decode"utf-8",$_;print encode"utf-8","$s\n"' |bzip2 >weloc_data_zh_TW.src.txt.bz2&
+
+
+bzcat weloc_data_cs_CZ.src.txt.bz2 |perl -pe 'BEGIN{print"{translate=>593,targetLanguage=>cs,getScore=>1}\n"}' |nc neucmslinux 2001 |tail -n593 |bzip2 >weloc_data_cs_CZ.trans.txt.bz2&
+bzcat weloc_data_de_DE.src.txt.bz2 |perl -pe 'BEGIN{print"{translate=>1481,targetLanguage=>de,getScore=>1}\n"}' |nc neucmslinux 2001 |tail -n1481 |bzip2 >weloc_data_de_DE.trans.txt.bz2&
+bzcat weloc_data_es_ES.src.txt.bz2 |perl -pe 'BEGIN{print"{translate=>2464,targetLanguage=>es,getScore=>1}\n"}' |nc neucmslinux 2001 |tail -n2464 |bzip2 >weloc_data_es_ES.trans.txt.bz2&
+bzcat weloc_data_fr_FR.src.txt.bz2 |perl -pe 'BEGIN{print"{translate=>1716,targetLanguage=>fr,getScore=>1}\n"}' |nc neucmslinux 2001 |tail -n1716 |bzip2 >weloc_data_fr_FR.trans.txt.bz2&
+bzcat weloc_data_it_IT.src.txt.bz2 |perl -pe 'BEGIN{print"{translate=>1638,targetLanguage=>it,getScore=>1}\n"}' |nc neucmslinux 2001 |tail -n1638 |bzip2 >weloc_data_it_IT.trans.txt.bz2&
+bzcat weloc_data_ja_JP.src.txt.bz2 |perl -pe 'BEGIN{print"{translate=>372,targetLanguage=>jp,getScore=>1}\n"}' |nc neucmslinux 2001 |tail -n372 |bzip2 >weloc_data_ja_JP.trans.txt.bz2&
+bzcat weloc_data_ko_KR.src.txt.bz2 |perl -pe 'BEGIN{print"{translate=>1101,targetLanguage=>ko,getScore=>1}\n"}' |nc neucmslinux 2001 |tail -n1101 |bzip2 >weloc_data_ko_KR.trans.txt.bz2&
+bzcat weloc_data_pl_PL.src.txt.bz2 |perl -pe 'BEGIN{print"{translate=>829,targetLanguage=>pl,getScore=>1}\n"}' |nc neucmslinux 2001 |tail -n829 |bzip2 >weloc_data_pl_PL.trans.txt.bz2&
+bzcat weloc_data_pt_BR.src.txt.bz2 |perl -pe 'BEGIN{print"{translate=>793,targetLanguage=>pt_br,getScore=>1}\n"}' |nc neucmslinux 2001 |tail -n793 |bzip2 >weloc_data_pt_BR.trans.txt.bz2&
+bzcat weloc_data_ru_RU.src.txt.bz2 |perl -pe 'BEGIN{print"{translate=>1036,targetLanguage=>ru,getScore=>1}\n"}' |nc neucmslinux 2001 |tail -n1036 |bzip2 >weloc_data_ru_RU.trans.txt.bz2&
+bzcat weloc_data_zh_CN.src.txt.bz2 |perl -pe 'BEGIN{print"{translate=>457,targetLanguage=>zh_hans,getScore=>1}\n"}' |nc neucmslinux 2001 |tail -n457 |bzip2 >weloc_data_zh_CN.trans.txt.bz2&
+bzcat weloc_data_zh_TW.src.txt.bz2 |perl -pe 'BEGIN{print"{translate=>560,targetLanguage=>zh_hant,getScore=>1}\n"}' |nc neucmslinux 2001 |tail -n560 |bzip2 >weloc_data_zh_TW.trans.txt.bz2&
+
+
+perl -MEncode -MIO::Uncompress::Bunzip2 -e 'use utf8;$df=new IO::Uncompress::Bunzip2"weloc_data_cs_CZ.txt.bz2";$tf=new IO::Uncompress::Bunzip2"weloc_data_cs_CZ.trans.txt.bz2";while($dl=decode"utf-8",$df->getline()){$tl=decode"utf-8",$tf->getline();chomp$dl;chomp$tl;($s,undef,$r,$p,undef,undef,$wpd)=split//,$dl;($t,$ms)=split//,$tl;print encode"utf-8","$s$t$r$pn/amt_current$wpd$ms◊÷\n"}' |bzip2 >weloc_data_cs_CZ.new.txt.bz2&
+perl -MEncode -MIO::Uncompress::Bunzip2 -e 'use utf8;$df=new IO::Uncompress::Bunzip2"weloc_data_de_DE.txt.bz2";$tf=new IO::Uncompress::Bunzip2"weloc_data_de_DE.trans.txt.bz2";while($dl=decode"utf-8",$df->getline()){$tl=decode"utf-8",$tf->getline();chomp$dl;chomp$tl;($s,undef,$r,$p,undef,undef,$wpd)=split//,$dl;($t,$ms)=split//,$tl;print encode"utf-8","$s$t$r$pn/amt_current_2013.01.30$wpd$ms◊÷\n"}' |bzip2 >weloc_data_de_DE.new.txt.bz2&
+perl -MEncode -MIO::Uncompress::Bunzip2 -e 'use utf8;$df=new IO::Uncompress::Bunzip2"weloc_data_es_ES.txt.bz2";$tf=new IO::Uncompress::Bunzip2"weloc_data_es_ES.trans.txt.bz2";while($dl=decode"utf-8",$df->getline()){$tl=decode"utf-8",$tf->getline();chomp$dl;chomp$tl;($s,undef,$r,$p,undef,undef,$wpd)=split//,$dl;($t,$ms)=split//,$tl;print encode"utf-8","$s$t$r$pn/amt_current$wpd$ms◊÷\n"}' |bzip2 >weloc_data_es_ES.new.txt.bz2&
+perl -MEncode -MIO::Uncompress::Bunzip2 -e 'use utf8;$df=new IO::Uncompress::Bunzip2"weloc_data_fr_FR.txt.bz2";$tf=new IO::Uncompress::Bunzip2"weloc_data_fr_FR.trans.txt.bz2";while($dl=decode"utf-8",$df->getline()){$tl=decode"utf-8",$tf->getline();chomp$dl;chomp$tl;($s,undef,$r,$p,undef,undef,$wpd)=split//,$dl;($t,$ms)=split//,$tl;print encode"utf-8","$s$t$r$pn/amt_current$wpd$ms◊÷\n"}' |bzip2 >weloc_data_fr_FR.new.txt.bz2&
+perl -MEncode -MIO::Uncompress::Bunzip2 -e 'use utf8;$df=new IO::Uncompress::Bunzip2"weloc_data_it_IT.txt.bz2";$tf=new IO::Uncompress::Bunzip2"weloc_data_it_IT.trans.txt.bz2";while($dl=decode"utf-8",$df->getline()){$tl=decode"utf-8",$tf->getline();chomp$dl;chomp$tl;($s,undef,$r,$p,undef,undef,$wpd)=split//,$dl;($t,$ms)=split//,$tl;print encode"utf-8","$s$t$r$pn/amt_current$wpd$ms◊÷\n"}' |bzip2 >weloc_data_it_IT.new.txt.bz2&
+perl -MEncode -MIO::Uncompress::Bunzip2 -e 'use utf8;$df=new IO::Uncompress::Bunzip2"weloc_data_ja_JP.txt.bz2";$tf=new IO::Uncompress::Bunzip2"weloc_data_ja_JP.trans.txt.bz2";while($dl=decode"utf-8",$df->getline()){$tl=decode"utf-8",$tf->getline();chomp$dl;chomp$tl;($s,undef,$r,$p,undef,undef,$wpd)=split//,$dl;($t,$ms)=split//,$tl;print encode"utf-8","$s$t$r$pn/amt_current$wpd$ms◊÷\n"}' |bzip2 >weloc_data_ja_JP.new.txt.bz2&
+perl -MEncode -MIO::Uncompress::Bunzip2 -e 'use utf8;$df=new IO::Uncompress::Bunzip2"weloc_data_ko_KR.txt.bz2";$tf=new IO::Uncompress::Bunzip2"weloc_data_ko_KR.trans.txt.bz2";while($dl=decode"utf-8",$df->getline()){$tl=decode"utf-8",$tf->getline();chomp$dl;chomp$tl;($s,undef,$r,$p,undef,undef,$wpd)=split//,$dl;($t,$ms)=split//,$tl;print encode"utf-8","$s$t$r$pn/amt_current$wpd$ms◊÷\n"}' |bzip2 >weloc_data_ko_KR.new.txt.bz2&
+perl -MEncode -MIO::Uncompress::Bunzip2 -e 'use utf8;$df=new IO::Uncompress::Bunzip2"weloc_data_pl_PL.txt.bz2";$tf=new IO::Uncompress::Bunzip2"weloc_data_pl_PL.trans.txt.bz2";while($dl=decode"utf-8",$df->getline()){$tl=decode"utf-8",$tf->getline();chomp$dl;chomp$tl;($s,undef,$r,$p,undef,undef,$wpd)=split//,$dl;($t,$ms)=split//,$tl;print encode"utf-8","$s$t$r$pn/amt_current$wpd$ms◊÷\n"}' |bzip2 >weloc_data_pl_PL.new.txt.bz2&
+perl -MEncode -MIO::Uncompress::Bunzip2 -e 'use utf8;$df=new IO::Uncompress::Bunzip2"weloc_data_pt_BR.txt.bz2";$tf=new IO::Uncompress::Bunzip2"weloc_data_pt_BR.trans.txt.bz2";while($dl=decode"utf-8",$df->getline()){$tl=decode"utf-8",$tf->getline();chomp$dl;chomp$tl;($s,undef,$r,$p,undef,undef,$wpd)=split//,$dl;($t,$ms)=split//,$tl;print encode"utf-8","$s$t$r$pn/amt_current$wpd$ms◊÷\n"}' |bzip2 >weloc_data_pt_BR.new.txt.bz2&
+perl -MEncode -MIO::Uncompress::Bunzip2 -e 'use utf8;$df=new IO::Uncompress::Bunzip2"weloc_data_ru_RU.txt.bz2";$tf=new IO::Uncompress::Bunzip2"weloc_data_ru_RU.trans.txt.bz2";while($dl=decode"utf-8",$df->getline()){$tl=decode"utf-8",$tf->getline();chomp$dl;chomp$tl;($s,undef,$r,$p,undef,undef,$wpd)=split//,$dl;($t,$ms)=split//,$tl;print encode"utf-8","$s$t$r$pn/amt_current$wpd$ms◊÷\n"}' |bzip2 >weloc_data_ru_RU.new.txt.bz2&
+perl -MEncode -MIO::Uncompress::Bunzip2 -e 'use utf8;$df=new IO::Uncompress::Bunzip2"weloc_data_zh_CN.txt.bz2";$tf=new IO::Uncompress::Bunzip2"weloc_data_zh_CN.trans.txt.bz2";while($dl=decode"utf-8",$df->getline()){$tl=decode"utf-8",$tf->getline();chomp$dl;chomp$tl;($s,undef,$r,$p,undef,undef,$wpd)=split//,$dl;($t,$ms)=split//,$tl;print encode"utf-8","$s$t$r$pn/amt_current$wpd$ms◊÷\n"}' |bzip2 >weloc_data_zh_CN.new.txt.bz2&
+perl -MEncode -MIO::Uncompress::Bunzip2 -e 'use utf8;$df=new IO::Uncompress::Bunzip2"weloc_data_zh_TW.txt.bz2";$tf=new IO::Uncompress::Bunzip2"weloc_data_zh_TW.trans.txt.bz2";while($dl=decode"utf-8",$df->getline()){$tl=decode"utf-8",$tf->getline();chomp$dl;chomp$tl;($s,undef,$r,$p,undef,undef,$wpd)=split//,$dl;($t,$ms)=split//,$tl;print encode"utf-8","$s$t$r$pn/amt_current$wpd$ms◊÷\n"}' |bzip2 >weloc_data_zh_TW.new.txt.bz2&
+
+
+/Volumes/OptiBay/ADSK_Software/evaluateBySegment.pl -input=weloc_data_cs_CZ.new.txt.bz2 -language=cs -prodTest -meteorPath="/Users/ventzi/Desktop/курсове - университет/ATTEMPT/data/ICHEC/eval/meteor" -meteorScript=meteor.pl -terTool="/Users/ventzi/Desktop/курсове - университет/EuroMatrixPlus/software/tercom-0.7.25/tercom.7.25.jar" -noGtm
+
+/Volumes/OptiBay/ADSK_Software/evaluateBySegment.pl -input=weloc_data_de_DE.new.txt.bz2 -language=de -prodTest -meteorPath="/Users/ventzi/Desktop/курсове - университет/ATTEMPT/data/ICHEC/eval/meteor" -meteorScript=meteor.pl -terTool="/Users/ventzi/Desktop/курсове - университет/EuroMatrixPlus/software/tercom-0.7.25/tercom.7.25.jar" -noGtm
+
+/Volumes/OptiBay/ADSK_Software/evaluateBySegment.pl -input=weloc_data_es_ES.new.txt.bz2 -language=es -prodTest -meteorPath="/Users/ventzi/Desktop/курсове - университет/ATTEMPT/data/ICHEC/eval/meteor" -meteorScript=meteor.pl -terTool="/Users/ventzi/Desktop/курсове - университет/EuroMatrixPlus/software/tercom-0.7.25/tercom.7.25.jar" -noGtm
+
+/Volumes/OptiBay/ADSK_Software/evaluateBySegment.pl -input=weloc_data_fr_FR.new.txt.bz2 -language=fr -prodTest -meteorPath="/Users/ventzi/Desktop/курсове - университет/ATTEMPT/data/ICHEC/eval/meteor" -meteorScript=meteor.pl -terTool="/Users/ventzi/Desktop/курсове - университет/EuroMatrixPlus/software/tercom-0.7.25/tercom.7.25.jar" -noGtm
+
+/Volumes/OptiBay/ADSK_Software/evaluateBySegment.pl -input=weloc_data_it_IT.new.txt.bz2 -language=it -prodTest -meteorPath="/Users/ventzi/Desktop/курсове - университет/ATTEMPT/data/ICHEC/eval/meteor" -meteorScript=meteor.pl -terTool="/Users/ventzi/Desktop/курсове - университет/EuroMatrixPlus/software/tercom-0.7.25/tercom.7.25.jar" -noGtm
+
+/Volumes/OptiBay/ADSK_Software/evaluateBySegment.pl -input=weloc_data_ja_JP.new.txt.bz2 -language=jp -prodTest -meteorPath="/Users/ventzi/Desktop/курсове - университет/ATTEMPT/data/ICHEC/eval/meteor" -meteorScript=meteor.pl -terTool="/Users/ventzi/Desktop/курсове - университет/EuroMatrixPlus/software/tercom-0.7.25/tercom.7.25.jar" -noGtm
+
+/Volumes/OptiBay/ADSK_Software/evaluateBySegment.pl -input=weloc_data_ko_KR.new.txt.bz2 -language=ko -prodTest -meteorPath="/Users/ventzi/Desktop/курсове - университет/ATTEMPT/data/ICHEC/eval/meteor" -meteorScript=meteor.pl -terTool="/Users/ventzi/Desktop/курсове - университет/EuroMatrixPlus/software/tercom-0.7.25/tercom.7.25.jar" -noGtm
+
+/Volumes/OptiBay/ADSK_Software/evaluateBySegment.pl -input=weloc_data_pl_PL.new.txt.bz2 -language=pl -prodTest -meteorPath="/Users/ventzi/Desktop/курсове - университет/ATTEMPT/data/ICHEC/eval/meteor" -meteorScript=meteor.pl -terTool="/Users/ventzi/Desktop/курсове - университет/EuroMatrixPlus/software/tercom-0.7.25/tercom.7.25.jar" -noGtm
+
+/Volumes/OptiBay/ADSK_Software/evaluateBySegment.pl -input=weloc_data_pt_BR.new.txt.bz2 -language=pt_br -prodTest -meteorPath="/Users/ventzi/Desktop/курсове - университет/ATTEMPT/data/ICHEC/eval/meteor" -meteorScript=meteor.pl -terTool="/Users/ventzi/Desktop/курсове - университет/EuroMatrixPlus/software/tercom-0.7.25/tercom.7.25.jar" -noGtm
+
+/Volumes/OptiBay/ADSK_Software/evaluateBySegment.pl -input=weloc_data_ru_RU.new.txt.bz2 -language=ru -prodTest -meteorPath="/Users/ventzi/Desktop/курсове - университет/ATTEMPT/data/ICHEC/eval/meteor" -meteorScript=meteor.pl -terTool="/Users/ventzi/Desktop/курсове - университет/EuroMatrixPlus/software/tercom-0.7.25/tercom.7.25.jar" -noGtm
+
+/Volumes/OptiBay/ADSK_Software/evaluateBySegment.pl -input=weloc_data_zh_CN.new.txt.bz2 -language=zh_hans -prodTest -meteorPath="/Users/ventzi/Desktop/курсове - университет/ATTEMPT/data/ICHEC/eval/meteor" -meteorScript=meteor.pl -terTool="/Users/ventzi/Desktop/курсове - университет/EuroMatrixPlus/software/tercom-0.7.25/tercom.7.25.jar" -noGtm
+
+/Volumes/OptiBay/ADSK_Software/evaluateBySegment.pl -input=weloc_data_zh_TW.new.txt.bz2 -language=zh_hant -prodTest -meteorPath="/Users/ventzi/Desktop/курсове - университет/ATTEMPT/data/ICHEC/eval/meteor" -meteorScript=meteor.pl -terTool="/Users/ventzi/Desktop/курсове - университет/EuroMatrixPlus/software/tercom-0.7.25/tercom.7.25.jar" -noGtm
+
+
+bzcat weloc_data_cs_CZ.src.txt.bz2 |perl -pe 'BEGIN{print"{translate=>593,targetLanguage=>cs,getScore=>1}\n"}' |nc messiaen 2001 |tail -n593 |bzip2 >weloc_data_cs_CZ.trans.txt.bz2&
+bzcat weloc_data_de_DE.src.txt.bz2 |perl -pe 'BEGIN{print"{translate=>1481,targetLanguage=>de,getScore=>1}\n"}' |nc messiaen 2003 |tail -n1481 |bzip2 >weloc_data_de_DE.trans.txt.bz2&
+bzcat weloc_data_es_ES.src.txt.bz2 |perl -pe 'BEGIN{print"{translate=>2464,targetLanguage=>es,getScore=>1}\n"}' |nc messiaen 2004 |tail -n2464 |bzip2 >weloc_data_es_ES.trans.txt.bz2&
+bzcat weloc_data_fr_FR.src.txt.bz2 |perl -pe 'BEGIN{print"{translate=>1716,targetLanguage=>fr,getScore=>1}\n"}' |nc messiaen 2005 |tail -n1716 |bzip2 >weloc_data_fr_FR.trans.txt.bz2&
+bzcat weloc_data_it_IT.src.txt.bz2 |perl -pe 'BEGIN{print"{translate=>1638,targetLanguage=>it,getScore=>1}\n"}' |nc messiaen 2001 |tail -n1638 |bzip2 >weloc_data_it_IT.trans.txt.bz2&
+bzcat weloc_data_ja_JP.src.txt.bz2 |perl -pe 'BEGIN{print"{translate=>372,targetLanguage=>jp,getScore=>1}\n"}' |nc messiaen 2001 |tail -n372 |bzip2 >weloc_data_ja_JP.trans.txt.bz2&
+bzcat weloc_data_ko_KR.src.txt.bz2 |perl -pe 'BEGIN{print"{translate=>1101,targetLanguage=>ko,getScore=>1}\n"}' |nc messiaen 2003 |tail -n1101 |bzip2 >weloc_data_ko_KR.trans.txt.bz2&
+bzcat weloc_data_pl_PL.src.txt.bz2 |perl -pe 'BEGIN{print"{translate=>829,targetLanguage=>pl,getScore=>1}\n"}' |nc messiaen 2004 |tail -n829 |bzip2 >weloc_data_pl_PL.trans.txt.bz2&
+bzcat weloc_data_pt_BR.src.txt.bz2 |perl -pe 'BEGIN{print"{translate=>793,targetLanguage=>pt_br,getScore=>1}\n"}' |nc messiaen 2005 |tail -n793 |bzip2 >weloc_data_pt_BR.trans.txt.bz2&
+bzcat weloc_data_ru_RU.src.txt.bz2 |perl -pe 'BEGIN{print"{translate=>1036,targetLanguage=>ru,getScore=>1}\n"}' |nc messiaen 2001 |tail -n1036 |bzip2 >weloc_data_ru_RU.trans.txt.bz2&
+bzcat weloc_data_zh_CN.src.txt.bz2 |perl -pe 'BEGIN{print"{translate=>457,targetLanguage=>zh_hans,getScore=>1}\n"}' |nc messiaen 2005 |tail -n457 |bzip2 >weloc_data_zh_CN.trans.txt.bz2&
+bzcat weloc_data_zh_TW.src.txt.bz2 |perl -pe 'BEGIN{print"{translate=>560,targetLanguage=>zh_hant,getScore=>1}\n"}' |nc messiaen 2004 |tail -n560 |bzip2 >weloc_data_zh_TW.trans.txt.bz2&
+
+
+
+K2 needs graphics card with driver which supports openGL %1.%2 or newer, the current openGL version is %3.%4, please update your graphics card's driver.
+K2 needs with graphics card drivers that support OpenGL% 1. % 2 or later versions, OpenGL version is% 3. % 4, update your graphics card driver.
+
+K2 esigenze con driver scheda grafica che supporta OpenGL %1. %2 o versioni successive, OpenGL versione è %3. %4, aggiornare il driver della scheda grafica.
+K2 esigenze con driver scheda grafica che supporta OpenGL %1. %2 o versioni successive, OpenGL versione è %3. %4, aggiornare la scheda grafica del driver.
+Per K2 è necessaria una scheda grafica con un driver in grado di supportare OpenGL %1.%2 o versione successiva. La versione corrente di OpenGL è %3.%4. Aggiornare il driver della scheda grafica.
+
+
+
+
+bzcat deu_all.txt.bz2 |perl -MEncode -ne 'use utf8;($s)=split//,decode"utf-8",$_;print encode"utf-8","$s\n"' |bzip2 >deu_all.src.txt.bz2&
+bzcat esp_all.txt.bz2 |perl -MEncode -ne 'use utf8;($s)=split//,decode"utf-8",$_;print encode"utf-8","$s\n"' |bzip2 >esp_all.src.txt.bz2&
+bzcat fra_all.txt.bz2 |perl -MEncode -ne 'use utf8;($s)=split//,decode"utf-8",$_;print encode"utf-8","$s\n"' |bzip2 >fra_all.src.txt.bz2&
+bzcat ita_all.txt.bz2 |perl -MEncode -ne 'use utf8;($s)=split//,decode"utf-8",$_;print encode"utf-8","$s\n"' |bzip2 >ita_all.src.txt.bz2&
+bzcat jpn_all.txt.bz2 |perl -MEncode -ne 'use utf8;($s)=split//,decode"utf-8",$_;print encode"utf-8","$s\n"' |bzip2 >jpn_all.src.txt.bz2&
+bzcat kor_all.txt.bz2 |perl -MEncode -ne 'use utf8;($s)=split//,decode"utf-8",$_;print encode"utf-8","$s\n"' |bzip2 >kor_all.src.txt.bz2&
+bzcat plk_all.txt.bz2 |perl -MEncode -ne 'use utf8;($s)=split//,decode"utf-8",$_;print encode"utf-8","$s\n"' |bzip2 >plk_all.src.txt.bz2&
+bzcat ptb_all.txt.bz2 |perl -MEncode -ne 'use utf8;($s)=split//,decode"utf-8",$_;print encode"utf-8","$s\n"' |bzip2 >ptb_all.src.txt.bz2&
+bzcat chs_all.txt.bz2 |perl -MEncode -ne 'use utf8;($s)=split//,decode"utf-8",$_;print encode"utf-8","$s\n"' |bzip2 >chs_all.src.txt.bz2&
+
+
+bzcat deu_all.src.txt.bz2 |perl -pe 'BEGIN{print"{translate=>3585,targetLanguage=>de,getScore=>1}\n"}' |nc neucmslinux 2001 |tail -n3585 |bzip2 >deu_all.trans.txt.bz2&
+bzcat esp_all.src.txt.bz2 |perl -pe 'BEGIN{print"{translate=>3375,targetLanguage=>es,getScore=>1}\n"}' |nc neucmslinux 2001 |tail -n3375 |bzip2 >esp_all.trans.txt.bz2&
+bzcat fra_all.src.txt.bz2 |perl -pe 'BEGIN{print"{translate=>3729,targetLanguage=>fr,getScore=>1}\n"}' |nc neucmslinux 2001 |tail -n3729 |bzip2 >fra_all.trans.txt.bz2&
+bzcat ita_all.src.txt.bz2 |perl -pe 'BEGIN{print"{translate=>3932,targetLanguage=>it,getScore=>1}\n"}' |nc neucmslinux 2001 |tail -n3932 |bzip2 >ita_all.trans.txt.bz2&
+bzcat jpn_all.src.txt.bz2 |perl -pe 'BEGIN{print"{translate=>1585,targetLanguage=>jp,getScore=>1}\n"}' |nc neucmslinux 2001 |tail -n1585 |bzip2 >jpn_all.trans.txt.bz2&
+bzcat kor_all.src.txt.bz2 |perl -pe 'BEGIN{print"{translate=>3321,targetLanguage=>ko,getScore=>1}\n"}' |nc neucmslinux 2001 |tail -n3321 |bzip2 >kor_all.trans.txt.bz2&
+bzcat plk_all.src.txt.bz2 |perl -pe 'BEGIN{print"{translate=>2988,targetLanguage=>pl,getScore=>1}\n"}' |nc neucmslinux 2001 |tail -n2988 |bzip2 >plk_all.trans.txt.bz2&
+bzcat ptb_all.src.txt.bz2 |perl -pe 'BEGIN{print"{translate=>2529,targetLanguage=>pt_br,getScore=>1}\n"}' |nc neucmslinux 2001 |tail -n2529 |bzip2 >ptb_all.trans.txt.bz2&
+bzcat chs_all.src.txt.bz2 |perl -pe 'BEGIN{print"{translate=>2387,targetLanguage=>zh_hans,getScore=>1}\n"}' |nc neucmslinux 2001 |tail -n2387 |bzip2 >chs_all.trans.txt.bz2&
+
+
+bzcat deu_all.src.txt.bz2 |perl -pe 'BEGIN{print"{translate=>3585,targetLanguage=>de,getScore=>1}\n"}' |nc messiaen.local 2001 |tail -n3585 |bzip2 >deu_all.trans.txt.bz2&
+bzcat esp_all.src.txt.bz2 |perl -pe 'BEGIN{print"{translate=>3375,targetLanguage=>es,getScore=>1}\n"}' |nc messiaen.local 2003 |tail -n3375 |bzip2 >esp_all.trans.txt.bz2&
+bzcat fra_all.src.txt.bz2 |perl -pe 'BEGIN{print"{translate=>3729,targetLanguage=>fr,getScore=>1}\n"}' |nc messiaen.local 2004 |tail -n3729 |bzip2 >fra_all.trans.txt.bz2&
+bzcat ita_all.src.txt.bz2 |perl -pe 'BEGIN{print"{translate=>3932,targetLanguage=>it,getScore=>1}\n"}' |nc messiaen.local 2003 |tail -n3932 |bzip2 >ita_all.trans.txt.bz2&
+bzcat jpn_all.src.txt.bz2 |perl -pe 'BEGIN{print"{translate=>1585,targetLanguage=>jp,getScore=>1}\n"}' |nc messiaen.local 2001 |tail -n1585 |bzip2 >jpn_all.trans.txt.bz2&
+bzcat kor_all.src.txt.bz2 |perl -pe 'BEGIN{print"{translate=>3321,targetLanguage=>ko,getScore=>1}\n"}' |nc messiaen.local 2001 |tail -n3321 |bzip2 >kor_all.trans.txt.bz2&
+bzcat plk_all.src.txt.bz2 |perl -pe 'BEGIN{print"{translate=>2988,targetLanguage=>pl,getScore=>1}\n"}' |nc messiaen.local 2004 |tail -n2988 |bzip2 >plk_all.trans.txt.bz2&
+bzcat ptb_all.src.txt.bz2 |perl -pe 'BEGIN{print"{translate=>2529,targetLanguage=>pt_br,getScore=>1}\n"}' |nc messiaen.local 2001 |tail -n2529 |bzip2 >ptb_all.trans.txt.bz2&
+bzcat chs_all.src.txt.bz2 |perl -pe 'BEGIN{print"{translate=>2387,targetLanguage=>zh_hans,getScore=>1}\n"}' |nc messiaen.local 2003 |tail -n2387 |bzip2 >chs_all.trans.txt.bz2&
+
+
+perl -MEncode -MIO::Uncompress::Bunzip2 -e 'use utf8;$df=new IO::Uncompress::Bunzip2"../deu_all.txt.bz2";$tf=new IO::Uncompress::Bunzip2"deu_all.trans.txt.bz2";while($dl=decode"utf-8",$df->getline()){$tl=decode"utf-8",$tf->getline();chomp$dl;chomp$tl;($s,undef,$r,$p)=split//,$dl;($t,$ms)=split//,$tl;print encode"utf-8","$s$t$r$pn/amt_2013.01.100$ms◊÷\n"}' |bzip2 >deu_all.new.txt.bz2&
+perl -MEncode -MIO::Uncompress::Bunzip2 -e 'use utf8;$df=new IO::Uncompress::Bunzip2"../esp_all.txt.bz2";$tf=new IO::Uncompress::Bunzip2"esp_all.trans.txt.bz2";while($dl=decode"utf-8",$df->getline()){$tl=decode"utf-8",$tf->getline();chomp$dl;chomp$tl;($s,undef,$r,$p)=split//,$dl;($t,$ms)=split//,$tl;print encode"utf-8","$s$t$r$pn/amt_2013.01.100$ms◊÷\n"}' |bzip2 >esp_all.new.txt.bz2&
+perl -MEncode -MIO::Uncompress::Bunzip2 -e 'use utf8;$df=new IO::Uncompress::Bunzip2"../fra_all.txt.bz2";$tf=new IO::Uncompress::Bunzip2"fra_all.trans.txt.bz2";while($dl=decode"utf-8",$df->getline()){$tl=decode"utf-8",$tf->getline();chomp$dl;chomp$tl;($s,undef,$r,$p)=split//,$dl;($t,$ms)=split//,$tl;print encode"utf-8","$s$t$r$pn/amt_2013.01.100$ms◊÷\n"}' |bzip2 >fra_all.new.txt.bz2&
+perl -MEncode -MIO::Uncompress::Bunzip2 -e 'use utf8;$df=new IO::Uncompress::Bunzip2"../ita_all.txt.bz2";$tf=new IO::Uncompress::Bunzip2"ita_all.trans.txt.bz2";while($dl=decode"utf-8",$df->getline()){$tl=decode"utf-8",$tf->getline();chomp$dl;chomp$tl;($s,undef,$r,$p)=split//,$dl;($t,$ms)=split//,$tl;print encode"utf-8","$s$t$r$pn/amt_2013.01.100$ms◊÷\n"}' |bzip2 >ita_all.new.txt.bz2&
+perl -MEncode -MIO::Uncompress::Bunzip2 -e 'use utf8;$df=new IO::Uncompress::Bunzip2"../jpn_all.txt.bz2";$tf=new IO::Uncompress::Bunzip2"jpn_all.trans.txt.bz2";while($dl=decode"utf-8",$df->getline()){$tl=decode"utf-8",$tf->getline();chomp$dl;chomp$tl;($s,undef,$r,$p)=split//,$dl;($t,$ms)=split//,$tl;print encode"utf-8","$s$t$r$pn/amt_2013.01.100$ms◊÷\n"}' |bzip2 >jpn_all.new.txt.bz2&
+perl -MEncode -MIO::Uncompress::Bunzip2 -e 'use utf8;$df=new IO::Uncompress::Bunzip2"../kor_all.txt.bz2";$tf=new IO::Uncompress::Bunzip2"kor_all.trans.txt.bz2";while($dl=decode"utf-8",$df->getline()){$tl=decode"utf-8",$tf->getline();chomp$dl;chomp$tl;($s,undef,$r,$p)=split//,$dl;($t,$ms)=split//,$tl;print encode"utf-8","$s$t$r$pn/amt_2013.01.100$ms◊÷\n"}' |bzip2 >kor_all.new.txt.bz2&
+perl -MEncode -MIO::Uncompress::Bunzip2 -e 'use utf8;$df=new IO::Uncompress::Bunzip2"../plk_all.txt.bz2";$tf=new IO::Uncompress::Bunzip2"plk_all.trans.txt.bz2";while($dl=decode"utf-8",$df->getline()){$tl=decode"utf-8",$tf->getline();chomp$dl;chomp$tl;($s,undef,$r,$p)=split//,$dl;($t,$ms)=split//,$tl;print encode"utf-8","$s$t$r$pn/amt_2013.01.100$ms◊÷\n"}' |bzip2 >plk_all.new.txt.bz2&
+perl -MEncode -MIO::Uncompress::Bunzip2 -e 'use utf8;$df=new IO::Uncompress::Bunzip2"../ptb_all.txt.bz2";$tf=new IO::Uncompress::Bunzip2"ptb_all.trans.txt.bz2";while($dl=decode"utf-8",$df->getline()){$tl=decode"utf-8",$tf->getline();chomp$dl;chomp$tl;($s,undef,$r,$p)=split//,$dl;($t,$ms)=split//,$tl;print encode"utf-8","$s$t$r$pn/amt_2013.01.100$ms◊÷\n"}' |bzip2 >ptb_all.new.txt.bz2&
+perl -MEncode -MIO::Uncompress::Bunzip2 -e 'use utf8;$df=new IO::Uncompress::Bunzip2"../chs_all.txt.bz2";$tf=new IO::Uncompress::Bunzip2"chs_all.trans.txt.bz2";while($dl=decode"utf-8",$df->getline()){$tl=decode"utf-8",$tf->getline();chomp$dl;chomp$tl;($s,undef,$r,$p)=split//,$dl;($t,$ms)=split//,$tl;print encode"utf-8","$s$t$r$pn/amt_2013.01.100$ms◊÷\n"}' |bzip2 >chs_all.new.txt.bz2&
+
+
+/Volumes/OptiBay/ADSK_Software/evaluateBySegment.pl -input=deu_all.new.txt.bz2 -language=de -prodTest -meteorPath="/Users/ventzi/Desktop/курсове - университет/ATTEMPT/data/ICHEC/eval/meteor" -meteorScript=meteor.pl -terTool="/Users/ventzi/Desktop/курсове - университет/EuroMatrixPlus/software/tercom-0.7.25/tercom.7.25.jar" -noGtm
+
+/Volumes/OptiBay/ADSK_Software/evaluateBySegment.pl -input=esp_all.new.txt.bz2 -language=es -prodTest -meteorPath="/Users/ventzi/Desktop/курсове - университет/ATTEMPT/data/ICHEC/eval/meteor" -meteorScript=meteor.pl -terTool="/Users/ventzi/Desktop/курсове - университет/EuroMatrixPlus/software/tercom-0.7.25/tercom.7.25.jar" -noGtm
+
+/Volumes/OptiBay/ADSK_Software/evaluateBySegment.pl -input=fra_all.new.txt.bz2 -language=fr -prodTest -meteorPath="/Users/ventzi/Desktop/курсове - университет/ATTEMPT/data/ICHEC/eval/meteor" -meteorScript=meteor.pl -terTool="/Users/ventzi/Desktop/курсове - университет/EuroMatrixPlus/software/tercom-0.7.25/tercom.7.25.jar" -noGtm
+
+/Volumes/OptiBay/ADSK_Software/evaluateBySegment.pl -input=ita_all.new.txt.bz2 -language=it -prodTest -meteorPath="/Users/ventzi/Desktop/курсове - университет/ATTEMPT/data/ICHEC/eval/meteor" -meteorScript=meteor.pl -terTool="/Users/ventzi/Desktop/курсове - университет/EuroMatrixPlus/software/tercom-0.7.25/tercom.7.25.jar" -noGtm
+
+/Volumes/OptiBay/ADSK_Software/evaluateBySegment.pl -input=jpn_all.new.txt.bz2 -language=jp -prodTest -meteorPath="/Users/ventzi/Desktop/курсове - университет/ATTEMPT/data/ICHEC/eval/meteor" -meteorScript=meteor.pl -terTool="/Users/ventzi/Desktop/курсове - университет/EuroMatrixPlus/software/tercom-0.7.25/tercom.7.25.jar" -noGtm
+
+/Volumes/OptiBay/ADSK_Software/evaluateBySegment.pl -input=kor_all.new.txt.bz2 -language=ko -prodTest -meteorPath="/Users/ventzi/Desktop/курсове - университет/ATTEMPT/data/ICHEC/eval/meteor" -meteorScript=meteor.pl -terTool="/Users/ventzi/Desktop/курсове - университет/EuroMatrixPlus/software/tercom-0.7.25/tercom.7.25.jar" -noGtm
+
+/Volumes/OptiBay/ADSK_Software/evaluateBySegment.pl -input=plk_all.new.txt.bz2 -language=pl -prodTest -meteorPath="/Users/ventzi/Desktop/курсове - университет/ATTEMPT/data/ICHEC/eval/meteor" -meteorScript=meteor.pl -terTool="/Users/ventzi/Desktop/курсове - университет/EuroMatrixPlus/software/tercom-0.7.25/tercom.7.25.jar" -noGtm
+
+/Volumes/OptiBay/ADSK_Software/evaluateBySegment.pl -input=ptb_all.new.txt.bz2 -language=pt_br -prodTest -meteorPath="/Users/ventzi/Desktop/курсове - университет/ATTEMPT/data/ICHEC/eval/meteor" -meteorScript=meteor.pl -terTool="/Users/ventzi/Desktop/курсове - университет/EuroMatrixPlus/software/tercom-0.7.25/tercom.7.25.jar" -noGtm
+
+/Volumes/OptiBay/ADSK_Software/evaluateBySegment.pl -input=chs_all.new.txt.bz2 -language=zh_hans -prodTest -meteorPath="/Users/ventzi/Desktop/курсове - университет/ATTEMPT/data/ICHEC/eval/meteor" -meteorScript=meteor.pl -terTool="/Users/ventzi/Desktop/курсове - университет/EuroMatrixPlus/software/tercom-0.7.25/tercom.7.25.jar" -noGtm
+
+
+bunzip2 *.bysegment/en_*.scores.txt.bz2
+
+
+/Volumes/OptiBay/Autodesk/fy13.ReviewData/analyseScores.pl -languages=deesfritjpkoplpt_brzh_hans -noKendall
+
+
+perl -MEncode -MIO::Uncompress::Bunzip2 -e 'use utf8;$df=new IO::Uncompress::Bunzip2"../deu_all.txt.bz2";$tf=new IO::Uncompress::Bunzip2"deu_all.trans.txt.bz2";while($dl=decode"utf-8",$df->getline()){$tl=decode"utf-8",$tf->getline();chomp$dl;chomp$tl;($s,undef,$r,$p)=split//,$dl;print encode"utf-8","$s$tl$r$pn/amt_safaba00◊÷\n"}' |bzip2 >deu_all.new.txt.bz2&
+perl -MEncode -MIO::Uncompress::Bunzip2 -e 'use utf8;$df=new IO::Uncompress::Bunzip2"../deu_all.txt.bz2";$tf=new IO::Uncompress::Bunzip2"deu_all.trans.txt.bz2";while($dl=decode"utf-8",$df->getline()){$tl=decode"utf-8",$tf->getline();chomp$dl;chomp$tl;($s,undef,$r,$p)=split//,$dl;($t,$ms)=split//,$tl;print encode"utf-8","$s$t$r$pn/amt_2012.05.090$ms◊÷\n"}' |bzip2 >deu_all.new.txt.bz2&
+
+/Volumes/OptiBay/Autodesk/fy13.ReviewData/analyseScores.pl -languages=de -noKendall
+
+
+
+perl -MList::Util -MEncode -MIO::Uncompress::Bunzip2 -e 'use utf8;open$of,">SysComp.control.txt";print$of encode"UTF-16LE",chr(0xFEFF);$sf=new IO::Uncompress::Bunzip2"deu_all.txt.bz2";foreach$fn(map{$_."/deu_all.trans.txt.bz2"}List::Util::shuffle qw/original current.2013.01.30 safaba.new safaba.2013.02.07.core safaba.2013.02.07.opt safaba.2013.02.07.tune.opt/){${"Sys".(++$c)}=new IO::Uncompress::Bunzip2$fn or die;print$of encode"UTF-16LE","Sys$c is $fn\n";}print$of encode"UTF-16LE","System\tSegment\tOrder\n";while($s=$sf->getline()){chomp$s;$s=decode"utf-8",$s;$acad=$s=~/__acad__/;($s,undef,$r)=split//,$s;if($acad){unless(defined$d{$s}){$d{$s}->{i}=$.;$d{$s}->{t}=[]}else{$acad=0}++$d{$s}->{r}->{$r}}foreach$f(map{"Sys$_"}List::Util::shuffle 1..6){$t=${$f}->getline();chomp$t;$t=decode"utf-8",$t;($t)=split//,$t;push@{$d{$s}->{t}},"$f\t$t\t\n"if$acad}}close$sf;foreach$c(1..6){close${"Sys$c"}}foreach$s(sort{$d{$a}->{i}<=>$d{$b}->{i}}keys%d){print$of encode"UTF-16LE","src\t$s\t-1\n";foreach$r(sort{$a cmp$b}keys%{$d{$s}->{r}}){print$of encode"UTF-16LE","ref\t$r\t0\n"}print$of encode"UTF-16LE",join("",@{$d{$s}->{t}})."\n"}close$of'
+
+
+
+
+/usr/bin/perl -sTw /Volumes/OptiBay/ADSK_Software/moses_server.ventzi.pl -hostname=localhost -hostport=2005 -VENTZI -engine=fy14_EN-FR_c -perl_path=/usr/bin/perl
+
+bzcat athena_fra.mt.bz2 |perl -MEncode -e 'BEGIN{print"{translate=>35269,targetLanguage=>fr,getScore=>1}\n"}use utf8;$/=encode"utf-8","◊÷\n";while(<>){($s,$t,undef,undef,undef,$ty)=split//,decode"utf-8",$_;next unless$ty eq"MT"&&$t!~/^\s*$/m;print encode"utf-8","$s\n";}' |nc localhost 2005 |tail -n 35269 |bzip2 >athena_fra.mt.new.bz2
+
+
+
+
+/usr/bin/perl -sTw /Volumes/OptiBay/ADSK_Software/moses_server.ventzi.pl -hostname=localhost -hostport=2005 -VENTZI -engine=fy14_EN-KO_b
+
+bzcat athena_kor.mt.bz2 |perl -MEncode -e 'use utf8;$/=encode"utf-8","◊÷\n";while(<>){($s,$t,undef,undef,undef,$ty)=split//,decode"utf-8",$_;next unless$ty eq"MT"&&$t!~/^\s*$/m;print encode"utf-8","$s\n";}' |nc localhost 2005 |bzip2 >athena_kor.mt.old.dist15.bz2&
+
+perl -MEncode -MIO::Uncompress::Bunzip2 -e 'use utf8;$ff=new IO::Uncompress::Bunzip2"athena_kor.mt.bz2";$nf=new IO::Uncompress::Bunzip2"athena_kor.mt.old.dist25.bz2";for(;;){$/=encode"utf-8","◊÷\n";@fl=split//,decode"utf-8",$ff->getline()or last;next unless$fl[5]eq"MT"&&$fl[1]!~/^\s*$/m;$/=encode"utf-8","\n";@fl[1,6]=split//,decode"utf-8",$nf->getline()or last;chomp$fl[6];print encode"utf-8",join"",@fl}' |bzip2 >athena_kor.mt.old.dist25.full.bz2
+
+/Volumes/OptiBay/ADSK_Software/evaluateBySegment.pl -input=athena_kor.mt.old.dist25.full.bz2 -version=mt.old.dist25 -language=ko -mosesFuzzy -meteorPath="/Users/ventzi/Desktop/курсове - университет/ATTEMPT/data/ICHEC/eval/meteor" -meteorScript=meteor.pl -terTool="/Users/ventzi/Desktop/курсове - университет/EuroMatrixPlus/software/tercom-0.7.25/tercom.7.25.jar" -noGtm
+
+/Volumes/OptiBay/ADSK_Software/analyseScores.pl -noKendall -noByLength -outputVersion=.dist -languages=ko.mt.origko.mt.oldko.mt.old.distko.mt.old.dist15ko.mt.old.dist20ko.mt.old.dist25
+
+open -a Numbers stats.dist.byLanguage.txt

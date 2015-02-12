@@ -4,6 +4,9 @@
 # Created on 15 May 2012 by Ventsislav Zhechev
 #
 # ChangeLog
+# v2.0.2	Last modified by Ventsislav Zhechev on 12 Sep 2014
+# Removed an unnecessary shuffling of the language list.
+#
 # v2.0.1	Last modified by Ventsislav Zhechev on 31 Mar 2014
 # Streamlined the ngram extraction to reduce unnecessary output.
 #
@@ -41,7 +44,7 @@ unless defined $inputFolder && defined $outputFolder;
 $maxNGram ||= 7;
 $threads ||= 8;
 
-my @languages = shuffle qw/ARA CHS CHT CSY DEU DNK ELL ENA ENG ESP FIN FRA FRB FRC HUN IND ITA JPN KOR LAS NLD NOR PLK PTB PTG ROM RUS SLK SWE THA TUR VIT/;
+my @languages = qw/ARA CHS CHT CSY DEU DNK ELL ENA ENG ESP FIN FRA FRB FRC HUN IND ITA JPN KOR LAS NLD NOR PLK PTB PTG ROM RUS SLK SWE THA TUR VIT/;
 
 require "/OptiBay/ADSK_Software/tokenise.pl"
 or die encode "utf-8", "Could not load tokeniser at /OptiBay/ADSK_Software/tokenise.pl\n";

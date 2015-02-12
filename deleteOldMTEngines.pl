@@ -1,9 +1,17 @@
 #!/usr/bin/perl -ws
 #
-# ©2014 Autodesk Development Sàrl
+# ©2014–2015 Autodesk Development Sàrl
 # Created on 11 Mar 2014 by Ventsislav Zhechev
 #
 # ChangeLog
+# !!! Subsequent changes tracked on GitHub only !!!
+#
+# v0.2.1		Modified on 29 Jan 2015 by Ventsislav Zhechev
+# Updated deployment matrix to reflect Jan 2015 state.
+#
+# v0.2			Modified on 26 Jan 2015 by Ventsislav Zhechev
+# Modified to take into account current engine deployment. The deployment matrix just needs to be copied in manually.
+#
 # v0.1			Modified on 11 Mar 2014 by Ventsislav Zhechev
 # Initial version.
 #
@@ -27,34 +35,53 @@ select STDERR;
 $| = 1;
 
 
-my @servers = (
-"mtprd01",
-"mtprd02",
-"mtprd03",
-"mtprd04",
-"mtprd05",
-"mtprd06",
-"mtprd07",
-"mtprd08",
-"mtprd09",
-"mtprd10",
-"mtprd11",
-"mtprd12",
-"ussclpdapcmsl01",
-"ussclpdapcmsl02",
-"ussclpdapcmsl03",
-"ussclpdapcmsl04",
-"ussclpdapcmsl05",
-"ussclpdapcmsl06",
-"ussclpdapcmsl07",
-"ussclpdapcmsl08",
-"ussclpdapcmsl09",
-"ussclpdapcmsl10",
-"ussclpdapcmsl11",
-"ussclpdapcmsl12",
+my %servers = (
+"ussclpdapcmsl01" => ["fy16_CS-EN_a","fy16_EN-CS_b","fy16_EN-DA_b","fy16_EN-EN_GB_b","fy16_EN-FI_b","fy16_EN-NL_b","fy16_EN-NO_b","fy16_EN-PL_b","fy16_EN-PT_BR_b","fy16_EN-SV_b","fy16_HU-EN_a",],
+"ussclpdapcmsl02" => ["fy16_EN-DE_b","fy16_EN-RU_b","fy16_PL-EN_a","fy16_PT_BR-EN_a","fy16_RU-EN_a",],
+"ussclpdapcmsl03" => ["fy16_DE-EN_a","fy16_EN-HU_b","fy16_EN-IT_b","fy16_EN-PT_BR_b","fy16_ES-EN_a",],
+"ussclpdapcmsl04" => ["fy16_EN-IT_b","fy16_EN-RU_b","fy16_EN-ZH_HANS_b","fy16_IT-EN_a",],
+"ussclpdapcmsl05" => ["fy16_EN-CS_b","fy16_EN-FR_b","fy16_EN-HU_b","fy16_EN-PT_BR_b","fy16_EN-PT_PT_b",],
+"ussclpdapcmsl06" => ["fy16_EN-CS_b","fy16_EN-FR_b","fy16_EN-HU_b","fy16_EN-PT_BR_b","fy16_EN-PT_PT_b",],
+"ussclpdapcmsl07" => ["fy16_EN-CS_b","fy16_EN-HU_b","fy16_EN-JP_b","fy16_EN-PL_b",],
+"ussclpdapcmsl08" => ["fy16_EN-CS_b","fy16_EN-HU_b","fy16_EN-JP_b","fy16_EN-PL_b",],
+"ussclpdapcmsl09" => ["fy16_EN-CS_b","fy16_EN-HU_b","fy16_EN-JP_b","fy16_EN-PL_b",],
+"ussclpdapcmsl10" => ["fy16_EN-CS_b","fy16_EN-HU_b","fy16_EN-JP_b","fy16_EN-PL_b",],
+"ussclpdapcmsl11" => ["fy16_EN-PT_PT_b","fy16_EN-ZH_HANS_b","fy16_JP-EN_a","fy16_KO-EN_a",],
+"ussclpdapcmsl12" => ["fy16_EN-IT_b","fy16_EN-PL_b","fy16_EN-PT_PT_b","fy16_EN-RU_b","fy16_FR-EN_a",],
+"ussclpdmtlnx001" => ["fy16_EN-PL_b","fy16_EN-RU_b","fy16_EN-ZH_HANT_b","fy16_ZH_HANS-EN_a","fy16_ZH_HANT-EN_a",],
+"ussclpdmtlnx002" => ["fy16_EN-ES_b","fy16_EN-JP_b","fy16_EN-PT_BR_b",],
+"ussclpdmtlnx003" => ["fy16_EN-ES_b","fy16_EN-JP_b","fy16_EN-PT_BR_b",],
+"ussclpdmtlnx004" => ["fy16_EN-ES_b","fy16_EN-JP_b","fy16_EN-PT_BR_b",],
+"ussclpdmtlnx005" => ["fy16_EN-ES_b","fy16_EN-JP_b","fy16_EN-PT_BR_b",],
+"ussclpdmtlnx006" => ["fy16_EN-ES_b","fy16_EN-PL_b","fy16_EN-ZH_HANS_b","fy16_EN-ZH_HANT_b",],
+"ussclpdmtlnx007" => ["fy16_EN-DE_b","fy16_EN-IT_b","fy16_EN-KO_b",],
+"ussclpdmtlnx008" => ["fy16_EN-DE_b","fy16_EN-IT_b","fy16_EN-KO_b",],
+"ussclpdmtlnx009" => ["fy16_EN-DE_b","fy16_EN-IT_b","fy16_EN-KO_b",],
+"ussclpdmtlnx010" => ["fy16_EN-DE_b","fy16_EN-IT_b","fy16_EN-KO_b",],
+"ussclpdmtlnx011" => ["fy16_EN-DE_b","fy16_EN-IT_b","fy16_EN-KO_b",],
+"ussclpdmtlnx012" => ["fy16_EN-CS_b","fy16_EN-ES_b","fy16_EN-ZH_HANS_b","fy16_EN-ZH_HANT_b",],
+"ussclpdmtlnx013" => ["fy16_EN-DE_b","fy16_EN-FR_b","fy16_EN-ZH_HANT_b",],
+"ussclpdmtlnx014" => ["fy16_EN-DE_b","fy16_EN-FR_b","fy16_EN-ZH_HANT_b",],
+"ussclpdmtlnx015" => ["fy16_EN-ES_b","fy16_EN-KO_b","fy16_EN-RU_b","fy16_EN-ZH_HANT_b",],
+"ussclpdmtlnx016" => ["fy16_EN-ES_b","fy16_EN-KO_b","fy16_EN-RU_b","fy16_EN-ZH_HANT_b",],
+"mtprd01" => ["fy16_EN-ZH_HANS_b",],
+"mtprd02" => ["fy16_EN-ZH_HANS_b",],
+"mtprd03" => ["fy16_EN-ZH_HANS_b",],
+"mtprd04" => ["fy16_EN-ZH_HANS_b",],
+"mtprd05" => ["fy16_EN-FR_b",],
+"mtprd06" => ["fy16_EN-FR_b",],
+"mtprd07" => ["fy16_EN-FR_b",],
+"mtprd08" => ["fy16_EN-FR_b",],
+"mtprd09" => ["fy16_EN-KO_b","fy16_EN-EN_GB_b",],
+"mtprd10" => ["fy16_EN-ZH_HANT_b","fy16_EN-EN_GB_b",],
+"mtprd11" => ["fy16_EN-RU_b","fy16_EN-EN_GB_b",],
+"mtprd12" => ["fy16_EN-RU_b","fy16_EN-EN_GB_b",],
 );
 
-my $engines = join " /local/cms/", split / /, " fy15_EN-CS_a fy15_EN-DA_a fy15_EN-DE_a fy15_EN-FI_a fy15_EN-HU_a fy15_EN-IT_a fy15_EN-NL_a fy15_EN-NO_a fy15_EN-PL_a fy15_EN-PT_BR_a fy15_EN-RU_a fy15_EN-SV_a fy15_EN-CS_b fy15_EN-DA_b fy15_EN-DE_b fy15_EN-EN_UK_a fy15_EN-ES_a fy15_EN-FI_b fy15_EN-FR_a fy15_EN-HU_b fy15_EN-IT_b fy15_EN-JP_a fy15_EN-KO_a fy15_EN-NL_b fy15_EN-NO_b fy15_EN-PL_b fy15_EN-PT_BR_b fy15_EN-RU_b fy15_EN-SV_b fy15_EN-VI_a fy15_EN-ZH_HANS_a fy15_EN-ZH_HANT_a";
+#Reformat to make searching faster.
+foreach my $server (keys %servers) {
+	$servers{$server} = {map {$_ => 1} @{$servers{$server}}};
+}
 
 my $tasks = new Thread::Queue;
 
@@ -65,11 +92,17 @@ my $delete = sub {
 			print STDOUT threads->tid().": Finished work!\n";
 			last;
 		}
-		if (defined $testDrive) {
-			print STDOUT threads->tid().": ", join " ", "ssh", "-n", "cmsuser\@$server", "'rm -rvf $engines'", "\n";
+		#Get the list of engines deployed on this server
+		my $engines = join " ", map {"/local/cms/$_"} grep {!defined $servers{$server}->{$_}} split /\n/, `ssh -qn cmsuser\@$server 'ls /local/cms/ |grep fy'`;
+		if ($engines) {
+			if (defined $testDrive) {
+				print STDOUT threads->tid().": ", join " ", "ssh", "-qn", "cmsuser\@$server", "'rm -rvf $engines'", "\n";
+			} else {
+				print STDOUT threads->tid().": ".($tasks->pending()-$threads)." servers left. Deleting using command: ", join " ", "ssh", "-qn", "cmsuser\@$server", "'rm -rvf $engines'", "\n";
+				system "ssh", "-qn", "cmsuser\@$server", "rm -rvf $engines";
+			}
 		} else {
-			print STDOUT threads->tid().": ".($tasks->pending()-$threads)." servers left. Deleting using command: ", join " ", "ssh", "-n", "cmsuser\@$server", "'rm -rvf $engines'", "\n";
-			system "ssh", "-n", "cmsuser\@$server", "rm -rvf $engines", "\n";
+			print STDOUT "Nothing to delete on $server!\n";
 		}
 	}
 };
@@ -77,7 +110,7 @@ my $delete = sub {
 
 my @workers = map { scalar threads->create($delete) } 1..$threads;
 
-$tasks->enqueue($_) foreach shuffle @servers;
+$tasks->enqueue($_) foreach shuffle keys %servers;
 
 
 $tasks->enqueue(undef) foreach 1..$threads;

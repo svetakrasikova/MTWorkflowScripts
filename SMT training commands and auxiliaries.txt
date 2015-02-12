@@ -1,116 +1,3 @@
-md -p mecab
-md -p kytea.mod1
-md -p kytea.mod7
-
-#BREAK
-
-##Ventzi tokenizer
-/OptiBay/Autodesk/train.pl -corpus=/Users/ventzi/Desktop/Autodesk/segmentation/JPNdata/full\ data/corpus -source=en -target=jp -lm_path=lm -moses_path=/Users/ventzi/courses/EuroMatrixPlus/software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -first_step=1 -last_step=9 -log_dir=../LOG -seg_script=/Users/ventzi/Desktop/Autodesk/segmentation/JPNdata/word_segmenter.pl -segmenter=mecab -tokenizer_path=/Users/ventzi/courses/EuroMatrixPlus/software -build_lm=/sw/bin/srilm/macosx -build_recaser=./recaser -lc_script=/Users/ventzi/courses/EuroMatrixPlus/software/moses-2010-04-08/scripts/scripts-20100409-0412/scripts/lowercase.perl -device=disk1 -reorder_cmd="/Users/ventzi/Desktop/Autodesk/segmentation/Hidenori/Reorder/reorder_jpn.pl -parser_cmd=\"/OptiBay/Autodesk/multiParser.pl -threads=8 -parser_cmd=\\\"/Users/ventzi/Desktop/Autodesk/segmentation/Hidenori/OPENNLP/1.5/opennlp-tools-1.5.0/bin/opennlp Parser /Users/ventzi/Desktop/Autodesk/segmentation/Hidenori/OPENNLP/Data/en-parser-chunking.zip 2>/dev/null\\\"\""
-/OptiBay/Autodesk/train.pl -corpus=/Users/ventzi/Desktop/Autodesk/segmentation/JPNdata/full\ data/corpus -source=en -target=jp -lm_path=lm -moses_path=/Users/ventzi/courses/EuroMatrixPlus/software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -first_step=1 -last_step=9 -log_dir=../LOG -seg_script=/Users/ventzi/Desktop/Autodesk/segmentation/JPNdata/word_segmenter.pl -segmenter=kytea -seg_model="/Users/ventzi/Desktop/Autodesk/segmentation/kytea-models/yomi-0.2.0-utf8-1.mod" -tokenizer_path=/Users/ventzi/courses/EuroMatrixPlus/software -build_lm=/sw/bin/srilm/macosx -build_recaser=./recaser -lc_script=/Users/ventzi/courses/EuroMatrixPlus/software/moses-2010-04-08/scripts/scripts-20100409-0412/scripts/lowercase.perl -device=disk1 -reorder_cmd="/OptiBay/ADSK_Software/reorder_jpn.pl -parser_cmd=\"/OptiBay/ADSK_Software/multiParser.pl -threads=8 -parser_cmd=\\\"/Users/ventzi/Desktop/Autodesk/segmentation/Hidenori/OPENNLP/1.5/opennlp-tools-1.5.0/bin/opennlp Parser /Users/ventzi/Desktop/Autodesk/segmentation/Hidenori/OPENNLP/Data/en-parser-chunking.zip 2>LOG/opennlp.log\\\"\""
-/OptiBay/Autodesk/train.pl -corpus=/Users/ventzi/Desktop/Autodesk/segmentation/JPNdata/full\ data/corpus -source=en -target=jp -lm_path=lm -moses_path=/Users/ventzi/courses/EuroMatrixPlus/software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -first_step=1 -last_step=9 -log_dir=../LOG -seg_script=/Users/ventzi/Desktop/Autodesk/segmentation/JPNdata/word_segmenter.pl -segmenter=kytea -seg_model="/Users/ventzi/Desktop/Autodesk/segmentation/kytea-models/yomi-0.2.0-utf8-7.mod" -tokenizer_path=/Users/ventzi/courses/EuroMatrixPlus/software -build_lm=/sw/bin/srilm/macosx -build_recaser=./recaser -lc_script=/Users/ventzi/courses/EuroMatrixPlus/software/moses-2010-04-08/scripts/scripts-20100409-0412/scripts/lowercase.perl -device=disk1 -reorder_cmd="/Users/ventzi/Desktop/Autodesk/segmentation/Hidenori/Reorder/reorder_jpn.pl -parser_cmd=\"/OptiBay/Autodesk/multiParser.pl -threads=6 -parser_cmd=\\\"/Users/ventzi/Desktop/Autodesk/segmentation/Hidenori/OPENNLP/1.5/opennlp-tools-1.5.0/bin/opennlp Parser /Users/ventzi/Desktop/Autodesk/segmentation/Hidenori/OPENNLP/Data/en-parser-chunking.zip 2>/dev/null\\\"\""
-
-/OptiBay/Autodesk/train.pl -corpus=/Users/ventzi/Desktop/Autodesk/segmentation/JPNdata/full\ data/corpus -source=en -target=jp -lm_path=lm -moses_path=/Users/ventzi/courses/EuroMatrixPlus/software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -first_step=1 -last_step=9 -log_dir=../LOG -seg_script=/Users/ventzi/Desktop/Autodesk/segmentation/JPNdata/word_segmenter.pl -segmenter=kytea -seg_model="/Users/ventzi/Desktop/Autodesk/segmentation/kytea-models/yomi-0.2.0-utf8-1.mod" -tokenizer_path=/Users/ventzi/courses/EuroMatrixPlus/software -build_lm=/sw/bin/srilm/macosx -build_recaser=./recaser -lc_script=/Users/ventzi/courses/EuroMatrixPlus/software/moses-2010-04-08/scripts/scripts-20100409-0412/scripts/lowercase.perl -device=disk1 -reorder_cmd="/Users/ventzi/Desktop/Autodesk/segmentation/Hidenori/Reorder/reorder_jpn.pl -parser_cmd=\"/OptiBay/Autodesk/multiParser.pl -threads=5 -parser_cmd=\\\"/usr/bin/java -Xmx768M -Xmx2048M -jar /Users/ventzi/Desktop/Autodesk/segmentation/BerkeleyParser/berkeleyParser_new.jar -gr /Users/ventzi/Desktop/Autodesk/segmentation/BerkeleyParser/eng_sm6.gr -nThreads 1 -maxLength 3430\\\"\""
-
-/OptiBay/Autodesk/train.pl -corpus=/Users/ventzi/Desktop/Autodesk/segmentation/JPNdata/full\ data/corpus -source=en -target=jp -lm_path=lm -moses_path=/Users/ventzi/courses/EuroMatrixPlus/software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -first_step=1 -last_step=9 -log_dir=../LOG -seg_script=/Users/ventzi/Desktop/Autodesk/segmentation/JPNdata/word_segmenter.pl -segmenter=kytea -seg_model="/Users/ventzi/Desktop/Autodesk/segmentation/kytea-models/yomi-0.2.0-utf8-1.mod" -tokenizer_path=/Users/ventzi/courses/EuroMatrixPlus/software -build_lm=/sw/bin/srilm/macosx -build_recaser=./recaser -lc_script=/Users/ventzi/courses/EuroMatrixPlus/software/moses-2010-04-08/scripts/scripts-20100409-0412/scripts/lowercase.perl -device=disk1 -reorder_cmd="/Users/ventzi/Desktop/Autodesk/segmentation/Hidenori/Reorder/reorder_jpn.pl -parser_cmd=\"/OptiBay/Autodesk/multiParser.pl -threads=8 -parser_cmd=\\\"/usr/bin/java -Xmx348M -Xmx2048M -cp /Users/ventzi/Desktop/Autodesk/segmentation/StanfordParser/stanford-parser-2011-04-20/stanford-parser_new.jar edu.stanford.nlp.parser.lexparser.LexicalizedParser -sentences newline -tokenized -outputFormat "oneline" -outputFormatOptions "markHeadNodes" /Users/ventzi/Desktop/Autodesk/segmentation/StanfordParser/stanford-parser-2011-04-20/englishPCFG.ser.gz - 2>stanford.log\\\"\""
-
-/OptiBay/Autodesk/train.pl -corpus=/Users/ventzi/Desktop/Autodesk/segmentation/JPNdata/full\ data/corpus -source=en -target=jp -lm_path=lm -moses_path=/Users/ventzi/courses/EuroMatrixPlus/software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -first_step=1 -last_step=9 -log_dir=../LOG -seg_script=/Users/ventzi/Desktop/Autodesk/segmentation/JPNdata/word_segmenter.pl -segmenter=kytea -seg_model="/Users/ventzi/Desktop/Autodesk/segmentation/kytea-models/yomi-0.2.0-utf8-1.mod" -tokenizer_path=/Users/ventzi/courses/EuroMatrixPlus/software -build_lm=/sw/bin/srilm/macosx -build_recaser=./recaser -lc_script=/Users/ventzi/courses/EuroMatrixPlus/software/moses-2010-04-08/scripts/scripts-20100409-0412/scripts/lowercase.perl -device=disk1 -reorder_cmd="/Users/ventzi/Desktop/Autodesk/segmentation/Hidenori/Reorder/reorder_jpn.pl -parser_cmd=\"/OptiBay/Autodesk/multiParser.pl -threads=5 -parser_cmd=\\\"/Users/ventzi/Desktop/Autodesk/segmentation/CharniakParser/reranking-parser/first-stage/PARSE/parseIt -l3430 -N50 -t7 /Users/ventzi/Desktop/Autodesk/segmentation/CharniakParser/reranking-parser/first-stage/DATA/EN/ |/Users/ventzi/Desktop/Autodesk/segmentation/CharniakParser/reranking-parser/second-stage/programs/features/best-parses -l /Users/ventzi/Desktop/Autodesk/segmentation/CharniakParser/reranking-parser/second-stage/models/ec50spfinal/features.gz /Users/ventzi/Desktop/Autodesk/segmentation/CharniakParser/reranking-parser/second-stage/models/ec50spfinal/cvlm-l1c10P1-weights.gz\\\"\""
-
-
-
-##Autodesk tokenizer
-/OptiBay/Autodesk/train.pl -corpus=/Users/ventzi/Desktop/Autodesk/segmentation/JPNdata/full\ data/corpus -source=en -target=jp -lm_path=lm -moses_path=/Users/ventzi/courses/EuroMatrixPlus/software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -first_step=1 -last_step=9 -log_dir=../LOG -seg_script=/Users/ventzi/Desktop/Autodesk/segmentation/JPNdata/word_segmenter.pl -segmenter=mecab -tokenizer_path=//Users/ventzi/Desktop/Autodesk/segmentation/JPNdata -build_lm=/sw/bin/srilm/macosx -build_recaser=./recaser -lc_script=/Users/ventzi/courses/EuroMatrixPlus/software/moses-2010-04-08/scripts/scripts-20100409-0412/scripts/lowercase.perl -reorder_cmd="/Users/ventzi/Desktop/Autodesk/segmentation/Hidenori/Reorder/reorder_jpn.pl -parser_cmd=\"/Users/ventzi/Desktop/Autodesk/segmentation/Hidenori/OPENNLP/1.5/opennlp-tools-1.5.0/bin/opennlp Parser /Users/ventzi/Desktop/Autodesk/segmentation/Hidenori/OPENNLP/Data/en-parser-chunking.zip\""
-/OptiBay/Autodesk/train.pl -corpus=/Users/ventzi/Desktop/Autodesk/segmentation/JPNdata/full\ data/corpus -source=en -target=jp -lm_path=lm -moses_path=/Users/ventzi/courses/EuroMatrixPlus/software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -first_step=1 -last_step=9 -log_dir=../LOG -seg_script=/Users/ventzi/Desktop/Autodesk/segmentation/JPNdata/word_segmenter.pl -segmenter=kytea -seg_model="/Users/ventzi/Desktop/Autodesk/segmentation/kytea-models/yomi-0.2.0-utf8-1.mod" -tokenizer_path=/Users/ventzi/Desktop/Autodesk/segmentation/JPNdata -build_lm=/sw/bin/srilm/macosx -build_recaser=./recaser -lc_script=/Users/ventzi/courses/EuroMatrixPlus/software/moses-2010-04-08/scripts/scripts-20100409-0412/scripts/lowercase.perl -reorder_cmd="/Users/ventzi/Desktop/Autodesk/segmentation/Hidenori/Reorder/reorder_jpn.pl -parser_cmd=\"/Users/ventzi/Desktop/Autodesk/segmentation/Hidenori/OPENNLP/1.5/opennlp-tools-1.5.0/bin/opennlp Parser /Users/ventzi/Desktop/Autodesk/segmentation/Hidenori/OPENNLP/Data/en-parser-chunking.zip\""
-/OptiBay/Autodesk/train.pl -corpus=/Users/ventzi/Desktop/Autodesk/segmentation/JPNdata/full\ data/corpus -source=en -target=jp -lm_path=lm -moses_path=/Users/ventzi/courses/EuroMatrixPlus/software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -first_step=1 -last_step=9 -log_dir=../LOG -seg_script=/Users/ventzi/Desktop/Autodesk/segmentation/JPNdata/word_segmenter.pl -segmenter=kytea -seg_model="/Users/ventzi/Desktop/Autodesk/segmentation/kytea-models/yomi-0.2.0-utf8-7.mod" -tokenizer_path=/Users/ventzi/Desktop/Autodesk/segmentation/JPNdata -build_lm=/sw/bin/srilm/macosx -build_recaser=./recaser -lc_script=/Users/ventzi/courses/EuroMatrixPlus/software/moses-2010-04-08/scripts/scripts-20100409-0412/scripts/lowercase.perl -reorder_cmd="/Users/ventzi/Desktop/Autodesk/segmentation/Hidenori/Reorder/reorder_jpn.pl -parser_cmd=\"/Users/ventzi/Desktop/Autodesk/segmentation/Hidenori/OPENNLP/1.5/opennlp-tools-1.5.0/bin/opennlp Parser /Users/ventzi/Desktop/Autodesk/segmentation/Hidenori/OPENNLP/Data/en-parser-chunking.zip\""
-
-
-#BREAK
-
-md -p mecab/test
-md -p kytea.mod1/test
-md -p kytea.mod7/test
-
-##Ventzi tokeniser
-nice bzcat "/Users/ventzi/Desktop/Autodesk/segmentation/JPNdata/test set/test.jp.bz2" |/Users/ventzi/courses/EuroMatrixPlus/software/tokenise.pl jp |perl -pe 's/\|/│/g;s/</﹤/g;s/>/﹥/g;s/\(/﹙/g;s/\)/﹚/g;' |/Users/ventzi/Desktop/Autodesk/segmentation/JPNdata/word_segmenter.pl -segmenter=mecab -seg_path=/usr/local/bin/ |bzip2 >mecab/test/test.jp.tok.bz2&
-nice bzcat "/Users/ventzi/Desktop/Autodesk/segmentation/JPNdata/test set/test.jp.bz2" |/Users/ventzi/courses/EuroMatrixPlus/software/tokenise.pl jp |perl -pe 's/\|/│/g;s/</﹤/g;s/>/﹥/g;s/\(/﹙/g;s/\)/﹚/g;' |/Users/ventzi/Desktop/Autodesk/segmentation/JPNdata/word_segmenter.pl -segmenter=kytea -seg_path=/usr/local/bin/ -model="/Users/ventzi/Desktop/Autodesk/segmentation/kytea-models/yomi-0.2.0-utf8-1.mod" |bzip2 >kytea.mod1/test/test.jp.tok.bz2&
-nice bzcat "/Users/ventzi/Desktop/Autodesk/segmentation/JPNdata/test set/test.jp.bz2" |/Users/ventzi/courses/EuroMatrixPlus/software/tokenise.pl jp |perl -pe 's/\|/│/g;s/</﹤/g;s/>/﹥/g;s/\(/﹙/g;s/\)/﹚/g;' |/Users/ventzi/Desktop/Autodesk/segmentation/JPNdata/word_segmenter.pl -segmenter=kytea -seg_path=/usr/local/bin/ -model="/Users/ventzi/Desktop/Autodesk/segmentation/kytea-models/yomi-0.2.0-utf8-7.mod" |bzip2 >kytea.mod7/test/test.jp.tok.bz2&
-
-nice bzcat "/Users/ventzi/Desktop/Autodesk/segmentation/JPNdata/test set/test.en.bz2" |/Users/ventzi/courses/EuroMatrixPlus/software/moses-2010-04-08/scripts/scripts-20100409-0412/scripts/lowercase.perl |/Users/ventzi/courses/EuroMatrixPlus/software/tokenise.pl en |perl -pe 's/\|/│/g;s/</﹤/g;s/>/﹥/g;s/\(/﹙/g;s/\)/﹚/g;' |bzip2 >mecab/test/test.en.tok.bz2&
-#→REORDER
-nice bzcat "/Users/ventzi/Desktop/Autodesk/segmentation/JPNdata/test set/test.en.bz2" |/Users/ventzi/courses/EuroMatrixPlus/software/moses-2010-04-08/scripts/scripts-20100409-0412/scripts/lowercase.perl |/Users/ventzi/courses/EuroMatrixPlus/software/tokenise.pl en |/Users/ventzi/Desktop/Autodesk/segmentation/Hidenori/Reorder/reorder_jpn.pl -parser_cmd="/OptiBay/Autodesk/multiParser.pl -threads=4 -parser_cmd=\"/Users/ventzi/Desktop/Autodesk/segmentation/Hidenori/OPENNLP/1.5/opennlp-tools-1.5.0/bin/opennlp Parser /Users/ventzi/Desktop/Autodesk/segmentation/Hidenori/OPENNLP/Data/en-parser-chunking.zip 2>/dev/null\"" |bzip2 >mecab/test/test.en.tok.bz2&
-
-nice bzcat "/Users/ventzi/Desktop/Autodesk/segmentation/JPNdata/test set/test.en.bz2" |/Users/ventzi/courses/EuroMatrixPlus/software/moses-2010-04-08/scripts/scripts-20100409-0412/scripts/lowercase.perl |/Users/ventzi/courses/EuroMatrixPlus/software/tokenise.pl en |/Users/ventzi/Desktop/Autodesk/segmentation/Hidenori/Reorder/reorder_jpn.pl -parser_cmd="/OptiBay/Autodesk/multiParser.pl -threads=8 -parser_cmd=\"/usr/bin/java -Xmx384M -Xmx2048M -cp /Users/ventzi/Desktop/Autodesk/segmentation/StanfordParser/stanford-parser-2011-04-20/stanford-parser_new.jar edu.stanford.nlp.parser.lexparser.LexicalizedParser -sentences newline -tokenized -outputFormat "oneline" -outputFormatOptions "markHeadNodes" /Users/ventzi/Desktop/Autodesk/segmentation/StanfordParser/stanford-parser-2011-04-20/englishPCFG.ser.gz - 2>stanford.trans.log\"" |bzip2 >mecab/test/test.en.tok.bz2&
-
-
-cp -p mecab/test/test.en.tok.bz2 kytea.mod1/test/.
-cp -p mecab/test/test.en.tok.bz2 kytea.mod7/test/.
-
-##Autodesk tokeniser
-nice bzcat "/Users/ventzi/Desktop/Autodesk/segmentation/JPNdata/test set/test.jp.bz2" |/usr/bin/perl -ne 'BEGIN{require"/Users/ventzi/Desktop/Autodesk/segmentation/JPNdata/tokenizer.perl";binmode STDIN,":encoding(utf8)";binmode STDOUT,":encoding(utf8)"}chomp;print&tokenize("jp",$_),"\n"' |perl -pe 's/\|/│/g;s/</﹤/g;s/>/﹥/g;s/\(/﹙/g;s/\)/﹚/g;' |/Users/ventzi/Desktop/Autodesk/segmentation/JPNdata/word_segmenter.pl -segmenter=mecab -seg_path=/usr/local/bin/ |bzip2 >mecab/test/test.jp.tok.bz2&
-nice bzcat "/Users/ventzi/Desktop/Autodesk/segmentation/JPNdata/test set/test.jp.bz2" |/usr/bin/perl -ne 'BEGIN{require"/Users/ventzi/Desktop/Autodesk/segmentation/JPNdata/tokenizer.perl";binmode STDIN,":encoding(utf8)";binmode STDOUT,":encoding(utf8)"}chomp;print&tokenize("jp",$_),"\n"' |perl -pe 's/\|/│/g;s/</﹤/g;s/>/﹥/g;s/\(/﹙/g;s/\)/﹚/g;' |/Users/ventzi/Desktop/Autodesk/segmentation/JPNdata/word_segmenter.pl -segmenter=kytea -seg_path=/usr/local/bin/ -model="/Users/ventzi/Desktop/Autodesk/segmentation/kytea-models/yomi-0.2.0-utf8-1.mod" |bzip2 >kytea.mod1/test/test.jp.tok.bz2&
-nice bzcat "/Users/ventzi/Desktop/Autodesk/segmentation/JPNdata/test set/test.jp.bz2" |/usr/bin/perl -ne 'BEGIN{require"/Users/ventzi/Desktop/Autodesk/segmentation/JPNdata/tokenizer.perl";binmode STDIN,":encoding(utf8)";binmode STDOUT,":encoding(utf8)"}chomp;print&tokenize("jp",$_),"\n"' |perl -pe 's/\|/│/g;s/</﹤/g;s/>/﹥/g;s/\(/﹙/g;s/\)/﹚/g;' |/Users/ventzi/Desktop/Autodesk/segmentation/JPNdata/word_segmenter.pl -segmenter=kytea -seg_path=/usr/local/bin/ -model="/Users/ventzi/Desktop/Autodesk/segmentation/kytea-models/yomi-0.2.0-utf8-7.mod" |bzip2 >kytea.mod7/test/test.jp.tok.bz2&
-
-nice bzcat "/Users/ventzi/Desktop/Autodesk/segmentation/JPNdata/test set/test.en.bz2" |/Users/ventzi/courses/EuroMatrixPlus/software/moses-2010-04-08/scripts/scripts-20100409-0412/scripts/lowercase.perl |/usr/bin/perl -ne 'BEGIN{require"/Users/ventzi/Desktop/Autodesk/segmentation/JPNdata/tokenizer.perl";binmode STDIN,":encoding(utf8)";binmode STDOUT,":encoding(utf8)"}chomp;print&tokenize("en",$_),"\n"' |perl -pe 's/\|/│/g;s/</﹤/g;s/>/﹥/g;s/\(/﹙/g;s/\)/﹚/g;' |bzip2 >"mecab/test/test.en.tok.bz2"&
-#→REORDER
-nice bzcat "/Users/ventzi/Desktop/Autodesk/segmentation/JPNdata/test set/test.en.bz2" |/Users/ventzi/courses/EuroMatrixPlus/software/moses-2010-04-08/scripts/scripts-20100409-0412/scripts/lowercase.perl |/usr/bin/perl -ne 'BEGIN{require"/Users/ventzi/Desktop/Autodesk/segmentation/JPNdata/tokenizer.perl";binmode STDIN,":encoding(utf8)";binmode STDOUT,":encoding(utf8)"}chomp;print&tokenize("en",$_),"\n"' |perl -pe 's/\|/│/g;s/</﹤/g;s/>/﹥/g;s/\(/﹙/g;s/\)/﹚/g;' |/Users/ventzi/Desktop/Autodesk/segmentation/Hidenori/Reorder/reorder_jpn.pl -parser_cmd="/Users/ventzi/Desktop/Autodesk/segmentation/Hidenori/OPENNLP/1.5/opennlp-tools-1.5.0/bin/opennlp Parser /Users/ventzi/Desktop/Autodesk/segmentation/Hidenori/OPENNLP/Data/en-parser-chunking.zip" |bzip2 >"mecab/test/test.en.tok.bz2"&
-
-#BREAK
-
-ln -s "/Users/ventzi/Desktop/Autodesk/segmentation/JPNdata/test set/test.en.tok.bz2" mecab/test/.
-ln -s "/Users/ventzi/Desktop/Autodesk/segmentation/JPNdata/test set/test.en.tok.bz2" kytea.mod1/test/.
-ln -s "/Users/ventzi/Desktop/Autodesk/segmentation/JPNdata/test set/test.en.tok.bz2" kytea.mod7/test/.
-
-#BREAK
-
-# ln -s /OptiBay/Autodesk/JPN/mecab/model mecab/.
-# ln -s /OptiBay/Autodesk/JPN/kytea.mod1/model kytea.mod1/.
-# ln -s /OptiBay/Autodesk/JPN/kytea.mod7/model kytea.mod7/.
-
-#BREAK
-#EN–JP Translation
-nice bzcat mecab/test/test.en.tok.bz2 |moses-ventzi -threads 8 -f mecab/model/moses.ini 2>/dev/null |moses-ventzi -f mecab/recaser/moses.ini 2>/dev/null |/usr/bin/perl -pe 'BEGIN{my$c=0}$c+=s/\|UNK\|UNK\|UNK//g;s/ +$//;END{print STDERR "mecab unknowns: $c\n"}' |bzip2 >mecab/test/trans.jp.tok.bz2 &
-nice bzcat kytea.mod1/test/test.en.tok.bz2 |moses-ventzi -threads 8 -f kytea.mod1/model/moses.ini 2>/dev/null |moses-ventzi -f kytea.mod1/recaser/moses.ini 2>/dev/null |/usr/bin/perl -pe 'BEGIN{my$c=0}$c+=s/\|UNK\|UNK\|UNK//g;s/ +$//;END{print STDERR "kytea.mod1 unknowns: $c\n"}' |bzip2 >kytea.mod1/test/trans.jp.tok.bz2 &
-nice bzcat kytea.mod7/test/test.en.tok.bz2 |moses-ventzi -threads 8 -f kytea.mod7/model/moses.ini 2>/dev/null |moses-ventzi -f kytea.mod7/recaser/moses.ini 2>/dev/null |/usr/bin/perl -pe 'BEGIN{my$c=0}$c+=s/\|UNK\|UNK\|UNK//g;s/ +$//;END{print STDERR "kytea.mod7 unknowns: $c\n"}' |bzip2 >kytea.mod7/test/trans.jp.tok.bz2 &
-
-
-bzcat <FILE_NAME> |/Users/ventzi/courses/EuroMatrixPlus/software/moses-2010-04-08/scripts/scripts-20100409-0412/scripts/lowercase.perl |/Users/ventzi/courses/EuroMatrixPlus/software/tokenise.pl en |/Users/ventzi/Desktop/Autodesk/segmentation/Hidenori/Reorder/reorder_jpn.pl -parser_cmd="/OptiBay/Autodesk/multiParser.pl -threads=1 -parser_cmd=\"/usr/bin/java -Xmx348M -Xmx2048M -cp /Users/ventzi/Desktop/Autodesk/segmentation/StanfordParser/stanford-parser-2011-08-04/stanford-parser.jar edu.stanford.nlp.parser.lexparser.LexicalizedParser -sentences newline -tokenized -outputFormat "oneline" -outputFormatOptions "markHeadNodes" /Users/ventzi/Desktop/Autodesk/segmentation/StanfordParser/stanford-parser-2011-08-04/grammar/englishPCFG.ser.gz - 2>stanford.trans.log\"" |/usr/bin/perl -pe 's/\|/│/g;s/</﹤/g;s/>/﹥/g;s/\(/﹙/g;s/\)/﹚/g;' |moses-ventzi -threads 2 -f model/moses.ini 2>/dev/null |moses-ventzi -f recaser/moses.ini 2>/dev/null |/usr/bin/perl -pe 's/│/|/g;s/﹤/</g;s/﹥/>/g;s/﹙/(/g;s/﹚/)/g;' |/usr/bin/perl -pe 'BEGIN{my$c=0}$c+=s/\|UNK\|UNK\|UNK//g;s/ +$//;END{print STDERR "unknowns: $c\n"}' |/Users/ventzi/courses/EuroMatrixPlus/software/detokenise.pl jp |bzip2 > <FILE_NAME> &
-
-bzcat <FILE_NAME> |/Users/ventzi/courses/EuroMatrixPlus/software/moses-2010-04-08/scripts/scripts-20100409-0412/scripts/lowercase.perl |/Users/ventzi/courses/EuroMatrixPlus/software/tokenise.pl en |/Users/ventzi/Desktop/Autodesk/segmentation/Hidenori/Reorder/reorder_jpn.pl -parser_cmd="/OptiBay/Autodesk/multiParser.pl -threads=1 -parser_cmd=\"/Users/ventzi/Desktop/Autodesk/segmentation/Hidenori/OPENNLP/1.5/opennlp-tools-1.5.0/bin/opennlp Parser /Users/ventzi/Desktop/Autodesk/segmentation/Hidenori/OPENNLP/Data/en-parser-chunking.zip 2>opennlp.trans.log\"" |/usr/bin/perl -pe 's/\|/│/g;s/</﹤/g;s/>/﹥/g;s/\(/﹙/g;s/\)/﹚/g;' |moses-ventzi -threads 2 -f model/moses.ini 2>/dev/null |moses-ventzi -f recaser/moses.ini 2>/dev/null |/usr/bin/perl -pe 's/│/|/g;s/﹤/</g;s/﹥/>/g;s/﹙/(/g;s/﹚/)/g;' |/usr/bin/perl -pe 'BEGIN{my$c=0}$c+=s/\|UNK\|UNK\|UNK//g;s/ +$//;END{print STDERR "unknowns: $c\n"}' |/Users/ventzi/courses/EuroMatrixPlus/software/detokenise.pl jp |bzip2 > <FILE_NAME> &
-
-bzcat <FILE_NAME> |/Users/ventzi/courses/EuroMatrixPlus/software/moses-2010-04-08/scripts/scripts-20100409-0412/scripts/lowercase.perl |/Users/ventzi/courses/EuroMatrixPlus/software/tokenise.pl en |/usr/bin/perl -pe 's/\|/│/g;s/</﹤/g;s/>/﹥/g;s/\(/﹙/g;s/\)/﹚/g;' |moses-ventzi -threads 2 -f model/moses.ini 2>/dev/null |moses-ventzi -f recaser/moses.ini 2>/dev/null |/usr/bin/perl -pe 's/│/|/g;s/﹤/</g;s/﹥/>/g;s/﹙/(/g;s/﹚/)/g;' |/usr/bin/perl -pe 'BEGIN{my$c=0}$c+=s/\|UNK\|UNK\|UNK//g;s/ +$//;END{print STDERR "unknowns: $c\n"}' |/Users/ventzi/courses/EuroMatrixPlus/software/detokenise.pl jp |bzip2 > <FILE_NAME> &
-
-
-#JP–EN Translation
-nice bzcat mecab/test/test.jp.tok.bz2 |moses-ventzi -threads 3 -f mecab/model/moses.ini 2>/dev/null |moses-ventzi -f mecab/recaser/moses.ini 2>/dev/null |/usr/bin/perl -pe 'BEGIN{my$c=0}$c+=s/\|UNK\|UNK\|UNK//g;s/ +$//;END{print STDERR "mecab unknowns: $c\n"}' |bzip2 >mecab/test/trans.en.tok.bz2 &
-nice bzcat kytea.mod1/test/test.jp.tok.bz2 |moses-ventzi -threads 3 -f kytea.mod1/model/moses.ini 2>/dev/null |moses-ventzi -f kytea.mod1/recaser/moses.ini 2>/dev/null |/usr/bin/perl -pe 'BEGIN{my$c=0}$c+=s/\|UNK\|UNK\|UNK//g;s/ +$//;END{print STDERR "kytea.mod1 unknowns: $c\n"}' |bzip2 >kytea.mod1/test/trans.en.tok.bz2 &
-nice bzcat kytea.mod7/test/test.jp.tok.bz2 |moses-ventzi -threads 2 -f kytea.mod7/model/moses.ini 2>/dev/null |moses-ventzi -f kytea.mod7/recaser/moses.ini 2>/dev/null |/usr/bin/perl -pe 'BEGIN{my$c=0}$c+=s/\|UNK\|UNK\|UNK//g;s/ +$//;END{print STDERR "kytea.mod7 unknowns: $c\n"}' |bzip2 >kytea.mod7/test/trans.en.tok.bz2 &
-
-
-#EN-KO Translation
-bzcat <FILE_NAME> |/Users/ventzi/courses/EuroMatrixPlus/software/moses-2010-04-08/scripts/scripts-20100409-0412/scripts/lowercase.perl |/Users/ventzi/courses/EuroMatrixPlus/software/tokenise.pl en |/Users/ventzi/Desktop/Autodesk/segmentation/Hidenori/Reorder/reorder_jpn.pl -parser_cmd="/OptiBay/Autodesk/multiParser.pl -threads=1 -parser_cmd=\"/usr/bin/java -Xmx348M -Xmx2048M -cp /Users/ventzi/Desktop/Autodesk/segmentation/StanfordParser/stanford-parser-2011-08-04/stanford-parser.jar edu.stanford.nlp.parser.lexparser.LexicalizedParser -sentences newline -tokenized -outputFormat "oneline" -outputFormatOptions "markHeadNodes" /Users/ventzi/Desktop/Autodesk/segmentation/StanfordParser/stanford-parser-2011-08-04/grammar/englishPCFG.ser.gz - 2>stanford.trans.log\"" |/usr/bin/perl -pe 's/\|/│/g;s/</﹤/g;s/>/﹥/g;s/\(/﹙/g;s/\)/﹚/g;' |moses-ventzi -threads 2 -f model/moses.ini 2>/dev/null |moses-ventzi -f recaser/moses.ini 2>/dev/null |/usr/bin/perl -pe 's/│/|/g;s/﹤/</g;s/﹥/>/g;s/﹙/(/g;s/﹚/)/g;' |/usr/bin/perl -pe 'BEGIN{my$c=0}$c+=s/\|UNK\|UNK\|UNK//g;s/ +$//;END{print STDERR "unknowns: $c\n"}' |/Users/ventzi/courses/EuroMatrixPlus/software/detokenise.pl ko |bzip2 > <FILE_NAME> &
-
-bzcat <FILE_NAME> |/Users/ventzi/courses/EuroMatrixPlus/software/moses-2010-04-08/scripts/scripts-20100409-0412/scripts/lowercase.perl |/Users/ventzi/courses/EuroMatrixPlus/software/tokenise.pl en |/Users/ventzi/Desktop/Autodesk/segmentation/Hidenori/Reorder/reorder_jpn.pl -parser_cmd="/OptiBay/Autodesk/multiParser.pl -threads=1 -parser_cmd=\"/Users/ventzi/Desktop/Autodesk/segmentation/Hidenori/OPENNLP/1.5/opennlp-tools-1.5.0/bin/opennlp Parser /Users/ventzi/Desktop/Autodesk/segmentation/Hidenori/OPENNLP/Data/en-parser-chunking.zip 2>opennlp.trans.log\"" |/usr/bin/perl -pe 's/\|/│/g;s/</﹤/g;s/>/﹥/g;s/\(/﹙/g;s/\)/﹚/g;' |moses-ventzi -threads 2 -f model/moses.ini 2>/dev/null |moses-ventzi -f recaser/moses.ini 2>/dev/null |/usr/bin/perl -pe 's/│/|/g;s/﹤/</g;s/﹥/>/g;s/﹙/(/g;s/﹚/)/g;' |/usr/bin/perl -pe 'BEGIN{my$c=0}$c+=s/\|UNK\|UNK\|UNK//g;s/ +$//;END{print STDERR "unknowns: $c\n"}' |/Users/ventzi/courses/EuroMatrixPlus/software/detokenise.pl ko |bzip2 > <FILE_NAME> &
-
-bzcat <FILE_NAME> |/Users/ventzi/courses/EuroMatrixPlus/software/moses-2010-04-08/scripts/scripts-20100409-0412/scripts/lowercase.perl |/Users/ventzi/courses/EuroMatrixPlus/software/tokenise.pl en |/usr/bin/perl -pe 's/\|/│/g;s/</﹤/g;s/>/﹥/g;s/\(/﹙/g;s/\)/﹚/g;' |moses-ventzi -threads 2 -f /OptiBay/Autodesk/fy13_EN-KO_c/model/moses.ini 2>/dev/null |moses-ventzi -f /OptiBay/Autodesk/fy13_EN-KO_c/recaser/moses.ini 2>/dev/null |/usr/bin/perl -pe 's/│/|/g;s/﹤/</g;s/﹥/>/g;s/﹙/(/g;s/﹚/)/g;' |/usr/bin/perl -pe 'BEGIN{my$c=0}$c+=s/\|UNK\|UNK\|UNK//g;s/ +$//;END{print STDERR "unknowns: $c\n"}' |/Users/ventzi/courses/EuroMatrixPlus/software/detokenise.pl ko |bzip2 > <FILE_NAME> &
-
-
-#EN-PT Translation
-bzcat <FILE_NAME> |/Users/ventzi/courses/EuroMatrixPlus/software/moses-2010-04-08/scripts/scripts-20100409-0412/scripts/lowercase.perl |/Users/ventzi/courses/EuroMatrixPlus/software/tokenise.pl en |/usr/bin/perl -pe 's/\|/│/g;s/</﹤/g;s/>/﹥/g;s/\(/﹙/g;s/\)/﹚/g;' |moses-ventzi -threads 2 -f model/moses.ini 2>/dev/null |moses-ventzi -f recaser/moses.ini 2>/dev/null |/usr/bin/perl -pe 's/│/|/g;s/﹤/</g;s/﹥/>/g;s/﹙/(/g;s/﹚/)/g;' |/usr/bin/perl -pe 'BEGIN{my$c=0}$c+=s/\|UNK\|UNK\|UNK//g;s/ +$//;END{print STDERR "unknowns: $c\n"}' |/Users/ventzi/courses/EuroMatrixPlus/software/detokenise.pl pt-br |bzip2 > <FILE_NAME> &
-
-
-#EN–FR Translation
-nice bzcat <FILE_NAME> |/Users/ventzi/courses/EuroMatrixPlus/software/moses-2010-04-08/scripts/scripts-20100409-0412/scripts/lowercase.perl |/Users/ventzi/courses/EuroMatrixPlus/software/tokenise.pl en |/usr/bin/perl -pe 's/\|/│/g;s/</﹤/g;s/>/﹥/g;s/\(/﹙/g;s/\)/﹚/g;' |moses-ventzi -threads 8 -f model/moses.ini 2>/dev/null |moses-ventzi -f recaser/moses.ini 2>/dev/null |/usr/bin/perl -pe 's/│/|/g;s/﹤/</g;s/﹥/>/g;s/﹙/(/g;s/﹚/)/g;' |/usr/bin/perl -pe 'BEGIN{my$c=0}$c+=s/\|UNK\|UNK\|UNK//g;s/ +$//;END{print STDERR "unknowns: $c\n"}' |/Users/ventzi/courses/EuroMatrixPlus/software/detokenise.pl fr |bzip2 > <FILE_NAME> &
-
-#BREAK
-
-##EN–JP
-~/Desktop/Autodesk/segmentation/JPNdata/generate_evaluation_sets.pl en jp . mecabkytea.mod1kytea.mod7 "`pwd`" "/Users/ventzi/Desktop/курсове - университет/ATTEMPT/data/ICHEC/eval/meteor" meteor.pl "/Users/ventzi/Desktop/курсове - университет/ATTEMPT/data/ICHEC/eval" mteval-v11b.pl "/Users/ventzi/Desktop/курсове - университет/EuroMatrixPlus/software/tercom-0.7.25/tercom.7.25.jar"
-
-##JP–EN
-~/Desktop/Autodesk/segmentation/JPNdata/generate_evaluation_sets.pl jp en . mecabkytea.mod1kytea.mod7 "`pwd`" "/Users/ventzi/Desktop/курсове - университет/ATTEMPT/data/ICHEC/eval/meteor" meteor.pl "/Users/ventzi/Desktop/курсове - университет/ATTEMPT/data/ICHEC/eval" mteval-v11b.pl "/Users/ventzi/Desktop/курсове - университет/EuroMatrixPlus/software/tercom-0.7.25/tercom.7.25.jar"
-
-
-#BREAK
-
 
 ###### Placeholder statistics calculation
 /usr/bin/perl -ne 'BEGIN{my$PH=my$PHL=my$t=my$l=0}++$l;++$PHL if/\{\d+\}/;$PH+=()=/(\{\d+\})/g;$t+=scalar(split/ /,$_);END{print"Total PHs: $PH (out of $t: ".($PH/$t*100)."%)\nLines with PHs: $PHL (out of $l: ".($PHL/$l*100)."%)\n"}'
@@ -118,297 +5,217 @@ nice bzcat <FILE_NAME> |/Users/ventzi/courses/EuroMatrixPlus/software/moses-2010
 
 
 ###### Main engine training data collection/preparation
-### Clean old data (MAKE SURE TO CHECK THE LANGUAGE ORDER)
-bzcat FRA_EN-US_FR-FR.txt.bz2 |/usr/bin/perl -e 'while(my$l=<>){chomp$l;$l=~s,<ut>.*?</ut>, ,g;$l=~s,<!\[CDATA\[|]]>, ,gi;$l=~s,</?.+? ?/?>, ,g;$l=~s/ +/ /g;$l=~s/^ | $//g;unless($l=~/^(&lt; p .*)?$/||$l=~/\d{5,7}\.png/){my$s=$l;$l=<>;chomp$l;$l=~s,<ut>.*?</ut>, ,g;$l=~s,<!\[CDATA\[|]]>, ,gi;$l=~s,</?.+? ?/?>, ,g;$l=~s/ +/ /g;$l=~s/^ | $//g;print"$s$l\n"unless$l=~/^$/}else{$l=<>}}' |bzip2 >FRA_clean_EN-US_FR-FR.txt.bz2
+
+
+
+### Edit by Samuel on 25 September 2014
+### Note: Replace XXX in user and password params by login credentials for the WorldServer DB
+### 
+# (1) Get a list of all WorldServer TMs, including meta data, and store them in 'TMselection.txt'
+sh /OptiBay/ADSK_Software/fetchSegmentsFromWorldServerTMs.sh -user=XXX -password=XXX > TMselection.txt
+# (2) Edit TMselection.txt: Prefix lines with # for TMs to be excluded
+# (3) Fetch all segments from the selected WorldServer TMs and aggregate them into one bzipped file per language in the 'TMs.20xx.xx.xx' folder
+mkdir TMs.20xx.xx.xx
+sh /OptiBay/ADSK_Software/fetchSegmentsFromWorldServerTMs.sh -user=XXX -password=XXX -selection=TMselection.txt -targetdir=TMs.20xx.xx.xx
 ###
-perl -we '@ls=qw(ARA CSY DNK DEU ELL ENA ENG ENU LAS ESP FIN FRB FRC FRA HUN IND ITA JPN KOR NLD NOR PLK PTB PTG ROM RUS SLK SWE THA TUR VIT CHS CHT);foreach$l(@ls){mkdir "corpora/$l"}'
-perl -we '%ls=(ARA=>"ar",CSY=>"cs",DNK=>"da",DEU=>"de",ENA=>"en_au",ENG=>"en_uk",LAS=>"es_mx",ESP=>"es",FIN=>"fi",FRB=>"fr_be",FRC=>"fr_ca",FRA=>"fr",HUN=>"hu",IND=>"id",ITA=>"it",JPN=>"jp",KOR=>"ko",NLD=>"nl",NOR=>"no",PLK=>"pl",PTB=>"pt_br",PTG=>"pt_pt",ROM=>"ro",RUS=>"ru",SLK=>"sk",SWE=>"sv",THA=>"th",TUR=>"tr",VIT=>"vi",CHS=>"zh_hans",CHT=>"zh_hant",ENU=>"xx");foreach$l(keys%ls){system"rm -f corpora/$l/corpus.en.bz2 corpora/$l/corpus.$ls{$l}.bz2"}'
+
+/OptiBay/ADSK_Software/updateTMs.pl -baseLine=../fy13_training/2012.05.09\ Data\ Dump/TM_CHS_ALL.bz2 -current=TMs.20xx.xx.xx/segments.zh_CN.bz2 -output=tempTMs/TM_CHS_ALL.bz2
+/OptiBay/ADSK_Software/updateTMs.pl -baseLine=../fy13_training/2012.05.09\ Data\ Dump/TM_CHT_ALL.bz2 -current=TMs.20xx.xx.xx/segments.zh_TW.bz2 -output=tempTMs/TM_CHT_ALL.bz2
+/OptiBay/ADSK_Software/updateTMs.pl -baseLine=../fy13_training/2012.05.09\ Data\ Dump/TM_CSY_ALL.bz2 -current=TMs.20xx.xx.xx/segments.cs_CZ.bz2 -output=tempTMs/TM_CSY_ALL.bz2
+/OptiBay/ADSK_Software/updateTMs.pl -baseLine=../fy13_training/2012.05.09\ Data\ Dump/TM_DNK_ALL.bz2 -current=TMs.20xx.xx.xx/segments.da_DK.bz2 -output=tempTMs/TM_DNK_ALL.bz2
+/OptiBay/ADSK_Software/updateTMs.pl -baseLine=../fy13_training/2012.05.09\ Data\ Dump/TM_DEU_ALL.bz2 -current=TMs.20xx.xx.xx/segments.de.bz2 -output=tempTMs/TM_DEU_ALL.bz2
+/OptiBay/ADSK_Software/updateTMs.pl -baseLine=../fy13_training/2012.05.09\ Data\ Dump/TM_ENG_ALL.bz2 -current=TMs.20xx.xx.xx/segments.en_GB.bz2 -output=tempTMs/TM_ENG_ALL.bz2
+/OptiBay/ADSK_Software/updateTMs.pl -baseLine=../fy13_training/2012.05.09\ Data\ Dump/TM_ESP_ALL.bz2 -current=TMs.20xx.xx.xx/segments.es.bz2 -output=tempTMs/TM_ESP_ALL.bz2
+/OptiBay/ADSK_Software/updateTMs.pl -baseLine=../fy13_training/2012.05.09\ Data\ Dump/TM_FIN_ALL.bz2 -current=TMs.20xx.xx.xx/segments.fi_FI.bz2 -output=tempTMs/TM_FIN_ALL.bz2
+/OptiBay/ADSK_Software/updateTMs.pl -baseLine=../fy13_training/2012.05.09\ Data\ Dump/TM_FRA_ALL.bz2 -current=TMs.20xx.xx.xx/segments.fr.bz2 -output=tempTMs/TM_FRA_ALL.bz2
+/OptiBay/ADSK_Software/updateTMs.pl -baseLine=../fy13_training/2012.05.09\ Data\ Dump/TM_HUN_ALL.bz2 -current=TMs.20xx.xx.xx/segments.hu_HU.bz2 -output=tempTMs/TM_HUN_ALL.bz2
+/OptiBay/ADSK_Software/updateTMs.pl -baseLine=../fy13_training/2012.05.09\ Data\ Dump/TM_ITA_ALL.bz2 -current=TMs.20xx.xx.xx/segments.it.bz2 -output=tempTMs/TM_ITA_ALL.bz2
+/OptiBay/ADSK_Software/updateTMs.pl -baseLine=../fy13_training/2012.05.09\ Data\ Dump/TM_JPN_ALL.bz2 -current=TMs.20xx.xx.xx/segments.ja_JP.bz2 -output=tempTMs/TM_JPN_ALL.bz2
+/OptiBay/ADSK_Software/updateTMs.pl -baseLine=../fy13_training/2012.05.09\ Data\ Dump/TM_KOR_ALL.bz2 -current=TMs.20xx.xx.xx/segments.ko_KR.bz2 -output=tempTMs/TM_KOR_ALL.bz2
+/OptiBay/ADSK_Software/updateTMs.pl -baseLine=../fy13_training/2012.05.09\ Data\ Dump/TM_NLD_ALL.bz2 -current=TMs.20xx.xx.xx/segments.nl_NL.bz2 -output=tempTMs/TM_NLD_ALL.bz2
+/OptiBay/ADSK_Software/updateTMs.pl -baseLine=../fy13_training/2012.05.09\ Data\ Dump/TM_NOR_ALL.bz2 -current=TMs.20xx.xx.xx/segments.nb_NO.bz2 -output=tempTMs/TM_NOR_ALL.bz2
+/OptiBay/ADSK_Software/updateTMs.pl -baseLine=../fy13_training/2012.05.09\ Data\ Dump/TM_PLK_ALL.bz2 -current=TMs.20xx.xx.xx/segments.pl_PL.bz2 -output=tempTMs/TM_PLK_ALL.bz2
+/OptiBay/ADSK_Software/updateTMs.pl -baseLine=../fy13_training/2012.05.09\ Data\ Dump/TM_PTB_ALL.bz2 -current=TMs.20xx.xx.xx/segments.pt_BR.bz2 -output=tempTMs/TM_PTB_ALL.bz2
+/OptiBay/ADSK_Software/updateTMs.pl -baseLine=../fy13_training/2012.05.09\ Data\ Dump/TM_RUS_ALL.bz2 -current=TMs.20xx.xx.xx/segments.ru_RU.bz2 -output=tempTMs/TM_RUS_ALL.bz2
+/OptiBay/ADSK_Software/updateTMs.pl -baseLine=../fy13_training/2012.05.09\ Data\ Dump/TM_SWE_ALL.bz2 -current=TMs.20xx.xx.xx/segments.sv_SE.bz2 -output=tempTMs/TM_SWE_ALL.bz2
+/OptiBay/ADSK_Software/updateTMs.pl -baseLine=../fy13_training/2012.05.09\ Data\ Dump/TM_VIT_ALL.bz2 -current=TMs.20xx.xx.xx/segments.vi_VN.bz2 -output=tempTMs/TM_VIT_ALL.bz2
+
+/OptiBay/ADSK_Software/updateTMs.pl -baseLine=TMs.20xx.xx.xx/segments.ar_SA.bz2 -current=TMs.20xx.xx.xx/segments.ar_SA.bz2 -output=tempTMs/TM_ARA_ALL.bz2
+/OptiBay/ADSK_Software/updateTMs.pl -baseLine=TMs.20xx.xx.xx/segments.el_GR.bz2 -current=TMs.20xx.xx.xx/segments.el_GR.bz2 -output=tempTMs/TM_ELL_ALL.bz2
+/OptiBay/ADSK_Software/updateTMs.pl -baseLine=TMs.20xx.xx.xx/segments.en_AU.bz2 -current=TMs.20xx.xx.xx/segments.en_AU.bz2 -output=tempTMs/TM_ENA_ALL.bz2
+/OptiBay/ADSK_Software/updateTMs.pl -baseLine=TMs.20xx.xx.xx/segments.fr_BE.bz2 -current=TMs.20xx.xx.xx/segments.fr_BE.bz2 -output=tempTMs/TM_FRB_ALL.bz2
+/OptiBay/ADSK_Software/updateTMs.pl -baseLine=TMs.20xx.xx.xx/segments.fr_CA.bz2 -current=TMs.20xx.xx.xx/segments.fr_CA.bz2 -output=tempTMs/TM_FRC_ALL.bz2
+/OptiBay/ADSK_Software/updateTMs.pl -baseLine=TMs.20xx.xx.xx/segments.he_IL.bz2 -current=TMs.20xx.xx.xx/segments.he_IL.bz2 -output=tempTMs/TM_HEB_ALL.bz2
+/OptiBay/ADSK_Software/updateTMs.pl -baseLine=TMs.20xx.xx.xx/segments.hi_IN.bz2 -current=TMs.20xx.xx.xx/segments.hi_IN.bz2 -output=tempTMs/TM_HIN_ALL.bz2
+/OptiBay/ADSK_Software/updateTMs.pl -baseLine=TMs.20xx.xx.xx/segments.id_ID.bz2 -current=TMs.20xx.xx.xx/segments.id_ID.bz2 -output=tempTMs/TM_IND_ALL.bz2
+/OptiBay/ADSK_Software/updateTMs.pl -baseLine=TMs.20xx.xx.xx/segments.es_MX.bz2 -current=TMs.20xx.xx.xx/segments.es_MX.bz2 -output=tempTMs/TM_LAS_ALL.bz2
+/OptiBay/ADSK_Software/updateTMs.pl -baseLine=TMs.20xx.xx.xx/segments.pt_PT.bz2 -current=TMs.20xx.xx.xx/segments.pt_PT.bz2 -output=tempTMs/TM_PTG_ALL.bz2
+/OptiBay/ADSK_Software/updateTMs.pl -baseLine=TMs.20xx.xx.xx/segments.ro_RO.bz2 -current=TMs.20xx.xx.xx/segments.ro_RO.bz2 -output=tempTMs/TM_ROM_ALL.bz2
+/OptiBay/ADSK_Software/updateTMs.pl -baseLine=TMs.20xx.xx.xx/segments.sk_SK.bz2 -current=TMs.20xx.xx.xx/segments.sk_SK.bz2 -output=tempTMs/TM_SLK_ALL.bz2
+/OptiBay/ADSK_Software/updateTMs.pl -baseLine=TMs.20xx.xx.xx/segments.th_TH.bz2 -current=TMs.20xx.xx.xx/segments.th_TH.bz2 -output=tempTMs/TM_THA_ALL.bz2
+/OptiBay/ADSK_Software/updateTMs.pl -baseLine=TMs.20xx.xx.xx/segments.tr_TR.bz2 -current=TMs.20xx.xx.xx/segments.tr_TR.bz2 -output=tempTMs/TM_TUR_ALL.bz2
+
+/OptiBay/ADSK_Software/updateTMs.pl -baseLine=tempTMs/TM_PTB_ALL.bz2 -current=TMs.20xx.xx.xx/TM_PTG_ALL.bz2 -output=tempTMs/TM_PT\*_ALL.bz2
+/OptiBay/ADSK_Software/updateTMs.pl -baseLine=sw_corpus/corpus.sw.ptb.bz2 -current=sw_corpus/corpus.sw.ptg.bz2 -output=sw_corpus/corpus.sw.pt\*.bz2
 
 
-bzcat TMs.2013.09.13/TM_CSY_ALL.bz2 |/usr/bin/perl -ne 'BEGIN{$/="◊÷\n";open S,">corpora/CSY/corpus.en";open T,">corpora/CSY/corpus.cs"}chomp;m/^(.*?)(.*?)/s;next unless defined$1&&defined$2&&$1&&$2;++$a;$s=$1;$t=$2;$s=~s/\r?\n/ /g&&++$c;$t=~s/\r?\n/ /g;print S"$s\n";print T"$t\n";END{close S;close T;print"doc all:$a;multi:$c;frac:%".($c/$a*100.)."\n"}'
-cat passolo/MT_LPU_export/csy/* |/usr/bin/perl -ne 'BEGIN{open S,">>corpora/CSY/corpus.en";open T,">>corpora/CSY/corpus.cs"}chomp;m/^(.*?)\t(.*?)$/;next unless defined$1&&defined$2&&$1&&$2;++$a;print S"$1\n";print T"$2\n";END{close S;close T;print"soft all:$a\n"}'
+/OptiBay/ADSK_Software/generateCorpora.pl -threads=16
 
-bzcat TMs.2013.09.13/TM_DNK_ALL.bz2 |/usr/bin/perl -ne 'BEGIN{$/="◊÷\n";open S,">corpora/DNK/corpus.en";open T,">corpora/DNK/corpus.da"}chomp;m/^(.*?)(.*?)/s;next unless defined$1&&defined$2&&$1&&$2;++$a;$s=$1;$t=$2;$s=~s/\r?\n/ /g&&++$c;$t=~s/\r?\n/ /g;print S"$s\n";print T"$t\n";END{close S;close T;print"doc all:$a;multi:$c;frac:%".($c/$a*100.)."\n"}'
+/OptiBay/ADSK_Software/generateTMX.pl -corpusPath=corpora -outputPath=TMXs -threads=8 -gzip
 
-bzcat TMs.2013.09.13/TM_DEU_ALL.bz2 |/usr/bin/perl -ne 'BEGIN{$/="◊÷\n";open S,">corpora/DEU/corpus.en";open T,">corpora/DEU/corpus.de"}chomp;m/^(.*?)(.*?)/s;next unless defined$1&&defined$2&&$1&&$2;++$a;$s=$1;$t=$2;$s=~s/\r?\n/ /g&&++$c;$t=~s/\r?\n/ /g;print S"$s\n";print T"$t\n";END{close S;close T;print"doc all:$a;multi:$c;frac:%".($c/$a*100.)."\n"}'
-bzcat old\ data/PS_old_exported/deu_clean_EN-US_DE-DE.txt.bz2 old\ data/Learning+Training/deu_clean_EN-US_DE-DE.txt.bz2 |/usr/bin/perl -ne 'BEGIN{open S,">>corpora/DEU/corpus.en";open T,">>corpora/DEU/corpus.de"}chomp;m/^(.*?)(.*)/s;next unless defined$1&&defined$2&&$1&&$2;++$a;print S"$1\n";print T"$2\n";END{close S;close T;print"mrkt all:$a\n"}'
-cat passolo/MT_LPU_export/deu/* |/usr/bin/perl -ne 'BEGIN{open S,">>corpora/DEU/corpus.en";open T,">>corpora/DEU/corpus.de"}chomp;m/^(.*?)\t(.*?)$/;next unless defined$1&&defined$2&&$1&&$2;++$a;print S"$1\n";print T"$2\n";END{close S;close T;print"soft all:$a\n"}'
-
-bzcat TMs.2013.09.13/TM_ENG_ALL.bz2 |/usr/bin/perl -ne 'BEGIN{$/="◊÷\n";open S,">corpora/ENG/corpus.en";open T,">corpora/ENG/corpus.en_uk"}chomp;m/^(.*?)(.*?)/s;next unless defined$1&&defined$2&&$1&&$2;++$a;$s=$1;$t=$2;$s=~s/\r?\n/ /g&&++$c;$t=~s/\r?\n/ /g;print S"$s\n";print T"$t\n";END{close S;close T;print"doc all:$a;multi:$c;frac:%".($c/$a*100.)."\n"}'
-
-bzcat TMs.2013.09.13/TM_ESP_ALL.bz2 |/usr/bin/perl -ne 'BEGIN{$/="◊÷\n";open S,">corpora/ESP/corpus.en";open T,">corpora/ESP/corpus.es"}chomp;m/^(.*?)(.*?)/s;next unless defined$1&&defined$2&&$1&&$2;++$a;$s=$1;$t=$2;$s=~s/\r?\n/ /g&&++$c;$t=~s/\r?\n/ /g;print S"$s\n";print T"$t\n";END{close S;close T;print"doc all:$a;multi:$c;frac:%".($c/$a*100.)."\n"}'
-bzcat old\ data/PS_old_exported/esp_clean_EN-US_ES-ES.txt.bz2 old\ data/Learning+Training/esp_clean_EN-US_ES-ES.txt.bz2 old\ data/Learning+Training/LAS_clean_EN-US_ES-MX.txt.bz2 |/usr/bin/perl -ne 'BEGIN{open S,">>corpora/ESP/corpus.en";open T,">>corpora/ESP/corpus.es"}chomp;m/^(.*?)(.*)/s;next unless defined$1&&defined$2&&$1&&$2;++$a;print S"$1\n";print T"$2\n";END{close S;close T;print"mrkt all:$a\n"}'
-cat passolo/MT_LPU_export/esp/* |/usr/bin/perl -ne 'BEGIN{open S,">>corpora/ESP/corpus.en";open T,">>corpora/ESP/corpus.es"}chomp;m/^(.*?)\t(.*?)$/;next unless defined$1&&defined$2&&$1&&$2;++$a;print S"$1\n";print T"$2\n";END{close S;close T;print"soft all:$a\n"}'
-
-bzcat TMs.2013.09.13/TM_FIN_ALL.bz2 |/usr/bin/perl -ne 'BEGIN{$/="◊÷\n";open S,">corpora/FIN/corpus.en";open T,">corpora/FIN/corpus.fi"}chomp;m/^(.*?)(.*?)/s;next unless defined$1&&defined$2&&$1&&$2;++$a;$s=$1;$t=$2;$s=~s/\r?\n/ /g&&++$c;$t=~s/\r?\n/ /g;print S"$s\n";print T"$t\n";END{close S;close T;print"doc all:$a;multi:$c;frac:%".($c/$a*100.)."\n"}'
-
-bzcat TMs.2013.09.13/TM_FRA_ALL.bz2 |/usr/bin/perl -ne 'BEGIN{$/="◊÷\n";open S,">corpora/FRA/corpus.en";open T,">corpora/FRA/corpus.fr"}chomp;m/^(.*?)(.*?)/s;next unless defined$1&&defined$2&&$1&&$2;++$a;$s=$1;$t=$2;$s=~s/\r?\n/ /g&&++$c;$t=~s/\r?\n/ /g;print S"$s\n";print T"$t\n";END{close S;close T;print"doc all:$a;multi:$c;frac:%".($c/$a*100.)."\n"}'
-bzcat old\ data/PS_old_exported/fra_clean_EN-US_FR-FR.txt.bz2 old\ data/Learning+Training/FRA_clean_EN-US_FR-FR.txt.bz2 |/usr/bin/perl -ne 'BEGIN{open S,">>corpora/FRA/corpus.en";open T,">>corpora/FRA/corpus.fr"}chomp;m/^(.*?)(.*)/s;next unless defined$1&&defined$2&&$1&&$2;++$a;print S"$1\n";print T"$2\n";END{close S;close T;print"mrkt all:$a\n"}'
-cat passolo/MT_LPU_export/fra/* |/usr/bin/perl -ne 'BEGIN{open S,">>corpora/FRA/corpus.en";open T,">>corpora/FRA/corpus.fr"}chomp;m/^(.*?)\t(.*?)$/;next unless defined$1&&defined$2&&$1&&$2;++$a;print S"$1\n";print T"$2\n";END{close S;close T;print"soft all:$a\n"}'
-
-bzcat TMs.2013.09.13/TM_HUN_ALL.bz2 |/usr/bin/perl -ne 'BEGIN{$/="◊÷\n";open S,">corpora/HUN/corpus.en";open T,">corpora/HUN/corpus.hu"}chomp;m/^(.*?)(.*?)/s;next unless defined$1&&defined$2&&$1&&$2;++$a;$s=$1;$t=$2;$s=~s/\r?\n/ /g&&++$c;$t=~s/\r?\n/ /g;print S"$s\n";print T"$t\n";END{close S;close T;print"doc all:$a;multi:$c;frac:%".($c/$a*100.)."\n"}'
-cat passolo/MT_LPU_export/hun/* |/usr/bin/perl -ne 'BEGIN{open S,">>corpora/HUN/corpus.en";open T,">>corpora/HUN/corpus.hu"}chomp;m/^(.*?)\t(.*?)$/;next unless defined$1&&defined$2&&$1&&$2;++$a;print S"$1\n";print T"$2\n";END{close S;close T;print"soft all:$a\n"}'
-
-bzcat TMs.2013.09.13/TM_ITA_ALL.bz2 |/usr/bin/perl -ne 'BEGIN{$/="◊÷\n";open S,">corpora/ITA/corpus.en";open T,">corpora/ITA/corpus.it"}chomp;m/^(.*?)(.*?)/s;next unless defined$1&&defined$2&&$1&&$2;++$a;$s=$1;$t=$2;$s=~s/\r?\n/ /g&&++$c;$t=~s/\r?\n/ /g;print S"$s\n";print T"$t\n";END{close S;close T;print"doc all:$a;multi:$c;frac:%".($c/$a*100.)."\n"}'
-bzcat old\ data/PS_old_exported/ita_clean_EN-US_IT-IT.txt.bz2 old\ data/Learning+Training/ITA_clean_EN-US_IT-IT.txt.bz2 |/usr/bin/perl -ne 'BEGIN{open S,">>corpora/ITA/corpus.en";open T,">>corpora/ITA/corpus.it"}chomp;m/^(.*?)(.*)/s;next unless defined$1&&defined$2&&$1&&$2;++$a;print S"$1\n";print T"$2\n";END{close S;close T;print"mrkt all:$a\n"}'
-cat passolo/MT_LPU_export/ita/* |/usr/bin/perl -ne 'BEGIN{open S,">>corpora/ITA/corpus.en";open T,">>corpora/ITA/corpus.it"}chomp;m/^(.*?)\t(.*?)$/;next unless defined$1&&defined$2&&$1&&$2;++$a;print S"$1\n";print T"$2\n";END{close S;close T;print"soft all:$a\n"}'
-
-bzcat TMs.2013.09.13/TM_JPN_ALL.bz2 |/usr/bin/perl -ne 'BEGIN{$/="◊÷\n";open S,">corpora/JPN/corpus.en";open T,">corpora/JPN/corpus.jp"}chomp;m/^(.*?)(.*?)/s;next unless defined$1&&defined$2&&$1&&$2;++$a;$s=$1;$t=$2;$s=~s/\r?\n/ /g&&++$c;$t=~s/\r?\n/ /g;print S"$s\n";print T"$t\n";END{close S;close T;print"doc all:$a;multi:$c;frac:%".($c/$a*100.)."\n"}'
-cat passolo/MT_LPU_export/jpn/* |/usr/bin/perl -ne 'BEGIN{open S,">>corpora/JPN/corpus.en";open T,">>corpora/JPN/corpus.jp"}chomp;m/^(.*?)\t(.*?)$/;next unless defined$1&&defined$2&&$1&&$2;++$a;print S"$1\n";print T"$2\n";END{close S;close T;print"soft all:$a\n"}'
-
-bzcat TMs.2013.09.13/TM_KOR_ALL.bz2 |/usr/bin/perl -ne 'BEGIN{$/="◊÷\n";open S,">corpora/KOR/corpus.en";open T,">corpora/KOR/corpus.ko"}chomp;m/^(.*?)(.*?)/s;next unless defined$1&&defined$2&&$1&&$2;++$a;$s=$1;$t=$2;$s=~s/\r?\n/ /g&&++$c;$t=~s/\r?\n/ /g;print S"$s\n";print T"$t\n";END{close S;close T;print"doc all:$a;multi:$c;frac:%".($c/$a*100.)."\n"}'
-cat passolo/MT_LPU_export/kor/* |/usr/bin/perl -ne 'BEGIN{open S,">>corpora/KOR/corpus.en";open T,">>corpora/KOR/corpus.ko"}chomp;m/^(.*?)\t(.*?)$/;next unless defined$1&&defined$2&&$1&&$2;++$a;print S"$1\n";print T"$2\n";END{close S;close T;print"soft all:$a\n"}'
-
-bzcat TMs.2013.09.13/TM_NLD_ALL.bz2 |/usr/bin/perl -ne 'BEGIN{$/="◊÷\n";open S,">corpora/NLD/corpus.en";open T,">corpora/NLD/corpus.nl"}chomp;m/^(.*?)(.*?)/s;next unless defined$1&&defined$2&&$1&&$2;++$a;$s=$1;$t=$2;$s=~s/\r?\n/ /g&&++$c;$t=~s/\r?\n/ /g;print S"$s\n";print T"$t\n";END{close S;close T;print"doc all:$a;multi:$c;frac:%".($c/$a*100.)."\n"}'
-
-bzcat TMs.2013.09.13/TM_NOR_ALL.bz2 |/usr/bin/perl -ne 'BEGIN{$/="◊÷\n";open S,">corpora/NOR/corpus.en";open T,">corpora/NOR/corpus.no"}chomp;m/^(.*?)(.*?)/s;next unless defined$1&&defined$2&&$1&&$2;++$a;$s=$1;$t=$2;$s=~s/\r?\n/ /g&&++$c;$t=~s/\r?\n/ /g;print S"$s\n";print T"$t\n";END{close S;close T;print"doc all:$a;multi:$c;frac:%".($c/$a*100.)."\n"}'
-
-bzcat TMs.2013.09.13/TM_PLK_ALL.bz2 |/usr/bin/perl -ne 'BEGIN{$/="◊÷\n";open S,">corpora/PLK/corpus.en";open T,">corpora/PLK/corpus.pl"}chomp;m/^(.*?)(.*?)/s;next unless defined$1&&defined$2&&$1&&$2;++$a;$s=$1;$t=$2;$s=~s/\r?\n/ /g&&++$c;$t=~s/\r?\n/ /g;print S"$s\n";print T"$t\n";END{close S;close T;print"doc all:$a;multi:$c;frac:%".($c/$a*100.)."\n"}'
-cat passolo/MT_LPU_export/plk/* |/usr/bin/perl -ne 'BEGIN{open S,">>corpora/PLK/corpus.en";open T,">>corpora/PLK/corpus.pl"}chomp;m/^(.*?)\t(.*?)$/;next unless defined$1&&defined$2&&$1&&$2;++$a;print S"$1\n";print T"$2\n";END{close S;close T;print"soft all:$a\n"}'
-
-bzcat TMs.2013.09.13/TM_PTB_ALL.bz2 |/usr/bin/perl -ne 'BEGIN{$/="◊÷\n";open S,">corpora/PTB/corpus.en";open T,">corpora/PTB/corpus.pt_br"}chomp;m/^(.*?)(.*?)/s;next unless defined$1&&defined$2&&$1&&$2;++$a;$s=$1;$t=$2;$s=~s/\r?\n/ /g&&++$c;$t=~s/\r?\n/ /g;print S"$s\n";print T"$t\n";END{close S;close T;print"doc all:$a;multi:$c;frac:%".($c/$a*100.)."\n"}'
-cat passolo/MT_LPU_export/ptb/* |/usr/bin/perl -ne 'BEGIN{open S,">>corpora/PTB/corpus.en";open T,">>corpora/PTB/corpus.pt_br"}chomp;m/^(.*?)\t(.*?)$/;next unless defined$1&&defined$2&&$1&&$2;++$a;print S"$1\n";print T"$2\n";END{close S;close T;print"soft all:$a\n"}'
-
-bzcat TMs.2013.09.13/TM_RUS_ALL.bz2 |/usr/bin/perl -ne 'BEGIN{$/="◊÷\n";open S,">corpora/RUS/corpus.en";open T,">corpora/RUS/corpus.ru"}chomp;m/^(.*?)(.*?)/s;next unless defined$1&&defined$2&&$1&&$2;++$a;$s=$1;$t=$2;$s=~s/\r?\n/ /g&&++$c;$t=~s/\r?\n/ /g;print S"$s\n";print T"$t\n";END{close S;close T;print"doc all:$a;multi:$c;frac:%".($c/$a*100.)."\n"}'
-bzcat old\ data/PS_old_exported/rus_clean_EN-US_RU-RU.txt.bz2 |/usr/bin/perl -ne 'BEGIN{open S,">>corpora/RUS/corpus.en";open T,">>corpora/RUS/corpus.ru"}chomp;m/^(.*?)(.*)/s;next unless defined$1&&defined$2&&$1&&$2;++$a;print S"$1\n";print T"$2\n";END{close S;close T;print"mrkt all:$a\n"}'
-cat passolo/MT_LPU_export/rus/* |/usr/bin/perl -ne 'BEGIN{open S,">>corpora/RUS/corpus.en";open T,">>corpora/RUS/corpus.ru"}chomp;m/^(.*?)\t(.*?)$/;next unless defined$1&&defined$2&&$1&&$2;++$a;print S"$1\n";print T"$2\n";END{close S;close T;print"soft all:$a\n"}'
-
-bzcat TMs.2013.09.13/TM_SWE_ALL.bz2 |/usr/bin/perl -ne 'BEGIN{$/="◊÷\n";open S,">corpora/SWE/corpus.en";open T,">corpora/SWE/corpus.sv"}chomp;m/^(.*?)(.*?)/s;next unless defined$1&&defined$2&&$1&&$2;++$a;$s=$1;$t=$2;$s=~s/\r?\n/ /g&&++$c;$t=~s/\r?\n/ /g;print S"$s\n";print T"$t\n";END{close S;close T;print"doc all:$a;multi:$c;frac:%".($c/$a*100.)."\n"}'
-
-bzcat TMs.2013.09.13/TM_VIT_ALL.bz2 |/usr/bin/perl -ne 'BEGIN{$/="◊÷\n";open S,">corpora/VIT/corpus.en";open T,">corpora/VIT/corpus.vi"}chomp;m/^(.*?)(.*?)/s;next unless defined$1&&defined$2&&$1&&$2;++$a;$s=$1;$t=$2;$s=~s/\r?\n/ /g&&++$c;$t=~s/\r?\n/ /g;print S"$s\n";print T"$t\n";END{close S;close T;print"doc all:$a;multi:$c;frac:%".($c/$a*100.)."\n"}'
-
-bzcat TMs.2013.09.13/TM_CHS_ALL.bz2 |/usr/bin/perl -ne 'BEGIN{$/="◊÷\n";open S,">corpora/CHS/corpus.en";open T,">corpora/CHS/corpus.zh_hans";$/="◊÷\n"}chomp;m/^(.*?)(.*?)/s;next unless defined$1&&defined$2&&$1&&$2;++$a;$s=$1;$t=$2;$s=~s/\r?\n/ /g&&++$c;$t=~s/\r?\n/ /g;print S"$s\n";print T"$t\n";END{close S;close T;print"doc all:$a;multi:$c;frac:%".($c/$a*100.)."\n"}'
-cat passolo/MT_LPU_export/chs/* |/usr/bin/perl -ne 'BEGIN{open S,">>corpora/CHS/corpus.en";open T,">>corpora/CHS/corpus.zh_hans"}chomp;m/^(.*?)\t(.*?)$/;next unless defined$1&&defined$2&&$1&&$2;++$a;print S"$1\n";print T"$2\n";END{close S;close T;print"soft all:$a\n"}'
-
-bzcat TMs.2013.09.13/TM_CHT_ALL.bz2 |/usr/bin/perl -ne 'BEGIN{$/="◊÷\n";open S,">corpora/CHT/corpus.en";open T,">corpora/CHT/corpus.zh_hant"}chomp;m/^(.*?)(.*?)/s;next unless defined$1&&defined$2&&$1&&$2;++$a;$s=$1;$t=$2;$s=~s/\r?\n/ /g&&++$c;$t=~s/\r?\n/ /g;print S"$s\n";print T"$t\n";END{close S;close T;print"doc all:$a;multi:$c;frac:%".($c/$a*100.)."\n"}'
-cat passolo/MT_LPU_export/cht/* |/usr/bin/perl -ne 'BEGIN{open S,">>corpora/CHT/corpus.en";open T,">>corpora/CHT/corpus.zh_hant"}chomp;m/^(.*?)\t(.*?)$/;next unless defined$1&&defined$2&&$1&&$2;++$a;print S"$1\n";print T"$2\n";END{close S;close T;print"soft all:$a\n"}'
-
-
-bzip2 -v corpora/*/*
-
-
-perl -we '%ls=(ARA=>"ar",CSY=>"cs",DNK=>"da",DEU=>"de",ENA=>"en_au",ENG=>"en_uk",LAS=>"es_mx",ESP=>"es",FIN=>"fi",FRB=>"fr_be",FRC=>"fr_ca",FRA=>"fr",HUN=>"hu",IND=>"id",ITA=>"it",JPN=>"jp",KOR=>"ko",NLD=>"nl",NOR=>"no",PLK=>"pl",PTB=>"pt_br",PTG=>"pt_pt",ROM=>"ro",RUS=>"ru",SLK=>"sk",SWE=>"sv",THA=>"th",TUR=>"tr",VIT=>"vi",CHS=>"zh_hans",CHT=>"zh_hant");foreach$l(keys%ls){system"bzcat corpora/$l/corpus.en.bz2 >>corpora/ENU/corpus.en";system"bzcat corpora/$l/corpus.$ls{$l}.bz2 >corpora/ENU/corpus.xx"}system"bzip2 -v corpora/ENU/*"'
-
-
-#Count segments
-echo -n "cs      doc : "; bzcat 2012.05.09\ Data\ Dump/TM_CSY_ALL.bz2 |/usr/bin/perl -ne 'BEGIN{$/="◊÷\n"}chomp;m/^(.*?)(.*?)/s;next unless defined$1&&defined$2&&$1&&$2;++$t;$s=$1;$s=~s/\r?\n//g&&++$c;END{print"all:$t;multi:$c;frac:%".($c/$t*100.)."\n"}'
-echo -n "cs      soft: "; cat passolo/MT_LPU_export/csy/* |/usr/bin/perl -ne 'chomp;m/^(.*?)\t(.*?)$/;next unless defined$1 && defined$2 && $1 && $2;print"$1\n"' |wc -l
-
-echo -n "da      doc : "; bzcat 2012.05.09\ Data\ Dump/TM_DNK_ALL.bz2 |/usr/bin/perl -ne 'BEGIN{$/="◊÷\n"}chomp;m/^(.*?)(.*?)/s;next unless defined$1&&defined$2&&$1&&$2;++$t;$s=$1;$s=~s/\r?\n//g&&++$c;END{print"all:$t;multi:$c;frac:%".($c/$t*100.)."\n"}'
-
-echo -n "de      doc : "; bzcat 2012.05.09\ Data\ Dump/TM_DEU_ALL.bz2 |/usr/bin/perl -ne 'BEGIN{$/="◊÷\n"}chomp;m/^(.*?)(.*?)/s;next unless defined$1&&defined$2&&$1&&$2;++$t;$s=$1;$s=~s/\r?\n//g&&++$c;END{print"all:$t;multi:$c;frac:%".($c/$t*100.)."\n"}'
-echo -n "de      mark: "; bzcat old\ data/PS_old_exported/deu_clean_EN-US_DE-DE.txt.bz2 old\ data/Learning+Training/deu_clean_EN-US_DE-DE.txt.bz2 |/usr/bin/perl -ne 'chomp;m/^(.*?)(.*?)$/;next unless defined$1 && defined$2 && $1 && $2;print"$1\n"' |wc -l
-echo -n "de      soft: "; cat passolo/MT_LPU_export/deu/* |/usr/bin/perl -ne 'chomp;m/^(.*?)\t(.*?)$/;next unless defined$1 && defined$2 && $1 && $2;print"$1\n"' |wc -l
-
-echo -n "en_uk   doc : "; bzcat 2012.05.09\ Data\ Dump/TM_ENG_ALL.bz2 |/usr/bin/perl -ne 'BEGIN{$/="◊÷\n"}chomp;m/^(.*?)(.*?)/s;next unless defined$1&&defined$2&&$1&&$2;++$t;$s=$1;$s=~s/\r?\n//g&&++$c;END{print"all:$t;multi:$c;frac:%".($c/$t*100.)."\n"}'
-
-echo -n "es      doc : "; bzcat 2012.05.09\ Data\ Dump/TM_ESP_ALL.bz2 |/usr/bin/perl -ne 'BEGIN{$/="◊÷\n"}chomp;m/^(.*?)(.*?)/s;next unless defined$1&&defined$2&&$1&&$2;++$t;$s=$1;$s=~s/\r?\n//g&&++$c;END{print"all:$t;multi:$c;frac:%".($c/$t*100.)."\n"}'
-echo -n "es      mark: "; bzcat old\ data/PS_old_exported/esp_clean_EN-US_ES-ES.txt.bz2 old\ data/Learning+Training/esp_clean_EN-US_ES-ES.txt.bz2 old\ data/Learning+Training/LAS_clean_EN-US_ES-MX.txt.bz2 |/usr/bin/perl -ne 'chomp;m/^(.*?)(.*?)$/;next unless defined$1 && defined$2 && $1 && $2;print"$1\n"' |wc -l
-echo -n "es      soft: "; cat passolo/MT_LPU_export/esp/* |/usr/bin/perl -ne 'chomp;m/^(.*?)\t(.*?)$/;next unless defined$1 && defined$2 && $1 && $2;print"$1\n"' |wc -l
-
-echo -n "fi      doc : "; bzcat 2012.05.09\ Data\ Dump/TM_FIN_ALL.bz2 |/usr/bin/perl -ne 'BEGIN{$/="◊÷\n"}chomp;m/^(.*?)(.*?)/s;next unless defined$1&&defined$2&&$1&&$2;++$t;$s=$1;$s=~s/\r?\n//g&&++$c;END{print"all:$t;multi:$c;frac:%".($c/$t*100.)."\n"}'
-
-echo -n "fr      doc : "; bzcat 2012.05.09\ Data\ Dump/TM_FRA_ALL.bz2 |/usr/bin/perl -ne 'BEGIN{$/="◊÷\n"}chomp;m/^(.*?)(.*?)/s;next unless defined$1&&defined$2&&$1&&$2;++$t;$s=$1;$s=~s/\r?\n//g&&++$c;END{print"all:$t;multi:$c;frac:%".($c/$t*100.)."\n"}'
-echo -n "fr      mark: "; bzcat old\ data/PS_old_exported/fra_clean_EN-US_FR-FR.txt.bz2 old\ data/Learning+Training/FRA_clean_EN-US_FR-FR.txt.bz2 |/usr/bin/perl -ne 'chomp;m/^(.*?)(.*?)$/;next unless defined$1 && defined$2 && $1 && $2;print"$1\n"' |wc -l
-echo -n "fr      soft: "; cat passolo/MT_LPU_export/fra/* |/usr/bin/perl -ne 'chomp;m/^(.*?)\t(.*?)$/;next unless defined$1 && defined$2 && $1 && $2;print"$1\n"' |wc -l
-
-echo -n "hu      doc : "; bzcat 2012.05.09\ Data\ Dump/TM_HUN_ALL.bz2 |/usr/bin/perl -ne 'BEGIN{$/="◊÷\n"}chomp;m/^(.*?)(.*?)/s;next unless defined$1&&defined$2&&$1&&$2;++$t;$s=$1;$s=~s/\r?\n//g&&++$c;END{print"all:$t;multi:$c;frac:%".($c/$t*100.)."\n"}'
-echo -n "hu      soft: "; cat passolo/MT_LPU_export/hun/* |/usr/bin/perl -ne 'chomp;m/^(.*?)\t(.*?)$/;next unless defined$1 && defined$2 && $1 && $2;print"$1\n"' |wc -l
-
-echo -n "it      doc : "; bzcat 2012.05.09\ Data\ Dump/TM_ITA_ALL.bz2 |/usr/bin/perl -ne 'BEGIN{$/="◊÷\n"}chomp;m/^(.*?)(.*?)/s;next unless defined$1&&defined$2&&$1&&$2;++$t;$s=$1;$s=~s/\r?\n//g&&++$c;END{print"all:$t;multi:$c;frac:%".($c/$t*100.)."\n"}'
-echo -n "it      mark: "; bzcat old\ data/PS_old_exported/ita_clean_EN-US_IT-IT.txt.bz2 old\ data/Learning+Training/ITA_clean_EN-US_IT-IT.txt.bz2 |/usr/bin/perl -ne 'chomp;m/^(.*?)(.*?)$/;next unless defined$1 && defined$2 && $1 && $2;print"$1\n"' |wc -l
-echo -n "it      soft: "; cat passolo/MT_LPU_export/ita/* |/usr/bin/perl -ne 'chomp;m/^(.*?)\t(.*?)$/;next unless defined$1 && defined$2 && $1 && $2;print"$1\n"' |wc -l
-
-echo -n "jp      doc : "; bzcat 2012.05.09\ Data\ Dump/TM_JPN_ALL.bz2 |/usr/bin/perl -ne 'BEGIN{$/="◊÷\n"}chomp;m/^(.*?)(.*?)/s;next unless defined$1&&defined$2&&$1&&$2;++$t;$s=$1;$s=~s/\r?\n//g&&++$c;END{print"all:$t;multi:$c;frac:%".($c/$t*100.)."\n"}'
-echo -n "jp      soft: "; cat passolo/MT_LPU_export/jpn/* |/usr/bin/perl -ne 'chomp;m/^(.*?)\t(.*?)$/;next unless defined$1 && defined$2 && $1 && $2;print"$1\n"' |wc -l
-
-echo -n "ko      doc : "; bzcat 2012.05.09\ Data\ Dump/TM_KOR_ALL.bz2 |/usr/bin/perl -ne 'BEGIN{$/="◊÷\n"}chomp;m/^(.*?)(.*?)/s;next unless defined$1&&defined$2&&$1&&$2;++$t;$s=$1;$s=~s/\r?\n//g&&++$c;END{print"all:$t;multi:$c;frac:%".($c/$t*100.)."\n"}'
-echo -n "ko      soft: "; cat passolo/MT_LPU_export/kor/* |/usr/bin/perl -ne 'chomp;m/^(.*?)\t(.*?)$/;next unless defined$1 && defined$2 && $1 && $2;print"$1\n"' |wc -l
-
-echo -n "nl      doc : "; bzcat 2012.05.09\ Data\ Dump/TM_NLD_ALL.bz2 |/usr/bin/perl -ne 'BEGIN{$/="◊÷\n"}chomp;m/^(.*?)(.*?)/s;next unless defined$1&&defined$2&&$1&&$2;++$t;$s=$1;$s=~s/\r?\n//g&&++$c;END{print"all:$t;multi:$c;frac:%".($c/$t*100.)."\n"}'
-
-echo -n "no      doc : "; bzcat 2012.05.09\ Data\ Dump/TM_NOR_ALL.bz2 |/usr/bin/perl -ne 'BEGIN{$/="◊÷\n"}chomp;m/^(.*?)(.*?)/s;next unless defined$1&&defined$2&&$1&&$2;++$t;$s=$1;$s=~s/\r?\n//g&&++$c;END{print"all:$t;multi:$c;frac:%".($c/$t*100.)."\n"}'
-
-echo -n "pl      doc : "; bzcat 2012.05.09\ Data\ Dump/TM_PLK_ALL.bz2 |/usr/bin/perl -ne 'BEGIN{$/="◊÷\n"}chomp;m/^(.*?)(.*?)/s;next unless defined$1&&defined$2&&$1&&$2;++$t;$s=$1;$s=~s/\r?\n//g&&++$c;END{print"all:$t;multi:$c;frac:%".($c/$t*100.)."\n"}'
-echo -n "pl      soft: "; cat passolo/MT_LPU_export/plk/* |/usr/bin/perl -ne 'chomp;m/^(.*?)\t(.*?)$/;next unless defined$1 && defined$2 && $1 && $2;print"$1\n"' |wc -l
-
-echo -n "pt_br   doc : "; bzcat 2012.05.09\ Data\ Dump/TM_PTB_ALL.bz2 |/usr/bin/perl -ne 'BEGIN{$/="◊÷\n"}chomp;m/^(.*?)(.*?)/s;next unless defined$1&&defined$2&&$1&&$2;++$t;$s=$1;$s=~s/\r?\n//g&&++$c;END{print"all:$t;multi:$c;frac:%".($c/$t*100.)."\n"}'
-echo -n "pt_br   soft: "; cat passolo/MT_LPU_export/ptb/* |/usr/bin/perl -ne 'chomp;m/^(.*?)\t(.*?)$/;next unless defined$1 && defined$2 && $1 && $2;print"$1\n"' |wc -l
-
-echo -n "ru      doc : "; bzcat 2012.05.09\ Data\ Dump/TM_RUS_ALL.bz2 |/usr/bin/perl -ne 'BEGIN{$/="◊÷\n"}chomp;m/^(.*?)(.*?)/s;next unless defined$1&&defined$2&&$1&&$2;++$t;$s=$1;$s=~s/\r?\n//g&&++$c;END{print"all:$t;multi:$c;frac:%".($c/$t*100.)."\n"}'
-echo -n "ru      mark: "; bzcat old\ data/PS_old_exported/rus_clean_EN-US_RU-RU.txt.bz2 |/usr/bin/perl -ne 'chomp;m/^(.*?)(.*?)$/;next unless defined$1 && defined$2 && $1 && $2;print"$1\n"' |wc -l
-echo -n "ru      soft: "; cat passolo/MT_LPU_export/rus/* |/usr/bin/perl -ne 'chomp;m/^(.*?)\t(.*?)$/;next unless defined$1 && defined$2 && $1 && $2;print"$1\n"' |wc -l
-
-echo -n "sv      doc : "; bzcat 2012.05.09\ Data\ Dump/TM_SWE_ALL.bz2 |/usr/bin/perl -ne 'BEGIN{$/="◊÷\n"}chomp;m/^(.*?)(.*?)/s;next unless defined$1&&defined$2&&$1&&$2;++$t;$s=$1;$s=~s/\r?\n//g&&++$c;END{print"all:$t;multi:$c;frac:%".($c/$t*100.)."\n"}'
-
-echo -n "vi      doc : "; bzcat 2012.05.09\ Data\ Dump/TM_VIT_ALL.bz2 |/usr/bin/perl -ne 'BEGIN{$/="◊÷\n"}chomp;m/^(.*?)(.*?)/s;next unless defined$1&&defined$2&&$1&&$2;++$t;$s=$1;$s=~s/\r?\n//g&&++$c;END{print"all:$t;multi:$c;frac:%".($c/$t*100.)."\n"}'
-
-echo -n "zh_hans doc : "; bzcat 2012.05.09\ Data\ Dump/TM_CHS_ALL.bz2 |/usr/bin/perl -ne 'BEGIN{$/="◊÷\n"}chomp;m/^(.*?)(.*?)/s;next unless defined$1&&defined$2&&$1&&$2;++$t;$s=$1;$s=~s/\r?\n//g&&++$c;END{print"all:$t;multi:$c;frac:%".($c/$t*100.)."\n"}'
-echo -n "zh_hans soft: "; cat passolo/MT_LPU_export/chs/* |/usr/bin/perl -ne 'chomp;m/^(.*?)\t(.*?)$/;next unless defined$1 && defined$2 && $1 && $2;print"$1\n"' |wc -l
-
-echo -n "zh_hant doc : "; bzcat 2012.05.09\ Data\ Dump/TM_CHT_ALL.bz2 |/usr/bin/perl -ne 'BEGIN{$/="◊÷\n"}chomp;m/^(.*?)(.*?)/s;next unless defined$1&&defined$2&&$1&&$2;++$t;$s=$1;$s=~s/\r?\n//g&&++$c;END{print"all:$t;multi:$c;frac:%".($c/$t*100.)."\n"}'
-echo -n "zh_hant soft: "; cat passolo/MT_LPU_export/cht/* |/usr/bin/perl -ne 'chomp;m/^(.*?)\t(.*?)$/;next unless defined$1 && defined$2 && $1 && $2;print"$1\n"' |wc -l
-
-
-
-/OptiBay/ADSK_Software/updateTMs.pl -baseLine=../fy13_training/2012.05.09\ Data\ Dump/TM_CHS_ALL.bz2 -current=TMs.2014.04.04/TM_CHS_ALL.bz2 -output=tempTMs/TM_CHS_ALL.bz2
-/OptiBay/ADSK_Software/updateTMs.pl -baseLine=../fy13_training/2012.05.09\ Data\ Dump/TM_CHT_ALL.bz2 -current=TMs.2014.04.04/TM_CHT_ALL.bz2 -output=tempTMs/TM_CHT_ALL.bz2
-/OptiBay/ADSK_Software/updateTMs.pl -baseLine=../fy13_training/2012.05.09\ Data\ Dump/TM_CSY_ALL.bz2 -current=TMs.2014.04.04/TM_CSY_ALL.bz2 -output=tempTMs/TM_CSY_ALL.bz2
-/OptiBay/ADSK_Software/updateTMs.pl -baseLine=../fy13_training/2012.05.09\ Data\ Dump/TM_DNK_ALL.bz2 -current=TMs.2014.04.04/TM_DNK_ALL.bz2 -output=tempTMs/TM_DNK_ALL.bz2
-/OptiBay/ADSK_Software/updateTMs.pl -baseLine=../fy13_training/2012.05.09\ Data\ Dump/TM_DEU_ALL.bz2 -current=TMs.2014.04.04/TM_DEU_ALL.bz2 -output=tempTMs/TM_DEU_ALL.bz2
-/OptiBay/ADSK_Software/updateTMs.pl -baseLine=../fy13_training/2012.05.09\ Data\ Dump/TM_ENG_ALL.bz2 -current=TMs.2014.04.04/TM_ENG_ALL.bz2 -output=tempTMs/TM_ENG_ALL.bz2
-/OptiBay/ADSK_Software/updateTMs.pl -baseLine=../fy13_training/2012.05.09\ Data\ Dump/TM_ESP_ALL.bz2 -current=TMs.2014.04.04/TM_ESP_ALL.bz2 -output=tempTMs/TM_ESP_ALL.bz2
-/OptiBay/ADSK_Software/updateTMs.pl -baseLine=../fy13_training/2012.05.09\ Data\ Dump/TM_FIN_ALL.bz2 -current=TMs.2014.04.04/TM_FIN_ALL.bz2 -output=tempTMs/TM_FIN_ALL.bz2
-/OptiBay/ADSK_Software/updateTMs.pl -baseLine=../fy13_training/2012.05.09\ Data\ Dump/TM_FRA_ALL.bz2 -current=TMs.2014.04.04/TM_FRA_ALL.bz2 -output=tempTMs/TM_FRA_ALL.bz2
-/OptiBay/ADSK_Software/updateTMs.pl -baseLine=../fy13_training/2012.05.09\ Data\ Dump/TM_HUN_ALL.bz2 -current=TMs.2014.04.04/TM_HUN_ALL.bz2 -output=tempTMs/TM_HUN_ALL.bz2
-/OptiBay/ADSK_Software/updateTMs.pl -baseLine=../fy13_training/2012.05.09\ Data\ Dump/TM_ITA_ALL.bz2 -current=TMs.2014.04.04/TM_ITA_ALL.bz2 -output=tempTMs/TM_ITA_ALL.bz2
-/OptiBay/ADSK_Software/updateTMs.pl -baseLine=../fy13_training/2012.05.09\ Data\ Dump/TM_JPN_ALL.bz2 -current=TMs.2014.04.04/TM_JPN_ALL.bz2 -output=tempTMs/TM_JPN_ALL.bz2
-/OptiBay/ADSK_Software/updateTMs.pl -baseLine=../fy13_training/2012.05.09\ Data\ Dump/TM_KOR_ALL.bz2 -current=TMs.2014.04.04/TM_KOR_ALL.bz2 -output=tempTMs/TM_KOR_ALL.bz2
-/OptiBay/ADSK_Software/updateTMs.pl -baseLine=../fy13_training/2012.05.09\ Data\ Dump/TM_NLD_ALL.bz2 -current=TMs.2014.04.04/TM_NLD_ALL.bz2 -output=tempTMs/TM_NLD_ALL.bz2
-/OptiBay/ADSK_Software/updateTMs.pl -baseLine=../fy13_training/2012.05.09\ Data\ Dump/TM_NOR_ALL.bz2 -current=TMs.2014.04.04/TM_NOR_ALL.bz2 -output=tempTMs/TM_NOR_ALL.bz2
-/OptiBay/ADSK_Software/updateTMs.pl -baseLine=../fy13_training/2012.05.09\ Data\ Dump/TM_PLK_ALL.bz2 -current=TMs.2014.04.04/TM_PLK_ALL.bz2 -output=tempTMs/TM_PLK_ALL.bz2
-/OptiBay/ADSK_Software/updateTMs.pl -baseLine=../fy13_training/2012.05.09\ Data\ Dump/TM_PTB_ALL.bz2 -current=TMs.2014.04.04/TM_PTB_ALL.bz2 -output=tempTMs/TM_PTB_ALL.bz2
-/OptiBay/ADSK_Software/updateTMs.pl -baseLine=../fy13_training/2012.05.09\ Data\ Dump/TM_RUS_ALL.bz2 -current=TMs.2014.04.04/TM_RUS_ALL.bz2 -output=tempTMs/TM_RUS_ALL.bz2
-/OptiBay/ADSK_Software/updateTMs.pl -baseLine=../fy13_training/2012.05.09\ Data\ Dump/TM_SWE_ALL.bz2 -current=TMs.2014.04.04/TM_SWE_ALL.bz2 -output=tempTMs/TM_SWE_ALL.bz2
-/OptiBay/ADSK_Software/updateTMs.pl -baseLine=../fy13_training/2012.05.09\ Data\ Dump/TM_VIT_ALL.bz2 -current=TMs.2014.04.04/TM_VIT_ALL.bz2 -output=tempTMs/TM_VIT_ALL.bz2
-
-/OptiBay/ADSK_Software/updateTMs.pl -baseLine=TMs.2014.04.04/TM_ARA_ALL.bz2 -current=TMs.2014.04.04/TM_ARA_ALL.bz2 -output=tempTMs/TM_ARA_ALL.bz2
-/OptiBay/ADSK_Software/updateTMs.pl -baseLine=TMs.2014.04.04/TM_ELL_ALL.bz2 -current=TMs.2014.04.04/TM_ELL_ALL.bz2 -output=tempTMs/TM_ELL_ALL.bz2
-/OptiBay/ADSK_Software/updateTMs.pl -baseLine=TMs.2014.04.04/TM_ENA_ALL.bz2 -current=TMs.2014.04.04/TM_ENA_ALL.bz2 -output=tempTMs/TM_ENA_ALL.bz2
-/OptiBay/ADSK_Software/updateTMs.pl -baseLine=TMs.2014.04.04/TM_FRB_ALL.bz2 -current=TMs.2014.04.04/TM_FRB_ALL.bz2 -output=tempTMs/TM_FRB_ALL.bz2
-/OptiBay/ADSK_Software/updateTMs.pl -baseLine=TMs.2014.04.04/TM_FRC_ALL.bz2 -current=TMs.2014.04.04/TM_FRC_ALL.bz2 -output=tempTMs/TM_FRC_ALL.bz2
-/OptiBay/ADSK_Software/updateTMs.pl -baseLine=TMs.2014.04.04/TM_HEB_ALL.bz2 -current=TMs.2014.04.04/TM_HEB_ALL.bz2 -output=tempTMs/TM_HEB_ALL.bz2
-/OptiBay/ADSK_Software/updateTMs.pl -baseLine=TMs.2014.04.04/TM_HIN_ALL.bz2 -current=TMs.2014.04.04/TM_HIN_ALL.bz2 -output=tempTMs/TM_HIN_ALL.bz2
-/OptiBay/ADSK_Software/updateTMs.pl -baseLine=TMs.2014.04.04/TM_IND_ALL.bz2 -current=TMs.2014.04.04/TM_IND_ALL.bz2 -output=tempTMs/TM_IND_ALL.bz2
-/OptiBay/ADSK_Software/updateTMs.pl -baseLine=TMs.2014.04.04/TM_LAS_ALL.bz2 -current=TMs.2014.04.04/TM_LAS_ALL.bz2 -output=tempTMs/TM_LAS_ALL.bz2
-/OptiBay/ADSK_Software/updateTMs.pl -baseLine=TMs.2014.04.04/TM_PTG_ALL.bz2 -current=TMs.2014.04.04/TM_PTG_ALL.bz2 -output=tempTMs/TM_PTG_ALL.bz2
-/OptiBay/ADSK_Software/updateTMs.pl -baseLine=TMs.2014.04.04/TM_ROM_ALL.bz2 -current=TMs.2014.04.04/TM_ROM_ALL.bz2 -output=tempTMs/TM_ROM_ALL.bz2
-/OptiBay/ADSK_Software/updateTMs.pl -baseLine=TMs.2014.04.04/TM_SLK_ALL.bz2 -current=TMs.2014.04.04/TM_SLK_ALL.bz2 -output=tempTMs/TM_SLK_ALL.bz2
-/OptiBay/ADSK_Software/updateTMs.pl -baseLine=TMs.2014.04.04/TM_THA_ALL.bz2 -current=TMs.2014.04.04/TM_THA_ALL.bz2 -output=tempTMs/TM_THA_ALL.bz2
-/OptiBay/ADSK_Software/updateTMs.pl -baseLine=TMs.2014.04.04/TM_TUR_ALL.bz2 -current=TMs.2014.04.04/TM_TUR_ALL.bz2 -output=tempTMs/TM_TUR_ALL.bz2
 
 
 
 ##Training
 #EN-CS
-/OptiBay/ADSK_Software/train.pl -corpus=/Volumes/LaCie_Work/Autodesk/fy15_training/corpora/CSY/corpus -source=en -target=cs -lm_path=lm -moses_path=/Users/ventzi/courses/EuroMatrixPlus/software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -log_dir=LOG -build_lm=/sw/bin/srilm/macosx -build_recaser=./recaser -device=disk1 -fiscal_year=fy15 >CSY.d.log 2>&1 &
+/OptiBay/ADSK_Software/train.pl -corpus=/Volumes/LaCie_Work/Autodesk/fy16_training/corpora/CSY/corpus -source=en -target=cs -lm_path=lm -moses_path=/OptiBay/ADSK_Software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -log_dir=LOG -build_lm=/sw/bin/srilm/macosx -build_recaser=./recaser -device=disk1 -fiscal_year=fy16 >CSY.a.log 2>&1 &
 
 #EN-DA
-/OptiBay/ADSK_Software/train.pl -corpus=/Volumes/LaCie_Work/Autodesk/fy15_training/corpora/DNK/corpus -source=en -target=da -lm_path=lm -moses_path=/Users/ventzi/courses/EuroMatrixPlus/software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -log_dir=LOG -build_lm=/sw/bin/srilm/macosx -build_recaser=./recaser -device=disk1 -fiscal_year=fy15 >DNK.d.log 2>&1 &
+/OptiBay/ADSK_Software/train.pl -corpus=/Volumes/LaCie_Work/Autodesk/fy16_training/corpora/DNK/corpus -source=en -target=da -lm_path=lm -moses_path=/OptiBay/ADSK_Software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -log_dir=LOG -build_lm=/sw/bin/srilm/macosx -build_recaser=./recaser -device=disk1 -fiscal_year=fy16 >DNK.a.log 2>&1 &
 
 #EN-DE
-/OptiBay/ADSK_Software/train.pl -corpus=/Volumes/LaCie_Work/Autodesk/fy15_training/corpora/DEU/corpus -source=en -target=de -lm_path=lm -moses_path=/Users/ventzi/courses/EuroMatrixPlus/software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -log_dir=LOG -build_lm=/sw/bin/srilm/macosx -build_recaser=./recaser -device=disk1 -fiscal_year=fy15 >DEU.d.log 2>&1 &
+/OptiBay/ADSK_Software/train.pl -corpus=/Volumes/LaCie_Work/Autodesk/fy16_training/corpora/DEU/corpus -source=en -target=de -lm_path=lm -moses_path=/OptiBay/ADSK_Software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -log_dir=LOG -build_lm=/sw/bin/srilm/macosx -build_recaser=./recaser -device=disk1 -fiscal_year=fy16 >DEU.a.log 2>&1 &
 
 #EN-EN_GB
-/OptiBay/ADSK_Software/train.pl -corpus=/Volumes/LaCie_Work/Autodesk/fy15_training/corpora/ENG/corpus -source=en -target=en_gb -lm_path=lm -moses_path=/Users/ventzi/courses/EuroMatrixPlus/software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -log_dir=LOG -build_lm=/sw/bin/srilm/macosx -build_recaser=./recaser -device=disk1 -fiscal_year=fy15 >ENG.d.log 2>&1 &
+/OptiBay/ADSK_Software/train.pl -corpus=/Volumes/LaCie_Work/Autodesk/fy16_training/corpora/ENG/corpus -source=en -target=en_gb -lm_path=lm -moses_path=/OptiBay/ADSK_Software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -log_dir=LOG -build_lm=/sw/bin/srilm/macosx -build_recaser=./recaser -device=disk1 -fiscal_year=fy16 >ENG.a.log 2>&1 &
 
 #EN-ES
-/OptiBay/ADSK_Software/train.pl -corpus=/Volumes/LaCie_Work/Autodesk/fy15_training/corpora/ESP/corpus -source=en -target=es -lm_path=lm -moses_path=/Users/ventzi/courses/EuroMatrixPlus/software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -log_dir=LOG -build_lm=/sw/bin/srilm/macosx -build_recaser=./recaser -device=disk1 -fiscal_year=fy15 >ESP.d.log 2>&1 &
+/OptiBay/ADSK_Software/train.pl -corpus=/Volumes/LaCie_Work/Autodesk/fy16_training/corpora/ESP/corpus -source=en -target=es -lm_path=lm -moses_path=/OptiBay/ADSK_Software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -log_dir=LOG -build_lm=/sw/bin/srilm/macosx -build_recaser=./recaser -device=disk1 -fiscal_year=fy16 >ESP.a.log 2>&1 &
 
 #EN-FI
-/OptiBay/ADSK_Software/train.pl -corpus=/Volumes/LaCie_Work/Autodesk/fy15_training/corpora/FIN/corpus -source=en -target=fi -lm_path=lm -moses_path=/Users/ventzi/courses/EuroMatrixPlus/software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -log_dir=LOG -build_lm=/sw/bin/srilm/macosx -build_recaser=./recaser -device=disk1 -fiscal_year=fy15 >FIN.d.log 2>&1 &
+/OptiBay/ADSK_Software/train.pl -corpus=/Volumes/LaCie_Work/Autodesk/fy16_training/corpora/FIN/corpus -source=en -target=fi -lm_path=lm -moses_path=/OptiBay/ADSK_Software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -log_dir=LOG -build_lm=/sw/bin/srilm/macosx -build_recaser=./recaser -device=disk1 -fiscal_year=fy16 >FIN.a.log 2>&1 &
 
 #EN-FR
-/OptiBay/ADSK_Software/train.pl -corpus=/Volumes/LaCie_Work/Autodesk/fy15_training/corpora/FRA/corpus -source=en -target=fr -lm_path=lm -moses_path=/Users/ventzi/courses/EuroMatrixPlus/software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -log_dir=LOG -build_lm=/sw/bin/srilm/macosx -build_recaser=./recaser -device=disk1 -fiscal_year=fy15 >FRA.d.log 2>&1 &
+/OptiBay/ADSK_Software/train.pl -corpus=/Volumes/LaCie_Work/Autodesk/fy16_training/corpora/FRA/corpus -source=en -target=fr -lm_path=lm -moses_path=/OptiBay/ADSK_Software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -log_dir=LOG -build_lm=/sw/bin/srilm/macosx -build_recaser=./recaser -device=disk1 -fiscal_year=fy16 >FRA.a.log 2>&1 &
 
 #EN-HU
-/OptiBay/ADSK_Software/train.pl -corpus=/Volumes/LaCie_Work/Autodesk/fy15_training/corpora/HUN/corpus -source=en -target=hu -lm_path=lm -moses_path=/Users/ventzi/courses/EuroMatrixPlus/software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -log_dir=LOG -build_lm=/sw/bin/srilm/macosx -build_recaser=./recaser -device=disk1 -fiscal_year=fy15 >HUN.d.log 2>&1 &
+/OptiBay/ADSK_Software/train.pl -corpus=/Volumes/LaCie_Work/Autodesk/fy16_training/corpora/HUN/corpus -source=en -target=hu -lm_path=lm -moses_path=/OptiBay/ADSK_Software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -log_dir=LOG -build_lm=/sw/bin/srilm/macosx -build_recaser=./recaser -device=disk1 -fiscal_year=fy16 >HUN.a.log 2>&1 &
 
 #EN-IT
-/OptiBay/ADSK_Software/train.pl -corpus=/Volumes/LaCie_Work/Autodesk/fy15_training/corpora/ITA/corpus -source=en -target=it -lm_path=lm -moses_path=/Users/ventzi/courses/EuroMatrixPlus/software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -log_dir=LOG -build_lm=/sw/bin/srilm/macosx -build_recaser=./recaser -device=disk1 -fiscal_year=fy15 >ITA.d.log 2>&1 &
+/OptiBay/ADSK_Software/train.pl -corpus=/Volumes/LaCie_Work/Autodesk/fy16_training/corpora/ITA/corpus -source=en -target=it -lm_path=lm -moses_path=/OptiBay/ADSK_Software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -log_dir=LOG -build_lm=/sw/bin/srilm/macosx -build_recaser=./recaser -device=disk1 -fiscal_year=fy16 >ITA.a.log 2>&1 &
 
 #EN-JP
-/OptiBay/ADSK_Software/train.pl -corpus=/Volumes/LaCie_Work/Autodesk/fy15_training/corpora/JPN/corpus -source=en -target=jp -lm_path=lm -moses_path=/Users/ventzi/courses/EuroMatrixPlus/software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -log_dir=LOG -build_lm=/sw/bin/srilm/macosx -build_recaser=./recaser -device=disk1 -fiscal_year=fy15 -seg_model="/Users/ventzi/Desktop/Autodesk/segmentation/kytea-models/jp-0.3.0-utf8-1.mod" -reorder_cmd="/usr/bin/perl -sw /OptiBay/ADSK_Software/reorder_jpn.pl -parser_cmd=\"/usr/bin/perl -sw /OptiBay/ADSK_Software/multiParser.pl -threads=8 -parser_cmd=\\\"/Users/ventzi/Desktop/Autodesk/segmentation/Hidenori/OPENNLP/1.5/opennlp-tools-1.5.0/bin/opennlp Parser /Users/ventzi/Desktop/Autodesk/segmentation/Hidenori/OPENNLP/Data/en-parser-chunking.zip 2>LOG/opennlp.log\\\"\"" >JPN.d.log 2>&1 &
+/OptiBay/ADSK_Software/train.pl -corpus=/Volumes/LaCie_Work/Autodesk/fy16_training/corpora/JPN/corpus -source=en -target=jp -lm_path=lm -moses_path=/OptiBay/ADSK_Software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -log_dir=LOG -build_lm=/sw/bin/srilm/macosx -build_recaser=./recaser -device=disk1 -fiscal_year=fy16 -seg_model="/OptiBay/ADSK_Software/segmentation/kytea-models/jp-0.3.0-utf8-1.mod" -reorder_cmd="/usr/bin/perl -sw /OptiBay/ADSK_Software/reorder_jpn.pl -parser_cmd=\"/usr/bin/perl -sw /OptiBay/ADSK_Software/multiParser.pl -threads=8 -parser_cmd=\\\"/OptiBay/ADSK_Software/segmentation/Hidenori/OPENNLP/1.5/opennlp-tools-1.5.0/bin/opennlp Parser /OptiBay/ADSK_Software/segmentation/Hidenori/OPENNLP/Data/en-parser-chunking.zip 2>LOG/opennlp.log\\\"\"" >JPN.a.log 2>&1 &
 
 #EN-KO
-/OptiBay/ADSK_Software/train.pl -corpus=/Volumes/LaCie_Work/Autodesk/fy15_training/corpora/KOR/corpus -source=en -target=ko -lm_path=lm -moses_path=/Users/ventzi/courses/EuroMatrixPlus/software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -log_dir=LOG -build_lm=/sw/bin/srilm/macosx -build_recaser=./recaser -device=disk1 -fiscal_year=fy15 >KOR.d.log 2>&1 &
+/OptiBay/ADSK_Software/train.pl -corpus=/Volumes/LaCie_Work/Autodesk/fy16_training/corpora/KOR/corpus -source=en -target=ko -lm_path=lm -moses_path=/OptiBay/ADSK_Software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -log_dir=LOG -build_lm=/sw/bin/srilm/macosx -build_recaser=./recaser -device=disk1 -fiscal_year=fy16 >KOR.a.log 2>&1 &
 
 #EN-NL
-/OptiBay/ADSK_Software/train.pl -corpus=/Volumes/LaCie_Work/Autodesk/fy15_training/corpora/NLD/corpus -source=en -target=nl -lm_path=lm -moses_path=/Users/ventzi/courses/EuroMatrixPlus/software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -log_dir=LOG -build_lm=/sw/bin/srilm/macosx -build_recaser=./recaser -device=disk1 -fiscal_year=fy15 >NLD.d.log 2>&1 &
+/OptiBay/ADSK_Software/train.pl -corpus=/Volumes/LaCie_Work/Autodesk/fy16_training/corpora/NLD/corpus -source=en -target=nl -lm_path=lm -moses_path=/OptiBay/ADSK_Software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -log_dir=LOG -build_lm=/sw/bin/srilm/macosx -build_recaser=./recaser -device=disk1 -fiscal_year=fy16 >NLD.a.log 2>&1 &
 
 #EN-NO
-/OptiBay/ADSK_Software/train.pl -corpus=/Volumes/LaCie_Work/Autodesk/fy15_training/corpora/NOR/corpus -source=en -target=no -lm_path=lm -moses_path=/Users/ventzi/courses/EuroMatrixPlus/software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -log_dir=LOG -build_lm=/sw/bin/srilm/macosx -build_recaser=./recaser -device=disk1 -fiscal_year=fy15 >NOR.d.log 2>&1 &
+/OptiBay/ADSK_Software/train.pl -corpus=/Volumes/LaCie_Work/Autodesk/fy16_training/corpora/NOR/corpus -source=en -target=no -lm_path=lm -moses_path=/OptiBay/ADSK_Software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -log_dir=LOG -build_lm=/sw/bin/srilm/macosx -build_recaser=./recaser -device=disk1 -fiscal_year=fy16 >NOR.a.log 2>&1 &
 
 #EN-PL
-/OptiBay/ADSK_Software/train.pl -corpus=/Volumes/LaCie_Work/Autodesk/fy15_training/corpora/PLK/corpus -source=en -target=pl -lm_path=lm -moses_path=/Users/ventzi/courses/EuroMatrixPlus/software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -log_dir=LOG -build_lm=/sw/bin/srilm/macosx -build_recaser=./recaser -device=disk1 -fiscal_year=fy15 >PLK.d.log 2>&1 &
+/OptiBay/ADSK_Software/train.pl -corpus=/Volumes/LaCie_Work/Autodesk/fy16_training/corpora/PLK/corpus -source=en -target=pl -lm_path=lm -moses_path=/OptiBay/ADSK_Software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -log_dir=LOG -build_lm=/sw/bin/srilm/macosx -build_recaser=./recaser -device=disk1 -fiscal_year=fy16 >PLK.a.log 2>&1 &
 
 #EN-PT_BR
-/OptiBay/ADSK_Software/train.pl -corpus=/Volumes/LaCie_Work/Autodesk/fy15_training/corpora/PTB/corpus -source=en -target=pt_br -lm_path=lm -moses_path=/Users/ventzi/courses/EuroMatrixPlus/software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -log_dir=LOG -build_lm=/sw/bin/srilm/macosx -build_recaser=./recaser -device=disk1 -fiscal_year=fy15 >PTB.d.log 2>&1 &
+/OptiBay/ADSK_Software/train.pl -corpus=/Volumes/LaCie_Work/Autodesk/fy16_training/corpora/PTB/corpus -source=en -target=pt_br -lm_path=lm -moses_path=/OptiBay/ADSK_Software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -log_dir=LOG -build_lm=/sw/bin/srilm/macosx -build_recaser=./recaser -device=disk1 -fiscal_year=fy16 >PTB.a.log 2>&1 &
 
 #EN-PT_PT
-/OptiBay/ADSK_Software/train.pl -corpus=/Volumes/LaCie_Work/Autodesk/fy15_training/corpora/PTG/corpus -source=en -target=pt_pt -lm_path=lm -moses_path=/Users/ventzi/courses/EuroMatrixPlus/software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -log_dir=LOG -build_lm=/sw/bin/srilm/macosx -build_recaser=./recaser -device=disk1 -fiscal_year=fy15 >PTG.log 2>&1 &
+/OptiBay/ADSK_Software/train.pl -corpus=/Volumes/LaCie_Work/Autodesk/fy16_training/corpora/PTG/corpus -source=en -target=pt_pt -lm_path=lm -moses_path=/OptiBay/ADSK_Software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -log_dir=LOG -build_lm=/sw/bin/srilm/macosx -build_recaser=./recaser -device=disk1 -fiscal_year=fy16 >PTG.a.log 2>&1 &
 
 #EN-RU
-/OptiBay/ADSK_Software/train.pl -corpus=/Volumes/LaCie_Work/Autodesk/fy15_training/corpora/RUS/corpus -source=en -target=ru -lm_path=lm -moses_path=/Users/ventzi/courses/EuroMatrixPlus/software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -log_dir=LOG -build_lm=/sw/bin/srilm/macosx -build_recaser=./recaser -device=disk1 -fiscal_year=fy15 >RUS.d.log 2>&1 &
+/OptiBay/ADSK_Software/train.pl -corpus=/Volumes/LaCie_Work/Autodesk/fy16_training/corpora/RUS/corpus -source=en -target=ru -lm_path=lm -moses_path=/OptiBay/ADSK_Software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -log_dir=LOG -build_lm=/sw/bin/srilm/macosx -build_recaser=./recaser -device=disk1 -fiscal_year=fy16 >RUS.a.log 2>&1 &
 
 #EN-SV
-/OptiBay/ADSK_Software/train.pl -corpus=/Volumes/LaCie_Work/Autodesk/fy15_training/corpora/SWE/corpus -source=en -target=sv -lm_path=lm -moses_path=/Users/ventzi/courses/EuroMatrixPlus/software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -log_dir=LOG -build_lm=/sw/bin/srilm/macosx -build_recaser=./recaser -device=disk1 -fiscal_year=fy15 >SWE.d.log 2>&1 &
+/OptiBay/ADSK_Software/train.pl -corpus=/Volumes/LaCie_Work/Autodesk/fy16_training/corpora/SWE/corpus -source=en -target=sv -lm_path=lm -moses_path=/OptiBay/ADSK_Software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -log_dir=LOG -build_lm=/sw/bin/srilm/macosx -build_recaser=./recaser -device=disk1 -fiscal_year=fy16 >SWE.a.log 2>&1 &
 
 #EN-TR
-/OptiBay/ADSK_Software/train.pl -corpus=/Volumes/LaCie_Work/Autodesk/fy15_training/corpora/TUR/corpus -source=en -target=tr -lm_path=lm -moses_path=/Users/ventzi/courses/EuroMatrixPlus/software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -log_dir=LOG -build_lm=/sw/bin/srilm/macosx -build_recaser=./recaser -device=disk1 -fiscal_year=fy15 >TUR.d.log 2>&1 &
+#/OptiBay/ADSK_Software/train.pl -corpus=/Volumes/LaCie_Work/Autodesk/fy16_training/corpora/TUR/corpus -source=en -target=tr -lm_path=lm -moses_path=/OptiBay/ADSK_Software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -log_dir=LOG -build_lm=/sw/bin/srilm/macosx -build_recaser=./recaser -device=disk1 -fiscal_year=fy16 >TUR.a.log 2>&1 &
 
 #EN-VI
-/OptiBay/ADSK_Software/train.pl -corpus=/Volumes/LaCie_Work/Autodesk/fy15_training/corpora/VIT/corpus -source=en -target=vi -lm_path=lm -moses_path=/Users/ventzi/courses/EuroMatrixPlus/software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -log_dir=LOG -build_lm=/sw/bin/srilm/macosx -build_recaser=./recaser -device=disk1 -fiscal_year=fy15 >VIT.d.log 2>&1 &
+#/OptiBay/ADSK_Software/train.pl -corpus=/Volumes/LaCie_Work/Autodesk/fy16_training/corpora/VIT/corpus -source=en -target=vi -lm_path=lm -moses_path=/OptiBay/ADSK_Software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -log_dir=LOG -build_lm=/sw/bin/srilm/macosx -build_recaser=./recaser -device=disk1 -fiscal_year=fy16 >VIT.a.log 2>&1 &
 
 #EN-ZH_HANS
-/OptiBay/ADSK_Software/train.pl -corpus=/Volumes/LaCie_Work/Autodesk/fy15_training/corpora/CHS/corpus -source=en -target=zh_hans -lm_path=lm -moses_path=/Users/ventzi/courses/EuroMatrixPlus/software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -log_dir=LOG -build_lm=/sw/bin/srilm/macosx -build_recaser=./recaser -device=disk1 -fiscal_year=fy15 -seg_model="/Users/ventzi/Desktop/Autodesk/segmentation/kytea-models/lcmc-0.3.0-1.mod" >CHS.d.log 2>&1 &
+/OptiBay/ADSK_Software/train.pl -corpus=/Volumes/LaCie_Work/Autodesk/fy16_training/corpora/CHS/corpus -source=en -target=zh_hans -lm_path=lm -moses_path=/OptiBay/ADSK_Software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -log_dir=LOG -build_lm=/sw/bin/srilm/macosx -build_recaser=./recaser -device=disk1 -fiscal_year=fy16 -seg_model="/OptiBay/ADSK_Software/segmentation/kytea-models/lcmc-0.3.0-1.mod" >CHS.a.log 2>&1 &
 
 #EN-ZH_HANT
-/OptiBay/ADSK_Software/train.pl -corpus=/Volumes/LaCie_Work/Autodesk/fy15_training/corpora/CHT/corpus -source=en -target=zh_hant -lm_path=lm -moses_path=/Users/ventzi/courses/EuroMatrixPlus/software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -log_dir=LOG -build_lm=/sw/bin/srilm/macosx -build_recaser=./recaser -device=disk1 -fiscal_year=fy15 -seg_model="/Users/ventzi/Desktop/Autodesk/segmentation/kytea-models/lcmc-0.3.0-1.mod" >CHT.d.log 2>&1 &
+/OptiBay/ADSK_Software/train.pl -corpus=/Volumes/LaCie_Work/Autodesk/fy16_training/corpora/CHT/corpus -source=en -target=zh_hant -lm_path=lm -moses_path=/OptiBay/ADSK_Software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -log_dir=LOG -build_lm=/sw/bin/srilm/macosx -build_recaser=./recaser -device=disk1 -fiscal_year=fy16 -seg_model="/OptiBay/ADSK_Software/segmentation/kytea-models/lcmc-0.3.0-1.mod" >CHT.a.log 2>&1 &
 
 
 #XX-EN
-/OptiBay/ADSK_Software/train.pl -corpus=/Volumes/LaCie_Work/Autodesk/fy15_training/corpora/ENU/corpus -source=xx -target=en -lm_path=lm -moses_path=/Users/ventzi/courses/EuroMatrixPlus/software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -first_step=2 -last_step=1 -log_dir=LOG -build_lm=/sw/bin/srilm/macosx -build_recaser=./recaser -device=disk1 -fiscal_year=fy15 >ENU.d.log 2>&1 &
+#/OptiBay/ADSK_Software/train.pl -corpus=/Volumes/LaCie_Work/Autodesk/fy16_training/corpora/ENU/corpus -source=xx -target=en -lm_path=lm -moses_path=/OptiBay/ADSK_Software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -first_step=2 -last_step=1 -log_dir=LOG -build_lm=/sw/bin/srilm/macosx -build_recaser=./recaser -device=disk1 -fiscal_year=fy16 >ENU.a.log 2>&1 &
 
 
 #CS-EN
-/OptiBay/ADSK_Software/train.pl -corpus=/Volumes/LaCie_Work/Autodesk/fy15_training/corpora/CSY/corpus -source=cs -target=en -lm_path=../fy15_XX-EN_b/lm -moses_path=/Users/ventzi/courses/EuroMatrixPlus/software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -log_dir=LOG -build_lm=/sw/bin/srilm/macosx -build_recaser=../fy15_XX-EN_b/recaser -device=disk1 -fiscal_year=fy15 -archive=### >toCSY.d.log 2>&1 &
+/OptiBay/ADSK_Software/train.pl -corpus=/Volumes/LaCie_Work/Autodesk/fy16_training/corpora/CSY/corpus -source=cs -target=en -lm_path=lm -moses_path=/OptiBay/ADSK_Software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -log_dir=LOG -build_lm=/sw/bin/srilm/macosx -build_recaser=./recaser -device=disk1 -fiscal_year=fy16 -archive=### >toCSY.a.log 2>&1 &
 
 #DE-EN
-/OptiBay/ADSK_Software/train.pl -corpus=/Volumes/LaCie_Work/Autodesk/fy15_training/corpora/DEU/corpus -source=de -target=en -lm_path=../fy15_XX-EN_b/lm -moses_path=/Users/ventzi/courses/EuroMatrixPlus/software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -log_dir=LOG -build_lm=/sw/bin/srilm/macosx -build_recaser=../fy15_XX-EN_b/recaser -device=disk1 -fiscal_year=fy15 -archive=### >toDEU.d.log 2>&1 &
+/OptiBay/ADSK_Software/train.pl -corpus=/Volumes/LaCie_Work/Autodesk/fy16_training/corpora/DEU/corpus -source=de -target=en -lm_path=lm -moses_path=/OptiBay/ADSK_Software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -log_dir=LOG -build_lm=/sw/bin/srilm/macosx -build_recaser=./recaser -device=disk1 -fiscal_year=fy16 -archive=### >toDEU.a.log 2>&1 &
 
 #ES-EN
-/OptiBay/ADSK_Software/train.pl -corpus=/Volumes/LaCie_Work/Autodesk/fy15_training/corpora/ESP/corpus -source=es -target=en -lm_path=../fy15_XX-EN_b/lm -moses_path=/Users/ventzi/courses/EuroMatrixPlus/software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -log_dir=LOG -build_lm=/sw/bin/srilm/macosx -build_recaser=../fy15_XX-EN_b/recaser -device=disk1 -fiscal_year=fy15 -archive=### >toESP.d.log 2>&1 &
+/OptiBay/ADSK_Software/train.pl -corpus=/Volumes/LaCie_Work/Autodesk/fy16_training/corpora/ESP/corpus -source=es -target=en -lm_path=lm -moses_path=/OptiBay/ADSK_Software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -log_dir=LOG -build_lm=/sw/bin/srilm/macosx -build_recaser=./recaser -device=disk1 -fiscal_year=fy16 -archive=### >toESP.a.log 2>&1 &
 
 #FR-EN
-/OptiBay/ADSK_Software/train.pl -corpus=/Volumes/LaCie_Work/Autodesk/fy15_training/corpora/FRA/corpus -source=FR -target=en -lm_path=../fy15_XX-EN_b/lm -moses_path=/Users/ventzi/courses/EuroMatrixPlus/software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -log_dir=LOG -build_lm=/sw/bin/srilm/macosx -build_recaser=../fy15_XX-EN_b/recaser -device=disk1 -fiscal_year=fy15 -archive=### >toFRA.d.log 2>&1 &
+/OptiBay/ADSK_Software/train.pl -corpus=/Volumes/LaCie_Work/Autodesk/fy16_training/corpora/FRA/corpus -source=FR -target=en -lm_path=lm -moses_path=/OptiBay/ADSK_Software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -log_dir=LOG -build_lm=/sw/bin/srilm/macosx -build_recaser=./recaser -device=disk1 -fiscal_year=fy16 -archive=### >toFRA.a.log 2>&1 &
 
 #HU-EN
-/OptiBay/ADSK_Software/train.pl -corpus=/Volumes/LaCie_Work/Autodesk/fy15_training/corpora/HUN/corpus -source=hu -target=en -lm_path=../fy15_XX-EN_b/lm -moses_path=/Users/ventzi/courses/EuroMatrixPlus/software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -log_dir=LOG -build_lm=/sw/bin/srilm/macosx -build_recaser=../fy15_XX-EN_b/recaser -device=disk1 -fiscal_year=fy15 -archive=### >toHUN.d.log 2>&1 &
+/OptiBay/ADSK_Software/train.pl -corpus=/Volumes/LaCie_Work/Autodesk/fy16_training/corpora/HUN/corpus -source=hu -target=en -lm_path=lm -moses_path=/OptiBay/ADSK_Software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -log_dir=LOG -build_lm=/sw/bin/srilm/macosx -build_recaser=./recaser -device=disk1 -fiscal_year=fy16 -archive=### >toHUN.a.log 2>&1 &
 
 #IT-EN
-/OptiBay/ADSK_Software/train.pl -corpus=/Volumes/LaCie_Work/Autodesk/fy15_training/corpora/ITA/corpus -source=it -target=en -lm_path=../fy15_XX-EN_b/lm -moses_path=/Users/ventzi/courses/EuroMatrixPlus/software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -log_dir=LOG -build_lm=/sw/bin/srilm/macosx -build_recaser=../fy15_XX-EN_b/recaser -device=disk1 -fiscal_year=fy15 -archive=### >toITA.d.log 2>&1 &
+/OptiBay/ADSK_Software/train.pl -corpus=/Volumes/LaCie_Work/Autodesk/fy16_training/corpora/ITA/corpus -source=it -target=en -lm_path=lm -moses_path=/OptiBay/ADSK_Software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -log_dir=LOG -build_lm=/sw/bin/srilm/macosx -build_recaser=./recaser -device=disk1 -fiscal_year=fy16 -archive=### >toITA.a.log 2>&1 &
 
 #JP-EN
-/OptiBay/ADSK_Software/train.pl -corpus=/Volumes/LaCie_Work/Autodesk/fy15_training/corpora/JPN/corpus -source=jp -target=en -lm_path=../fy15_XX-EN_b/lm -moses_path=/Users/ventzi/courses/EuroMatrixPlus/software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -log_dir=LOG -build_lm=/sw/bin/srilm/macosx -build_recaser=../fy15_XX-EN_b/recaser -device=disk1 -fiscal_year=fy15 -seg_model="/Users/ventzi/Desktop/Autodesk/segmentation/kytea-models/jp-0.3.0-utf8-1.mod" -archive=### >toJPN.d.log 2>&1 &
+/OptiBay/ADSK_Software/train.pl -corpus=/Volumes/LaCie_Work/Autodesk/fy16_training/corpora/JPN/corpus -source=jp -target=en -lm_path=lm -moses_path=/OptiBay/ADSK_Software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -log_dir=LOG -build_lm=/sw/bin/srilm/macosx -build_recaser=./recaser -device=disk1 -fiscal_year=fy16 -seg_model="/OptiBay/ADSK_Software/segmentation/kytea-models/jp-0.3.0-utf8-1.mod" -archive=### >toJPN.a.log 2>&1 &
 
 #KO-EN
-/OptiBay/ADSK_Software/train.pl -corpus=/Volumes/LaCie_Work/Autodesk/fy15_training/corpora/KOR/corpus -source=ko -target=en -lm_path=../fy15_XX-EN_b/lm -moses_path=/Users/ventzi/courses/EuroMatrixPlus/software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -log_dir=LOG -build_lm=/sw/bin/srilm/macosx -build_recaser=../fy15_XX-EN_b/recaser -device=disk1 -fiscal_year=fy15 -archive=### >toKOR.d.log 2>&1 &
+/OptiBay/ADSK_Software/train.pl -corpus=/Volumes/LaCie_Work/Autodesk/fy16_training/corpora/KOR/corpus -source=ko -target=en -lm_path=lm -moses_path=/OptiBay/ADSK_Software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -log_dir=LOG -build_lm=/sw/bin/srilm/macosx -build_recaser=./recaser -device=disk1 -fiscal_year=fy16 -archive=### >toKOR.a.log 2>&1 &
 
 #PL-EN
-/OptiBay/ADSK_Software/train.pl -corpus=/Volumes/LaCie_Work/Autodesk/fy15_training/corpora/PLK/corpus -source=pl -target=en -lm_path=../fy15_XX-EN_b/lm -moses_path=/Users/ventzi/courses/EuroMatrixPlus/software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -log_dir=LOG -build_lm=/sw/bin/srilm/macosx -build_recaser=../fy15_XX-EN_b/recaser -device=disk1 -fiscal_year=fy15 -archive=### >toPLK.d.log 2>&1 &
+/OptiBay/ADSK_Software/train.pl -corpus=/Volumes/LaCie_Work/Autodesk/fy16_training/corpora/PLK/corpus -source=pl -target=en -lm_path=lm -moses_path=/OptiBay/ADSK_Software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -log_dir=LOG -build_lm=/sw/bin/srilm/macosx -build_recaser=./recaser -device=disk1 -fiscal_year=fy16 -archive=### >toPLK.a.log 2>&1 &
 
 #PT_BR-EN
-/OptiBay/ADSK_Software/train.pl -corpus=/Volumes/LaCie_Work/Autodesk/fy15_training/corpora/PTB/corpus -source=pt_br -target=en -lm_path=../fy15_XX-EN_b/lm -moses_path=/Users/ventzi/courses/EuroMatrixPlus/software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -log_dir=LOG -build_lm=/sw/bin/srilm/macosx -build_recaser=../fy15_XX-EN_b/recaser -device=disk1 -fiscal_year=fy15 -archive=### >toPTB.d.log 2>&1 &
+/OptiBay/ADSK_Software/train.pl -corpus=/Volumes/LaCie_Work/Autodesk/fy16_training/corpora/PTB/corpus -source=pt_br -target=en -lm_path=lm -moses_path=/OptiBay/ADSK_Software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -log_dir=LOG -build_lm=/sw/bin/srilm/macosx -build_recaser=./recaser -device=disk1 -fiscal_year=fy16 -archive=### >toPTB.a.log 2>&1 &
 
 #RU-EN
-/OptiBay/ADSK_Software/train.pl -corpus=/Volumes/LaCie_Work/Autodesk/fy15_training/corpora/RUS/corpus -source=ru -target=en -lm_path=../fy15_XX-EN_b/lm -moses_path=/Users/ventzi/courses/EuroMatrixPlus/software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -log_dir=LOG -build_lm=/sw/bin/srilm/macosx -build_recaser=../fy15_XX-EN_b/recaser -device=disk1 -fiscal_year=fy15 -archive=### >toRUS.d.log 2>&1 &
+/OptiBay/ADSK_Software/train.pl -corpus=/Volumes/LaCie_Work/Autodesk/fy16_training/corpora/RUS/corpus -source=ru -target=en -lm_path=lm -moses_path=/OptiBay/ADSK_Software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -log_dir=LOG -build_lm=/sw/bin/srilm/macosx -build_recaser=./recaser -device=disk1 -fiscal_year=fy16 -archive=### >toRUS.a.log 2>&1 &
 
 #ZH_HANS-EN
-/OptiBay/ADSK_Software/train.pl -corpus=/Volumes/LaCie_Work/Autodesk/fy15_training/corpora/CHS/corpus -source=zh_hans -target=en -lm_path=../fy15_XX-EN_b/lm -moses_path=/Users/ventzi/courses/EuroMatrixPlus/software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -log_dir=LOG -build_lm=/sw/bin/srilm/macosx -build_recaser=../fy15_XX-EN_b/recaser -device=disk1 -fiscal_year=fy15 -seg_model="/Users/ventzi/Desktop/Autodesk/segmentation/kytea-models/lcmc-0.3.0-1.mod" -archive=### >toCHS.d.log 2>&1 &
+/OptiBay/ADSK_Software/train.pl -corpus=/Volumes/LaCie_Work/Autodesk/fy16_training/corpora/CHS/corpus -source=zh_hans -target=en -lm_path=lm -moses_path=/OptiBay/ADSK_Software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -log_dir=LOG -build_lm=/sw/bin/srilm/macosx -build_recaser=./recaser -device=disk1 -fiscal_year=fy16 -seg_model="/OptiBay/ADSK_Software/segmentation/kytea-models/lcmc-0.3.0-1.mod" -archive=### >toCHS.a.log 2>&1 &
 
 #ZH_HANT-EN
-/OptiBay/ADSK_Software/train.pl -corpus=/Volumes/LaCie_Work/Autodesk/fy15_training/corpora/CHT/corpus -source=zh_hant -target=en -lm_path=../fy15_XX-EN_b/lm -moses_path=/Users/ventzi/courses/EuroMatrixPlus/software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -log_dir=LOG -build_lm=/sw/bin/srilm/macosx -build_recaser=../fy15_XX-EN_b/recaser -device=disk1 -fiscal_year=fy15 -seg_model="/Users/ventzi/Desktop/Autodesk/segmentation/kytea-models/lcmc-0.3.0-1.mod" -archive=### >toCHT.d.log 2>&1 &
+/OptiBay/ADSK_Software/train.pl -corpus=/Volumes/LaCie_Work/Autodesk/fy16_training/corpora/CHT/corpus -source=zh_hant -target=en -lm_path=lm -moses_path=/OptiBay/ADSK_Software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -log_dir=LOG -build_lm=/sw/bin/srilm/macosx -build_recaser=./recaser -device=disk1 -fiscal_year=fy16 -seg_model="/OptiBay/ADSK_Software/segmentation/kytea-models/lcmc-0.3.0-1.mod" -archive=### >toCHT.a.log 2>&1 &
 
 
 
 
 
+#################################
+## Per-Product Trainings for Ambiguous Terminology Extraction
+/OptiBay/ADSK_Software/train.pl -corpus=/Volumes/LaCie_Work/Autodesk/fy15_analysis/corpora/CSY/corpus -source=en -target=cs -lm_path=lm -build_lm=/sw/bin/srilm/macosx -moses_path=/OptiBay/ADSK_Software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -log_dir=LOG -device=disk1 -fiscal_year=fy15 -binarise=0 -perProduct >CSY.sw.log 2>&1 &
+/OptiBay/ADSK_Software/train.pl -corpus=/Volumes/LaCie_Work/Autodesk/fy15_analysis/corpora/ESP/corpus -source=en -target=es -lm_path=lm -build_lm=/sw/bin/srilm/macosx -moses_path=/OptiBay/ADSK_Software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -log_dir=LOG -device=disk1 -fiscal_year=fy15 -binarise=0 -perProduct >ESP.sw.log 2>&1 &
+/OptiBay/ADSK_Software/train.pl -corpus=/Volumes/LaCie_Work/Autodesk/fy15_analysis/corpora/HUN/corpus -source=en -target=hu -lm_path=lm -build_lm=/sw/bin/srilm/macosx -moses_path=/OptiBay/ADSK_Software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -log_dir=LOG -device=disk1 -fiscal_year=fy15 -binarise=0 -perProduct >HUN.sw.log 2>&1 &
+/OptiBay/ADSK_Software/train.pl -corpus=/Volumes/LaCie_Work/Autodesk/fy15_analysis/corpora/KOR/corpus -source=en -target=ko -lm_path=lm -build_lm=/sw/bin/srilm/macosx -moses_path=/OptiBay/ADSK_Software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -log_dir=LOG -device=disk1 -fiscal_year=fy15 -binarise=0 -perProduct >KOR.sw.log 2>&1 &
+/OptiBay/ADSK_Software/train.pl -corpus=/Volumes/LaCie_Work/Autodesk/fy15_analysis/corpora/PLK/corpus -source=en -target=pl -lm_path=lm -build_lm=/sw/bin/srilm/macosx -moses_path=/OptiBay/ADSK_Software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -log_dir=LOG -device=disk1 -fiscal_year=fy15 -binarise=0 -perProduct >PLK.sw.log 2>&1 &
+/OptiBay/ADSK_Software/train.pl -corpus=/Volumes/LaCie_Work/Autodesk/fy15_analysis/corpora/PTB/corpus -source=en -target=pt_br -lm_path=lm -build_lm=/sw/bin/srilm/macosx -moses_path=/OptiBay/ADSK_Software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -log_dir=LOG -device=disk1 -fiscal_year=fy15 -binarise=0 -perProduct >PTB.sw.log 2>&1 &
+/OptiBay/ADSK_Software/train.pl -corpus=/Volumes/LaCie_Work/Autodesk/fy15_analysis/corpora/PTG/corpus -source=en -target=pt_pt -lm_path=lm -build_lm=/sw/bin/srilm/macosx -moses_path=/OptiBay/ADSK_Software/moses-trunk/ -bin_dir=/sw/bin/GIZA++/ -log_dir=LOG -device=disk1 -fiscal_year=fy15 -binarise=0 -perProduct >PTG.sw.log 2>&1 &
 
 
+zcat fy15_EN-CS_a/model/phrase-table.gz |/OptiBay/ADSK_Software/filterForSorting.pl -sourceLanguage=en -targetLanguage=cs |LC_ALL=C sort -k 1,1 -k 12,12 -k 9nr,9 -S 1024M --parallel=8 --field-separator=\| |/OptiBay/ADSK_Software/conflateTargets.pl |/OptiBay/ADSK_Software/calculateAmbiguities.pl -output=fy15_EN-CS_a/model/ambiguousTerms.json |bzip2 >fy15_EN-CS_a/model/ambiguousTerms.log.bz2
+zcat fy15_EN-HU_a/model/phrase-table.gz |/OptiBay/ADSK_Software/filterForSorting.pl -sourceLanguage=en -targetLanguage=hu |LC_ALL=C sort -k 1,1 -k 12,12 -k 9nr,9 -S 1024M --parallel=8 --field-separator=\| |/OptiBay/ADSK_Software/conflateTargets.pl |/OptiBay/ADSK_Software/calculateAmbiguities.pl -output=fy15_EN-HU_a/model/ambiguousTerms.json |bzip2 >fy15_EN-HU_a/model/ambiguousTerms.log.bz2
+zcat fy15_EN-KO_a/model/phrase-table.gz |/OptiBay/ADSK_Software/filterForSorting.pl -sourceLanguage=en -targetLanguage=ko |LC_ALL=C sort -k 1,1 -k 12,12 -k 9nr,9 -S 1024M --parallel=8 --field-separator=\| |/OptiBay/ADSK_Software/conflateTargets.pl |/OptiBay/ADSK_Software/calculateAmbiguities.pl -output=fy15_EN-KO_a/model/ambiguousTerms.json |bzip2 >fy15_EN-KO_a/model/ambiguousTerms.log.bz2
+zcat fy15_EN-PL_a/model/phrase-table.gz |/OptiBay/ADSK_Software/filterForSorting.pl -sourceLanguage=en -targetLanguage=pl |LC_ALL=C sort -k 1,1 -k 12,12 -k 9nr,9 -S 1024M --parallel=8 --field-separator=\| |/OptiBay/ADSK_Software/conflateTargets.pl |/OptiBay/ADSK_Software/calculateAmbiguities.pl -output=fy15_EN-PL_a/model/ambiguousTerms.json |bzip2 >fy15_EN-PL_a/model/ambiguousTerms.log.bz2
+zcat fy15_EN-PT_BR_a/model/phrase-table.gz |/OptiBay/ADSK_Software/filterForSorting.pl -sourceLanguage=en -targetLanguage=pt_br |LC_ALL=C sort -k 1,1 -k 12,12 -k 9nr,9 -S 1024M --parallel=8 --field-separator=\| |/OptiBay/ADSK_Software/conflateTargets.pl |/OptiBay/ADSK_Software/calculateAmbiguities.pl -output=fy15_EN-PT_BR_a/model/ambiguousTerms.json |bzip2 >fy15_EN-PT_BR_a/model/ambiguousTerms.log.bz2
+zcat fy15_EN-PT_PT_a/model/phrase-table.gz |/OptiBay/ADSK_Software/filterForSorting.pl -sourceLanguage=en -targetLanguage=pt_pt |LC_ALL=C sort -k 1,1 -k 12,12 -k 9nr,9 -S 1024M --parallel=8 --field-separator=\| |/OptiBay/ADSK_Software/conflateTargets.pl |/OptiBay/ADSK_Software/calculateAmbiguities.pl -output=fy15_EN-PT_PT_a/model/ambiguousTerms.json |bzip2 >fy15_EN-PT_PT_a/model/ambiguousTerms.log.bz2
 
 
+/OptiBay/ADSK_Software/occurrenceCounter.pl -sourceCorpus=fy15_EN-CS_a/corpus/corpus.clean.en -targetCorpus=fy15_EN-CS_a/corpus/corpus.clean.cs -ambiguousStrings=fy15_EN-CS_a/model/ambiguousTerms.json -threads=8 |bzip2 >fy15_EN-CS_a/model/ambiguousTerms.occurrence.bz2
+/OptiBay/ADSK_Software/occurrenceCounter.pl -sourceCorpus=fy15_EN-HU_a/corpus/corpus.clean.en -targetCorpus=fy15_EN-HU_a/corpus/corpus.clean.hu -ambiguousStrings=fy15_EN-HU_a/model/ambiguousTerms.json -threads=8 |bzip2 >fy15_EN-HU_a/model/ambiguousTerms.occurrence.bz2
+/OptiBay/ADSK_Software/occurrenceCounter.pl -sourceCorpus=fy15_EN-KO_a/corpus/corpus.clean.en -targetCorpus=fy15_EN-KO_a/corpus/corpus.clean.ko -ambiguousStrings=fy15_EN-KO_a/model/ambiguousTerms.json -threads=8 |bzip2 >fy15_EN-KO_a/model/ambiguousTerms.occurrence.bz2
+/OptiBay/ADSK_Software/occurrenceCounter.pl -sourceCorpus=fy15_EN-PL_a/corpus/corpus.clean.en -targetCorpus=fy15_EN-PL_a/corpus/corpus.clean.pl -ambiguousStrings=fy15_EN-PL_a/model/ambiguousTerms.json -threads=8 |bzip2 >fy15_EN-PL_a/model/ambiguousTerms.occurrence.bz2
+/OptiBay/ADSK_Software/occurrenceCounter.pl -sourceCorpus=fy15_EN-PT_BR_a/corpus/corpus.clean.en -targetCorpus=fy15_EN-PT_BR_a/corpus/corpus.clean.pt_br -ambiguousStrings=fy15_EN-PT_BR_a/model/ambiguousTerms.json -threads=8 |bzip2 >fy15_EN-PT_BR_a/model/ambiguousTerms.occurrence.bz2
+/OptiBay/ADSK_Software/occurrenceCounter.pl -sourceCorpus=fy15_EN-PT_PT_a/corpus/corpus.clean.en -targetCorpus=fy15_EN-PT_PT_a/corpus/corpus.clean.pt_pt -ambiguousStrings=fy15_EN-PT_PT_a/model/ambiguousTerms.json -threads=8 |bzip2 >fy15_EN-PT_PT_a/model/ambiguousTerms.occurrence.bz2
 
+
+bzcat corpora/CSY/corpus.en.bz2 |perl -MEncode -ne 'use utf8;chomp;(undef,$p)=split/◊/,decode("utf-8",$_),-1;++$ps{$p};print STDERR "."unless$.%10000;print STDERR "$."unless$.%500000;END{print"\n";foreach$p(sort{$ps{$b}<=>$ps{$a}}keys%ps){print encode"utf-8","$p\t$ps{$p}\n"}}'
+bzcat corpora/ESP/corpus.en.bz2 |perl -MEncode -ne 'use utf8;chomp;(undef,$p)=split/◊/,decode("utf-8",$_),-1;++$ps{$p};print STDERR "."unless$.%10000;print STDERR "$."unless$.%500000;END{print"\n";foreach$p(sort{$ps{$b}<=>$ps{$a}}keys%ps){print encode"utf-8","$p\t$ps{$p}\n"}}'
+bzcat corpora/HUN/corpus.en.bz2 |perl -MEncode -ne 'use utf8;chomp;(undef,$p)=split/◊/,decode("utf-8",$_),-1;++$ps{$p};print STDERR "."unless$.%10000;print STDERR "$."unless$.%500000;END{print"\n";foreach$p(sort{$ps{$b}<=>$ps{$a}}keys%ps){print encode"utf-8","$p\t$ps{$p}\n"}}'
+bzcat corpora/ITA/corpus.en.bz2 |perl -MEncode -ne 'use utf8;chomp;(undef,$p)=split/◊/,decode("utf-8",$_),-1;++$ps{$p};print STDERR "."unless$.%10000;print STDERR "$."unless$.%500000;END{print"\n";foreach$p(sort{$ps{$b}<=>$ps{$a}}keys%ps){print encode"utf-8","$p\t$ps{$p}\n"}}'
+bzcat corpora/KOR/corpus.en.bz2 |perl -MEncode -ne 'use utf8;chomp;(undef,$p)=split/◊/,decode("utf-8",$_),-1;++$ps{$p};print STDERR "."unless$.%10000;print STDERR "$."unless$.%500000;END{print"\n";foreach$p(sort{$ps{$b}<=>$ps{$a}}keys%ps){print encode"utf-8","$p\t$ps{$p}\n"}}'
+bzcat corpora/PLK/corpus.en.bz2 |perl -MEncode -ne 'use utf8;chomp;(undef,$p)=split/◊/,decode("utf-8",$_),-1;++$ps{$p};print STDERR "."unless$.%10000;print STDERR "$."unless$.%500000;END{print"\n";foreach$p(sort{$ps{$b}<=>$ps{$a}}keys%ps){print encode"utf-8","$p\t$ps{$p}\n"}}'
+bzcat corpora/PTB/corpus.en.bz2 |perl -MEncode -ne 'use utf8;chomp;(undef,$p)=split/◊/,decode("utf-8",$_),-1;++$ps{$p};print STDERR "."unless$.%10000;print STDERR "$."unless$.%500000;END{print"\n";foreach$p(sort{$ps{$b}<=>$ps{$a}}keys%ps){print encode"utf-8","$p\t$ps{$p}\n"}}'
+bzcat corpora/PTG/corpus.en.bz2 |perl -MEncode -ne 'use utf8;chomp;(undef,$p)=split/◊/,decode("utf-8",$_),-1;++$ps{$p};print STDERR "."unless$.%10000;print STDERR "$."unless$.%500000;END{print"\n";foreach$p(sort{$ps{$b}<=>$ps{$a}}keys%ps){print encode"utf-8","$p\t$ps{$p}\n"}}'
 
 #################################
 cat chs_*1.csv |./create_samples.pl -words=`cat chs_*1.csv|/usr/bin/perl -ne 'BEGIN{my$c=0}my(undef,undef,$w)=split//,$_;$c+=$w;END{print"$c\n"}'` -percentage=37 -output=productivity_QA_sample_chs.csv
@@ -431,8 +238,6 @@ cat corpus.en.txt |/Users/ventzi/courses/EuroMatrixPlus/software/moses-2010-04-0
 
 
 
-/OptiBay/ADSK_Software/generateTMX.pl -corpusPath=corpora -outputPath=TMXs -threads=8 -gzip
-
 
 cat LegacyTranslations/AS/Russian.txt |perl -MEncode -ne 'use utf8;chomp;($s,$t)=split/\t/,decode"utf-8",$_;$s=~s/^\s+|\s+$//g;$t=~s/^\s+|\s+$//g;print encode"utf-8","$s$tADSTPR◊÷\n"' >EN-RU.Graitec.AS
 cat LegacyTranslations/AC/Cesky.txt |perl -MEncode -ne 'use utf8;chomp;($s,$t)=split/\t/,decode"utf-8",$_;$s=~s/^\s+|\s+$//g;$t=~s/^\s+|\s+$//g;print encode"utf-8","$s$tADSTCP◊÷\n"' >EN-CS.Graitec.AC
@@ -451,4 +256,4 @@ cat URLList.2013.01.07.txt |perl -MEncode -we 'use utf8;$/=encode"utf-8","◊
 for FOLDER in `ls .`; do for FILE in `ls $FOLDER`; do echo -n "$FOLDER$FILE: "; bzcat $FOLDER$FILE |wc -l; done; done
 for FILE in `ls *bz2`; do echo -n "$FILE: "; bzcat $FILE |wc -l; done
 
-cat servers.txt |perl -ne '($s)=split" ";unless($s=~/^\#/||$s=~/^\s*$/){system"rsync -azyvv moses_server.ventzi.pl cmsuser\@$s:/local/cms/bin/. 2>/dev/null"}'
+cat servers.txt |perl -ne '($s)=split" ";unless($s=~/^\#/||$s=~/^\s*$/){system"rsync -azyvv moses_server.ventzi.pl cmsuser\@$s:/local/cms/bin/. "}'

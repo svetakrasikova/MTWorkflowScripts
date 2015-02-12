@@ -1,9 +1,31 @@
 #!/usr/local/bin/perl -wTs
 #
-# ©2011–2014 Autodesk Development Sàrl
+# ©2011–2015 Autodesk Development Sàrl
 # Created on 17 Oct 2011 by Ventsislav Zhechev
 #
 # ChangeLog
+# v1.11.3		Modified on 06 Feb 2015 by Ventsislav Zhechev
+# Fixed a bug where product-specific terminology would be applied to WorldServer placeholder content.
+#
+# v1.11.2		Modified on 13 Jan 2015 by Ventsislav Zhechev
+# Distributed glossary matching to be performed per sub-task, to minimise lead time for the client in case of very large jobs.
+#
+# v1.11.1		Modified on 09 Jan 2015 by Ventsislav Zhechev
+# Minor updates to instruction sequence.
+#
+# v1.11			Modified on 13 Nov 2014 by Ventsislav Zhechev
+# Now we treat EN-* as a source language as if it were plain EN, whilst sending a special marker to the worker instance indicating the actual source language.
+# This processing only applies when dealing with translation requests and not translating into plain EN.
+#
+# v1.10.14	Modified on 19 Jun 2014 by Ventsislav Zhechev
+# Added an alias for the ussclpdmtlnx* family of servers.
+# We now accept language codes that use a - instead of _ to separate the language code sections.
+# We now accept ja as the language code for Japanese. 
+#
+# v1.10.13	Modified on 18 Jun 2014 by Ventsislav Zhechev
+# Updated the URL to use for contacting the Term Translation Central.
+# Disabled the UIRef functionality, as it cannot currently be used due to infrastructure changes.
+#
 # v1.10.12	Modified on 08 May 2014 by Ventsislav Zhechev
 # Parametrised the read timeout for Moses connections.
 #
@@ -428,11 +450,9 @@ my %commands = (
 	targetLanguage	=> 1,
 	server					=> 1,
 	port						=> 1,
-	oper						=> 1,
 	operation				=> 1,
 	statistics			=> 1,
 	translate				=> 1,
-	segment					=> 1,
 	product					=> 1,
 	getScore				=> 1,
 );
@@ -453,7 +473,7 @@ my $server_sock = new IO::Socket::INET
 $server_sock->sockopt(SO_SNDLOWAT, 1);
 $server_sock->sockopt(SO_SNDBUF, 512);
 
-$mosesReadTimeout = 90;
+my $mosesReadTimeout = 90;
 
 
 my $tstamp = strftime("%Y.%m.%d_%H.%M.%S", localtime(time()));
@@ -552,20 +572,24 @@ while (my $client_socket = $server_sock->accept()) {
 			if ($trgLang) {
 				$trgLang =~ s/^ +| +$//g;
 				$trgLang = lc $trgLang;
+				$trgLang =~ tr/-/_/;
 				$trgLang = $localeMap{lc $trgLang} unless $trgLang =~ /^\p{IsAlpha}\p{IsAlpha}(_\p{IsAlpha}{2,4})?$/;
 				unless ($trgLang) {
 					print $client_sock encode("utf-8", " Unknown target language specified! Aborting…\n");
 					next;
 				}
+				$trgLang = "jp" if $trgLang eq "ja";
 			}
 			if ($srcLang) {
 				$srcLang =~ s/^ +| +$//g;
 				$srcLang = lc $srcLang;
+				$srcLang =~ tr/-/_/;
 				$srcLang = $localeMap{lc $srcLang} unless $srcLang =~ /^\p{IsAlpha}\p{IsAlpha}(_\p{IsAlpha}{2,4})?$/;
 				unless ($srcLang) {
 					print $client_sock encode("utf-8", " Unknown source language specified! Aborting…\n");
 					next;
 				}
+				$srcLang = "jp" if $srcLang eq "ja";
 			}
 			if ($translate) {
 				if (!$srcLang) {
@@ -590,6 +614,7 @@ while (my $client_socket = $server_sock->accept()) {
 					$server = "[$server]" if $server =~ /\?\?/ && !($server =~ /]/);
 					$server =~ s/mtprd\?\?/mtprd01, mtprd02, mtprd03, mtprd04, mtprd05, mtprd06, mtprd07, mtprd08, mtprd09, mtprd10, mtprd11, mtprd12/;
 					$server =~ s/ussclpdapcmsl\?\?/ussclpdapcmsl01, ussclpdapcmsl02, ussclpdapcmsl03, ussclpdapcmsl04, ussclpdapcmsl05, ussclpdapcmsl06, ussclpdapcmsl07, ussclpdapcmsl08, ussclpdapcmsl09, ussclpdapcmsl10, ussclpdapcmsl11, ussclpdapcmsl12/;
+					$server =~ s/ussclpdmtlnx\?\?/ussclpdmtlnx001, ussclpdmtlnx002, ussclpdmtlnx003, ussclpdmtlnx004, ussclpdmtlnx005, ussclpdmtlnx006, ussclpdmtlnx007, ussclpdmtlnx008, ussclpdmtlnx009, ussclpdmtlnx010, ussclpdmtlnx011, ussclpdmtlnx012/;
 					if ($server =~ /]/) {
 						$server =~ s/([\w\.]+)/"$1"/g;
 						$server = eval $server;
@@ -623,15 +648,22 @@ while (my $client_socket = $server_sock->accept()) {
 					last if $encodingError;
 				}
 				foreach $trgLang ($trgLang ? ($trgLang) : @languages) {
-					next if $srcLang eq $trgLang || ($srcLang ne "en" && $trgLang ne "en");
+					if ($srcLang eq $trgLang) {
+						print $client_sock encode("utf-8", " Source and target languages have to be different.!\n") if $translate;
+						next;
+					}
+					if (($translate ? $srcLang !~ m"^en" : $srcLang ne "en") && $trgLang ne "en") {
+						print $client_sock encode("utf-8", " Neither the source nor target language is English!\n") if $translate;
+						next;
+					}
 					my $reply = "{sourceLanguage => \"$srcLang\", targetLanguage => \"$trgLang\"";
 					$reply .= ", " if $server || $port;
 					if ($server && $server eq "1") {
-						my @srvs = map {"\"$_\""} @{$servers{$srcLang}->{$trgLang}};
+						my @srvs = map {"\"$_\""} @{$servers{$srcLang =~ /^en_/ && $translate && $trgLang ne "en" ? "en" : $srcLang}->{$trgLang}};
 						$reply .= "server => [@srvs]";
 						$reply .= ", " if $port;
 					} elsif ($server) {
-						my %srvs = map {$_ => 1} @{$servers{$srcLang}->{$trgLang}};
+						my %srvs = map {$_ => 1} @{$servers{$srcLang =~ /^en_/ && $translate && $trgLang ne "en" ? "en" : $srcLang}->{$trgLang}};
 						unless (ref $server) {
 							unless ($srvs{$server}) {
 								print $client_sock encode("utf-8", " No engine for ‘$srcLang => $trgLang’ available on server ‘$server’!\n");
@@ -652,14 +684,14 @@ while (my $client_socket = $server_sock->accept()) {
 						}
 						$reply .= ", " if $port;
 					}
-					$reply .= "port => ".($ports{$srcLang}->{$trgLang} || -1) if $port;
+					$reply .= "port => ".($ports{$srcLang =~ /^en_/ && $translate && $trgLang ne "en" ? "en" : $srcLang}->{$trgLang} || -1) if $port;
 					
 					$reply .= "}\n";
 					
 					unless ($oper || $translate) {
 						print $client_sock encode("utf-8", $reply);
 					} else {
-						my $engine = $engines{$srcLang}->{$trgLang};
+						my $engine = $engines{$srcLang =~ /^en_/ && $translate && $trgLang ne "en" ? "en" : $srcLang}->{$trgLang};
 						if ($engine) {
 							if ($engine eq "n/a") {
 								print $client_sock encode("utf-8", "{engine => \"n/a\", translate => 0}\n") if $translate;
@@ -927,9 +959,12 @@ sub translate {
 	# Check for matching URLs
 	&matchURLs($config->{targetLanguage}, $input);
 	# Check for matching glossary terms
-	&matchGlossary($config->{targetLanguage}, $product, $input) if $product;
+	my $onlineTerms :shared = shared_clone {};
+	$onlineTerms = shared_clone &getOnlineTerms($config->{targetLanguage}, $product) if $product;
+#	&matchGlossary($config->{targetLanguage}, $product, $input) if $product;
+	# This functionality is currently deprecated.
 	# Check for UIRefs that can be pretranslated
-	&translateUIRefs($config->{targetLanguage}, $product, $input) if $product;
+#	&translateUIRefs($config->{targetLanguage}, $product, $input) if $product;
 	
 	my %temp = &findMTServers($confText, $engine, $client_sock, $ID);
 	unless (%temp) {
@@ -937,8 +972,6 @@ sub translate {
 		return;
 	}
 	my $liveServers :shared = shared_clone \%temp;
-	
-	print $client_sock "{engine => \"$engine\", translate => ".(scalar @$input)."}\n";
 	
 	# Calculate the optimum job size based on the number of available servers and the number of available segments
 	my $jobSize = ceil(@$input / (keys %$liveServers));
@@ -983,9 +1016,13 @@ sub translate {
 			($job, $dataRef) = %$job;
 			print STDERR encode("utf-8", "$ID: "."Processing job $job on server $host, engine $engine (".$client_sock->peerhost().":".$client_sock->peerport().")…\n") if $DEBUG;
 			
+			my $firstTry = 1;
 			{ lock $output;
+				$firstTry = !exists $output->{$job};
 				$output->{$job} = shared_clone [[], 0];
 			}
+			#Only process glossary matching, if it’s the first time we are tackling this job.
+			&matchGlossary($config->{targetLanguage}, $product, $dataRef, $onlineTerms) if $firstTry && $product;
 
 			my $mosesError = my $errorCounter = 0;
 			for (;;) {
@@ -1020,7 +1057,7 @@ sub translate {
 								$mosesError = 1;
 								last;
 							}
-							print $mosesSocket encode "utf-8", "$segment\n";
+							print $mosesSocket encode "utf-8", "$segment".($config->{sourceLanguage} =~ /^en_/ ? "◊÷$config->{sourceLanguage}" : "")."\n";
 							
 							($mosesSocket) = $select->can_read($mosesReadTimeout);
 							unless ($mosesSocket) {
@@ -1117,6 +1154,8 @@ sub translate {
 	print STDERR encode("utf-8", "$ID: "."Enqueueing work…\n") if $DEBUG;
 	$jobQueue->enqueue({$_ => $jobs->{$_}}) foreach sort {$a <=> $b} keys %$jobs;
 	
+	print $client_sock "{engine => \"$engine\", translate => ".(scalar @$input)."}\n";
+	
 	# Execution loop—in case some servers that we thought were available fail to complete their jobs in time.
 	while ($jobQueue->pending()) {
 		print STDERR encode("utf-8", "$ID: "."Creating MT threads (".$client_sock->peerhost().":".$client_sock->peerport().")…\n") if $DEBUG;
@@ -1142,32 +1181,23 @@ sub translate {
 		}
 	
 	}
-		# We should not have leftover jobs.
-#		print STDERR encode("utf-8", "$ID: "."Checking for leftover jobs…\n") if $DEBUG;
-#		foreach my $job (($lastDoneJob + 1)..((keys %$output) - 1)) {
-#			unless (defined $output->{$job} && $output->{$job}->[1]) {
-#				print STDERR encode("utf-8", "$ID: "."--> Could not print job $job…\n") if $DEBUG;
-#				print $client_sock encode("utf-8", "$ID: "." Could not process MT job! MT server error. Please contact ventsislav.zhechev\@autodesk.com and try again later! \n");
-#				last;
-#			}
-#		}
+	# We should not have leftover jobs at this point.
 }
 
-
-sub matchGlossary {
-	my ($targetLanguage, $product, $data) = @_;
+sub getOnlineTerms {
+	my ($targetLanguage, $product) = @_;
 	
 	$product = $products{$product} if defined $products{$product};
 	$product = $products{$product} if defined $products{$product};
 	#	print STDERR encode "utf-8", "Matching glossary for product $product and language $targetLanguage…\n";
-
+	
 	my $www = LWP::UserAgent->new;
 	$www->agent("MT Info Service");
-
+	
 	my $onlineTerms = {};
 	my ($glossary) = $product =~ /^(.*)_gloss/;
 	if ($glossary) {
-		my $request = HTTP::Request->new(GET => 'http://ec2-50-16-68-84.compute-1.amazonaws.com/TermList.perl?language='.uri_escape($targetLanguage).'&glossary='.uri_escape($glossary));
+		my $request = HTTP::Request->new(GET => 'http://langtech.autodesk.com/ttc/TermList.perl?language='.uri_escape($targetLanguage).'&glossary='.uri_escape($glossary));
 		my $result = $www->request($request);
 		if ($result->is_success) {
 			my $content = decode "utf-8", $result->content;
@@ -1176,13 +1206,25 @@ sub matchGlossary {
 		}
 	}
 	
+	return $onlineTerms;
+}
+
+sub matchGlossary {
+	my ($targetLanguage, $product, $data, $onlineTerms) = @_;
+	
+	$product = $products{$product} if defined $products{$product};
+	$product = $products{$product} if defined $products{$product};
+	#	print STDERR encode "utf-8", "Matching glossary for product $product and language $targetLanguage…\n";
+	
 	return unless (defined $glossary{$product} && defined $glossary{$product}->{languages}->{$targetLanguage}) || %$onlineTerms;
 	
 	foreach my $term (@{$glossary{$product}->{terms}}) {
 		next unless defined $term->{$targetLanguage};
 		#		print STDERR encode "utf-8", "Trying out term “".$term->{term}."”…\n";
 		for (my $id = 0; $id < @$data; ++$id) {
-			my $tempData = lc $data->[$id];
+			#Get a lowercased copy of the segment, excluding any potential WorldServer placeholder content
+			#By splitting into two parts, we get the segment content alone in the first and the WorldServer placeholder content (if any) in the second
+			my ($tempData) = map {lc $_} split m'#!@%!#', $data->[$id], 2;
 			if ($tempData =~ /(?:^|\P{IsAlNum})(?<!\p{IsAlNum}[\-_])\Q$term->{term}\E(?:e?s)?(?![\-_]\p{IsAlNum})(?:\P{IsAlNum}|$)/) {
 				#				print STDERR encode "utf-8", "…term found in line “".$data->[$id]."”\n";
 				$data->[$id] =~ s/$/$term->{term}$term->{$targetLanguage}/;
@@ -1192,7 +1234,8 @@ sub matchGlossary {
 	foreach my $term (keys %$onlineTerms) {
 		#		print STDERR encode "utf-8", "Trying out term “".$term."”…\n";
 		for (my $id = 0; $id < @$data; ++$id) {
-			my $tempData = lc $data->[$id];
+			#Get a lowercased copy of the segment, excluding any potential WorldServer placeholder content
+			my ($tempData) = map {lc $_} split m'#!@%!#', $data->[$id], 2;
 			if ($tempData =~ /(?:^|\P{IsAlNum})(?<!\p{IsAlNum}[\-_])\Q$term\E(?:e?s)?(?![\-_]\p{IsAlNum})(?:\P{IsAlNum}|$)/) {
 				#				print STDERR encode "utf-8", "…term found in line “".$data->[$id]."”\n";
 				$data->[$id] =~ s/$/$term$onlineTerms->{$term}/;
@@ -1201,54 +1244,54 @@ sub matchGlossary {
 	}
 }
 
-
-sub translateUIRefs {
-	my ($targetLanguage, $product, $data) = @_;
-	
-	my %languageMap = (
-	cs => "csy",
-	de => "deu",
-	es => "esp",
-	fr => "fra",
-	hu => "hun",
-	it => "ita",
-	jp => "jpn",
-	ko => "kor",
-	pl => "plk",
-	pt_br => "ptb",
-	pt_pt => "ptg",
-	ru => "rus",
-	zh_hans => "chs",
-	zh_hant => "cht",
-	);
-	
-	return unless defined ($targetLanguage = $languageMap{$targetLanguage});
-	
-#	$product = $products{$product} if defined $products{$product};
-#	$product = $products{$product} if defined $products{$product};
-	
-	my $www = LWP::UserAgent->new;
-	$www->agent("MT Info Service");
-
-	for (my $id = 0; $id < @$data; ++$id) {
-		my %UIRefs;
-		$data->[$id] =~ s§<uiref>(.*?)</uiref>§§
-			my $UIRef = $1;
-			if (!defined $UIRefs{$UIRef}) {
-				my $request = HTTP::Request->new(GET => 'http://ec2-50-19-197-134.compute-1.amazonaws.com:8983/solr/lclookup?q1='.uri_escape(lc $UIRef).'&product='.$product.'&resource=Software&lang='.$targetLanguage);
-				my $result = $www->request($request);
-				if ($result->is_success) {
-					my $content = decode "utf-8", $result->content;
-					($content) = $content =~ m!<result name="response".*?<doc>.*?<str name="$targetLanguage">(.*?)</str>.*?</result>!s;
-					$UIRefs{$UIRef} = $content;
-				} else {
-					$UIRefs{$UIRef} = "";
-				}
-			}
-		$UIRefs{$UIRef} eq "" ? $UIRef : "<uiref translation=\"$UIRefs{$UIRef}\">$UIRef</uiref>";
-		§gxe;
-	}
-}
+# This functionality is currently deprecated.
+#sub translateUIRefs {
+#	my ($targetLanguage, $product, $data) = @_;
+#	
+#	my %languageMap = (
+#	cs => "csy",
+#	de => "deu",
+#	es => "esp",
+#	fr => "fra",
+#	hu => "hun",
+#	it => "ita",
+#	jp => "jpn",
+#	ko => "kor",
+#	pl => "plk",
+#	pt_br => "ptb",
+#	pt_pt => "ptg",
+#	ru => "rus",
+#	zh_hans => "chs",
+#	zh_hant => "cht",
+#	);
+#	
+#	return unless defined ($targetLanguage = $languageMap{$targetLanguage});
+#	
+##	$product = $products{$product} if defined $products{$product};
+##	$product = $products{$product} if defined $products{$product};
+#	
+#	my $www = LWP::UserAgent->new;
+#	$www->agent("MT Info Service");
+#
+#	for (my $id = 0; $id < @$data; ++$id) {
+#		my %UIRefs;
+#		$data->[$id] =~ s§<uiref>(.*?)</uiref>§§
+#			my $UIRef = $1;
+#			if (!defined $UIRefs{$UIRef}) {
+#				my $request = HTTP::Request->new(GET => 'http://ec2-50-19-197-134.compute-1.amazonaws.com:8983/solr/lclookup?q1='.uri_escape(lc $UIRef).'&product='.$product.'&resource=Software&lang='.$targetLanguage);
+#				my $result = $www->request($request);
+#				if ($result->is_success) {
+#					my $content = decode "utf-8", $result->content;
+#					($content) = $content =~ m!<result name="response".*?<doc>.*?<str name="$targetLanguage">(.*?)</str>.*?</result>!s;
+#					$UIRefs{$UIRef} = $content;
+#				} else {
+#					$UIRefs{$UIRef} = "";
+#				}
+#			}
+#		$UIRefs{$UIRef} eq "" ? $UIRef : "<uiref translation=\"$UIRefs{$UIRef}\">$UIRef</uiref>";
+#		§gxe;
+#	}
+#}
 
 
 sub matchURLs {

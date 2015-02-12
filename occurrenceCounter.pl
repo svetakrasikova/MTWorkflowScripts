@@ -1,11 +1,18 @@
 #!/usr/bin/perl -ws
 #####################
 #
-# ©2013 Autodesk Development Sàrl
+# ©2013–2014 Autodesk Development Sàrl
 #
 # Created on 02 Jul 2013 by Ventsislav Zhechev
 #
 # Changelog
+# v0.4.3		Modified by Ventsislav Zhechev on 19 Sep 2014
+# The script will now die properly if the source or target corpus isn’t found.
+#
+# v0.4.2		Modified by Ventsislav Zhechev on 02 Jul 2014
+# Changed the format of the .list output file so that it could be easily read in by Excel.
+# Changed the extension of the .list output file to .list.csv
+#
 # v0.4.1		Modified by Ventsislav Zhechev on 08 Jul 2013
 # Fixed bugs in the sorted list output.
 #
@@ -123,8 +130,10 @@ my $processSegment = sub {
 my $startTime = new Benchmark;
 my @threads = map {threads->create($processSegment)} 1..$threads;
 
-open my $src, "<$sourceCorpus";
-open my $trg, "<$targetCorpus";
+open my $src, "<$sourceCorpus"
+or die "$sourceCorpus not found!\n";
+open my $trg, "<$targetCorpus"
+or die "$targetCorpus not found!\n";
 while (my $sourceSegment = decode "utf-8", scalar <$src>) {
 	unless ($.%10000) {
 		print STDERR ".";
@@ -156,8 +165,9 @@ $serialiser->store($countData, $ambiguousStrings);
 
 
 print STDERR encode "utf-8", "Outputting sorted list of terms…";
-$ambiguousStrings =~ s/\.count\.json$/.list/;
+$ambiguousStrings =~ s/\.count\.json$/.list.csv/;
 open my $output, ">$ambiguousStrings";
+print $output encode "UTF-16LE", chr(0xFEFF);
 foreach my $sourceTerm (sort  {$countData->{$b}->{totalCount} <=> $countData->{$a}->{totalCount} || $a cmp $b} keys %$countData) {
 	my $sourceTermData = $countData->{$sourceTerm};
 	my $totalCount = $sourceTermData->{totalCount};
@@ -173,7 +183,7 @@ foreach my $sourceTerm (sort  {$countData->{$b}->{totalCount} <=> $countData->{$
 	grep {$_ ne "totalCount"}
 	keys %$sourceTermData
 	) {
-		print $output encode "utf-8", "$sourceTerm$targetTermData->{term}$totalCount$targetTermData->{count}";
+		print $output encode "UTF-16LE", "$sourceTerm\t$targetTermData->{term}\t$totalCount\t$targetTermData->{count}";
 		foreach my $product (
 		sort {
 			$sourceTermData->{$targetTermData->{term}}->{$b}->{count} <=> $sourceTermData->{$targetTermData->{term}}->{$a}->{count} ||
@@ -181,9 +191,9 @@ foreach my $sourceTerm (sort  {$countData->{$b}->{totalCount} <=> $countData->{$
 			$a cmp $b
 		}
 		keys %{$sourceTermData->{$targetTermData->{term}}}) {
-			print $output encode "utf-8", "$product $sourceTermData->{$targetTermData->{term}}->{$product}->{count} ".sprintf("%.2g", $sourceTermData->{$targetTermData->{term}}->{$product}->{probability});
+			print $output encode "UTF-16LE", "\t$product $sourceTermData->{$targetTermData->{term}}->{$product}->{count} ".sprintf("%.2g", $sourceTermData->{$targetTermData->{term}}->{$product}->{probability});
 		}
-		print $output "\n";
+		print $output encode "UTF-16LE", "\n";
 	}
 }
 print STDERR "done!\n";

@@ -3,11 +3,23 @@
 # train.pl
 # Versatile script for training Autodesk MT systems based on Moses
 #
-# ©2011–2014 Autodesk Development Sàrl
+# ©2011–2015 Autodesk Development Sàrl
 # Originally a shell script by François Masselot
 # Last modified by Ventsislav Zhechev
 #
 # ChangeLog
+# v3.6.8		Modified by Ventsislav Zhechev on 22 Jan 2015
+# Fixed a bug where a trailing / in the supplied engine name would result in the engine archive being created in the wrong place.
+#
+# v3.6.7		Modified by Ventsislav Zhechev on 17 Sep 2014
+# It is no longer needed to copy recaser moses.ini file for XX-EN trainings.
+#
+# v3.6.6		Modified by Ventsislav Zhechev on 17 Sep 2014
+# Fixed a bug where the script would exit prematurely in a situation where no corpus cleaning is needed, but a target language model needs to be created.
+#
+# v3.6.5		Modified by Ventsislav Zhechev on 01 Jul 2014
+# Fixed bugs with the per-product processing.
+#
 # v3.6.4		Modified by Ventsislav Zhechev on 09 Apr 2014
 # Ensured EN_GB is processed properly. (We no longer use EN_UK as a language code.)
 #
@@ -124,8 +136,8 @@
 # Fixed a bug with the handling of the $seg_script parameter.
 #
 #####################
-my $version = "v3.6.4";
-my $last_modified = "09 Apr 2014";
+my $version = "v3.6.8";
+my $last_modified = "22 Jan 2015";
 
 use strict;
 #use threads;
@@ -161,6 +173,8 @@ binmode STDIN, ":encoding(utf-8)";
 binmode STDOUT, ":encoding(utf-8)";
 
 if ($engine) {
+	#Strip trailing / from engine name if present
+	$engine =~ s/\/$//;
 	my ($src, $trg) = $engine =~ /^fy\d+_([\w_]+)-([\w_]+)_\w(?:\/?)$/;
 	if ($source && $target && ($source ne $src || $target ne $trg)) {
 		die "Source and/or target language does not correspond to engine name!!! Aborting…\n";
@@ -261,16 +275,17 @@ sub tokeniser {
 			or die "Could not write tokenised corpus “$trgCorpus”: $Bzip2Error!\n";
 			
 			while (<PREPROCESS_OUT>) {
+				chomp;
 				my $line = decode "utf-8", $_;
 				$line =~ tr/|<>()/│﹤﹥﹙﹚/;
+				$line =~ s/^\s+|\s+$//g;
 				#Add product code to each token
 				if (defined $perProduct) {
-					chomp $line;
-#					my $product = $productQueue->dequeue();
 					my $product = <PREPROCESS_OUT>;
-					$line .= "◊$product\n" if $product;
+					chomp $product;
+					$line =~ s/(\s|$)/◊$product$1/g if $product;
 				}
-				print $TOKENISED_OUT encode "utf-8", $line;
+				print $TOKENISED_OUT encode "utf-8", "$line\n";
 			}
 			
 			close PREPROCESS_OUT;
@@ -294,24 +309,16 @@ sub tokeniser {
 			next if $line =~ /^\s*$/;
 			($line, my $product) = split /◊/, $line;
 			$product ||= "";
-#			$productQueue->enqueue($product) if defined $perProduct;
 			$line =~ tr/İI/iı/ if !$saveCase && $language =~ /tr/;
 			$line =~ tr/\r/ /;
 			$line = tokenise($tokData, $saveCase ? $line : lc $line);
 			print PREPROCESS_IN encode "utf-8", "$line\n";
 			print PREPROCESS_IN "$product\n" if defined $perProduct;
-#			$line = decode "utf-8", scalar <PREPROCESS_OUT>;
-#			$line =~ tr/|<>()/│﹤﹥﹙﹚/;
-#			#Add product code to each token
-#			$line =~ s/(\s|$)/◊$product$1/g if defined $perProduct && $product;
-#			print $TOKENISED_OUT encode "utf-8", $line;
 		}
 		
 		close $CORPUS_IN;		
 		
-#		$preprocessThread->join();
 		close PREPROCESS_IN;
-		close PREPROCESS_OUT;
 
 		waitpid($preprocessThread, 0);
 		waitpid($preprocess_pid, 0);
@@ -330,11 +337,11 @@ sub tokeniser {
 			$product ||= "";
 			$line =~ tr/İI/iı/ if !$saveCase && $language =~ /tr/;
 			$line =~ tr/\r/ /;
-			$line = tokenise($tokData, $saveCase ? $line : lc $line)."\n";
+			$line = tokenise($tokData, $saveCase ? $line : lc $line);
 			$line =~ tr/|<>()/│﹤﹥﹙﹚/;
 			#Add product code to each token
 			$line =~ s/(\s|$)/◊$product$1/g if defined $perProduct && $product;
-			print $TOKENISED_OUT encode "utf-8", $line;
+			print $TOKENISED_OUT encode "utf-8", "$line\n";
 		}
 		
 		close $CORPUS_IN;
@@ -470,7 +477,7 @@ if ((!$sub_pid || !$sub_fork) && (defined $build_lm && (defined $force || !(-e "
 	my $end = new Benchmark;
 	print LOG "Building target language model completed in ", timestr(timediff($end, $start), 'all'), "\n";
 	print STDERR "Training target language model complete!\n";
-	exit(0);
+	exit(0) if $sub_fork;
 }
 
 
@@ -503,12 +510,12 @@ unless (!(defined $force) && -e "./model/moses.ini" || $first_step > $last_step)
 waitpid($pid, 0) if $forked && $pid;
 
 ## Copy recaser moses.ini file for XX-EN trainings.
-if ($source ne "xx" && $target eq "en") {
-	print LOG "Copying recaser setup files from XX-EN folder…\n";
-	mkdir "recaser";
-	system("cp -p $build_recaser/moses.* recaser/.") == 0
-	or warn "Could not copy recaser setup files!\n";
-}
+#if ($source ne "xx" && $target eq "en") {
+#	print LOG "Copying recaser setup files from XX-EN folder…\n";
+#	mkdir "recaser";
+#	system("cp -p $build_recaser/moses.* recaser/.") == 0
+#	or warn "Could not copy recaser setup files!\n";
+#}
 
 ## Archive interim files
 $date = decode("utf-8", `/bin/date`);

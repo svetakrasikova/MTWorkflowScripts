@@ -3,9 +3,13 @@
 # multiParser.pl
 # A simple taskfarming utility wrapper for single-threaded parsers
 #
-# ©2011–2013 Autodesk Development Sàrl
+# ©2011–2015 Autodesk Development Sàrl
 #
 # ChangeLog
+# v2.1.3		Last modified by Ventsislav Zhechev on 22 Jan 2015
+# Staggered the start of the parser threads to avoid STDERR congestion.
+# Added status messages.
+#
 # v2.1.2		Last modified by Ventsislav Zhechev on 08 May 2013
 # Empty strings are no longer sent to the parser.
 # Removed unnecessary checks for jobs availability in the Thread::Queue, thus significantly reducing CPU utilisation.
@@ -95,6 +99,7 @@ sub outputOrCache {
 
 my $parse = sub {
 	my $id = shift;
+	sleep $id*2-1;
 	
 	$parser_cmd =~ s/\.log/.$id.log/;
 	local (*PARSE_IN, *PARSE_OUT);
@@ -115,6 +120,7 @@ my $parse = sub {
 		}
 		my $job = $jobQueue->dequeue();
 		if ($job == 0) {
+			print STDERR "Thread $id: Got end-of-work signal. Killing parser…\n";
 			close PARSE_IN;
 			close PARSE_OUT;
 			kill "KILL", $parse_pid;
@@ -145,6 +151,7 @@ while (<STDIN>) {
 	$jobQueue->enqueue([++$counter => $_]);
 }
 
+print STDERR "All data ingested ($counter).\nSending end-of-work signal to parser threads…\n";
 $jobQueue->enqueue(0) foreach (0..$threads);
 $_->join() foreach @threads;
 
