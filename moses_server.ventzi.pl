@@ -556,7 +556,7 @@ while (my $client_sock = $server_sock->accept()) {
 					foreach my $gloss (sort {length $b <=> length $a} keys %gloss) {
 						print LOG encode "utf-8", "Substituting for ‘$gloss’ in string ‘$pre_src’\n";
 						if ($pre_src =~ />/) {
-							$pre_src =~ s/(^|[^\"]>|[^\p{IsAlNum}\">])(?<!\p{IsAlNum}[\-_])\Q$gloss\E(?:e?s)?(?![\-_]\p{IsAlNum})(?=[^\p{IsAlNum}\"<](?![^\"]+\">))|[^<]*<[^\/]|$)/$1<gloss translation="$gloss{$gloss}">$gloss<\/gloss>/g;
+							$pre_src =~ s/(^|[^\"]>|[^\p{IsAlNum}\">])(?<!\p{IsAlNum}[\-_])\Q$gloss\E(?:e?s)?(?![\-_]\p{IsAlNum})(?=[^\p{IsAlNum}\"<](?![^\"]+\">)|[^<]*<[^\/]|$)/$1<gloss translation="$gloss{$gloss}">$gloss<\/gloss>/g;
 						} else {
 							$pre_src =~ s/(^|[^\p{IsAlNum}\"])(?<!\p{IsAlNum}[\-_])\Q$gloss\E(?:e?s)?(?![\-_]\p{IsAlNum})(?=[^\p{IsAlNum}\"]|$)/$1<gloss translation="$gloss{$gloss}">$gloss<\/gloss>/g;
 						}
