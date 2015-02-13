@@ -141,9 +141,10 @@ while (my $line = decode "utf-8", scalar <$log>) {
 		my ($command, $user) = ($1, $2);
 		my $currentUser = $userData{$user}->{ID};
 		die "Unknown user $user!\n" unless defined $currentUser;
-		if ($command =~ /translate =>/) {
+		if ($command =~ /translate\s*=>/) {
 			$translationStats{$currentUser}->{user} = $user;
 			my $data = eval $command;
+			$data->{translate} ||= 0;
 			$data->{sourceLanguage} ||= "en";
 			$data->{targetLanguage} ||= "en";
 			$data->{sourceLanguage} = $localeMap{lc $data->{sourceLanguage}} if defined $localeMap{lc $data->{sourceLanguage}};
