@@ -7,6 +7,7 @@
 # v0.7.2	Last modified on 24 Feb 2015 by Ventsislav Zhechev
 # Added the option to randormise the order of servers for deployment.
 # Now we are sorting the servers in the deployment configuration output.
+# Added a check that the requested instances to deploy can actually fit on the servers.
 #
 # v0.7.1	Last modified on 06 Jan 2015 by Ventsislav Zhechev
 # Fixed a bug that came up when a full deployment could be completed while leaving some servers empty.
@@ -100,10 +101,12 @@ $maxDeploymentsCap ||= 500;
 my $totalServerMemory;
 #Sort the servers based on user preference and calculate the total server memory
 my @serverList = grep {$totalServerMemory += $servers{$_}} (defined $random ? shuffle keys %servers : sort {($servers{$a} <=> $servers{$b})*$serverOrder || $a cmp $b} keys %servers);
-my $totalInstances;
+my ($totalInstances, $totalInstanceMemory);
 #This engine order is necessary to help optimise the deployment process
-my @engineList = grep {$totalInstances += $engines{$_}->[1]} sort {($engines{$a}->[0] <=> $engines{$b}->[0]) || $a cmp $b} keys %engines;
+my @engineList = grep {$totalInstances += $engines{$_}->[1]; $totalInstanceMemory += $engines{$_}->[0] * $engines{$_}->[1]} sort {($engines{$a}->[0] <=> $engines{$b}->[0]) || $a cmp $b} keys %engines;
 #print STDERR "We have $totalInstances total instances to deploy.\n";
+
+die encode "utf-8", "Impossible to fit all instances: ${totalInstanceMemory}MB required, ${totalServerMemory}MB available\n" if $totalInstanceMemory > $totalServerMemory;
 
 my $maxMemoryRequirement = $engines{$engineList[0]}->[0];
 map {$maxMemoryRequirement = $_->[0] if $_->[0] > $maxMemoryRequirement} values %engines;
