@@ -123,6 +123,7 @@ my $totalDeployments = 0;
 my $isFullDeployment = 0;
 
 &deployServer();
+print STDERR encode "utf-8", "Deployment process over.\nDistinct maximal deployments: $leastMemoryDeployments\n";
 
 my $remainingServerMemory = $totalServerMemory;
 print encode "utf-8", "Total deployment attempts: $deployments\n";
