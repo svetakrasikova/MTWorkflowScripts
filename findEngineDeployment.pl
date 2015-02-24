@@ -4,8 +4,9 @@
 # Created by Ventsislav Zhechev on 18 Dec 2012
 #
 # Version history
-# v0.7.2	Last modified on 06 Jan 2015 by Ventsislav Zhechev
+# v0.7.2	Last modified on 24 Feb 2015 by Ventsislav Zhechev
 # Added the option to randormise the order of servers for deployment.
+# Now we are sorting the servers in the deployment configuration output.
 #
 # v0.7.1	Last modified on 06 Jan 2015 by Ventsislav Zhechev
 # Fixed a bug that came up when a full deployment could be completed while leaving some servers empty.
@@ -287,7 +288,7 @@ sub printDeployment {
 	} else {
 		print encode "utf-8", "NO undeployed engines!\n";
 	}
-	foreach my $server (@serverList) {
+	foreach my $server (sort {$a cmp $b} @serverList) {
 		print encode "utf-8", "$server ($testServers{$server}MB):";
 		foreach my $engine (sort {$a cmp $b} grep {$deployment{$server}->{$_}} keys %{$deployment{$server}}) {
 			print encode "utf-8", "\t$engine";
@@ -295,7 +296,7 @@ sub printDeployment {
 		print encode "utf-8", "\n";
 	}
 	my %serverListByLanguage;
-	foreach my $server (@serverList) {
+	foreach my $server (sort {$a cmp $b} @serverList) {
 		print encode "utf-8", "\t\"$server\" => [";
 		foreach my $engine (sort {$a cmp $b} grep {$deployment{$server}->{$_}} keys %{$deployment{$server}}) {
 			print encode "utf-8", "\"$engine\",";
