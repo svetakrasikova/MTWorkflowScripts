@@ -1,44 +1,44 @@
 #!/bin/bash
 
-ssh -n cmsuser@mtprd01         'hostname; df -m |grep cms' 2>/dev/null
-ssh -n cmsuser@mtprd02         'hostname; df -m |grep cms' 2>/dev/null
-ssh -n cmsuser@mtprd03         'hostname; df -m |grep cms' 2>/dev/null
-ssh -n cmsuser@mtprd04         'hostname; df -m |grep cms' 2>/dev/null
-ssh -n cmsuser@mtprd05         'hostname; df -m |grep cms' 2>/dev/null
-ssh -n cmsuser@mtprd06         'hostname; df -m |grep cms' 2>/dev/null
-ssh -n cmsuser@mtprd07         'hostname; df -m |grep cms' 2>/dev/null
-ssh -n cmsuser@mtprd08         'hostname; df -m |grep cms' 2>/dev/null
-ssh -n cmsuser@mtprd09         'hostname; df -m |grep cms' 2>/dev/null
-ssh -n cmsuser@mtprd10         'hostname; df -m |grep cms' 2>/dev/null
-ssh -n cmsuser@mtprd11         'hostname; df -m |grep cms' 2>/dev/null
-ssh -n cmsuser@mtprd12         'hostname; df -m |grep cms' 2>/dev/null
-ssh -n cmsuser@ussclpdapcmsl01 'hostname; df -m |grep cms' 2>/dev/null
-ssh -n cmsuser@ussclpdapcmsl02 'hostname; df -m |grep cms' 2>/dev/null
-ssh -n cmsuser@ussclpdapcmsl03 'hostname; df -m |grep cms' 2>/dev/null
-ssh -n cmsuser@ussclpdapcmsl04 'hostname; df -m |grep cms' 2>/dev/null
-ssh -n cmsuser@ussclpdapcmsl05 'hostname; df -m |grep cms' 2>/dev/null
-ssh -n cmsuser@ussclpdapcmsl06 'hostname; df -m |grep cms' 2>/dev/null
-ssh -n cmsuser@ussclpdapcmsl07 'hostname; df -m |grep cms' 2>/dev/null
-ssh -n cmsuser@ussclpdapcmsl08 'hostname; df -m |grep cms' 2>/dev/null
-ssh -n cmsuser@ussclpdapcmsl09 'hostname; df -m |grep cms' 2>/dev/null
-ssh -n cmsuser@ussclpdapcmsl10 'hostname; df -m |grep cms' 2>/dev/null
-ssh -n cmsuser@ussclpdapcmsl11 'hostname; df -m |grep cms' 2>/dev/null
-ssh -n cmsuser@ussclpdapcmsl12 'hostname; df -m |grep cms' 2>/dev/null
-ssh -n cmsuser@ussclpdmtlnx001 'hostname; df -m |grep var' 2>/dev/null
-ssh -n cmsuser@ussclpdmtlnx002 'hostname; df -m |grep var' 2>/dev/null
-ssh -n cmsuser@ussclpdmtlnx003 'hostname; df -m |grep var' 2>/dev/null
-ssh -n cmsuser@ussclpdmtlnx004 'hostname; df -m |grep var' 2>/dev/null
-ssh -n cmsuser@ussclpdmtlnx005 'hostname; df -m |grep var' 2>/dev/null
-ssh -n cmsuser@ussclpdmtlnx006 'hostname; df -m |grep var' 2>/dev/null
-ssh -n cmsuser@ussclpdmtlnx007 'hostname; df -m |grep var' 2>/dev/null
-ssh -n cmsuser@ussclpdmtlnx008 'hostname; df -m |grep var' 2>/dev/null
-ssh -n cmsuser@ussclpdmtlnx009 'hostname; df -m |grep var' 2>/dev/null
-ssh -n cmsuser@ussclpdmtlnx010 'hostname; df -m |grep var' 2>/dev/null
-ssh -n cmsuser@ussclpdmtlnx011 'hostname; df -m |grep var' 2>/dev/null
-ssh -n cmsuser@ussclpdmtlnx012 'hostname; df -m |grep var' 2>/dev/null
-ssh -n cmsuser@ussclpdmtlnx013 'hostname; df -m |grep var' 2>/dev/null
-ssh -n cmsuser@ussclpdmtlnx014 'hostname; df -m |grep var' 2>/dev/null
-ssh -n cmsuser@ussclpdmtlnx015 'hostname; df -m |grep var' 2>/dev/null
-ssh -n cmsuser@ussclpdmtlnx016 'hostname; df -m |grep var' 2>/dev/null
-ssh -n cmsuser@neucmslinux		 'hostname; df -m |grep cms' 2>/dev/null
-ssh -n cmsuser@ussclsdcmslnx01 'hostname; df -m |grep var' 2>/dev/null
+ssh -qno 'ConnectTimeout=15' cmsuser@mtprd01         'hostname; df -m |grep cms' 2>/dev/null
+ssh -qno 'ConnectTimeout=15' cmsuser@mtprd02         'hostname; df -m |grep cms' 2>/dev/null
+ssh -qno 'ConnectTimeout=15' cmsuser@mtprd03         'hostname; df -m |grep cms' 2>/dev/null
+ssh -qno 'ConnectTimeout=15' cmsuser@mtprd04         'hostname; df -m |grep cms' 2>/dev/null
+ssh -qno 'ConnectTimeout=15' cmsuser@mtprd05         'hostname; df -m |grep cms' 2>/dev/null
+ssh -qno 'ConnectTimeout=15' cmsuser@mtprd06         'hostname; df -m |grep cms' 2>/dev/null
+ssh -qno 'ConnectTimeout=15' cmsuser@mtprd07         'hostname; df -m |grep cms' 2>/dev/null
+ssh -qno 'ConnectTimeout=15' cmsuser@mtprd08         'hostname; df -m |grep cms' 2>/dev/null
+ssh -qno 'ConnectTimeout=15' cmsuser@mtprd09         'hostname; df -m |grep cms' 2>/dev/null
+ssh -qno 'ConnectTimeout=15' cmsuser@mtprd10         'hostname; df -m |grep cms' 2>/dev/null
+ssh -qno 'ConnectTimeout=15' cmsuser@mtprd11         'hostname; df -m |grep cms' 2>/dev/null
+ssh -qno 'ConnectTimeout=15' cmsuser@mtprd12         'hostname; df -m |grep cms' 2>/dev/null
+ssh -qno 'ConnectTimeout=15' cmsuser@ussclpdapcmsl01 'hostname; df -m |grep cms' 2>/dev/null
+ssh -qno 'ConnectTimeout=15' cmsuser@ussclpdapcmsl02 'hostname; df -m |grep cms' 2>/dev/null
+ssh -qno 'ConnectTimeout=15' cmsuser@ussclpdapcmsl03 'hostname; df -m |grep cms' 2>/dev/null
+ssh -qno 'ConnectTimeout=15' cmsuser@ussclpdapcmsl04 'hostname; df -m |grep cms' 2>/dev/null
+ssh -qno 'ConnectTimeout=15' cmsuser@ussclpdapcmsl05 'hostname; df -m |grep cms' 2>/dev/null
+ssh -qno 'ConnectTimeout=15' cmsuser@ussclpdapcmsl06 'hostname; df -m |grep cms' 2>/dev/null
+ssh -qno 'ConnectTimeout=15' cmsuser@ussclpdapcmsl07 'hostname; df -m |grep cms' 2>/dev/null
+ssh -qno 'ConnectTimeout=15' cmsuser@ussclpdapcmsl08 'hostname; df -m |grep cms' 2>/dev/null
+ssh -qno 'ConnectTimeout=15' cmsuser@ussclpdapcmsl09 'hostname; df -m |grep cms' 2>/dev/null
+ssh -qno 'ConnectTimeout=15' cmsuser@ussclpdapcmsl10 'hostname; df -m |grep cms' 2>/dev/null
+ssh -qno 'ConnectTimeout=15' cmsuser@ussclpdapcmsl11 'hostname; df -m |grep cms' 2>/dev/null
+ssh -qno 'ConnectTimeout=15' cmsuser@ussclpdapcmsl12 'hostname; df -m |grep cms' 2>/dev/null
+ssh -qno 'ConnectTimeout=15' cmsuser@ussclpdmtlnx001 'hostname; df -m |grep var' 2>/dev/null
+ssh -qno 'ConnectTimeout=15' cmsuser@ussclpdmtlnx002 'hostname; df -m |grep var' 2>/dev/null
+ssh -qno 'ConnectTimeout=15' cmsuser@ussclpdmtlnx003 'hostname; df -m |grep var' 2>/dev/null
+ssh -qno 'ConnectTimeout=15' cmsuser@ussclpdmtlnx004 'hostname; df -m |grep var' 2>/dev/null
+ssh -qno 'ConnectTimeout=15' cmsuser@ussclpdmtlnx005 'hostname; df -m |grep var' 2>/dev/null
+ssh -qno 'ConnectTimeout=15' cmsuser@ussclpdmtlnx006 'hostname; df -m |grep var' 2>/dev/null
+ssh -qno 'ConnectTimeout=15' cmsuser@ussclpdmtlnx007 'hostname; df -m |grep var' 2>/dev/null
+ssh -qno 'ConnectTimeout=15' cmsuser@ussclpdmtlnx008 'hostname; df -m |grep var' 2>/dev/null
+ssh -qno 'ConnectTimeout=15' cmsuser@ussclpdmtlnx009 'hostname; df -m |grep var' 2>/dev/null
+ssh -qno 'ConnectTimeout=15' cmsuser@ussclpdmtlnx010 'hostname; df -m |grep var' 2>/dev/null
+ssh -qno 'ConnectTimeout=15' cmsuser@ussclpdmtlnx011 'hostname; df -m |grep var' 2>/dev/null
+ssh -qno 'ConnectTimeout=15' cmsuser@ussclpdmtlnx012 'hostname; df -m |grep var' 2>/dev/null
+ssh -qno 'ConnectTimeout=15' cmsuser@ussclpdmtlnx013 'hostname; df -m |grep var' 2>/dev/null
+ssh -qno 'ConnectTimeout=15' cmsuser@ussclpdmtlnx014 'hostname; df -m |grep var' 2>/dev/null
+ssh -qno 'ConnectTimeout=15' cmsuser@ussclpdmtlnx015 'hostname; df -m |grep var' 2>/dev/null
+ssh -qno 'ConnectTimeout=15' cmsuser@ussclpdmtlnx016 'hostname; df -m |grep var' 2>/dev/null
+ssh -qno 'ConnectTimeout=15' cmsuser@neucmslinux		 'hostname; df -m |grep cms' 2>/dev/null
+ssh -qno 'ConnectTimeout=15' cmsuser@ussclsdcmslnx01 'hostname; df -m |grep var' 2>/dev/null
