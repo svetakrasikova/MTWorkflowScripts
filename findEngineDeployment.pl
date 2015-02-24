@@ -4,6 +4,9 @@
 # Created by Ventsislav Zhechev on 18 Dec 2012
 #
 # Version history
+# v0.7.2	Last modified on 06 Jan 2015 by Ventsislav Zhechev
+# Added the option to randormise the order of servers for deployment.
+#
 # v0.7.1	Last modified on 06 Jan 2015 by Ventsislav Zhechev
 # Fixed a bug that came up when a full deployment could be completed while leaving some servers empty.
 #
@@ -51,16 +54,22 @@ use utf8;
 
 use Encode qw/encode decode/;
 use Storable qw/dclone/;
-use List::Util qw/max/;
+use List::Util qw/max shuffle/;
 
 $| = 1;
 
-our ($serverFile, $engineFile, $largeFirst, $maxDeploymentsCap);
+our ($serverFile, $engineFile, $largeFirst, $maxDeploymentsCap, $random);
 die encode "utf-8", "Usage: $0 -serverFile=… -engineFile=… [-largeFirst] [-maxDeploymentsCap]\n"
 unless defined $serverFile && defined $engineFile;
 
+print STDERR encode "utf-8", "Option ‘-largeFirst’ ignored when requesting ‘-random’ server order!\n" if defined $largeFirst && defined $random;
+
 my $serverOrder = defined $largeFirst ? -1 : 1;
-print encode "utf-8", "Deploying on ".(defined $largeFirst ? "large" : "small")." servers first.\n";
+if (defined $random) {
+	print encode "utf-8", "Deploying on servers in random order.\n";
+} else {
+	print encode "utf-8", "Deploying on ".(defined $largeFirst ? "large" : "small")." servers first.\n";
+}
 
 my %servers;
 my %engines;
@@ -89,7 +98,7 @@ $maxDeploymentsCap ||= 500;
 
 my $totalServerMemory;
 #Sort the servers based on user preference and calculate the total server memory
-my @serverList = grep {$totalServerMemory += $servers{$_}} sort {($servers{$a} <=> $servers{$b})*$serverOrder || $a cmp $b} keys %servers;
+my @serverList = grep {$totalServerMemory += $servers{$_}} (defined $random ? shuffle keys %servers : sort {($servers{$a} <=> $servers{$b})*$serverOrder || $a cmp $b} keys %servers);
 my $totalInstances;
 #This engine order is necessary to help optimise the deployment process
 my @engineList = grep {$totalInstances += $engines{$_}->[1]} sort {($engines{$a}->[0] <=> $engines{$b}->[0]) || $a cmp $b} keys %engines;
