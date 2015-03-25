@@ -4,6 +4,9 @@
 # Created on 17 Oct 2011 by Ventsislav Zhechev
 #
 # ChangeLog
+# v1.11.4		Modified on 25 Mar 2015 by Ventsislav Zhechev
+# Better handling of empty source lines when processing product-specific terminology.
+#
 # v1.11.3		Modified on 06 Feb 2015 by Ventsislav Zhechev
 # Fixed a bug where product-specific terminology would be applied to WorldServer placeholder content.
 #
@@ -1225,7 +1228,7 @@ sub matchGlossary {
 			#Get a lowercased copy of the segment, excluding any potential WorldServer placeholder content
 			#By splitting into two parts, we get the segment content alone in the first and the WorldServer placeholder content (if any) in the second
 			my ($tempData) = map {lc $_} split m'#!@%!#', $data->[$id], 2;
-			if ($tempData =~ /(?:^|\P{IsAlNum})(?<!\p{IsAlNum}[\-_])\Q$term->{term}\E(?:e?s)?(?![\-_]\p{IsAlNum})(?:\P{IsAlNum}|$)/) {
+			if (defined $tempData && $tempData =~ /(?:^|\P{IsAlNum})(?<!\p{IsAlNum}[\-_])\Q$term->{term}\E(?:e?s)?(?![\-_]\p{IsAlNum})(?:\P{IsAlNum}|$)/) {
 				#				print STDERR encode "utf-8", "…term found in line “".$data->[$id]."”\n";
 				$data->[$id] =~ s/$/$term->{term}$term->{$targetLanguage}/;
 			}
@@ -1236,7 +1239,7 @@ sub matchGlossary {
 		for (my $id = 0; $id < @$data; ++$id) {
 			#Get a lowercased copy of the segment, excluding any potential WorldServer placeholder content
 			my ($tempData) = map {lc $_} split m'#!@%!#', $data->[$id], 2;
-			if ($tempData =~ /(?:^|\P{IsAlNum})(?<!\p{IsAlNum}[\-_])\Q$term\E(?:e?s)?(?![\-_]\p{IsAlNum})(?:\P{IsAlNum}|$)/) {
+			if (defined $tempData && $tempData =~ /(?:^|\P{IsAlNum})(?<!\p{IsAlNum}[\-_])\Q$term\E(?:e?s)?(?![\-_]\p{IsAlNum})(?:\P{IsAlNum}|$)/) {
 				#				print STDERR encode "utf-8", "…term found in line “".$data->[$id]."”\n";
 				$data->[$id] =~ s/$/$term$onlineTerms->{$term}/;
 			}
