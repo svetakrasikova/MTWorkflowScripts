@@ -1108,9 +1108,9 @@ sub tokenise {
 	#Handle single terms in parentheses
 	$line =~ s/(^|\s+)\(([◊\.\_\w]{2,}+)\)((?:\p{Punctuation}*[\s◊]+)|$)/$1◊(◊ $2 ◊) $3/g if $line =~ /\(/;
 
-	if ($line =~ m!/!) {
+	if ($line =~ m![/\\]!) {
 		#Preserve file paths
-		$line =~ s/(^|[\s◊]+)([\p{IsAlnum}({\[<\\\/])((?:[^ \\\/]++[\\\/]++)+[^ \\\/]*)([*\$\p{IsAlnum}>)}\/\\>\]])(?=[\p{Punctuation}\s◊]+|$)/
+		$line =~ s/(^|[\s◊]+)([\p{IsAlnum}({\[<\\\/])((?:[^ \\\/]++[\\\/]++)+[^ \\\/]*)([*\$\p{IsAlnum})}\/\\>\]])(?=[\p{Punctuation}\s◊]|$)/
 			my ($fs, $b, $d, $e) = ($1, $2, $3, $4);
 			$b = "◊(◊ " if $b eq "(";
 			$e = " ◊)◊" if $e eq ")";
