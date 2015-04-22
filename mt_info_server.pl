@@ -338,6 +338,7 @@ no strict qw/refs/;
 use utf8;
 
 use lib "/local/users/cmsuser/perl5/lib/perl5";
+use lib "/local/cms";
 
 use threads;
 use threads::shared;
@@ -350,6 +351,20 @@ use POSIX qw/:sys_wait_h strftime floor ceil EINTR WNOHANG/;
 use List::Util qw/min shuffle/;
 use LWP::UserAgent;
 use URI::Escape::XS qw/uri_escape/;
+use Time::HiRes;
+
+# Configure connection to statsd/Graphite server
+# to log request statistics.
+use Net::Statsd::Client;
+my $stats = Net::Statsd::Client->new(
+	host => 'HOST', # ADD STATSD HOSTNAME/IP HERE
+	port => 123, # ADD STATSD PORT HERE 
+	sample_rate => 1, # no sampling; send 100% of events to statsd/Graphite
+	warning_callback => {}, # generate no warnings for "unfinished" timers
+	prefix => "moses_dev.", # change to `moses.` in production
+);
+
+use AOTPLanguageCodes;
 
 
 $| = 1;
@@ -462,7 +477,7 @@ my %commands = (
 
 
 if ($hostname) {
-	($hostname) = $hostname =~ /^(\w+)$/;
+	($hostname) = $hostname =~ /^(([\d\w+-]+.?)+)$/;
 } else {
 	$hostname = "neucmslinux";
 }
@@ -958,6 +973,34 @@ sub translate {
 	$ID = "0".$ID while length $ID < 5;
 	
 	my $config = eval $confText;
+	
+	# Send statistics to statsd/Graphite
+	my $statsSourceLanguage = AOTPLanguageCodes::get($config->{sourceLanguage});
+	my $statsTargetLanguage = AOTPLanguageCodes::get($config->{targetLanguage});
+	my $statsProduct = $product; $statsProduct ||= "undefinedProduct";
+	my $translationTime = $stats->timer("$statsSourceLanguage.$statsTargetLanguage.$statsProduct.requests"); # capture start time of `translate` method execution
+	$stats->increment("$statsSourceLanguage.$statsTargetLanguage.$statsProduct.requests"); # number of requests counter
+	my $statsNumberOfWordsInRequest = 0;
+	for my $segment (@$input){
+		# dumb word count in segment: words boundaries determined by whitespace
+		my $statsNumberOfWordsInSegment = scalar split(' ', $segment);
+		$statsNumberOfWordsInRequest += $statsNumberOfWordsInSegment;
+		# determine word count category for each segment
+		my $statsCategory;
+		if ($statsNumberOfWordsInSegment <= 5) 		{ $statsCategory = "1-5words"; }
+		elsif ($statsNumberOfWordsInSegment <= 10) 	{ $statsCategory = "6-10words"; }
+		elsif ($statsNumberOfWordsInSegment <= 15)  { $statsCategory = "10-15words"; }
+		elsif ($statsNumberOfWordsInSegment <= 20)  { $statsCategory = "15-20words"; }
+		elsif ($statsNumberOfWordsInSegment <= 25)  { $statsCategory = "20-25words"; }
+		elsif ($statsNumberOfWordsInSegment <= 30)  { $statsCategory = "25-30words"; }
+		elsif ($statsNumberOfWordsInSegment <= 35)  { $statsCategory = "30-35words"; }
+		elsif ($statsNumberOfWordsInSegment <= 40)  { $statsCategory = "35-40words"; }
+		elsif ($statsNumberOfWordsInSegment <= 45)  { $statsCategory = "40-45words"; }
+		elsif ($statsNumberOfWordsInSegment <= 50)  { $statsCategory = "45-50words"; }
+		else 										{ $statsCategory = "50+words"; }
+		$stats->increment("$statsSourceLanguage.$statsTargetLanguage.$statsProduct.segments.$statsCategory"); # number of segments counter
+	}
+	$stats->update("$statsSourceLanguage.$statsTargetLanguage.$statsProduct.words", $statsNumberOfWordsInRequest); # number of words counter
 
 	# Check for matching URLs
 	&matchURLs($config->{targetLanguage}, $input);
@@ -1184,7 +1227,8 @@ sub translate {
 		}
 	
 	}
-	# We should not have leftover jobs at this point.
+	$translationTime->finish;	
+	# We should not have leftover jobs at this point.	
 }
 
 sub getOnlineTerms {
