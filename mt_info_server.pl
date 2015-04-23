@@ -361,7 +361,7 @@ my $stats = Net::Statsd::Client->new(
 	port => 123, # ADD STATSD PORT HERE 
 	sample_rate => 1, # no sampling; send 100% of events to statsd/Graphite
 	warning_callback => {}, # generate no warnings for "unfinished" timers
-	prefix => "moses_dev.", # change to `moses.` in production
+	prefix => "dev_moses.", # change to `moses.` in production
 );
 
 use AOTPLanguageCodes;
@@ -989,15 +989,9 @@ sub translate {
 		my $statsCategory;
 		if ($statsNumberOfWordsInSegment <= 5) 		{ $statsCategory = "1-5words"; }
 		elsif ($statsNumberOfWordsInSegment <= 10) 	{ $statsCategory = "6-10words"; }
-		elsif ($statsNumberOfWordsInSegment <= 15)  { $statsCategory = "10-15words"; }
-		elsif ($statsNumberOfWordsInSegment <= 20)  { $statsCategory = "15-20words"; }
-		elsif ($statsNumberOfWordsInSegment <= 25)  { $statsCategory = "20-25words"; }
-		elsif ($statsNumberOfWordsInSegment <= 30)  { $statsCategory = "25-30words"; }
-		elsif ($statsNumberOfWordsInSegment <= 35)  { $statsCategory = "30-35words"; }
-		elsif ($statsNumberOfWordsInSegment <= 40)  { $statsCategory = "35-40words"; }
-		elsif ($statsNumberOfWordsInSegment <= 45)  { $statsCategory = "40-45words"; }
-		elsif ($statsNumberOfWordsInSegment <= 50)  { $statsCategory = "45-50words"; }
-		else 										{ $statsCategory = "50+words"; }
+		elsif ($statsNumberOfWordsInSegment <= 20)  { $statsCategory = "10-20words"; }
+		elsif ($statsNumberOfWordsInSegment <= 30)  { $statsCategory = "20-30words"; }
+		else 										{ $statsCategory = "30+words"; }
 		$stats->increment("$statsSourceLanguage.$statsTargetLanguage.$statsProduct.segments.$statsCategory"); # number of segments counter
 	}
 	$stats->update("$statsSourceLanguage.$statsTargetLanguage.$statsProduct.words", $statsNumberOfWordsInRequest); # number of words counter
