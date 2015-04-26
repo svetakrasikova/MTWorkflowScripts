@@ -78,7 +78,7 @@ use Encode qw/encode decode/;
 # apply switches
 my ($DIR,$CORPUS,$SCRIPTS_ROOT_DIR,$CONFIG);
 my $NGRAM_COUNT = "ngram-count";
-my $TRAIN_SCRIPT = "train-model.perl";
+my $TRAIN_SCRIPT = "moses-train-model.perl";
 my $MAX_LEN = 1;
 my $FIRST_STEP = 1;
 my $LAST_STEP = 11;
@@ -91,7 +91,6 @@ unless &GetOptions(	'first-step=i' => \$FIRST_STEP,
 										'corpus=s' => \$CORPUS,
                     'config=s' => \$CONFIG,
 										'dir=s' => \$DIR,
-										'ngram-count=s' => \$NGRAM_COUNT,
 										'train-script=s' => \$TRAIN_SCRIPT,
 		      					'scripts-root-dir=s' => \$SCRIPTS_ROOT_DIR,
 		      					'max-len=i' => \$MAX_LEN,
@@ -121,17 +120,13 @@ if ($FIRST_STEP <= 2 && $LAST_STEP >= 3) {
 
 ### subs ###
 
-#sub truecase {
-#	# to do
-#}
-
 sub train_lm {
-	if (-e "$DIR/cased.srilm.gz") {
+	if (-e "$DIR/cased.lm3bin") {
 		print STDERR "Reusing existing language model!\n";
 		return;
 	}
 	print STDERR "(2) Train language model on cased data @ ".`date`;
-	my $cmd = "$NGRAM_COUNT -text $CORPUS -lm $DIR/cased.srilm.gz -interpolate -".($LANGUAGE eq "en_gb" ? "wb" : "kn")."discount";
+	my $cmd = "lmplz -o 5 -T /tmp <$CORPUS> $DIR/lm3arpa && build_binary -q 8 -a 255 -T /tmp -S 33% trie $DIR/lm3arpa $DIR/cased.lm3bin && rm -vf $DIR/lm3arpa";
 	print STDERR $cmd."\n";
 	system($cmd) == 0
 	or die "Recaser language model training failed!\n";
@@ -146,17 +141,6 @@ sub prepare_data {
 	
 
 	system 'cp', '-p', $CORPUS, "$DIR/aligned.cased.bz2";
-#	my $casedQueue = Thread::Queue->new();
-#	my $printCased = sub {
-#		my $CASED = new IO::Compress::Bzip2 "$DIR/aligned.cased.bz2", BlockSize100K => 9
-#		or die "Could not write $DIR/aligned.cased.bz2 ($Bzip2Error)!\n";
-#		
-#		while (defined(my $line = $casedQueue->dequeue())) {
-#			print $CASED encode "utf-8", $line;
-#		}
-#		
-#		$CASED->close();
-#	};
 	
 	my $lowercasedQueue = Thread::Queue->new();
 	my $printLowercased = sub {
@@ -207,7 +191,6 @@ sub prepare_data {
 			
 #			next if $line =~ /^\s*$/;
 
-#			$casedQueue->enqueue($line);
 			$lowercasedQueue->enqueue($line);
 			$alignmentQueue->enqueue($line);
 		}
@@ -215,20 +198,18 @@ sub prepare_data {
 		close $CORP;
 		print STDERR "Finished queuing data.";
 	
-#		$casedQueue->enqueue(undef);
 		$lowercasedQueue->enqueue(undef);
 		$alignmentQueue->enqueue(undef);
 	};
 
 	$_->join() foreach (scalar threads->create($mainThread),
-#	scalar threads->create($printCased),
 	scalar threads->create($printLowercased), scalar threads->create($printAlignment));
 }
 
 sub train_recase_model {
 	my $first = $FIRST_STEP < 4 ? 4 : $FIRST_STEP;
 	print STDERR "\n(4) Training recasing model @ ".`date`;
-	my $cmd = "$TRAIN_SCRIPT -root-dir $DIR -model-dir $DIR -temp-dir /tmp -first-step $first -alignment a -corpus-dir \"$DIR\" -corpus aligned -f lowercased -e cased -max-phrase-length $MAX_LEN -lm 0:3:$DIR/cased.srilm.gz:0 -device $DEVICE -binarise $BINARISE -max-lexical-reordering 0";
+	my $cmd = "$TRAIN_SCRIPT -parallel -root-dir $DIR -model-dir $DIR -temp-dir /tmp -phrase-translation-table phrase-table:12 -first-step $first -alignment a -corpus-dir \"$DIR\" -corpus aligned -f lowercased -e cased -max-phrase-length $MAX_LEN -lm 0:3:$DIR/cased.lm3bin:8 -device $DEVICE -binarise $BINARISE -max-lexical-reordering 0";
 	$cmd .= " -scripts-root-dir $SCRIPTS_ROOT_DIR" if $SCRIPTS_ROOT_DIR;
 	$cmd .= " -config $CONFIG" if $CONFIG;
 	print STDERR "$cmd\n";

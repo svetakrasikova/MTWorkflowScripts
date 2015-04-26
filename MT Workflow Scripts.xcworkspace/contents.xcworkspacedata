@@ -176,4 +176,7 @@
    <FileRef
       location = "group:getMTTimeline.pl">
    </FileRef>
+   <FileRef
+      location = "group:MSHubTest.py">
+   </FileRef>
 </Workspace>

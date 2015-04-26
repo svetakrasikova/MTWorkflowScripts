@@ -1,4 +1,4 @@
-#!/usr/local/bin/perl -wTs
+#!/usr/local/bin/perl -wsT
 #
 # file: moses_server.ventzi.pl
 #
@@ -277,7 +277,6 @@ use IPC::Open2;
 use IPC::Open3;
 use POSIX qw/strftime/;
 use lib '/local/cms/bin';
-use varcon;
 
 delete @ENV{qw(IFS CDPATH ENV BASH_ENV PATH)}; # Make %ENV safer
 $ENV{PATH} = "/usr/bin:/usr/local/bin:/local/cms/bin:/local/cms/moses/mosesdecoder/moses-cmd/src:/local/cms/bin/opennlp/bin";
@@ -292,9 +291,17 @@ die encode "utf-8", "Usage: $0 -engine=… [-hostname=…] -hostport=… [-prepr
 unless defined $engine && defined $hostport;
 
 $VENTZI = 1 if defined $VENTZI;
+
+if ($VENTZI) {
+	use lib '/OptiBay/ADSK_Software';
+	$ENV{DYLD_LIBRARY_PATH} = "/sw/lib";
+}
+use varcon;
+
 $engine =~ s,/$,,;
 ($engine) = $engine =~ /^([\p{IsAlNum}_-]{7,})$/;
 $moses ||= "moses".($VENTZI ? "-ventzi" : "");
+($moses) = $moses =~ /^(moses(?:-\w+)?)$/;
 #($moses) = $moses =~ /^(moses(?:-ventzi)?)$/;
 my ($srclang, $tgtlang) = map {lc $_} ($engine =~ /(?:^|_)(\p{IsAlpha}+(?:_\p{IsAlpha}+)?)-(\p{IsAlpha}+(?:_\p{IsAlpha}+)?)_/); #extract the language codes from the engine name
 if (defined $hostname) {
@@ -371,8 +378,8 @@ open \*MOSES_LOG, ">${base_dir}LOG/${engine}_moses_$tstamp.log"
 or die encode "utf-8", "Could not write moses log file at “${base_dir}LOG/${engine}_moses_$tstamp.log”\n";
 select \*MOSES_LOG;
 $| = 1;
-my $pid_moses = open3(\*MOSES_IN, \*MOSES_OUT, \*MOSES_ERR, "$moses -xml-input exclusive -f $MOSES_INI")
-or die encode "utf-8", "Could not start decoder with command “$moses -f $MOSES_INI”\n";
+my $pid_moses = open3(\*MOSES_IN, \*MOSES_OUT, \*MOSES_ERR, "$moses -minlexr-memory -minphr-memory -xml-input exclusive -f $MOSES_INI")
+or die encode "utf-8", "Could not start decoder with command “$moses -minlexr-memory -minphr-memory -xml-input exclusive -f $MOSES_INI”\n";
 select \*MOSES_ERR;
 $| = 1;
 for (;;) {
@@ -383,9 +390,9 @@ for (;;) {
 		last;
 	}
 }
-my $firstRun = 1;
-my $pid_recaser = open2(\*RECASER_OUT, "<&MOSES_OUT", $moses, '-report-all-factors', '-v', '0', '-dl', '0', '-f', $RECASER_INI)
-or die encode "utf-8", "Could not start recaser with command “$moses -report-all-factors -v 0 -dl 0 -f $RECASER_INI”\n";
+#my $firstRun = 1;
+my $pid_recaser = open2(\*RECASER_OUT, "<&MOSES_OUT", $moses, '-minlexr-memory', '-minphr-memory', '-v', '0', '-f', $RECASER_INI)
+or die encode "utf-8", "Could not start recaser with command “$moses -minlexr-memory -minphr-memory -v 0 -f $RECASER_INI”\n";
 select \*MOSES_IN;
 $| = 1;
 select \*RECASER_OUT;
@@ -401,7 +408,7 @@ if ($preprocess) {
 
 # spawn translation dictionary for conversion between GB and US English
 
-my $file = '/local/cms/bin/varcon.txt';   # the dictionary file; see also http://wordlist.aspell.net/varcon-readme/
+my $file = "${base_dir}bin/varcon.txt";   # the dictionary file; see also http://wordlist.aspell.net/varcon-readme/
 my $from = 'B';            # from *B*ritish English
 my $to = 'A';              # to *A*merican English
 my $ques = 0;
@@ -541,7 +548,7 @@ while (my $client_sock = $server_sock->accept()) {
 					$pre_src = decode "utf-8", scalar <$pre_out>;
 					chomp $pre_src;
 				}
-				$pre_src =~ tr/|<>()/│﹤﹥﹙﹚/;
+				$pre_src =~ tr/|<>()[]/│﹤﹥﹙﹚［］/;
 				
 				if (($words = () = split ' ', $pre_src, -1) > 200 || (() = split /,\.\(\)/, $pre_src, -1) > 100) {
 					print $client_sock encode("utf-8", &checkPH($src, "### Non MT-Translatable: too long ###", \%PHMap)."0\n");
@@ -567,17 +574,32 @@ while (my $client_sock = $server_sock->accept()) {
 					
 					print MOSES_IN encode "utf-8", "$pre_src\n";
 					my $mosesScore;
-					my $limit = $VENTZI ? ($firstRun ? 12 : 8) : ($firstRun && $hostname ne "neucmslinux" && $hostname ne "mt" ? 10 : 7);
-					$firstRun &&= 0;
+#					my $limit = $VENTZI ? ($firstRun ? 12 : 8) : ($firstRun && $hostname ne "neucmslinux" && $hostname ne "mt" ? 10 : 7);
+#					$firstRun &&= 0;
+					my $limit = 8;
 					foreach (1..$limit) {
 						my $logLine = <MOSES_ERR>;
-						print MOSES_LOG $logLine;
+						if (defined $logLine) {
+							print MOSES_LOG $logLine;
+						} else {
+							print MOSES_LOG "Moses died unexpectedly!\n";
+							die "Moses died unexpectedly!\n";
+						}
 						if ($logLine =~ /BEST TRANSLATION:/) {
-							my ($total, $penalty) = $logLine =~ /\[total=(-?[\d\.]+)\] <<(?:-?[\d\.]+, ){2,2}(-?[\d\.]+),/;
-							$mosesScore = $total - $penalty;
+							my ($total, $penalty) = $logLine =~ /\[total=(-?[\d\.]+)\] core=\((-?[\d\.]+),/;
+							if (defined $total && defined $penalty) {
+								$mosesScore = $total - $penalty;
+							} else {
+								print MOSES_LOG "Unexpected output from Moses: $logLine!\n";
+								die "Unexpected output from Moses: $logLine!\n";
+							}
 						}
 					}
 					my $trg = decode "utf-8", scalar <RECASER_OUT>;
+					unless (defined $trg) {
+						print MOSES_LOG "Moses died unexpectedly!\n";
+						die "Moses died unexpectedly!\n";
+					}
 #					last if $killed;
 					chomp $trg;
 					my %unknowns = map {$_ => 1} $trg =~ /(?:^|\s+)([^\s]+)(?=\|UNK\|UNK\|UNK)/g;
@@ -587,7 +609,7 @@ while (my $client_sock = $server_sock->accept()) {
 					}
 					
 					$trg =~ s/\|UNK\|UNK\|UNK//g;
-					$trg =~ tr/│﹤﹥﹙﹚/|<>()/;
+					$trg =~ tr/│﹤﹥﹙﹚［］/|<>()[]/;
 					
 					unless ($engine =~ /DE/) {
 						my ($tmp) = $src =~ /^(\p{IsAlpha})\p{Lower}*(?:\s|$)/;
