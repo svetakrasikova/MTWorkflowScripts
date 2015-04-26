@@ -28,3 +28,6 @@ SW_JSONs/
 OPENNLP/
 segmentation/
 moses-trunk/
+moses.v3/
+mgiza/
+kenlm/
